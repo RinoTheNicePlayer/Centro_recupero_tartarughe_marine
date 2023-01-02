@@ -17,12 +17,12 @@ public class Connessione
 			
 			if(connessione != null)
 			{
-				System.out.println("La connessione al server di PostgreSQL è avvenuta con successo!");
+				System.out.println("La connessione al server di PostgreSQL e' avvenuta con successo!");
 			}
 			
 			else
 			{
-				System.out.println("La connessione al server di PostgreSQL è fallita!");
+				System.out.println("La connessione al server di PostgreSQL e' fallita!");
 			}
 		}
 		
