@@ -55,13 +55,12 @@ public class Accesso extends JFrame {
 		Finestra.add(Barra_del_titolo);
 		Barra_del_titolo.setLayout(null);
 		
-		JLabel Chiudi = new JLabel("");
-		Chiudi.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Chiudi.png")));
+		JLabel Chiudi = new JLabel("X");
 		Chiudi.setHorizontalAlignment(SwingConstants.CENTER);
 		Chiudi.setForeground(new Color(255, 255, 255));
 		Chiudi.setBackground(new Color(255, 255, 255));
-		Chiudi.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		Chiudi.setBounds(940, 10, 50, 30);
+		Chiudi.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		Chiudi.setBounds(945, 0, 45, 50);
 		Barra_del_titolo.add(Chiudi);
 		
 		JLabel Riduci_a_icona = new JLabel("");
@@ -70,7 +69,7 @@ public class Accesso extends JFrame {
 		Riduci_a_icona.setForeground(Color.WHITE);
 		Riduci_a_icona.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		Riduci_a_icona.setBackground(Color.WHITE);
-		Riduci_a_icona.setBounds(880, 10, 50, 30);
+		Riduci_a_icona.setBounds(890, 0, 45, 50);
 		Barra_del_titolo.add(Riduci_a_icona);
 		
 		JPanel Pannello_destro = new JPanel();
@@ -138,7 +137,7 @@ public class Accesso extends JFrame {
 		
 		JButton Accesso = new JButton("Accesso");
 		Accesso.setForeground(new Color(0, 0, 0));
-		Accesso.setBackground(new Color(0, 0, 0));
+		Accesso.setBackground(new Color(255, 255, 255));
 		Accesso.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		Accesso.setBounds(40, 390, 419, 50);
 		Pannello_destro.add(Accesso);
