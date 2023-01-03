@@ -13,6 +13,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Accesso extends JFrame {
 
@@ -56,6 +58,12 @@ public class Accesso extends JFrame {
 		Barra_del_titolo.setLayout(null);
 		
 		JLabel Chiudi = new JLabel("X");
+		Chiudi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
 		Chiudi.setHorizontalAlignment(SwingConstants.CENTER);
 		Chiudi.setForeground(new Color(255, 255, 255));
 		Chiudi.setBackground(new Color(255, 255, 255));
