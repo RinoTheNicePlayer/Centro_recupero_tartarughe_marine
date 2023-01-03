@@ -1,6 +1,6 @@
 package Classi;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -57,8 +57,17 @@ public class Accesso extends JFrame {
 		Finestra.add(Barra_del_titolo);
 		Barra_del_titolo.setLayout(null);
 		
-		JLabel Chiudi = new JLabel("X");
+		JLabel Chiudi = new JLabel("");
+		Chiudi.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Chiudi.png")));
 		Chiudi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				Chiudi.setIcon(new ImageIcon(getClass().getResource("/Immagini/Chiudi (rosso).png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				Chiudi.setIcon(new ImageIcon(getClass().getResource("/Immagini/Chiudi.png")));
+			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
@@ -67,17 +76,31 @@ public class Accesso extends JFrame {
 		Chiudi.setHorizontalAlignment(SwingConstants.CENTER);
 		Chiudi.setForeground(new Color(255, 255, 255));
 		Chiudi.setBackground(new Color(255, 255, 255));
-		Chiudi.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		Chiudi.setFont(new Font("Segoe UI", Font.PLAIN, 5));
 		Chiudi.setBounds(945, 0, 45, 50);
 		Barra_del_titolo.add(Chiudi);
 		
 		JLabel Riduci_a_icona = new JLabel("");
 		Riduci_a_icona.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Riduci a icona.png")));
+		Riduci_a_icona.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				Riduci_a_icona.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona (blu).png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				Riduci_a_icona.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setExtendedState(JFrame.ICONIFIED);
+			}
+		});
 		Riduci_a_icona.setHorizontalAlignment(SwingConstants.CENTER);
 		Riduci_a_icona.setForeground(Color.WHITE);
-		Riduci_a_icona.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		Riduci_a_icona.setFont(new Font("Segoe UI", Font.PLAIN, 5));
 		Riduci_a_icona.setBackground(Color.WHITE);
-		Riduci_a_icona.setBounds(890, 0, 45, 50);
+		Riduci_a_icona.setBounds(900, 0, 45, 50);
 		Barra_del_titolo.add(Riduci_a_icona);
 		
 		JPanel Pannello_destro = new JPanel();
