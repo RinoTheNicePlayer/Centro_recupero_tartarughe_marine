@@ -109,5 +109,30 @@ public class Registrazione extends JFrame {
 		Titolo.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		Titolo.setBounds(40, 11, 120, 28);
 		Barra_del_titolo.add(Titolo);
+		
+		JPanel PannelloDestro = new JPanel();
+		PannelloDestro.setBounds(499, 49, 501, 451);
+		Finestra.add(PannelloDestro);
+		
+		JPanel PannelloSinistro = new JPanel();
+		PannelloSinistro.setBounds(0, 49, 501, 451);
+		Finestra.add(PannelloSinistro);
+		
+		JButton Bottone_Indietro = new JButton("<");
+		Bottone_Indietro.setHorizontalAlignment(SwingConstants.LEFT);
+		Bottone_Indietro.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		PannelloSinistro.add(Bottone_Indietro);
+		
+		JLabel Testo_1 = new JLabel("Registrazione");
+		Testo_1.setFont(new Font("Segoe UI", Font.BOLD, 34));
+		PannelloSinistro.add(Testo_1);
+		
+		JLabel Testo_2 = new JLabel("Compila i campi sottostanti per completare la registrazione");
+		Testo_2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
+		PannelloSinistro.add(Testo_2);
+		
+		JLabel Testo_Nome = new JLabel("Nome");
+		PannelloSinistro.add(Testo_Nome);
+		Testo_Nome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 	}
 }
