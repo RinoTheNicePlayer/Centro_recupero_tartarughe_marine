@@ -154,8 +154,9 @@ public class Registrazione extends JFrame {
 		PannelloDestro.add(Testo_Centro);
 		
 		JComboBox Scelta_Professione_1 = new JComboBox();
-		Scelta_Professione_1.setModel(new DefaultComboBoxModel(new String[] {"Sede Roma", "Sede Napoli", "Sede Parma"}));
-		Scelta_Professione_1.setMaximumRowCount(3);
+		Scelta_Professione_1.setModel(new DefaultComboBoxModel(new String[] {"Sede Roma", "Sede Napoli", "Sede Parma", "      "}));
+		Scelta_Professione_1.setSelectedIndex(3);
+		Scelta_Professione_1.setMaximumRowCount(4);
 		Scelta_Professione_1.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		Scelta_Professione_1.setBackground(Color.WHITE);
 		Scelta_Professione_1.setBounds(158, 148, 180, 44);
@@ -168,8 +169,9 @@ public class Registrazione extends JFrame {
 		Testo_2.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		
 		JComboBox Scelta_Professione = new JComboBox();
-		Scelta_Professione.setModel(new DefaultComboBoxModel(new String[] {"Operatore", "Medico veterinario", "Tecnico di laboratorio", "Ricercatore"}));
-		Scelta_Professione.setMaximumRowCount(4);
+		Scelta_Professione.setModel(new DefaultComboBoxModel(new String[] {"Operatore", "Medico veterinario", "Tecnico di laboratorio", "Ricercatore", "    "}));
+		Scelta_Professione.setSelectedIndex(4);
+		Scelta_Professione.setMaximumRowCount(5);
 		Scelta_Professione.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		Scelta_Professione.setBackground(Color.WHITE);
 		Scelta_Professione.setBounds(158, 256, 180, 44);
@@ -282,9 +284,10 @@ public class Registrazione extends JFrame {
 		
 		JComboBox Scelta_Sesso = new JComboBox();
 		Scelta_Sesso.setBackground(new Color(255, 255, 255));
-		Scelta_Sesso.setModel(new DefaultComboBoxModel(new String[] {"Maschio", "Femmina"}));
+		Scelta_Sesso.setModel(new DefaultComboBoxModel(new String[] {"Maschio", "Femmina", "    "}));
+		Scelta_Sesso.setSelectedIndex(2);
 		Scelta_Sesso.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		Scelta_Sesso.setMaximumRowCount(2);
+		Scelta_Sesso.setMaximumRowCount(3);
 		Scelta_Sesso.setBounds(279, 375, 180, 28);
 		PannelloSinistro.add(Scelta_Sesso);
 		
