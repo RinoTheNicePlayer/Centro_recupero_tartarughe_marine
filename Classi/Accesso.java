@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -182,13 +183,24 @@ public class Accesso extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				PreparedStatement ps;
 				ResultSet rs;
-				String Email_strina = Email.getText();
+				String Email_stringa = Email.getText();
 				String Password_stringa = String.valueOf(Password.getPassword());
-				String Query = "";
+				
+				String Query = "SELECT * FROM personale WHERE email = ? AND parola_chiave = ?";
 				
 				try {
 					ps = Connessione.getConnection().prepareStatement(Query);
+					
+					ps.setString(1, Email_stringa);
+					ps.setString(2, Password_stringa);
+					
 					rs = ps.executeQuery();
+					
+					if(rs.next()) {
+						JOptionPane.showMessageDialog(null, "Si");
+					} else {
+						JOptionPane.showMessageDialog(null, "No");
+					}
 				} catch (SQLException ex) {
 					Logger.getLogger(Accesso.class.getName()).log(Level.SEVERE, null, ex);
 				}
