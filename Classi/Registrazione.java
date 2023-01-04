@@ -198,6 +198,13 @@ public class Registrazione extends JFrame {
 		Pulsante_1.setBounds(135, 20, 205, 38);
 		PannelloSinistro.add(Pulsante_1);
 		
+		Pulsante_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+		
 		JLabel Testo_1 = new JLabel("Informazioni personali");
 		Testo_1.setVerticalAlignment(SwingConstants.TOP);
 		Testo_1.setBounds(132, 78, 228, 41);
