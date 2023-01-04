@@ -19,8 +19,10 @@ import java.awt.event.MouseEvent;
 public class Accesso extends JFrame {
 
 	private JPanel Finestra;
-	private JTextField textFieldEmail;
-	private JPasswordField textFieldPassword;
+	private JTextField Email;
+	private JPasswordField Password;
+	private JLabel Occhio_chiuso;
+	private JLabel Occhio_aperto;
 
 	/**
 	 * Launch the application.
@@ -103,6 +105,15 @@ public class Accesso extends JFrame {
 		Riduci_a_icona.setBounds(900, 0, 45, 50);
 		Barra_del_titolo.add(Riduci_a_icona);
 		
+		JLabel Titolo = new JLabel("Accesso");
+		Titolo.setVerticalAlignment(SwingConstants.TOP);
+		Titolo.setBackground(new Color(0, 0, 0));
+		Titolo.setForeground(new Color(255, 255, 255));
+		Titolo.setHorizontalAlignment(SwingConstants.LEFT);
+		Titolo.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		Titolo.setBounds(40, 11, 120, 28);
+		Barra_del_titolo.add(Titolo);
+		
 		JPanel Pannello_destro = new JPanel();
 		Pannello_destro.setBackground(new Color(255, 255, 255));
 		Pannello_destro.setBounds(500, 0, 500, 500);
@@ -131,40 +142,34 @@ public class Accesso extends JFrame {
 		Testo_3.setBounds(0, 145, 500, 30);
 		Pannello_destro.add(Testo_3);
 		
-		JLabel Email = new JLabel("Email");
-		Email.setVerticalAlignment(SwingConstants.TOP);
-		Email.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		Email.setHorizontalAlignment(SwingConstants.LEFT);
-		Email.setBounds(40, 205, 120, 30);
+		JLabel Testo_Email = new JLabel("Email");
+		Testo_Email.setVerticalAlignment(SwingConstants.TOP);
+		Testo_Email.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		Testo_Email.setHorizontalAlignment(SwingConstants.LEFT);
+		Testo_Email.setBounds(40, 205, 120, 30);
+		Pannello_destro.add(Testo_Email);
+		
+		Email = new JTextField();
+		Email.setBounds(40, 245, 365, 30);
 		Pannello_destro.add(Email);
+		Email.setColumns(10);
 		
-		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(40, 245, 365, 30);
-		Pannello_destro.add(textFieldEmail);
-		textFieldEmail.setColumns(10);
+		JLabel Testo_Password = new JLabel("Password");
+		Testo_Password.setVerticalAlignment(SwingConstants.TOP);
+		Testo_Password.setHorizontalAlignment(SwingConstants.LEFT);
+		Testo_Password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		Testo_Password.setBounds(40, 285, 120, 30);
+		Pannello_destro.add(Testo_Password);
 		
-		JLabel Password = new JLabel("Password");
-		Password.setVerticalAlignment(SwingConstants.TOP);
-		Password.setHorizontalAlignment(SwingConstants.LEFT);
-		Password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		Password.setBounds(40, 285, 120, 30);
+		Password = new JPasswordField();
+		Password.setBounds(40, 325, 365, 30);
 		Pannello_destro.add(Password);
-		
-		textFieldPassword = new JPasswordField();
-		textFieldPassword.setBounds(40, 325, 365, 30);
-		Pannello_destro.add(textFieldPassword);
 		
 		JLabel Utente = new JLabel("");
 		Utente.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Utente.png")));
 		Utente.setHorizontalAlignment(SwingConstants.CENTER);
 		Utente.setBounds(429, 245, 30, 30);
 		Pannello_destro.add(Utente);
-		
-		JLabel Occhio = new JLabel("");
-		Occhio.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Occhio chiuso.png")));
-		Occhio.setHorizontalAlignment(SwingConstants.CENTER);
-		Occhio.setBounds(429, 325, 30, 30);
-		Pannello_destro.add(Occhio);
 		
 		JButton Accesso = new JButton("Accesso");
 		Accesso.setForeground(new Color(0, 0, 0));
@@ -186,6 +191,35 @@ public class Accesso extends JFrame {
 		Registrazione.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		Registrazione.setBounds(285, 450, 100, 21);
 		Pannello_destro.add(Registrazione);
+		
+		Occhio_chiuso = new JLabel("");
+		Occhio_chiuso.setVisible(false);
+		Occhio_chiuso.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Occhio_aperto.setVisible(true);
+				Occhio_chiuso.setVisible(false);
+				Password.setEchoChar('*');
+			}
+		});
+		Occhio_chiuso.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Occhio chiuso.png")));
+		Occhio_chiuso.setHorizontalAlignment(SwingConstants.CENTER);
+		Occhio_chiuso.setBounds(429, 325, 30, 30);
+		Pannello_destro.add(Occhio_chiuso);
+		
+		Occhio_aperto = new JLabel("");
+		Occhio_aperto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Occhio_chiuso.setVisible(true);
+				Occhio_aperto.setVisible(false);
+				Password.setEchoChar((char)0);
+			}
+		});
+		Occhio_aperto.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Occhio aperto.png")));
+		Occhio_aperto.setHorizontalAlignment(SwingConstants.CENTER);
+		Occhio_aperto.setBounds(429, 325, 30, 30);
+		Pannello_destro.add(Occhio_aperto);
 		Pannello_sinistro.setBounds(0, 0, 500, 500);
 		Finestra.add(Pannello_sinistro);
 	}
