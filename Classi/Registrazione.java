@@ -29,9 +29,9 @@ public class Registrazione extends JFrame {
 	private JPasswordField Password_2;
 	private JPasswordField Password_1;
 
-	/**
-	 * Launch the application.
-	 */
+
+	// Lancio l'applicazione
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -45,9 +45,9 @@ public class Registrazione extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
+	//Creazione del frame
+	
 	public Registrazione() {
 		setUndecorated(true);
 		setBounds(100, 100, 1000, 500);
@@ -80,6 +80,7 @@ public class Registrazione extends JFrame {
 				System.exit(0);
 			}
 		});
+		
 		Chiudi.setHorizontalAlignment(SwingConstants.CENTER);
 		Chiudi.setForeground(new Color(255, 255, 255));
 		Chiudi.setBackground(new Color(255, 255, 255));
@@ -103,6 +104,7 @@ public class Registrazione extends JFrame {
 				setExtendedState(JFrame.ICONIFIED);
 			}
 		});
+		
 		Riduci_a_icona.setHorizontalAlignment(SwingConstants.CENTER);
 		Riduci_a_icona.setForeground(Color.WHITE);
 		Riduci_a_icona.setFont(new Font("Segoe UI", Font.PLAIN, 5));
@@ -186,10 +188,18 @@ public class Registrazione extends JFrame {
 		Testo_Password.setBounds(63, 235, 99, 32);
 		PannelloSinistro.add(Testo_Password);
 		
+		Password_1 = new JPasswordField();
+		Password_1.setBounds(62, 268, 170, 28);
+		PannelloSinistro.add(Password_1);
+		
 		JLabel Testo_Conferma_Password = new JLabel("Conferma password");
 		Testo_Conferma_Password.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		Testo_Conferma_Password.setBounds(301, 235, 199, 32);
 		PannelloSinistro.add(Testo_Conferma_Password);
+		
+		Password_2 = new JPasswordField();
+		Password_2.setBounds(301, 268, 180, 28);
+		PannelloSinistro.add(Password_2);
 		
 		Data_di_nascita = new JTextField();
 		Data_di_nascita.setToolTipText("AAAA-MM-GG");
@@ -230,13 +240,5 @@ public class Registrazione extends JFrame {
 		Registrati.setBackground(Color.WHITE);
 		Registrati.setBounds(63, 378, 419, 50);
 		PannelloSinistro.add(Registrati);
-		
-		Password_2 = new JPasswordField();
-		Password_2.setBounds(301, 268, 180, 28);
-		PannelloSinistro.add(Password_2);
-		
-		Password_1 = new JPasswordField();
-		Password_1.setBounds(62, 268, 170, 28);
-		PannelloSinistro.add(Password_1);
 	}
 }
