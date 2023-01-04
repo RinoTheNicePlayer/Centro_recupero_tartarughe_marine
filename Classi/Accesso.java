@@ -23,8 +23,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Accesso extends JFrame {
-
-	private JPanel Finestra;
+	
+	static JFrame Accesso;
+	private JPanel Pannello;
 	private JTextField Email;
 	private JPasswordField Password;
 	private JLabel Occhio_chiuso;
@@ -37,8 +38,9 @@ public class Accesso extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Accesso frame = new Accesso();
-					frame.setVisible(true);
+					Accesso Finestra_accesso = new Accesso();
+					Finestra_accesso.setLocationRelativeTo(null);
+					Finestra_accesso.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,19 +52,22 @@ public class Accesso extends JFrame {
 	 * Create the frame.
 	 */
 	public Accesso() {
+		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
 		setBounds(100, 100, 1000, 500);
-		Finestra = new JPanel();
-		Finestra.setBackground(new Color(192, 192, 192));
-		Finestra.setBorder(new EmptyBorder(5, 5, 5, 5));
+		Pannello = new JPanel();
+		Pannello.setForeground(new Color(255, 255, 255));
+		Pannello.setBackground(new Color(255, 255, 255));
+		Pannello.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(Finestra);
-		Finestra.setLayout(null);
+		setContentPane(Pannello);
+		Pannello.setLayout(null);
 		
 		JPanel Barra_del_titolo = new JPanel();
+		Barra_del_titolo.setForeground(new Color(0, 0, 0));
 		Barra_del_titolo.setBackground(new Color(0, 0, 0));
 		Barra_del_titolo.setBounds(0, 0, 1000, 50);
-		Finestra.add(Barra_del_titolo);
+		Pannello.add(Barra_del_titolo);
 		Barra_del_titolo.setLayout(null);
 		
 		JLabel Chiudi = new JLabel("");
@@ -105,9 +110,9 @@ public class Accesso extends JFrame {
 			}
 		});
 		Riduci_a_icona.setHorizontalAlignment(SwingConstants.CENTER);
-		Riduci_a_icona.setForeground(Color.WHITE);
+		Riduci_a_icona.setForeground(new Color(255, 255, 255));
 		Riduci_a_icona.setFont(new Font("Segoe UI", Font.PLAIN, 5));
-		Riduci_a_icona.setBackground(Color.WHITE);
+		Riduci_a_icona.setBackground(new Color(255, 255, 255));
 		Riduci_a_icona.setBounds(900, 0, 45, 50);
 		Barra_del_titolo.add(Riduci_a_icona);
 		
@@ -121,15 +126,17 @@ public class Accesso extends JFrame {
 		Barra_del_titolo.add(Titolo);
 		
 		JPanel Pannello_destro = new JPanel();
+		Pannello_destro.setForeground(new Color(255, 255, 255));
 		Pannello_destro.setBackground(new Color(255, 255, 255));
 		Pannello_destro.setBounds(500, 0, 500, 500);
-		Finestra.add(Pannello_destro);
+		Pannello.add(Pannello_destro);
 		
 		JLabel Pannello_sinistro = new JLabel("");
 		Pannello_sinistro.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Centro recupero tartarughe marine.png")));
 		Pannello_destro.setLayout(null);
 		
 		JLabel Testo_1 = new JLabel("Accesso");
+		Testo_1.setBackground(new Color(255, 255, 255));
 		Testo_1.setForeground(new Color(0, 0, 0));
 		Testo_1.setFont(new Font("Segoe UI", Font.BOLD, 34));
 		Testo_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -137,18 +144,24 @@ public class Accesso extends JFrame {
 		Pannello_destro.add(Testo_1);
 		
 		JLabel Testo_2 = new JLabel("Benvenuto!");
+		Testo_2.setForeground(new Color(0, 0, 0));
+		Testo_2.setBackground(new Color(255, 255, 255));
 		Testo_2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
 		Testo_2.setHorizontalAlignment(SwingConstants.CENTER);
 		Testo_2.setBounds(0, 120, 500, 30);
 		Pannello_destro.add(Testo_2);
 		
 		JLabel Testo_3 = new JLabel("Compila i campi sottostanti per entrare nel portale");
+		Testo_3.setForeground(new Color(0, 0, 0));
+		Testo_3.setBackground(new Color(255, 255, 255));
 		Testo_3.setHorizontalAlignment(SwingConstants.CENTER);
 		Testo_3.setFont(new Font("Segoe UI", Font.ITALIC, 15));
 		Testo_3.setBounds(0, 145, 500, 30);
 		Pannello_destro.add(Testo_3);
 		
 		JLabel Testo_Email = new JLabel("Email");
+		Testo_Email.setBackground(new Color(255, 255, 255));
+		Testo_Email.setForeground(new Color(0, 0, 0));
 		Testo_Email.setVerticalAlignment(SwingConstants.TOP);
 		Testo_Email.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		Testo_Email.setHorizontalAlignment(SwingConstants.LEFT);
@@ -156,11 +169,15 @@ public class Accesso extends JFrame {
 		Pannello_destro.add(Testo_Email);
 		
 		Email = new JTextField();
+		Email.setForeground(new Color(0, 0, 0));
+		Email.setBackground(new Color(255, 255, 255));
 		Email.setBounds(40, 245, 365, 30);
 		Pannello_destro.add(Email);
 		Email.setColumns(10);
 		
 		JLabel Testo_Password = new JLabel("Password");
+		Testo_Password.setForeground(new Color(0, 0, 0));
+		Testo_Password.setBackground(new Color(255, 255, 255));
 		Testo_Password.setVerticalAlignment(SwingConstants.TOP);
 		Testo_Password.setHorizontalAlignment(SwingConstants.LEFT);
 		Testo_Password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -168,10 +185,15 @@ public class Accesso extends JFrame {
 		Pannello_destro.add(Testo_Password);
 		
 		Password = new JPasswordField();
+		Password.setForeground(new Color(0, 0, 0));
+		Password.setBackground(new Color(255, 255, 255));
+		Password.setEchoChar('*');
 		Password.setBounds(40, 325, 365, 30);
 		Pannello_destro.add(Password);
 		
 		JLabel Utente = new JLabel("");
+		Utente.setForeground(new Color(0, 0, 0));
+		Utente.setBackground(new Color(255, 255, 255));
 		Utente.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Utente.png")));
 		Utente.setHorizontalAlignment(SwingConstants.CENTER);
 		Utente.setBounds(429, 245, 30, 30);
@@ -199,7 +221,9 @@ public class Accesso extends JFrame {
 					if(rs.next()) {
 						JOptionPane.showMessageDialog(null, "Si");
 					} else {
-						JOptionPane.showMessageDialog(null, "No");
+						Errore Finestra_errore = new Errore();
+						Finestra_errore.setLocationRelativeTo(null);
+						Finestra_errore.setVisible(true);
 					}
 				} catch (SQLException ex) {
 					Logger.getLogger(Accesso.class.getName()).log(Level.SEVERE, null, ex);
@@ -213,6 +237,8 @@ public class Accesso extends JFrame {
 		Pannello_destro.add(Accesso);
 		
 		JLabel Testo_4 = new JLabel("Non ti sei ancora registrato?");
+		Testo_4.setForeground(new Color(0, 0, 0));
+		Testo_4.setBackground(new Color(255, 255, 255));
 		Testo_4.setVerticalAlignment(SwingConstants.TOP);
 		Testo_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		Testo_4.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -220,6 +246,16 @@ public class Accesso extends JFrame {
 		Pannello_destro.add(Testo_4);
 		
 		JLabel Registrazione = new JLabel("Registrazione");
+		Registrazione.setForeground(new Color(0, 0, 0));
+		Registrazione.setBackground(new Color(255, 255, 255));
+		Registrazione.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Registrazione Finestra_registrazione = new Registrazione();
+				Finestra_registrazione.setLocationRelativeTo(null);
+				Finestra_registrazione.setVisible(true);
+			}
+		});
 		Registrazione.setVerticalAlignment(SwingConstants.TOP);
 		Registrazione.setHorizontalAlignment(SwingConstants.LEFT);
 		Registrazione.setFont(new Font("Segoe UI", Font.BOLD, 15));
@@ -227,7 +263,8 @@ public class Accesso extends JFrame {
 		Pannello_destro.add(Registrazione);
 		
 		Occhio_chiuso = new JLabel("");
-		Occhio_chiuso.setVisible(false);
+		Occhio_chiuso.setForeground(new Color(0, 0, 0));
+		Occhio_chiuso.setBackground(new Color(255, 255, 255));
 		Occhio_chiuso.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -242,6 +279,8 @@ public class Accesso extends JFrame {
 		Pannello_destro.add(Occhio_chiuso);
 		
 		Occhio_aperto = new JLabel("");
+		Occhio_aperto.setForeground(new Color(0, 0, 0));
+		Occhio_aperto.setBackground(new Color(255, 255, 255));
 		Occhio_aperto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -255,6 +294,6 @@ public class Accesso extends JFrame {
 		Occhio_aperto.setBounds(429, 325, 30, 30);
 		Pannello_destro.add(Occhio_aperto);
 		Pannello_sinistro.setBounds(0, 0, 500, 500);
-		Finestra.add(Pannello_sinistro);
+		Pannello.add(Pannello_sinistro);
 	}
 }
