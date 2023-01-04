@@ -15,6 +15,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Accesso extends JFrame {
 
@@ -172,6 +177,23 @@ public class Accesso extends JFrame {
 		Pannello_destro.add(Utente);
 		
 		JButton Accesso = new JButton("Accesso");
+		Accesso.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PreparedStatement ps;
+				ResultSet rs;
+				String Email_strina = Email.getText();
+				String Password_stringa = String.valueOf(Password.getPassword());
+				String Query = "";
+				
+				try {
+					ps = Connessione.getConnection().prepareStatement(Query);
+					rs = ps.executeQuery();
+				} catch (SQLException ex) {
+					Logger.getLogger(Accesso.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+		});
 		Accesso.setForeground(new Color(0, 0, 0));
 		Accesso.setBackground(new Color(255, 255, 255));
 		Accesso.setFont(new Font("Segoe UI", Font.PLAIN, 20));

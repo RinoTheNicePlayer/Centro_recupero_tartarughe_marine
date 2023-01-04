@@ -5,17 +5,17 @@ import java.sql.DriverManager;
 
 public class Connessione
 {
-	public static void main(String[] args)
+	public static Connection getConnection()
 	{
-		Connection connessione = null;
+		Connection Con = null;
 		
 		try
 		{
 			Class.forName("org.postgresql.Driver");
 			
-			connessione = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Centro_recupero_tartarughe_marine", "postgres", "postgres");
+			Con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Centro_recupero_tartarughe_marine", "postgres", "postgres");
 			
-			if(connessione != null)
+			if(Con != null)
 			{
 				System.out.println("La connessione al server di PostgreSQL e' avvenuta con successo!");
 			}
@@ -30,5 +30,7 @@ public class Connessione
 		{
 			System.out.println("" + e);
 		}
+		
+		return Con;
 	}
 }
