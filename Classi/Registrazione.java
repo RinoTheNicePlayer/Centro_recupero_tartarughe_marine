@@ -58,6 +58,7 @@ public class Registrazione extends JFrame {
 		Finestra.setLayout(null);
 		
 		JPanel Barra_del_titolo = new JPanel();
+		Barra_del_titolo.setBorder(UIManager.getBorder("Tree.editorBorder"));
 		Barra_del_titolo.setBackground(new Color(0, 0, 0));
 		Barra_del_titolo.setBounds(0, 0, 1000, 50);
 		Finestra.add(Barra_del_titolo);
@@ -119,6 +120,7 @@ public class Registrazione extends JFrame {
 		Barra_del_titolo.add(Titolo);
 		
 		JPanel PannelloDestro = new JPanel();
+		PannelloDestro.setBorder(UIManager.getBorder("Tree.editorBorder"));
 		PannelloDestro.setBounds(528, 49, 472, 451);
 		Finestra.add(PannelloDestro);
 		PannelloDestro.setLayout(null);
@@ -129,6 +131,7 @@ public class Registrazione extends JFrame {
 		PannelloDestro.add(Pannello_sinistro);
 		
 		JPanel PannelloSinistro = new JPanel();
+		PannelloSinistro.setBorder(UIManager.getBorder("Tree.editorBorder"));
 		PannelloSinistro.setBackground(new Color(255, 255, 255));
 		PannelloSinistro.setBounds(0, 49, 528, 451);
 		Finestra.add(PannelloSinistro);
