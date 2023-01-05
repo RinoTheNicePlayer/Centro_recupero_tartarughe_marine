@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -15,6 +16,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.Date;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
@@ -94,94 +103,14 @@ public class Registrazione extends JFrame {
 		testoRiduci.setBounds(900, 0, 45, 50);
 		barraTitolo.add(testoRiduci);
 		
-		JLabel testoTitolo = new JLabel("Registrazione");
-		testoTitolo.setVerticalAlignment(SwingConstants.TOP);
-		testoTitolo.setBackground(new Color(0, 0, 0));
-		testoTitolo.setForeground(new Color(255, 255, 255));
-		testoTitolo.setHorizontalAlignment(SwingConstants.LEFT);
-		testoTitolo.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoTitolo.setBounds(40, 11, 120, 28);
-		barraTitolo.add(testoTitolo);
-		
-		//Pannello destro
-		JPanel pannelloDestro = new JPanel();
-		pannelloDestro.setForeground(new Color(255, 255, 255));
-		pannelloDestro.setBackground(new Color(255, 255, 255));
-		pannelloDestro.setBorder(UIManager.getBorder("Tree.editorBorder"));
-		pannelloDestro.setBounds(500, 0, 500, 500);
-		pannello.add(pannelloDestro);
-		pannelloDestro.setLayout(null);
-		
-		JLabel testoInfoProfessionali = new JLabel("Informazioni professionali");
-		testoInfoProfessionali.setForeground(new Color(0, 0, 0));
-		testoInfoProfessionali.setBackground(new Color(255, 255, 255));
-		testoInfoProfessionali.setBounds(0, 50, 500, 70);
-		pannelloDestro.add(testoInfoProfessionali);
-		testoInfoProfessionali.setHorizontalAlignment(SwingConstants.CENTER);
-		testoInfoProfessionali.setFont(new Font("Segoe UI", Font.BOLD, 25));
-		
-		JLabel testoInformativo = new JLabel("Compila i campi sottostanti con le informazioni lavorative");
-		testoInformativo.setVerticalAlignment(SwingConstants.TOP);
-		testoInformativo.setHorizontalAlignment(SwingConstants.CENTER);
-		testoInformativo.setForeground(new Color(0, 0, 0));
-		testoInformativo.setBackground(new Color(255, 255, 255));
-		testoInformativo.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		testoInformativo.setBounds(0, 131, 500, 28);
-		pannelloDestro.add(testoInformativo);
-		
-		JLabel testoInformativo2 = new JLabel("Indicare la sede e la professione desiderate");
-		testoInformativo2.setForeground(new Color(0, 0, 0));
-		testoInformativo2.setBackground(new Color(255, 255, 255));
-		testoInformativo2.setVerticalAlignment(SwingConstants.TOP);
-		testoInformativo2.setHorizontalAlignment(SwingConstants.CENTER);
-		testoInformativo2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		testoInformativo2.setBounds(0, 160, 500, 28);
-		pannelloDestro.add(testoInformativo2);
-		
-		JLabel testoSede = new JLabel("Sede");
-		testoSede.setForeground(new Color(0, 0, 0));
-		testoSede.setBackground(new Color(255, 255, 255));
-		testoSede.setVerticalAlignment(SwingConstants.TOP);
-		testoSede.setHorizontalAlignment(SwingConstants.CENTER);
-		testoSede.setBounds(171, 199, 170, 28);
-		pannelloDestro.add(testoSede);
-		testoSede.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		
-		JComboBox sede = new JComboBox();
-		sede.setForeground(new Color(0, 0, 0));
-		sede.setBounds(171, 238, 170, 28);
-		pannelloDestro.add(sede);
-		sede.setModel(new DefaultComboBoxModel(new String[] {"Sede Roma", "Sede Napoli", "Sede Parma", ""}));
-		sede.setSelectedIndex(3);
-		sede.setMaximumRowCount(4);
-		sede.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		sede.setBackground(new Color(255, 255, 255));
-		
-		JLabel testoProfessione = new JLabel("Professione");
-		testoProfessione.setForeground(new Color(0, 0, 0));
-		testoProfessione.setBackground(new Color(255, 255, 255));
-		testoProfessione.setVerticalAlignment(SwingConstants.TOP);
-		testoProfessione.setHorizontalAlignment(SwingConstants.CENTER);
-		testoProfessione.setBounds(171, 277, 170, 28);
-		pannelloDestro.add(testoProfessione);
-		testoProfessione.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		
-		JComboBox professione = new JComboBox();
-		professione.setForeground(new Color(0, 0, 0));
-		professione.setBounds(171, 316, 170, 28);
-		pannelloDestro.add(professione);
-		professione.setModel(new DefaultComboBoxModel(new String[] {"Operatore", "Medico veterinario", "Tecnico di laboratorio", "Ricercatore", ""}));
-		professione.setSelectedIndex(4);
-		professione.setMaximumRowCount(5);
-		professione.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		professione.setBackground(new Color(255, 255, 255));
-		
-		JButton bottoneRegistrati = new JButton("Registrati");
-		bottoneRegistrati.setBounds(40, 390, 419, 50);
-		pannelloDestro.add(bottoneRegistrati);
-		bottoneRegistrati.setForeground(new Color(0, 0, 0));
-		bottoneRegistrati.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		bottoneRegistrati.setBackground(new Color(255, 255, 255));
+		JLabel testoBarra = new JLabel("Registrazione");
+		testoBarra.setVerticalAlignment(SwingConstants.TOP);
+		testoBarra.setBackground(new Color(0, 0, 0));
+		testoBarra.setForeground(new Color(255, 255, 255));
+		testoBarra.setHorizontalAlignment(SwingConstants.LEFT);
+		testoBarra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoBarra.setBounds(40, 11, 120, 28);
+		barraTitolo.add(testoBarra);
 		
 		//Pannello sinistro
 		JPanel pannelloSinistro = new JPanel();
@@ -315,10 +244,10 @@ public class Registrazione extends JFrame {
 		JComboBox sesso = new JComboBox();
 		sesso.setForeground(new Color(0, 0, 0));
 		sesso.setBackground(new Color(255, 255, 255));
-		sesso.setModel(new DefaultComboBoxModel(new String[] {"Maschio", "Femmina", ""}));
-		sesso.setSelectedIndex(2);
+		sesso.setModel(new DefaultComboBoxModel(new String[] {"M", "F"}));
+		sesso.setSelectedIndex(-1);
 		sesso.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		sesso.setMaximumRowCount(3);
+		sesso.setMaximumRowCount(2);
 		sesso.setBounds(291, 404, 170, 28);
 		pannelloSinistro.add(sesso);
 		
@@ -337,5 +266,135 @@ public class Registrazione extends JFrame {
 		bottoneIndietro.setBackground(new Color(255, 255, 255));
 		bottoneIndietro.setBounds(160, 450, 170, 28);
 		pannelloSinistro.add(bottoneIndietro);
+		
+		//Pannello destro
+		JPanel pannelloDestro = new JPanel();
+		pannelloDestro.setForeground(new Color(255, 255, 255));
+		pannelloDestro.setBackground(new Color(255, 255, 255));
+		pannelloDestro.setBorder(UIManager.getBorder("Tree.editorBorder"));
+		pannelloDestro.setBounds(500, 0, 500, 500);
+		pannello.add(pannelloDestro);
+		pannelloDestro.setLayout(null);
+		
+		JLabel testoInfoProfessionali = new JLabel("Informazioni professionali");
+		testoInfoProfessionali.setForeground(new Color(0, 0, 0));
+		testoInfoProfessionali.setBackground(new Color(255, 255, 255));
+		testoInfoProfessionali.setBounds(0, 50, 500, 70);
+		pannelloDestro.add(testoInfoProfessionali);
+		testoInfoProfessionali.setHorizontalAlignment(SwingConstants.CENTER);
+		testoInfoProfessionali.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		
+		JLabel testoInformativo = new JLabel("Compila i campi sottostanti con le informazioni lavorative");
+		testoInformativo.setVerticalAlignment(SwingConstants.TOP);
+		testoInformativo.setHorizontalAlignment(SwingConstants.CENTER);
+		testoInformativo.setForeground(new Color(0, 0, 0));
+		testoInformativo.setBackground(new Color(255, 255, 255));
+		testoInformativo.setFont(new Font("Segoe UI", Font.ITALIC, 15));
+		testoInformativo.setBounds(0, 131, 500, 28);
+		pannelloDestro.add(testoInformativo);
+		
+		JLabel testoInformativo2 = new JLabel("Indicare la sede e la professione desiderate");
+		testoInformativo2.setForeground(new Color(0, 0, 0));
+		testoInformativo2.setBackground(new Color(255, 255, 255));
+		testoInformativo2.setVerticalAlignment(SwingConstants.TOP);
+		testoInformativo2.setHorizontalAlignment(SwingConstants.CENTER);
+		testoInformativo2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
+		testoInformativo2.setBounds(0, 160, 500, 28);
+		pannelloDestro.add(testoInformativo2);
+		
+		JLabel testoCentro = new JLabel("Centro");
+		testoCentro.setForeground(new Color(0, 0, 0));
+		testoCentro.setBackground(new Color(255, 255, 255));
+		testoCentro.setVerticalAlignment(SwingConstants.TOP);
+		testoCentro.setHorizontalAlignment(SwingConstants.CENTER);
+		testoCentro.setBounds(171, 199, 170, 28);
+		pannelloDestro.add(testoCentro);
+		testoCentro.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		
+		JComboBox centro = new JComboBox();
+		centro.setForeground(new Color(0, 0, 0));
+		centro.setBounds(171, 238, 170, 28);
+		pannelloDestro.add(centro);
+		centro.setModel(new DefaultComboBoxModel(new String[] {"Centro Roma", "Centro Napoli", "Centro Parma"}));
+		centro.setSelectedIndex(-1);
+		centro.setMaximumRowCount(3);
+		centro.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		centro.setBackground(new Color(255, 255, 255));
+		
+		JLabel testoProfessione = new JLabel("Professione");
+		testoProfessione.setForeground(new Color(0, 0, 0));
+		testoProfessione.setBackground(new Color(255, 255, 255));
+		testoProfessione.setVerticalAlignment(SwingConstants.TOP);
+		testoProfessione.setHorizontalAlignment(SwingConstants.CENTER);
+		testoProfessione.setBounds(171, 277, 170, 28);
+		pannelloDestro.add(testoProfessione);
+		testoProfessione.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		
+		JComboBox professione = new JComboBox();
+		professione.setForeground(new Color(0, 0, 0));
+		professione.setBounds(171, 316, 170, 28);
+		pannelloDestro.add(professione);
+		professione.setModel(new DefaultComboBoxModel(new String[] {"Operatore", "Medico veterinario", "Tecnico di laboratorio", "Ricercatore"}));
+		professione.setSelectedIndex(-1);
+		professione.setMaximumRowCount(4);
+		professione.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		professione.setBackground(new Color(255, 255, 255));
+		
+		JButton bottoneRegistrati = new JButton("Registrati");
+		bottoneRegistrati.setBounds(40, 390, 419, 50);
+		pannelloDestro.add(bottoneRegistrati);
+		bottoneRegistrati.setForeground(new Color(0, 0, 0));
+		bottoneRegistrati.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		bottoneRegistrati.setBackground(new Color(255, 255, 255));
+		
+		bottoneRegistrati.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+					PreparedStatement ps;
+					int rs;
+					
+					int idCentro = centro.getSelectedIndex()+1;
+					String stringaEmail = email.getText();
+					String stringaPassword = String.valueOf(password.getPassword());
+					String stringaNome = nome.getText();
+					String stringaCognome = cognome.getText();
+					String stringaSesso = sesso.getSelectedItem().toString();
+					String stringaData = dataNascita.getText();
+					Date data = Date.valueOf(stringaData);
+					String stringaTipologia = professione.getSelectedItem().toString();
+					
+					String query = "INSERT INTO Personale (id_centro, matricola, email, parola_chiave, nome, cognome, sesso, data_di_nascita, tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					
+					try {
+						ps = Connessione.getConnection().prepareStatement(query);
+						
+						ps.setInt(1, idCentro);
+						ps.setString(2, "N00000001");
+						ps.setString(3, stringaEmail);
+						ps.setString(4, stringaPassword);
+						ps.setString(5, stringaNome);
+						ps.setString(6, stringaCognome);
+						ps.setString(7, stringaSesso);
+						ps.setDate(8, data);
+						ps.setObject(9, stringaTipologia, Types.OTHER);
+						
+						rs = ps.executeUpdate();
+						
+						if(rs==0) {
+							JOptionPane.showMessageDialog(null, "Si");
+						} else {
+							Errore Finestra_errore = new Errore("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
+							Finestra_errore.setLocationRelativeTo(null);
+							Finestra_errore.setVisible(true);
+							
+						}
+					}catch (SQLException ex) {
+						Logger.getLogger(Accesso.class.getName()).log(Level.SEVERE, null, ex);
+						Errore Finestra_errore = new Errore("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
+						Finestra_errore.setLocationRelativeTo(null);
+						Finestra_errore.setVisible(true);
+					}
+				}
+		});
 	}
 }
