@@ -246,9 +246,10 @@ public class Accesso extends JFrame {
 					if(rs.next()) {
 						JOptionPane.showMessageDialog(null, "Si");
 					} else {
-						Errore Finestra_errore = new Errore();
+						Errore Finestra_errore = new Errore("Impossibile effettuare l'accesso!", "Indirizzo email/password invalidi.");
 						Finestra_errore.setLocationRelativeTo(null);
 						Finestra_errore.setVisible(true);
+						
 					}
 				} catch (SQLException ex) {
 					Logger.getLogger(Accesso.class.getName()).log(Level.SEVERE, null, ex);
