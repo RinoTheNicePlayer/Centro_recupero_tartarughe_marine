@@ -23,7 +23,7 @@ public class Errore extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Errore(String firstError, String secondError) {
+	public Errore(String primoErrore, String secondoErrore) {
 		
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
@@ -105,7 +105,7 @@ public class Errore extends JFrame {
 		Finestra.add(Pannello_centrale);
 		Pannello_centrale.setLayout(null);
 		
-		JLabel Testo_1 = new JLabel(firstError);
+		JLabel Testo_1 = new JLabel(primoErrore);
 		Testo_1.setHorizontalAlignment(SwingConstants.CENTER);
 		Testo_1.setForeground(new Color(0, 0, 0));
 		Testo_1.setFont(new Font("Segoe UI", Font.BOLD, 25));
@@ -113,7 +113,7 @@ public class Errore extends JFrame {
 		Testo_1.setBounds(0, 0, 500, 46);
 		Pannello_centrale.add(Testo_1);
 		
-		JLabel Testo_2 = new JLabel(secondError);
+		JLabel Testo_2 = new JLabel(secondoErrore);
 		Testo_2.setHorizontalAlignment(SwingConstants.CENTER);
 		Testo_2.setForeground(new Color(0, 0, 0));
 		Testo_2.setFont(new Font("Segoe UI", Font.PLAIN, 20));

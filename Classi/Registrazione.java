@@ -20,57 +20,42 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 
 public class Registrazione extends JFrame {
-	private JPanel Pannello;
-	private JTextField Nome;
-	private JTextField Cognome;
-	private JTextField Email;
-	private JTextField Data_di_nascita;
-	private JPasswordField Password_2;
-	private JPasswordField Password_1;
-	
-	//Lancio dell'applicazione
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Registrazione Finestra_registrazione = new Registrazione();
-					Finestra_registrazione.setLocationRelativeTo(null);
-					Finestra_registrazione.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JPanel pannello;
+	private JTextField nome;
+	private JTextField cognome;
+	private JTextField email;
+	private JTextField dataNascita;
+	private JPasswordField passwordConferma;
+	private JPasswordField password;
 	
 	//Creazione della finestra
 	public Registrazione() {
 		setUndecorated(true);
 		setBounds(100, 100, 1000, 500);
-		Pannello = new JPanel();
-		Pannello.setForeground(new Color(255, 255, 255));
-		Pannello.setBackground(new Color(255, 255, 255));
+		pannello = new JPanel();
+		pannello.setForeground(new Color(255, 255, 255));
+		pannello.setBackground(new Color(255, 255, 255));
 
-		setContentPane(Pannello);
-		Pannello.setLayout(null);
+		setContentPane(pannello);
+		pannello.setLayout(null);
 		
-		JPanel Barra_del_titolo = new JPanel();
-		Barra_del_titolo.setBorder(UIManager.getBorder("Tree.editorBorder"));
-		Barra_del_titolo.setBackground(new Color(0, 0, 0));
-		Barra_del_titolo.setBounds(0, 0, 1000, 50);
-		Pannello.add(Barra_del_titolo);
-		Barra_del_titolo.setLayout(null);
+		JPanel barraTitolo = new JPanel();
+		barraTitolo.setBorder(UIManager.getBorder("Tree.editorBorder"));
+		barraTitolo.setBackground(new Color(0, 0, 0));
+		barraTitolo.setBounds(0, 0, 1000, 50);
+		pannello.add(barraTitolo);
+		barraTitolo.setLayout(null);
 		
-		JLabel Chiudi = new JLabel("");
-		Chiudi.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Chiudi.png")));
-		Chiudi.addMouseListener(new MouseAdapter() {
+		JLabel testoChiudi = new JLabel("");
+		testoChiudi.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Chiudi.png")));
+		testoChiudi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				Chiudi.setIcon(new ImageIcon(getClass().getResource("/Immagini/Chiudi (rosso).png")));
+				testoChiudi.setIcon(new ImageIcon(getClass().getResource("/Immagini/Chiudi (rosso).png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				Chiudi.setIcon(new ImageIcon(getClass().getResource("/Immagini/Chiudi.png")));
+				testoChiudi.setIcon(new ImageIcon(getClass().getResource("/Immagini/Chiudi.png")));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -78,23 +63,23 @@ public class Registrazione extends JFrame {
 			}
 		});
 		
-		Chiudi.setHorizontalAlignment(SwingConstants.CENTER);
-		Chiudi.setForeground(new Color(255, 255, 255));
-		Chiudi.setBackground(new Color(255, 255, 255));
-		Chiudi.setFont(new Font("Segoe UI", Font.PLAIN, 5));
-		Chiudi.setBounds(945, 0, 45, 50);
-		Barra_del_titolo.add(Chiudi);
+		testoChiudi.setHorizontalAlignment(SwingConstants.CENTER);
+		testoChiudi.setForeground(new Color(255, 255, 255));
+		testoChiudi.setBackground(new Color(255, 255, 255));
+		testoChiudi.setFont(new Font("Segoe UI", Font.PLAIN, 5));
+		testoChiudi.setBounds(945, 0, 45, 50);
+		barraTitolo.add(testoChiudi);
 		
-		JLabel Riduci_a_icona = new JLabel("");
-		Riduci_a_icona.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Riduci a icona.png")));
-		Riduci_a_icona.addMouseListener(new MouseAdapter() {
+		JLabel testoRiduci = new JLabel("");
+		testoRiduci.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Riduci a icona.png")));
+		testoRiduci.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				Riduci_a_icona.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona (blu).png")));
+				testoRiduci.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona (blu).png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				Riduci_a_icona.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona.png")));
+				testoRiduci.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona.png")));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -102,255 +87,255 @@ public class Registrazione extends JFrame {
 			}
 		});
 		
-		Riduci_a_icona.setHorizontalAlignment(SwingConstants.CENTER);
-		Riduci_a_icona.setForeground(Color.WHITE);
-		Riduci_a_icona.setFont(new Font("Segoe UI", Font.PLAIN, 5));
-		Riduci_a_icona.setBackground(Color.WHITE);
-		Riduci_a_icona.setBounds(900, 0, 45, 50);
-		Barra_del_titolo.add(Riduci_a_icona);
+		testoRiduci.setHorizontalAlignment(SwingConstants.CENTER);
+		testoRiduci.setForeground(Color.WHITE);
+		testoRiduci.setFont(new Font("Segoe UI", Font.PLAIN, 5));
+		testoRiduci.setBackground(Color.WHITE);
+		testoRiduci.setBounds(900, 0, 45, 50);
+		barraTitolo.add(testoRiduci);
 		
-		JLabel Titolo = new JLabel("Registrazione");
-		Titolo.setVerticalAlignment(SwingConstants.TOP);
-		Titolo.setBackground(new Color(0, 0, 0));
-		Titolo.setForeground(new Color(255, 255, 255));
-		Titolo.setHorizontalAlignment(SwingConstants.LEFT);
-		Titolo.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		Titolo.setBounds(40, 11, 120, 28);
-		Barra_del_titolo.add(Titolo);
+		JLabel testoTitolo = new JLabel("Registrazione");
+		testoTitolo.setVerticalAlignment(SwingConstants.TOP);
+		testoTitolo.setBackground(new Color(0, 0, 0));
+		testoTitolo.setForeground(new Color(255, 255, 255));
+		testoTitolo.setHorizontalAlignment(SwingConstants.LEFT);
+		testoTitolo.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoTitolo.setBounds(40, 11, 120, 28);
+		barraTitolo.add(testoTitolo);
 		
 		//Pannello destro
-		JPanel Pannello_destro = new JPanel();
-		Pannello_destro.setForeground(new Color(255, 255, 255));
-		Pannello_destro.setBackground(new Color(255, 255, 255));
-		Pannello_destro.setBorder(UIManager.getBorder("Tree.editorBorder"));
-		Pannello_destro.setBounds(500, 0, 500, 500);
-		Pannello.add(Pannello_destro);
-		Pannello_destro.setLayout(null);
+		JPanel pannelloDestro = new JPanel();
+		pannelloDestro.setForeground(new Color(255, 255, 255));
+		pannelloDestro.setBackground(new Color(255, 255, 255));
+		pannelloDestro.setBorder(UIManager.getBorder("Tree.editorBorder"));
+		pannelloDestro.setBounds(500, 0, 500, 500);
+		pannello.add(pannelloDestro);
+		pannelloDestro.setLayout(null);
 		
-		JLabel Informazioni_professionali = new JLabel("Informazioni professionali");
-		Informazioni_professionali.setForeground(new Color(0, 0, 0));
-		Informazioni_professionali.setBackground(new Color(255, 255, 255));
-		Informazioni_professionali.setBounds(0, 50, 500, 70);
-		Pannello_destro.add(Informazioni_professionali);
-		Informazioni_professionali.setHorizontalAlignment(SwingConstants.CENTER);
-		Informazioni_professionali.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		JLabel testoInfoProfessionali = new JLabel("Informazioni professionali");
+		testoInfoProfessionali.setForeground(new Color(0, 0, 0));
+		testoInfoProfessionali.setBackground(new Color(255, 255, 255));
+		testoInfoProfessionali.setBounds(0, 50, 500, 70);
+		pannelloDestro.add(testoInfoProfessionali);
+		testoInfoProfessionali.setHorizontalAlignment(SwingConstants.CENTER);
+		testoInfoProfessionali.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		
-		JLabel Testo_1 = new JLabel("Compila i campi sottostanti con le informazioni lavorative");
-		Testo_1.setVerticalAlignment(SwingConstants.TOP);
-		Testo_1.setHorizontalAlignment(SwingConstants.CENTER);
-		Testo_1.setForeground(new Color(0, 0, 0));
-		Testo_1.setBackground(new Color(255, 255, 255));
-		Testo_1.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		Testo_1.setBounds(0, 131, 500, 28);
-		Pannello_destro.add(Testo_1);
+		JLabel testoInformativo = new JLabel("Compila i campi sottostanti con le informazioni lavorative");
+		testoInformativo.setVerticalAlignment(SwingConstants.TOP);
+		testoInformativo.setHorizontalAlignment(SwingConstants.CENTER);
+		testoInformativo.setForeground(new Color(0, 0, 0));
+		testoInformativo.setBackground(new Color(255, 255, 255));
+		testoInformativo.setFont(new Font("Segoe UI", Font.ITALIC, 15));
+		testoInformativo.setBounds(0, 131, 500, 28);
+		pannelloDestro.add(testoInformativo);
 		
-		JLabel Testo_2 = new JLabel("Indicare la sede e la professione desiderate");
-		Testo_2.setForeground(new Color(0, 0, 0));
-		Testo_2.setBackground(new Color(255, 255, 255));
-		Testo_2.setVerticalAlignment(SwingConstants.TOP);
-		Testo_2.setHorizontalAlignment(SwingConstants.CENTER);
-		Testo_2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		Testo_2.setBounds(0, 160, 500, 28);
-		Pannello_destro.add(Testo_2);
+		JLabel testoInformativo2 = new JLabel("Indicare la sede e la professione desiderate");
+		testoInformativo2.setForeground(new Color(0, 0, 0));
+		testoInformativo2.setBackground(new Color(255, 255, 255));
+		testoInformativo2.setVerticalAlignment(SwingConstants.TOP);
+		testoInformativo2.setHorizontalAlignment(SwingConstants.CENTER);
+		testoInformativo2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
+		testoInformativo2.setBounds(0, 160, 500, 28);
+		pannelloDestro.add(testoInformativo2);
 		
-		JLabel Testo_Sede = new JLabel("Sede");
-		Testo_Sede.setForeground(new Color(0, 0, 0));
-		Testo_Sede.setBackground(new Color(255, 255, 255));
-		Testo_Sede.setVerticalAlignment(SwingConstants.TOP);
-		Testo_Sede.setHorizontalAlignment(SwingConstants.CENTER);
-		Testo_Sede.setBounds(171, 199, 170, 28);
-		Pannello_destro.add(Testo_Sede);
-		Testo_Sede.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		JLabel testoSede = new JLabel("Sede");
+		testoSede.setForeground(new Color(0, 0, 0));
+		testoSede.setBackground(new Color(255, 255, 255));
+		testoSede.setVerticalAlignment(SwingConstants.TOP);
+		testoSede.setHorizontalAlignment(SwingConstants.CENTER);
+		testoSede.setBounds(171, 199, 170, 28);
+		pannelloDestro.add(testoSede);
+		testoSede.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		
-		JComboBox Sede = new JComboBox();
-		Sede.setForeground(new Color(0, 0, 0));
-		Sede.setBounds(171, 238, 170, 28);
-		Pannello_destro.add(Sede);
-		Sede.setModel(new DefaultComboBoxModel(new String[] {"Sede Roma", "Sede Napoli", "Sede Parma", ""}));
-		Sede.setSelectedIndex(3);
-		Sede.setMaximumRowCount(4);
-		Sede.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		Sede.setBackground(new Color(255, 255, 255));
+		JComboBox sede = new JComboBox();
+		sede.setForeground(new Color(0, 0, 0));
+		sede.setBounds(171, 238, 170, 28);
+		pannelloDestro.add(sede);
+		sede.setModel(new DefaultComboBoxModel(new String[] {"Sede Roma", "Sede Napoli", "Sede Parma", ""}));
+		sede.setSelectedIndex(3);
+		sede.setMaximumRowCount(4);
+		sede.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		sede.setBackground(new Color(255, 255, 255));
 		
-		JLabel Testo_Professione = new JLabel("Professione");
-		Testo_Professione.setForeground(new Color(0, 0, 0));
-		Testo_Professione.setBackground(new Color(255, 255, 255));
-		Testo_Professione.setVerticalAlignment(SwingConstants.TOP);
-		Testo_Professione.setHorizontalAlignment(SwingConstants.CENTER);
-		Testo_Professione.setBounds(171, 277, 170, 28);
-		Pannello_destro.add(Testo_Professione);
-		Testo_Professione.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		JLabel testoProfessione = new JLabel("Professione");
+		testoProfessione.setForeground(new Color(0, 0, 0));
+		testoProfessione.setBackground(new Color(255, 255, 255));
+		testoProfessione.setVerticalAlignment(SwingConstants.TOP);
+		testoProfessione.setHorizontalAlignment(SwingConstants.CENTER);
+		testoProfessione.setBounds(171, 277, 170, 28);
+		pannelloDestro.add(testoProfessione);
+		testoProfessione.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		
-		JComboBox Professione = new JComboBox();
-		Professione.setForeground(new Color(0, 0, 0));
-		Professione.setBounds(171, 316, 170, 28);
-		Pannello_destro.add(Professione);
-		Professione.setModel(new DefaultComboBoxModel(new String[] {"Operatore", "Medico veterinario", "Tecnico di laboratorio", "Ricercatore", ""}));
-		Professione.setSelectedIndex(4);
-		Professione.setMaximumRowCount(5);
-		Professione.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		Professione.setBackground(new Color(255, 255, 255));
+		JComboBox professione = new JComboBox();
+		professione.setForeground(new Color(0, 0, 0));
+		professione.setBounds(171, 316, 170, 28);
+		pannelloDestro.add(professione);
+		professione.setModel(new DefaultComboBoxModel(new String[] {"Operatore", "Medico veterinario", "Tecnico di laboratorio", "Ricercatore", ""}));
+		professione.setSelectedIndex(4);
+		professione.setMaximumRowCount(5);
+		professione.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		professione.setBackground(new Color(255, 255, 255));
 		
-		JButton Registrati = new JButton("Registrati");
-		Registrati.setBounds(40, 390, 419, 50);
-		Pannello_destro.add(Registrati);
-		Registrati.setForeground(new Color(0, 0, 0));
-		Registrati.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		Registrati.setBackground(new Color(255, 255, 255));
+		JButton bottoneRegistrati = new JButton("Registrati");
+		bottoneRegistrati.setBounds(40, 390, 419, 50);
+		pannelloDestro.add(bottoneRegistrati);
+		bottoneRegistrati.setForeground(new Color(0, 0, 0));
+		bottoneRegistrati.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		bottoneRegistrati.setBackground(new Color(255, 255, 255));
 		
 		//Pannello sinistro
-		JPanel Pannello_sinistro = new JPanel();
-		Pannello_sinistro.setForeground(new Color(255, 255, 255));
-		Pannello_sinistro.setBorder(UIManager.getBorder("Tree.editorBorder"));
-		Pannello_sinistro.setBackground(new Color(255, 255, 255));
-		Pannello_sinistro.setBounds(0, 0, 500, 500);
-		Pannello.add(Pannello_sinistro);
-		Pannello_sinistro.setLayout(null);
+		JPanel pannelloSinistro = new JPanel();
+		pannelloSinistro.setForeground(new Color(255, 255, 255));
+		pannelloSinistro.setBorder(UIManager.getBorder("Tree.editorBorder"));
+		pannelloSinistro.setBackground(new Color(255, 255, 255));
+		pannelloSinistro.setBounds(0, 0, 500, 500);
+		pannello.add(pannelloSinistro);
+		pannelloSinistro.setLayout(null);
 		
-		JLabel Informazioni_personali = new JLabel("Informazioni personali");
-		Informazioni_personali.setForeground(new Color(0, 0, 0));
-		Informazioni_personali.setBackground(new Color(255, 255, 255));
-		Informazioni_personali.setHorizontalAlignment(SwingConstants.CENTER);
-		Informazioni_personali.setBounds(0, 50, 500, 70);
-		Informazioni_personali.setFont(new Font("Segoe UI", Font.BOLD, 25));
-		Pannello_sinistro.add(Informazioni_personali);
+		JLabel testoInfoPersonali = new JLabel("Informazioni personali");
+		testoInfoPersonali.setForeground(new Color(0, 0, 0));
+		testoInfoPersonali.setBackground(new Color(255, 255, 255));
+		testoInfoPersonali.setHorizontalAlignment(SwingConstants.CENTER);
+		testoInfoPersonali.setBounds(0, 50, 500, 70);
+		testoInfoPersonali.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		pannelloSinistro.add(testoInfoPersonali);
 		
-		JLabel Testo_Nome = new JLabel("Nome");
-		Testo_Nome.setForeground(new Color(0, 0, 0));
-		Testo_Nome.setBackground(new Color(255, 255, 255));
-		Testo_Nome.setVerticalAlignment(SwingConstants.TOP);
-		Testo_Nome.setHorizontalAlignment(SwingConstants.LEFT);
-		Testo_Nome.setBounds(39, 131, 120, 28);
-		Pannello_sinistro.add(Testo_Nome);
-		Testo_Nome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		JLabel testoNome = new JLabel("Nome");
+		testoNome.setForeground(new Color(0, 0, 0));
+		testoNome.setBackground(new Color(255, 255, 255));
+		testoNome.setVerticalAlignment(SwingConstants.TOP);
+		testoNome.setHorizontalAlignment(SwingConstants.LEFT);
+		testoNome.setBounds(39, 131, 120, 28);
+		pannelloSinistro.add(testoNome);
+		testoNome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		
-		Nome = new JTextField();
-		Nome.setForeground(new Color(0, 0, 0));
-		Nome.setBackground(new Color(255, 255, 255));
-		Nome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		Nome.setBounds(39, 170, 170, 28);
-		Pannello_sinistro.add(Nome);
-		Nome.setColumns(10);
+		nome = new JTextField();
+		nome.setForeground(new Color(0, 0, 0));
+		nome.setBackground(new Color(255, 255, 255));
+		nome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		nome.setBounds(39, 170, 170, 28);
+		pannelloSinistro.add(nome);
+		nome.setColumns(10);
 		
-		JLabel Testo_Cognome = new JLabel("Cognome");
-		Testo_Cognome.setForeground(new Color(0, 0, 0));
-		Testo_Cognome.setBackground(new Color(255, 255, 255));
-		Testo_Cognome.setVerticalAlignment(SwingConstants.TOP);
-		Testo_Cognome.setHorizontalAlignment(SwingConstants.LEFT);
-		Testo_Cognome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		Testo_Cognome.setBounds(291, 131, 120, 28);
-		Pannello_sinistro.add(Testo_Cognome);
+		JLabel testoCognome = new JLabel("Cognome");
+		testoCognome.setForeground(new Color(0, 0, 0));
+		testoCognome.setBackground(new Color(255, 255, 255));
+		testoCognome.setVerticalAlignment(SwingConstants.TOP);
+		testoCognome.setHorizontalAlignment(SwingConstants.LEFT);
+		testoCognome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoCognome.setBounds(291, 131, 120, 28);
+		pannelloSinistro.add(testoCognome);
 		
-		Cognome = new JTextField();
-		Cognome.setForeground(new Color(0, 0, 0));
-		Cognome.setBackground(new Color(255, 255, 255));
-		Cognome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		Cognome.setColumns(10);
-		Cognome.setBounds(291, 170, 170, 28);
-		Pannello_sinistro.add(Cognome);
+		cognome = new JTextField();
+		cognome.setForeground(new Color(0, 0, 0));
+		cognome.setBackground(new Color(255, 255, 255));
+		cognome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		cognome.setColumns(10);
+		cognome.setBounds(291, 170, 170, 28);
+		pannelloSinistro.add(cognome);
 		
-		JLabel Testo_Email = new JLabel("Email");
-		Testo_Email.setVerticalAlignment(SwingConstants.TOP);
-		Testo_Email.setHorizontalAlignment(SwingConstants.LEFT);
-		Testo_Email.setForeground(new Color(0, 0, 0));
-		Testo_Email.setBackground(new Color(255, 255, 255));
-		Testo_Email.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		Testo_Email.setBounds(39, 209, 120, 28);
-		Pannello_sinistro.add(Testo_Email);
+		JLabel testoEmail = new JLabel("Email");
+		testoEmail.setVerticalAlignment(SwingConstants.TOP);
+		testoEmail.setHorizontalAlignment(SwingConstants.LEFT);
+		testoEmail.setForeground(new Color(0, 0, 0));
+		testoEmail.setBackground(new Color(255, 255, 255));
+		testoEmail.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoEmail.setBounds(39, 209, 120, 28);
+		pannelloSinistro.add(testoEmail);
 		
-		Email = new JTextField();
-		Email.setForeground(new Color(0, 0, 0));
-		Email.setBackground(new Color(255, 255, 255));
-		Email.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		Email.setColumns(10);
-		Email.setBounds(39, 248, 422, 28);
-		Pannello_sinistro.add(Email);
+		email = new JTextField();
+		email.setForeground(new Color(0, 0, 0));
+		email.setBackground(new Color(255, 255, 255));
+		email.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		email.setColumns(10);
+		email.setBounds(39, 248, 422, 28);
+		pannelloSinistro.add(email);
 		
-		JLabel Testo_Password = new JLabel("Password");
-		Testo_Password.setVerticalAlignment(SwingConstants.TOP);
-		Testo_Password.setHorizontalAlignment(SwingConstants.LEFT);
-		Testo_Password.setForeground(new Color(0, 0, 0));
-		Testo_Password.setBackground(new Color(255, 255, 255));
-		Testo_Password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		Testo_Password.setBounds(39, 287, 120, 28);
-		Pannello_sinistro.add(Testo_Password);
+		JLabel testoPassword = new JLabel("Password");
+		testoPassword.setVerticalAlignment(SwingConstants.TOP);
+		testoPassword.setHorizontalAlignment(SwingConstants.LEFT);
+		testoPassword.setForeground(new Color(0, 0, 0));
+		testoPassword.setBackground(new Color(255, 255, 255));
+		testoPassword.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoPassword.setBounds(39, 287, 120, 28);
+		pannelloSinistro.add(testoPassword);
 		
-		Password_1 = new JPasswordField();
-		Password_1.setEchoChar('*');
-		Password_1.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		Password_1.setForeground(new Color(0, 0, 0));
-		Password_1.setBackground(new Color(255, 255, 255));
-		Password_1.setBounds(39, 326, 170, 28);
-		Pannello_sinistro.add(Password_1);
+		password = new JPasswordField();
+		password.setEchoChar('*');
+		password.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		password.setForeground(new Color(0, 0, 0));
+		password.setBackground(new Color(255, 255, 255));
+		password.setBounds(39, 326, 170, 28);
+		pannelloSinistro.add(password);
 		
-		JLabel Testo_Conferma_Password = new JLabel("Conferma password");
-		Testo_Conferma_Password.setVerticalAlignment(SwingConstants.TOP);
-		Testo_Conferma_Password.setForeground(new Color(0, 0, 0));
-		Testo_Conferma_Password.setBackground(new Color(255, 255, 255));
-		Testo_Conferma_Password.setHorizontalAlignment(SwingConstants.LEFT);
-		Testo_Conferma_Password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		Testo_Conferma_Password.setBounds(291, 287, 190, 28);
-		Pannello_sinistro.add(Testo_Conferma_Password);
+		JLabel testoConfermaPassword = new JLabel("Conferma password");
+		testoConfermaPassword.setVerticalAlignment(SwingConstants.TOP);
+		testoConfermaPassword.setForeground(new Color(0, 0, 0));
+		testoConfermaPassword.setBackground(new Color(255, 255, 255));
+		testoConfermaPassword.setHorizontalAlignment(SwingConstants.LEFT);
+		testoConfermaPassword.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoConfermaPassword.setBounds(291, 287, 190, 28);
+		pannelloSinistro.add(testoConfermaPassword);
 		
-		Password_2 = new JPasswordField();
-		Password_2.setEchoChar('*');
-		Password_2.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		Password_2.setForeground(new Color(0, 0, 0));
-		Password_2.setBackground(new Color(255, 255, 255));
-		Password_2.setBounds(291, 326, 170, 28);
-		Pannello_sinistro.add(Password_2);
+		passwordConferma = new JPasswordField();
+		passwordConferma.setEchoChar('*');
+		passwordConferma.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		passwordConferma.setForeground(new Color(0, 0, 0));
+		passwordConferma.setBackground(new Color(255, 255, 255));
+		passwordConferma.setBounds(291, 326, 170, 28);
+		pannelloSinistro.add(passwordConferma);
 		
-		Data_di_nascita = new JTextField();
-		Data_di_nascita.setBackground(new Color(255, 255, 255));
-		Data_di_nascita.setToolTipText("AAAA-MM-GG");
-		Data_di_nascita.setForeground(new Color(0, 0, 0));
-		Data_di_nascita.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		Data_di_nascita.setColumns(10);
-		Data_di_nascita.setBounds(39, 404, 170, 28);
-		Pannello_sinistro.add(Data_di_nascita);
+		dataNascita = new JTextField();
+		dataNascita.setBackground(new Color(255, 255, 255));
+		dataNascita.setToolTipText("AAAA-MM-GG");
+		dataNascita.setForeground(new Color(0, 0, 0));
+		dataNascita.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		dataNascita.setColumns(10);
+		dataNascita.setBounds(39, 404, 170, 28);
+		pannelloSinistro.add(dataNascita);
 		
-		JLabel Testo_Data_di_nascita = new JLabel("Data di nascita");
-		Testo_Data_di_nascita.setHorizontalAlignment(SwingConstants.LEFT);
-		Testo_Data_di_nascita.setVerticalAlignment(SwingConstants.TOP);
-		Testo_Data_di_nascita.setForeground(new Color(0, 0, 0));
-		Testo_Data_di_nascita.setBackground(new Color(255, 255, 255));
-		Testo_Data_di_nascita.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		Testo_Data_di_nascita.setBounds(39, 365, 170, 28);
-		Pannello_sinistro.add(Testo_Data_di_nascita);
+		JLabel testoDataNascita = new JLabel("Data di nascita");
+		testoDataNascita.setHorizontalAlignment(SwingConstants.LEFT);
+		testoDataNascita.setVerticalAlignment(SwingConstants.TOP);
+		testoDataNascita.setForeground(new Color(0, 0, 0));
+		testoDataNascita.setBackground(new Color(255, 255, 255));
+		testoDataNascita.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoDataNascita.setBounds(39, 365, 170, 28);
+		pannelloSinistro.add(testoDataNascita);
 		
-		JLabel Testo_Sesso = new JLabel("Sesso");
-		Testo_Sesso.setVerticalAlignment(SwingConstants.TOP);
-		Testo_Sesso.setHorizontalAlignment(SwingConstants.LEFT);
-		Testo_Sesso.setForeground(new Color(0, 0, 0));
-		Testo_Sesso.setBackground(new Color(255, 255, 255));
-		Testo_Sesso.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		Testo_Sesso.setBounds(291, 365, 120, 28);
-		Pannello_sinistro.add(Testo_Sesso);
+		JLabel testoSesso = new JLabel("Sesso");
+		testoSesso.setVerticalAlignment(SwingConstants.TOP);
+		testoSesso.setHorizontalAlignment(SwingConstants.LEFT);
+		testoSesso.setForeground(new Color(0, 0, 0));
+		testoSesso.setBackground(new Color(255, 255, 255));
+		testoSesso.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoSesso.setBounds(291, 365, 120, 28);
+		pannelloSinistro.add(testoSesso);
 		
-		JComboBox Sesso = new JComboBox();
-		Sesso.setForeground(new Color(0, 0, 0));
-		Sesso.setBackground(new Color(255, 255, 255));
-		Sesso.setModel(new DefaultComboBoxModel(new String[] {"Maschio", "Femmina", ""}));
-		Sesso.setSelectedIndex(2);
-		Sesso.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		Sesso.setMaximumRowCount(3);
-		Sesso.setBounds(291, 404, 170, 28);
-		Pannello_sinistro.add(Sesso);
+		JComboBox sesso = new JComboBox();
+		sesso.setForeground(new Color(0, 0, 0));
+		sesso.setBackground(new Color(255, 255, 255));
+		sesso.setModel(new DefaultComboBoxModel(new String[] {"Maschio", "Femmina", ""}));
+		sesso.setSelectedIndex(2);
+		sesso.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		sesso.setMaximumRowCount(3);
+		sesso.setBounds(291, 404, 170, 28);
+		pannelloSinistro.add(sesso);
 		
-		JButton Indietro = new JButton("Indietro");
-		Indietro.addMouseListener(new MouseAdapter() {
+		JButton bottoneIndietro = new JButton("Indietro");
+		bottoneIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Accesso Finestra_accesso = new Accesso();
-				Finestra_accesso.setLocationRelativeTo(null);
-				Finestra_accesso.setVisible(true);
+				Accesso finestraAccesso = new Accesso();
+				finestraAccesso.setLocationRelativeTo(null);
+				finestraAccesso.setVisible(true);
 				dispose();
 			}
 		});
-		Indietro.setForeground(new Color(0, 0, 0));
-		Indietro.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		Indietro.setBackground(new Color(255, 255, 255));
-		Indietro.setBounds(160, 450, 170, 28);
-		Pannello_sinistro.add(Indietro);
+		bottoneIndietro.setForeground(new Color(0, 0, 0));
+		bottoneIndietro.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		bottoneIndietro.setBackground(new Color(255, 255, 255));
+		bottoneIndietro.setBounds(160, 450, 170, 28);
+		pannelloSinistro.add(bottoneIndietro);
 	}
 }
