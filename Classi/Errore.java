@@ -21,26 +21,10 @@ public class Errore extends JFrame {
 	private JPanel Finestra;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Errore Finestra_errore = new Errore();
-					Finestra_errore.setLocationRelativeTo(null);
-					Finestra_errore.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public Errore() {
+	public Errore(String primoErrore, String secondoErrore) {
+		
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
 		setBounds(100, 100, 500, 200);
@@ -121,7 +105,7 @@ public class Errore extends JFrame {
 		Finestra.add(Pannello_centrale);
 		Pannello_centrale.setLayout(null);
 		
-		JLabel Testo_1 = new JLabel("Impossibie trovare il tuo account!");
+		JLabel Testo_1 = new JLabel(primoErrore);
 		Testo_1.setHorizontalAlignment(SwingConstants.CENTER);
 		Testo_1.setForeground(new Color(0, 0, 0));
 		Testo_1.setFont(new Font("Segoe UI", Font.BOLD, 25));
@@ -129,7 +113,7 @@ public class Errore extends JFrame {
 		Testo_1.setBounds(0, 0, 500, 46);
 		Pannello_centrale.add(Testo_1);
 		
-		JLabel Testo_2 = new JLabel("Indirizzo email o password inesistente");
+		JLabel Testo_2 = new JLabel(secondoErrore);
 		Testo_2.setHorizontalAlignment(SwingConstants.CENTER);
 		Testo_2.setForeground(new Color(0, 0, 0));
 		Testo_2.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -152,5 +136,6 @@ public class Errore extends JFrame {
 		Ok.setBackground(new Color(255, 255, 255));
 		Ok.setBounds(380, 104, 110, 35);
 		Pannello_centrale.add(Ok);
+		
 	}
 }
