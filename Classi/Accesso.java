@@ -21,6 +21,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Accesso extends JFrame {
 	private JPanel Pannello;
@@ -135,6 +137,7 @@ public class Accesso extends JFrame {
 		Pannello_destro.add(Testo_1);
 		
 		JLabel Testo_2 = new JLabel("Benvenuto!");
+		Testo_2.setVerticalAlignment(SwingConstants.TOP);
 		Testo_2.setForeground(new Color(0, 0, 0));
 		Testo_2.setBackground(new Color(255, 255, 255));
 		Testo_2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
@@ -143,6 +146,7 @@ public class Accesso extends JFrame {
 		Pannello_destro.add(Testo_2);
 		
 		JLabel Testo_3 = new JLabel("Compila i campi sottostanti per entrare nel portale");
+		Testo_3.setVerticalAlignment(SwingConstants.TOP);
 		Testo_3.setForeground(new Color(0, 0, 0));
 		Testo_3.setBackground(new Color(255, 255, 255));
 		Testo_3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -159,7 +163,42 @@ public class Accesso extends JFrame {
 		Testo_Email.setBounds(40, 205, 120, 30);
 		Pannello_destro.add(Testo_Email);
 		
+		JLabel emailValida = new JLabel("Email valida");
+		emailValida.setVerticalAlignment(SwingConstants.TOP);
+		emailValida.setHorizontalAlignment(SwingConstants.RIGHT);
+		emailValida.setForeground(new Color(0, 255, 0));
+		emailValida.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		emailValida.setBackground(new Color(255, 255, 255));
+		emailValida.setBounds(215, 275, 190, 30);
+		emailValida.setVisible(false);
+		Pannello_destro.add(emailValida);
+		
+		JLabel emailNonValida = new JLabel("Email non valida");
+		emailNonValida.setVerticalAlignment(SwingConstants.TOP);
+		emailNonValida.setHorizontalAlignment(SwingConstants.RIGHT);
+		emailNonValida.setForeground(new Color(255, 0, 0));
+		emailNonValida.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		emailNonValida.setBackground(new Color(255, 255, 255));
+		emailNonValida.setBounds(215, 275, 190, 30);
+		emailNonValida.setVisible(false);
+		Pannello_destro.add(emailNonValida);
+		
 		Email = new JTextField();
+		Email.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				boolean stato = Controllo.verificaEmail(Email.getText());
+				
+				if((stato == true) && (stato != emailValida.equals(""))) {
+					emailValida.setVisible(true);
+					emailNonValida.setVisible(false);
+				} else {
+					emailNonValida.setVisible(true);
+					emailValida.setVisible(false);
+				}
+			}
+		});
+		Email.setHorizontalAlignment(SwingConstants.LEFT);
 		Email.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		Email.setForeground(new Color(0, 0, 0));
 		Email.setBackground(new Color(255, 255, 255));
@@ -184,7 +223,42 @@ public class Accesso extends JFrame {
 		Testo_Password.setBounds(40, 285, 120, 30);
 		Pannello_destro.add(Testo_Password);
 		
+		JLabel passwordValida = new JLabel("Password valida");
+		passwordValida.setVerticalAlignment(SwingConstants.TOP);
+		passwordValida.setHorizontalAlignment(SwingConstants.RIGHT);
+		passwordValida.setForeground(new Color(0, 255, 0));
+		passwordValida.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		passwordValida.setBackground(new Color(255, 255, 255));
+		passwordValida.setBounds(215, 355, 190, 30);
+		passwordValida.setVisible(false);
+		Pannello_destro.add(passwordValida);
+		
+		JLabel passwordNonValida = new JLabel("Minimo 8 caratteri e massimo 16");
+		passwordNonValida.setVerticalAlignment(SwingConstants.TOP);
+		passwordNonValida.setHorizontalAlignment(SwingConstants.RIGHT);
+		passwordNonValida.setForeground(new Color(255, 0, 0));
+		passwordNonValida.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		passwordNonValida.setBackground(new Color(255, 255, 255));
+		passwordNonValida.setBounds(175, 355, 230, 30);
+		passwordNonValida.setVisible(false);
+		Pannello_destro.add(passwordNonValida);
+		
 		Password = new JPasswordField();
+		Password.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				boolean stato = Controllo.verificaPassword(Password.getText());
+				
+				if((stato == true) && (stato == passwordNonValida.equals(""))) {
+					passwordValida.setVisible(true);
+					passwordNonValida.setVisible(false);
+				} else {
+					passwordNonValida.setVisible(true);
+					passwordValida.setVisible(false);
+				}
+			}
+		});
+		Password.setHorizontalAlignment(SwingConstants.LEFT);
 		Password.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		Password.setForeground(new Color(0, 0, 0));
 		Password.setBackground(new Color(255, 255, 255));
