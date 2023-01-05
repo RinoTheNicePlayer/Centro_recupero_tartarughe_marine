@@ -121,35 +121,36 @@ public class Errore extends JFrame {
 		Finestra.add(Pannello_centrale);
 		Pannello_centrale.setLayout(null);
 		
-		JLabel Titolo_1 = new JLabel("Impossibie trovare il tuo account!");
-		Titolo_1.setHorizontalAlignment(SwingConstants.CENTER);
-		Titolo_1.setForeground(Color.BLACK);
-		Titolo_1.setFont(new Font("Segoe UI", Font.BOLD, 25));
-		Titolo_1.setBackground(Color.WHITE);
-		Titolo_1.setBounds(0, 0, 500, 46);
-		Pannello_centrale.add(Titolo_1);
+		JLabel Testo_1 = new JLabel("Impossibie trovare il tuo account!");
+		Testo_1.setHorizontalAlignment(SwingConstants.CENTER);
+		Testo_1.setForeground(new Color(0, 0, 0));
+		Testo_1.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		Testo_1.setBackground(new Color(255, 255, 255));
+		Testo_1.setBounds(0, 0, 500, 46);
+		Pannello_centrale.add(Testo_1);
 		
-		JLabel Titolo_1_1 = new JLabel("Indirizzo email, o password, invalidi");
-		Titolo_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		Titolo_1_1.setForeground(Color.BLACK);
-		Titolo_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		Titolo_1_1.setBackground(Color.WHITE);
-		Titolo_1_1.setBounds(0, 50, 500, 35);
-		Pannello_centrale.add(Titolo_1_1);
+		JLabel Testo_2 = new JLabel("Indirizzo email o password inesistente");
+		Testo_2.setHorizontalAlignment(SwingConstants.CENTER);
+		Testo_2.setForeground(new Color(0, 0, 0));
+		Testo_2.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		Testo_2.setBackground(new Color(255, 255, 255));
+		Testo_2.setBounds(0, 50, 500, 35);
+		Pannello_centrale.add(Testo_2);
 		
-		JButton btnOk = new JButton("Ok");
-		btnOk.addMouseListener(new MouseAdapter() {
+		JButton Ok = new JButton("Ok");
+		Ok.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Accesso Finestra_accesso = new Accesso();
 				Finestra_accesso.setLocationRelativeTo(null);
 				Finestra_accesso.setVisible(true);
+				dispose();
 			}
 		});
-		btnOk.setForeground(Color.BLACK);
-		btnOk.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		btnOk.setBackground(Color.WHITE);
-		btnOk.setBounds(380, 104, 110, 35);
-		Pannello_centrale.add(btnOk);
+		Ok.setForeground(new Color(0, 0, 0));
+		Ok.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		Ok.setBackground(new Color(255, 255, 255));
+		Ok.setBounds(380, 104, 110, 35);
+		Pannello_centrale.add(Ok);
 	}
 }

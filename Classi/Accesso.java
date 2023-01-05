@@ -23,17 +23,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Accesso extends JFrame {
-	
-	static JFrame Accesso;
 	private JPanel Pannello;
 	private JTextField Email;
 	private JPasswordField Password;
 	private JLabel Occhio_chiuso;
 	private JLabel Occhio_aperto;
-
-	/**
-	 * Launch the application.
-	 */
+	
+	//Lancio dell'applicazione
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -47,10 +43,8 @@ public class Accesso extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
+	
+	//Creazione della finestra
 	public Accesso() {
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
@@ -125,15 +119,12 @@ public class Accesso extends JFrame {
 		Titolo.setBounds(40, 11, 120, 28);
 		Barra_del_titolo.add(Titolo);
 		
+		//Pannello destro
 		JPanel Pannello_destro = new JPanel();
 		Pannello_destro.setForeground(new Color(255, 255, 255));
 		Pannello_destro.setBackground(new Color(255, 255, 255));
 		Pannello_destro.setBounds(500, 0, 500, 500);
 		Pannello.add(Pannello_destro);
-		
-		JLabel Pannello_sinistro = new JLabel("");
-		Pannello_sinistro.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Centro recupero tartarughe marine.png")));
-		Pannello_destro.setLayout(null);
 		
 		JLabel Testo_1 = new JLabel("Accesso");
 		Testo_1.setBackground(new Color(255, 255, 255));
@@ -169,11 +160,20 @@ public class Accesso extends JFrame {
 		Pannello_destro.add(Testo_Email);
 		
 		Email = new JTextField();
+		Email.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		Email.setForeground(new Color(0, 0, 0));
 		Email.setBackground(new Color(255, 255, 255));
 		Email.setBounds(40, 245, 365, 30);
 		Pannello_destro.add(Email);
 		Email.setColumns(10);
+		
+		JLabel Utente = new JLabel("");
+		Utente.setForeground(new Color(0, 0, 0));
+		Utente.setBackground(new Color(255, 255, 255));
+		Utente.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Utente.png")));
+		Utente.setHorizontalAlignment(SwingConstants.CENTER);
+		Utente.setBounds(429, 245, 30, 30);
+		Pannello_destro.add(Utente);
 		
 		JLabel Testo_Password = new JLabel("Password");
 		Testo_Password.setForeground(new Color(0, 0, 0));
@@ -185,19 +185,44 @@ public class Accesso extends JFrame {
 		Pannello_destro.add(Testo_Password);
 		
 		Password = new JPasswordField();
+		Password.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		Password.setForeground(new Color(0, 0, 0));
 		Password.setBackground(new Color(255, 255, 255));
 		Password.setEchoChar('*');
 		Password.setBounds(40, 325, 365, 30);
 		Pannello_destro.add(Password);
 		
-		JLabel Utente = new JLabel("");
-		Utente.setForeground(new Color(0, 0, 0));
-		Utente.setBackground(new Color(255, 255, 255));
-		Utente.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Utente.png")));
-		Utente.setHorizontalAlignment(SwingConstants.CENTER);
-		Utente.setBounds(429, 245, 30, 30);
-		Pannello_destro.add(Utente);
+		Occhio_chiuso = new JLabel("");
+		Occhio_chiuso.setForeground(new Color(0, 0, 0));
+		Occhio_chiuso.setBackground(new Color(255, 255, 255));
+		Occhio_chiuso.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Occhio_aperto.setVisible(true);
+				Occhio_chiuso.setVisible(false);
+				Password.setEchoChar('*');
+			}
+		});
+		Occhio_chiuso.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Occhio chiuso.png")));
+		Occhio_chiuso.setHorizontalAlignment(SwingConstants.CENTER);
+		Occhio_chiuso.setBounds(429, 325, 30, 30);
+		Pannello_destro.add(Occhio_chiuso);
+		
+		Occhio_aperto = new JLabel("");
+		Occhio_aperto.setForeground(new Color(0, 0, 0));
+		Occhio_aperto.setBackground(new Color(255, 255, 255));
+		Occhio_aperto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Occhio_chiuso.setVisible(true);
+				Occhio_aperto.setVisible(false);
+				Password.setEchoChar((char)0);
+			}
+		});
+		Occhio_aperto.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Occhio aperto.png")));
+		Occhio_aperto.setHorizontalAlignment(SwingConstants.CENTER);
+		Occhio_aperto.setBounds(429, 325, 30, 30);
+		Pannello_destro.add(Occhio_aperto);
 		
 		JButton Accesso = new JButton("Accesso");
 		Accesso.addMouseListener(new MouseAdapter() {
@@ -254,6 +279,7 @@ public class Accesso extends JFrame {
 				Registrazione Finestra_registrazione = new Registrazione();
 				Finestra_registrazione.setLocationRelativeTo(null);
 				Finestra_registrazione.setVisible(true);
+				dispose();
 			}
 		});
 		Registrazione.setVerticalAlignment(SwingConstants.TOP);
@@ -262,37 +288,12 @@ public class Accesso extends JFrame {
 		Registrazione.setBounds(285, 450, 100, 21);
 		Pannello_destro.add(Registrazione);
 		
-		Occhio_chiuso = new JLabel("");
-		Occhio_chiuso.setForeground(new Color(0, 0, 0));
-		Occhio_chiuso.setBackground(new Color(255, 255, 255));
-		Occhio_chiuso.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				Occhio_aperto.setVisible(true);
-				Occhio_chiuso.setVisible(false);
-				Password.setEchoChar('*');
-			}
-		});
-		Occhio_chiuso.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Occhio chiuso.png")));
-		Occhio_chiuso.setHorizontalAlignment(SwingConstants.CENTER);
-		Occhio_chiuso.setBounds(429, 325, 30, 30);
-		Pannello_destro.add(Occhio_chiuso);
-		
-		Occhio_aperto = new JLabel("");
-		Occhio_aperto.setForeground(new Color(0, 0, 0));
-		Occhio_aperto.setBackground(new Color(255, 255, 255));
-		Occhio_aperto.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				Occhio_chiuso.setVisible(true);
-				Occhio_aperto.setVisible(false);
-				Password.setEchoChar((char)0);
-			}
-		});
-		Occhio_aperto.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Occhio aperto.png")));
-		Occhio_aperto.setHorizontalAlignment(SwingConstants.CENTER);
-		Occhio_aperto.setBounds(429, 325, 30, 30);
-		Pannello_destro.add(Occhio_aperto);
+		//Pannello sinistro
+		JLabel Pannello_sinistro = new JLabel("");
+		Pannello_sinistro.setForeground(new Color(255, 255, 255));
+		Pannello_sinistro.setBackground(new Color(255, 255, 255));
+		Pannello_sinistro.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Centro recupero tartarughe marine.png")));
+		Pannello_destro.setLayout(null);
 		Pannello_sinistro.setBounds(0, 0, 500, 500);
 		Pannello.add(Pannello_sinistro);
 	}
