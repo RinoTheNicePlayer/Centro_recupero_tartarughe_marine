@@ -20,21 +20,4 @@ public class Controllo {
 		
 		return stato;
 	}
-	
-	public static boolean verificaPassword(String Password) {
-		boolean stato = false;
-		
-		String modelloPassword = "({8,16})";
-		
-		Pattern modello = Pattern.compile(modelloPassword);
-		Matcher relazione = modello.matcher(Password);
-		
-		if(relazione.matches()) {
-			stato = true;
-		} else {
-			stato = false;
-		}
-		
-		return stato;
-	}
 }
