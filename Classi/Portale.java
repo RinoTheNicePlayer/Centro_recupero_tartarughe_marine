@@ -12,6 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import Classi.View.AccessoView;
+
 import javax.swing.JList;
 import javax.swing.JButton;
 
@@ -56,7 +59,7 @@ public class Portale extends JFrame {
 		barraTitolo.setLayout(null);
 		
 		JLabel iconaChiudi = new JLabel("");
-		iconaChiudi.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Chiudi.png")));
+		iconaChiudi.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Chiudi.png")));
 		iconaChiudi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -79,7 +82,7 @@ public class Portale extends JFrame {
 		barraTitolo.add(iconaChiudi);
 		
 		JLabel iconaMinimizza = new JLabel("");
-		iconaMinimizza.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Riduci a icona.png")));
+		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
 		iconaMinimizza.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {

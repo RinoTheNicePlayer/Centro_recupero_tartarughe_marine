@@ -1,10 +1,14 @@
-package Classi;
+package Classi.View;
 
 import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Classi.Controller.RegistrazioneController;
+import Classi.Models.Personale;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,6 +18,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
@@ -28,7 +34,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 
-public class Registrazione extends JFrame {
+public class RegistrazioneView extends JFrame {
 	private JPanel pannello;
 	private JTextField compilazioneNome;
 	private JTextField compilazioneCognome;
@@ -38,7 +44,7 @@ public class Registrazione extends JFrame {
 	private JPasswordField compilazionePassword;
 	
 	//Creazione della finestra
-	public Registrazione() {
+	public RegistrazioneView() {
 		//Pannello principale
 		setUndecorated(true);
 		setBounds(100, 100, 1000, 500);
@@ -58,7 +64,7 @@ public class Registrazione extends JFrame {
 		barraTitolo.setLayout(null);
 		
 		JLabel iconaChiudi = new JLabel("");
-		iconaChiudi.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Chiudi.png")));
+		iconaChiudi.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Chiudi.png")));
 		iconaChiudi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -81,7 +87,7 @@ public class Registrazione extends JFrame {
 		barraTitolo.add(iconaChiudi);
 		
 		JLabel iconaMinimizza = new JLabel("");
-		iconaMinimizza.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Riduci a icona.png")));
+		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
 		iconaMinimizza.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -255,7 +261,7 @@ public class Registrazione extends JFrame {
 		bottoneIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Accesso finestraAccesso = new Accesso();
+				AccessoView finestraAccesso = new AccessoView();
 				finestraAccesso.setLocationRelativeTo(null);
 				finestraAccesso.setVisible(true);
 				dispose();
@@ -346,54 +352,5 @@ public class Registrazione extends JFrame {
 		bottoneRegistrati.setForeground(new Color(0, 0, 0));
 		bottoneRegistrati.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		bottoneRegistrati.setBackground(new Color(255, 255, 255));
-		
-		bottoneRegistrati.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-					PreparedStatement ps;
-					int rs;
-					
-					int idCentro = selezioneCentro.getSelectedIndex() + 1;
-					String email = compilazioneEmail.getText();
-					String password = String.valueOf(compilazionePassword.getPassword());
-					String nome = compilazioneNome.getText();
-					String cognome = compilazioneCognome.getText();
-					String sesso = selezioneSesso.getSelectedItem().toString();
-					String dataDiNascita = compilazioneDataDiNascita.getText();
-					Date data = Date.valueOf(dataDiNascita);
-					String tipologia = selezioneProfessione.getSelectedItem().toString();
-					
-					String query = "INSERT INTO Personale (id_centro, matricola, email, parola_chiave, nome, cognome, sesso, data_di_nascita, tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-					
-					try {
-						ps = Connessione.getConnection().prepareStatement(query);
-						
-						ps.setInt(1, idCentro);
-						ps.setString(2, "N00000001");
-						ps.setString(3, email);
-						ps.setString(4, password);
-						ps.setString(5, nome);
-						ps.setString(6, cognome);
-						ps.setString(7, sesso);
-						ps.setDate(8, data);
-						ps.setObject(9, tipologia, Types.OTHER);
-						
-						rs = ps.executeUpdate();
-						
-						if(rs > 0) {
-							JOptionPane.showMessageDialog(null, "Utente aggiunto al database!");
-						} else {
-							Errore finestraErrore = new Errore("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
-							finestraErrore.setLocationRelativeTo(null);
-							finestraErrore.setVisible(true);
-						}
-					} catch (SQLException ex) {
-						Logger.getLogger(Registrazione.class.getName()).log(Level.SEVERE, null, ex);
-						Errore finestraErrore = new Errore("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
-						finestraErrore.setLocationRelativeTo(null);
-						finestraErrore.setVisible(true);
-					}
-				}
-		});
 	}
 }

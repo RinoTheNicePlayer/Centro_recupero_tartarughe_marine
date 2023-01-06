@@ -1,10 +1,13 @@
-package Classi;
+package Classi.View;
 
 import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Classi.Controller.AccessoController;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,7 +29,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Accesso extends JFrame {
+public class AccessoView extends JFrame {
 	private JPanel pannello;
 	private JTextField compilazioneEmail;
 	private JPasswordField compilazionePassword;
@@ -38,7 +41,7 @@ public class Accesso extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Accesso finestraAccesso = new Accesso();
+					AccessoView finestraAccesso = new AccessoView();
 					finestraAccesso.setLocationRelativeTo(null);
 					finestraAccesso.setVisible(true);
 				} catch (Exception e) {
@@ -49,7 +52,7 @@ public class Accesso extends JFrame {
 	}
 	
 	//Creazione della finestra
-	public Accesso() {
+	public AccessoView() {
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
@@ -71,7 +74,7 @@ public class Accesso extends JFrame {
 		barraTitolo.setLayout(null);
 		
 		JLabel iconaChiudi = new JLabel("");
-		iconaChiudi.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Chiudi.png")));
+		iconaChiudi.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Chiudi.png")));
 		iconaChiudi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -94,7 +97,7 @@ public class Accesso extends JFrame {
 		barraTitolo.add(iconaChiudi);
 		
 		JLabel iconaMinimizza = new JLabel("");
-		iconaMinimizza.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Riduci a icona.png")));
+		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
 		iconaMinimizza.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -129,7 +132,7 @@ public class Accesso extends JFrame {
 		JLabel pannelloSinistro = new JLabel("");
 		pannelloSinistro.setForeground(new Color(255, 255, 255));
 		pannelloSinistro.setBackground(new Color(255, 255, 255));
-		pannelloSinistro.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Centro recupero tartarughe marine.png")));
+		pannelloSinistro.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Centro recupero tartarughe marine.png")));
 		pannelloSinistro.setBounds(0, 0, 500, 500);
 		pannello.add(pannelloSinistro);
 		
@@ -194,20 +197,7 @@ public class Accesso extends JFrame {
 		pannelloDestro.add(testoEmailNonValida);
 		
 		compilazioneEmail = new JTextField();
-		compilazioneEmail.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				boolean stato = Controllo.verificaEmail(compilazioneEmail.getText());
-				
-				if((stato == true) && (stato != testoEmailValida.equals(""))) {
-					testoEmailValida.setVisible(true);
-					testoEmailNonValida.setVisible(false);
-				} else {
-					testoEmailNonValida.setVisible(true);
-					testoEmailValida.setVisible(false);
-				}
-			}
-		});
+
 		compilazioneEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		compilazioneEmail.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		compilazioneEmail.setForeground(new Color(0, 0, 0));
@@ -215,12 +205,21 @@ public class Accesso extends JFrame {
 		compilazioneEmail.setBounds(40, 245, 365, 30);
 		pannelloDestro.add(compilazioneEmail);
 		compilazioneEmail.setColumns(10);
+		compilazioneEmail.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				boolean checkEmail = AccessoController.getInstance().verificaEmail(compilazioneEmail.getText());
+				
+				testoEmailValida.setVisible(checkEmail);
+				testoEmailNonValida.setVisible(!checkEmail);
+			}
+		});
 		
 		JLabel iconaUtente = new JLabel("");
 		iconaUtente.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaUtente.setForeground(new Color(0, 0, 0));
 		iconaUtente.setBackground(new Color(255, 255, 255));
-		iconaUtente.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Utente.png")));
+		iconaUtente.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Utente.png")));
 		iconaUtente.setHorizontalAlignment(SwingConstants.CENTER);
 		iconaUtente.setBounds(430, 245, 30, 30);
 		pannelloDestro.add(iconaUtente);
@@ -255,24 +254,6 @@ public class Accesso extends JFrame {
 		pannelloDestro.add(testoPasswordNonValida);
 		
 		compilazionePassword = new JPasswordField();
-		compilazionePassword.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				char[] password = compilazionePassword.getPassword();
-				int lunghezzaPassword = password.length;
-				
-				if(lunghezzaPassword == 0) {
-					testoPasswordNonValida.setVisible(true);
-					testoPasswordValida.setVisible(false);
-				} else if(lunghezzaPassword < 8 || lunghezzaPassword > 16){
-					testoPasswordNonValida.setVisible(true);
-					testoPasswordValida.setVisible(false);
-				} else {
-					testoPasswordValida.setVisible(true);
-					testoPasswordNonValida.setVisible(false);
-				}
-			}
-		});
 		compilazionePassword.setHorizontalAlignment(SwingConstants.LEFT);
 		compilazionePassword.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		compilazionePassword.setForeground(new Color(0, 0, 0));
@@ -280,6 +261,15 @@ public class Accesso extends JFrame {
 		compilazionePassword.setEchoChar('*');
 		compilazionePassword.setBounds(40, 325, 365, 30);
 		pannelloDestro.add(compilazionePassword);
+		compilazionePassword.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				boolean passwordCheck = AccessoController.getInstance().verificaPassword(compilazionePassword.getPassword());
+				
+					testoPasswordNonValida.setVisible(!passwordCheck);
+					testoPasswordValida.setVisible(passwordCheck);
+			}
+		});
 		
 		iconaOcchioChiuso = new JLabel("");
 		iconaOcchioChiuso.setFont(new Font("Segoe UI", Font.PLAIN, 10));
@@ -293,7 +283,7 @@ public class Accesso extends JFrame {
 				compilazionePassword.setEchoChar('*');
 			}
 		});
-		iconaOcchioChiuso.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Occhio chiuso.png")));
+		iconaOcchioChiuso.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Occhio chiuso.png")));
 		iconaOcchioChiuso.setHorizontalAlignment(SwingConstants.CENTER);
 		iconaOcchioChiuso.setBounds(430, 325, 30, 30);
 		pannelloDestro.add(iconaOcchioChiuso);
@@ -310,43 +300,12 @@ public class Accesso extends JFrame {
 				compilazionePassword.setEchoChar((char)0);
 			}
 		});
-		iconaOcchioAperto.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Occhio aperto.png")));
+		iconaOcchioAperto.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Occhio aperto.png")));
 		iconaOcchioAperto.setHorizontalAlignment(SwingConstants.CENTER);
 		iconaOcchioAperto.setBounds(430, 325, 30, 30);
 		pannelloDestro.add(iconaOcchioAperto);
 		
 		JButton bottoneAccesso = new JButton("Accesso");
-		bottoneAccesso.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				PreparedStatement ps;
-				ResultSet rs;
-				
-				String email = compilazioneEmail.getText();
-				String password = String.valueOf(compilazionePassword.getPassword());
-				
-				String query = "SELECT * FROM personale WHERE email = ? AND parola_chiave = ?";
-				
-				try {
-					ps = Connessione.getConnection().prepareStatement(query);
-					
-					ps.setString(1, email);
-					ps.setString(2, password);
-					
-					rs = ps.executeQuery();
-					
-					if(rs.next()) {
-						JOptionPane.showMessageDialog(null, "Si");
-					} else {
-						Errore finestraErrore = new Errore("Impossibile effettuare l'accesso!", "Indirizzo email/password invalidi.");
-						finestraErrore.setLocationRelativeTo(null);
-						finestraErrore.setVisible(true);
-					}
-				} catch (SQLException ex) {
-					Logger.getLogger(Accesso.class.getName()).log(Level.SEVERE, null, ex);
-				}
-			}
-		});
 		bottoneAccesso.setForeground(new Color(0, 0, 0));
 		bottoneAccesso.setBackground(new Color(255, 255, 255));
 		bottoneAccesso.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -367,7 +326,7 @@ public class Accesso extends JFrame {
 		registrazione.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Registrazione finestraRegistrazione = new Registrazione();
+				RegistrazioneView finestraRegistrazione = new RegistrazioneView();
 				finestraRegistrazione.setLocationRelativeTo(null);
 				finestraRegistrazione.setVisible(true);
 				dispose();

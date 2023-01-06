@@ -1,4 +1,4 @@
-package Classi;
+package Classi.View;
 
 import java.awt.*;
 
@@ -16,11 +16,11 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Errore extends JFrame {
+public class ErroreView extends JFrame {
 	private JPanel pannello;
 	
 	//Creazione della finestra
-	public Errore(String primoErrore, String secondoErrore) {
+	public ErroreView(String primoErrore, String secondoErrore) {
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
@@ -42,7 +42,7 @@ public class Errore extends JFrame {
 		barraTitolo.setLayout(null);
 		
 		JLabel iconaChiudi = new JLabel("");
-		iconaChiudi.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Chiudi.png")));
+		iconaChiudi.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Chiudi.png")));
 		iconaChiudi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -65,7 +65,7 @@ public class Errore extends JFrame {
 		barraTitolo.add(iconaChiudi);
 		
 		JLabel iconaMinimizza = new JLabel("");
-		iconaMinimizza.setIcon(new ImageIcon(Accesso.class.getResource("/Immagini/Riduci a icona.png")));
+		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
 		iconaMinimizza.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -126,7 +126,7 @@ public class Errore extends JFrame {
 		bottoneOk.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Accesso finestraAccesso = new Accesso();
+				AccessoView finestraAccesso = new AccessoView();
 				dispose();
 			}
 		});
