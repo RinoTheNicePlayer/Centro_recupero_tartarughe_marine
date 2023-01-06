@@ -380,20 +380,18 @@ public class Registrazione extends JFrame {
 						
 						rs = ps.executeUpdate();
 						
-						if(rs == 0) {
-							JOptionPane.showMessageDialog(null, "Si");
+						if(rs > 0) {
+							JOptionPane.showMessageDialog(null, "Utente aggiunto al database!");
 						} else {
 							Errore finestraErrore = new Errore("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
 							finestraErrore.setLocationRelativeTo(null);
 							finestraErrore.setVisible(true);
-							dispose();
 						}
 					} catch (SQLException ex) {
-						Logger.getLogger(Accesso.class.getName()).log(Level.SEVERE, null, ex);
+						Logger.getLogger(Registrazione.class.getName()).log(Level.SEVERE, null, ex);
 						Errore finestraErrore = new Errore("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
 						finestraErrore.setLocationRelativeTo(null);
 						finestraErrore.setVisible(true);
-						dispose();
 					}
 				}
 		});
