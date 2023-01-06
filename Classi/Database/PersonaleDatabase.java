@@ -17,35 +17,35 @@ import Classi.View.ErroreView;
 import Classi.View.RegistrazioneView;
 
 public class PersonaleDatabase {
-	/*
 	//Funzione SELECT per il Personale
-	PreparedStatement ps;
-	ResultSet rs;
-	
-	String email = compilazioneEmail.getText();
-	String password = String.valueOf(compilazionePassword.getPassword());
-	
-	String query = "SELECT * FROM personale WHERE email = ? AND parola_chiave = ?";
-	
-	try {
-		ps = Connessione.getConnection().prepareStatement(query);
+	public void selectPersonale(String compilazioneEmail, String compilazionePassword) {
+		PreparedStatement ps;
+		ResultSet rs;
 		
-		ps.setString(1, email);
-		ps.setString(2, password);
+		String email = compilazioneEmail;
+		String password = compilazionePassword;
 		
-		rs = ps.executeQuery();
+		String query = "SELECT * FROM personale WHERE email = ? AND parola_chiave = ?";
 		
-		if(rs.next()) {
-			JOptionPane.showMessageDialog(null, "Si");
-		} else {
-			Errore finestraErrore = new Errore("Impossibile effettuare l'accesso!", "Indirizzo email/password invalidi.");
-			finestraErrore.setLocationRelativeTo(null);
-			finestraErrore.setVisible(true);
+		try {
+			ps = Connessione.getConnection().prepareStatement(query);
+			
+			ps.setString(1, email);
+			ps.setString(2, password);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				JOptionPane.showMessageDialog(null, "Si");
+			} else {
+				ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Email/password non registrati.");
+				finestraErrore.setLocationRelativeTo(null);
+				finestraErrore.setVisible(true);
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(AccessoView.class.getName()).log(Level.SEVERE, null, ex);
 		}
-	} catch (SQLException ex) {
-		Logger.getLogger(Accesso.class.getName()).log(Level.SEVERE, null, ex);
 	}
-	*/
 	
 	/*
 	//Funzione di INSERT per il Personale

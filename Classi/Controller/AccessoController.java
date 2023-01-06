@@ -6,7 +6,9 @@ import java.util.regex.Pattern;
 
 import javax.swing.JPasswordField;
 
+import Classi.Database.PersonaleDatabase;
 import Classi.View.AccessoView;
+import Classi.View.ErroreView;
 
 public final class AccessoController {
 	
@@ -31,16 +33,17 @@ public final class AccessoController {
 		
 		if(relazione.matches()) {
 			checkMatch = true;
+			
 		} else {
 			checkMatch = false;
 		}
 		
 		if((checkMatch == true) && (checkMatch != email.equals(""))) {
 			checkEmail = true;
+			
 		} else {
 			checkEmail = false;
 		}
-		
 		return checkEmail;
 	}
 	
@@ -51,13 +54,42 @@ public final class AccessoController {
 		
 		if(lunghezzaPassword == 0) {
 			checkPassword = false;
+			
 		} else if(lunghezzaPassword < 8 || lunghezzaPassword > 16){
 			checkPassword = false;
+			
 		} else {
 			checkPassword = true;
 		}
 		
 		return checkPassword;
+	}
+	
+	/*Funzione per effettuare l'accesso. Controlla che i campi siano validi. Se si chiama la classe PersonaleDatabase per la QUERY*/
+	public void effettuaAccesso(String email, char[] password) {
+		boolean validaEmail = verificaEmail(email);
+		boolean validaPassword = verificaPassword(password);
+		
+		if((validaEmail == false) && (validaPassword == false)) {
+			ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Email e password non validi.");
+			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setVisible(true);
+			
+		}else if(validaEmail == false) {
+			ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Email non valida.");
+			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setVisible(true);
+			
+		}else if(validaPassword == false) {
+			ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Password non valida");
+			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setVisible(true);
+			
+		}else {
+			Personale personale = new Personale
+			PersonaleDatabase.selectPersonale(email, password.toString());
+		}
+
 	}
 	
 	protected AccessoController() {

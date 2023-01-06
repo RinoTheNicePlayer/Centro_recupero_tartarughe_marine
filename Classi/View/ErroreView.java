@@ -21,6 +21,7 @@ public class ErroreView extends JFrame {
 	
 	//Creazione della finestra
 	public ErroreView(String primoErrore, String secondoErrore) {
+		
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);

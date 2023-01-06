@@ -53,6 +53,7 @@ public class AccessoView extends JFrame {
 	
 	//Creazione della finestra
 	public AccessoView() {
+		
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
@@ -311,6 +312,12 @@ public class AccessoView extends JFrame {
 		bottoneAccesso.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		bottoneAccesso.setBounds(40, 390, 420, 50);
 		pannelloDestro.add(bottoneAccesso);
+		bottoneAccesso.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AccessoController.getInstance().effettuaAccesso(compilazioneEmail.getText(), compilazionePassword.getPassword());
+			}
+		});
 		
 		JLabel testoInformativo4 = new JLabel("Non ti sei ancora registrato?");
 		testoInformativo4.setForeground(new Color(0, 0, 0));

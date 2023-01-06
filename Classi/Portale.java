@@ -22,7 +22,7 @@ import javax.swing.JList;
 import javax.swing.JButton;
 
 public class Portale extends JFrame {
-	private JPanel pannello;
+/*	private JPanel pannello;
 	
 	//Lancio dell'applicazione
 	public static void main(String[] args) {
@@ -276,4 +276,5 @@ public class Portale extends JFrame {
 		testoProfessione.setBounds(25, 370, 300, 25);
 		pannelloCentrale.add(testoProfessione);
 	}
+	*/
 }
