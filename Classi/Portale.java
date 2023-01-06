@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -127,12 +130,52 @@ public class Portale extends JFrame {
 		iconaProfilo.setBounds(25, 25, 100, 90);
 		pannelloCentrale.add(iconaProfilo);
 		
-		JLabel testoInformativo1 = new JLabel("Ciao");
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		Accesso accesso = new Accesso();
+		String email = Accesso.email();
+		
+		String query = "SELECT * FROM personale AS p WHERE p.email = ?";
+		
+		try {
+			ps = Connessione.getConnection().prepareStatement(query);
+			
+			ps.setString(1, email);
+			
+			rs = ps.executeQuery();
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		String matricola = "";
+		String nome = "";
+		String cognome = "";
+		String email = "";
+		String dataDiNascita = "";
+		String tipologia = "";
+		
+		try {
+			while (rs.next()) {
+				matricola = rs.getString("matricola");
+			    nome = rs.getString("nome");
+			    cognome = rs.getString("cognome");
+			    email = rs.getString("email");
+			    dataDiNascita = rs.getString("data_di_nascita");
+			    tipologia = rs.getString("tipologia");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		JLabel testoInformativo1 = new JLabel("Ciao, " + nome + "!");
 		testoInformativo1.setHorizontalAlignment(SwingConstants.LEFT);
 		testoInformativo1.setForeground(new Color(0, 0, 0));
 		testoInformativo1.setFont(new Font("Segoe UI", Font.BOLD, 34));
 		testoInformativo1.setBackground(new Color(255, 255, 255));
-		testoInformativo1.setBounds(150, 25, 80, 40);
+		testoInformativo1.setBounds(150, 25, 500, 40);
 		pannelloCentrale.add(testoInformativo1);
 		
 		JLabel testoInformativo2 = new JLabel("Questo è il tuo profilo personale.");
@@ -182,52 +225,52 @@ public class Portale extends JFrame {
 		testoDati.setBounds(25, 180, 80, 30);
 		pannelloCentrale.add(testoDati);
 		
-		JLabel testoMatricola = new JLabel("Matricola");
+		JLabel testoMatricola = new JLabel("Matricola: " + matricola);
 		testoMatricola.setForeground(new Color(0, 0, 0));
 		testoMatricola.setBackground(new Color(255, 255, 255));
 		testoMatricola.setHorizontalAlignment(SwingConstants.LEFT);
 		testoMatricola.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		testoMatricola.setBounds(25, 220, 70, 25);
+		testoMatricola.setBounds(25, 220, 300, 25);
 		pannelloCentrale.add(testoMatricola);
 		
-		JLabel testoNome = new JLabel("Nome");
+		JLabel testoNome = new JLabel("Nome: " + nome);
 		testoNome.setHorizontalAlignment(SwingConstants.LEFT);
 		testoNome.setForeground(new Color(0, 0, 0));
 		testoNome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		testoNome.setBackground(new Color(255, 255, 255));
-		testoNome.setBounds(25, 250, 70, 25);
+		testoNome.setBounds(25, 250, 300, 25);
 		pannelloCentrale.add(testoNome);
 		
-		JLabel testoCognome = new JLabel("Cognome");
+		JLabel testoCognome = new JLabel("Cognome: " + cognome);
 		testoCognome.setHorizontalAlignment(SwingConstants.LEFT);
 		testoCognome.setForeground(new Color(0, 0, 0));
 		testoCognome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		testoCognome.setBackground(new Color(255, 255, 255));
-		testoCognome.setBounds(25, 280, 70, 25);
+		testoCognome.setBounds(25, 280, 300, 25);
 		pannelloCentrale.add(testoCognome);
 		
-		JLabel testoEmail = new JLabel("Email");
+		JLabel testoEmail = new JLabel("Email: " + email);
 		testoEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		testoEmail.setForeground(new Color(0, 0, 0));
 		testoEmail.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		testoEmail.setBackground(new Color(255, 255, 255));
-		testoEmail.setBounds(25, 310, 70, 25);
+		testoEmail.setBounds(25, 310, 300, 25);
 		pannelloCentrale.add(testoEmail);
 		
-		JLabel testoDataDiNascita = new JLabel("Data di nascita");
+		JLabel testoDataDiNascita = new JLabel("Data di nascita: " + dataDiNascita);
 		testoDataDiNascita.setHorizontalAlignment(SwingConstants.LEFT);
 		testoDataDiNascita.setForeground(new Color(0, 0, 0));
 		testoDataDiNascita.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		testoDataDiNascita.setBackground(new Color(255, 255, 255));
-		testoDataDiNascita.setBounds(25, 340, 120, 25);
+		testoDataDiNascita.setBounds(25, 340, 300, 25);
 		pannelloCentrale.add(testoDataDiNascita);
 		
-		JLabel testoProfessione = new JLabel("Professione");
+		JLabel testoProfessione = new JLabel("Professione: " + tipologia);
 		testoProfessione.setHorizontalAlignment(SwingConstants.LEFT);
 		testoProfessione.setForeground(new Color(0, 0, 0));
 		testoProfessione.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		testoProfessione.setBackground(new Color(255, 255, 255));
-		testoProfessione.setBounds(25, 370, 100, 25);
+		testoProfessione.setBounds(25, 370, 300, 25);
 		pannelloCentrale.add(testoProfessione);
 	}
 }
