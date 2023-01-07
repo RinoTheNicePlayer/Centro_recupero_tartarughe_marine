@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Classi.TestoUtility;
 import Classi.Controller.AccessoController;
 
 import java.awt.Color;
@@ -209,7 +210,7 @@ public class AccessoView extends JFrame {
 		compilazioneEmail.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				boolean checkEmail = AccessoController.getInstance().verificaEmail(compilazioneEmail.getText());
+				boolean checkEmail = TestoUtility.verificaEmail(compilazioneEmail.getText());
 				
 				testoEmailValida.setVisible(checkEmail);
 				testoEmailNonValida.setVisible(!checkEmail);
@@ -265,7 +266,7 @@ public class AccessoView extends JFrame {
 		compilazionePassword.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				boolean passwordCheck = AccessoController.getInstance().verificaPassword(compilazionePassword.getPassword());
+				boolean passwordCheck = TestoUtility.verificaPassword(compilazionePassword.getPassword());
 				
 					testoPasswordNonValida.setVisible(!passwordCheck);
 					testoPasswordValida.setVisible(passwordCheck);

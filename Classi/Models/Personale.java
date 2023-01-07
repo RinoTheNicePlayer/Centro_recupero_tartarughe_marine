@@ -16,7 +16,14 @@ public class Personale {
 	private int idCentro;
 	private String tipologia;
 	
-	public Personale(String compilazioneEmail, String compilazionePassword, String compilazioneNome, String compilazioneCognome  ) {
-		
+	public Personale(String compilazioneEmail, String compilazionePassword, String compilazioneNome, String compilazioneCognome, String compilazioneDataDiNascita, String compilazioneSesso, int compilazioneidCentro, String compilazioneTipologia) {
+		email = compilazioneEmail;
+		password = compilazionePassword;
+		nome = compilazioneNome;
+		cognome = compilazioneCognome;
+		dataDiNascita = compilazioneDataDiNascita;
+		sesso = compilazioneSesso;
+		idCentro = compilazioneidCentro;
+		tipologia = compilazioneTipologia;
 	}
 }

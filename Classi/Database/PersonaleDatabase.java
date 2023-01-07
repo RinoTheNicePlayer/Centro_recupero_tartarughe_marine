@@ -11,19 +11,35 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import Classi.Connessione;
+import Classi.Controller.AccessoController;
 import Classi.Models.Personale;
 import Classi.View.AccessoView;
 import Classi.View.ErroreView;
 import Classi.View.RegistrazioneView;
 
-public class PersonaleDatabase {
+public final class PersonaleDatabase {
+	
+	//Inizializzazione della classe singleton
+	private static PersonaleDatabase instance = null;
+	
+	//Creazione della funzione getInstance() la quale restituisce l'unica istanza esistente della classe. Se non esiste la crea.
+	public static PersonaleDatabase getInstance() {
+		if (instance == null) {
+			instance = new PersonaleDatabase();
+		}
+		return instance;
+	}
+	
 	//Funzione SELECT per il Personale
-	public void selectPersonale(String compilazioneEmail, String compilazionePassword) {
+	public void controlloAccesso(String compilazioneEmail, String compilazionePassword) {
 		PreparedStatement ps;
 		ResultSet rs;
 		
 		String email = compilazioneEmail;
 		String password = compilazionePassword;
+		
+		System.out.print(email);
+		System.out.print(password);
 		
 		String query = "SELECT * FROM personale WHERE email = ? AND parola_chiave = ?";
 		
