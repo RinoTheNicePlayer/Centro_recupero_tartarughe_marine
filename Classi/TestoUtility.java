@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 public final class TestoUtility {
 	//Funzione che controlla se una Email aderisce agli standard
 		public static boolean verificaEmail(String email) {
-			boolean checkMatch = false;
-			boolean checkEmail = false;
+			boolean controlloMatch = false;
+			boolean controlloEmail = false;
 			
 			String modelloEmail = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]*)$";
 			
@@ -15,36 +15,36 @@ public final class TestoUtility {
 			Matcher relazione = modello.matcher(email);
 			
 			if(relazione.matches()) {
-				checkMatch = true;
+				controlloMatch = true;
 				
 			} else {
-				checkMatch = false;
+				controlloMatch = false;
 			}
 			
-			if((checkMatch == true) && (checkMatch != email.equals(""))) {
-				checkEmail = true;
+			if((controlloMatch == true) && (controlloMatch != email.equals(""))) {
+				controlloEmail = true;
 				
 			} else {
-				checkEmail = false;
+				controlloEmail = false;
 			}
-			return checkEmail;
+			return controlloEmail;
 		}
 		
 		//Funzione che controlla se una Password è conforme agli standard imposti dal programma
 		public static boolean verificaPassword(char[] password) {
 			int lunghezzaPassword = password.length+1;
-			boolean checkPassword = false;
+			boolean controlloPassword = false;
 			
 			if(lunghezzaPassword == 0) {
-				checkPassword = false;
+				controlloPassword = false;
 				
 			} else if(lunghezzaPassword < 8 || lunghezzaPassword > 16){
-				checkPassword = false;
+				controlloPassword = false;
 				
 			} else {
-				checkPassword = true;
+				controlloPassword = true;
 			}
 			
-			return checkPassword;
+			return controlloPassword;
 		}
 }

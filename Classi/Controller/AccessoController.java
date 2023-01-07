@@ -22,8 +22,9 @@ public final class AccessoController {
 		return instance;
 	}
 	
-	/*Funzione per effettuare l'accesso. Controlla che i campi siano validi. Se si chiama la classe PersonaleDatabase per la QUERY*/
+	/*Funzione per effettuare l'accesso. Controlla che i campi siano validi. Se si, chiama la classe PersonaleDatabase per la QUERY*/
 	public void effettuaAccesso(String email, char[] password) {
+		
 		boolean validaEmail = TestoUtility.verificaEmail(email);
 		boolean validaPassword = TestoUtility.verificaPassword(password);
 		

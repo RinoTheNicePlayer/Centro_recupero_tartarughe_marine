@@ -210,10 +210,10 @@ public class AccessoView extends JFrame {
 		compilazioneEmail.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				boolean checkEmail = TestoUtility.verificaEmail(compilazioneEmail.getText());
+				boolean controlloEmail = TestoUtility.verificaEmail(compilazioneEmail.getText());
 				
-				testoEmailValida.setVisible(checkEmail);
-				testoEmailNonValida.setVisible(!checkEmail);
+				testoEmailValida.setVisible(controlloEmail);
+				testoEmailNonValida.setVisible(!controlloEmail);
 			}
 		});
 		
@@ -266,10 +266,10 @@ public class AccessoView extends JFrame {
 		compilazionePassword.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				boolean passwordCheck = TestoUtility.verificaPassword(compilazionePassword.getPassword());
+				boolean controlloPassword = TestoUtility.verificaPassword(compilazionePassword.getPassword());
 				
-					testoPasswordNonValida.setVisible(!passwordCheck);
-					testoPasswordValida.setVisible(passwordCheck);
+					testoPasswordValida.setVisible(controlloPassword);
+					testoPasswordNonValida.setVisible(!controlloPassword);
 			}
 		});
 		
