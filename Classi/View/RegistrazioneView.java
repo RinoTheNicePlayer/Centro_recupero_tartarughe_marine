@@ -145,6 +145,7 @@ public class RegistrazioneView extends JFrame {
 		testoNome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		
 		compilazioneNome = new JTextField();
+		compilazioneNome.setToolTipText("La prima lettera deve essere maiuscola (Es.: Mario).");
 		compilazioneNome.setForeground(new Color(0, 0, 0));
 		compilazioneNome.setBackground(new Color(255, 255, 255));
 		compilazioneNome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -162,6 +163,7 @@ public class RegistrazioneView extends JFrame {
 		pannelloSinistro.add(testoCognome);
 		
 		compilazioneCognome = new JTextField();
+		compilazioneCognome.setToolTipText("La prima lettera deve essere maiuscola (Es.: Rossi).");
 		compilazioneCognome.setForeground(new Color(0, 0, 0));
 		compilazioneCognome.setBackground(new Color(255, 255, 255));
 		compilazioneCognome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -179,6 +181,7 @@ public class RegistrazioneView extends JFrame {
 		pannelloSinistro.add(testoEmail);
 		
 		compilazioneEmail = new JTextField();
+		compilazioneEmail.setToolTipText("Formato standard (Es.: mariorossi@email.com");
 		compilazioneEmail.setForeground(new Color(0, 0, 0));
 		compilazioneEmail.setBackground(new Color(255, 255, 255));
 		compilazioneEmail.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -196,6 +199,7 @@ public class RegistrazioneView extends JFrame {
 		pannelloSinistro.add(testoPassword);
 		
 		compilazionePassword = new JPasswordField();
+		compilazionePassword.setToolTipText("La password deve avere tra i 6 e 16 caratteri.");
 		compilazionePassword.setEchoChar('*');
 		compilazionePassword.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		compilazionePassword.setForeground(new Color(0, 0, 0));
@@ -213,6 +217,7 @@ public class RegistrazioneView extends JFrame {
 		pannelloSinistro.add(testoConfermaPassword);
 		
 		compilazioneConfermaPassword = new JPasswordField();
+		compilazioneConfermaPassword.setToolTipText("La password deve avere tra i 6 e 16 caratteri.");
 		compilazioneConfermaPassword.setEchoChar('*');
 		compilazioneConfermaPassword.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		compilazioneConfermaPassword.setForeground(new Color(0, 0, 0));
@@ -231,7 +236,7 @@ public class RegistrazioneView extends JFrame {
 		
 		compilazioneDataDiNascita = new JTextField();
 		compilazioneDataDiNascita.setBackground(new Color(255, 255, 255));
-		compilazioneDataDiNascita.setToolTipText("AAAA-MM-GG");
+		compilazioneDataDiNascita.setToolTipText("Formato: AAAA-MM-GG (Es.: 2002-11-15");
 		compilazioneDataDiNascita.setForeground(new Color(0, 0, 0));
 		compilazioneDataDiNascita.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		compilazioneDataDiNascita.setColumns(10);
@@ -248,6 +253,7 @@ public class RegistrazioneView extends JFrame {
 		pannelloSinistro.add(testoSesso);
 		
 		JComboBox selezioneSesso = new JComboBox();
+		selezioneSesso.setToolTipText("Selezionare M o F.");
 		selezioneSesso.setForeground(new Color(0, 0, 0));
 		selezioneSesso.setBackground(new Color(255, 255, 255));
 		selezioneSesso.setModel(new DefaultComboBoxModel(new String[] {"M", "F"}));
@@ -318,6 +324,7 @@ public class RegistrazioneView extends JFrame {
 		testoCentro.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		
 		JComboBox selezioneCentro = new JComboBox();
+		selezioneCentro.setToolTipText("Selezionare il Centro di appartenenza.");
 		selezioneCentro.setForeground(new Color(0, 0, 0));
 		selezioneCentro.setBounds(171, 238, 170, 28);
 		pannelloDestro.add(selezioneCentro);
@@ -337,6 +344,7 @@ public class RegistrazioneView extends JFrame {
 		testoProfessione.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		
 		JComboBox selezioneProfessione = new JComboBox();
+		selezioneProfessione.setToolTipText("Selezionare la propria professione.");
 		selezioneProfessione.setForeground(new Color(0, 0, 0));
 		selezioneProfessione.setBounds(171, 316, 170, 28);
 		pannelloDestro.add(selezioneProfessione);
@@ -347,6 +355,12 @@ public class RegistrazioneView extends JFrame {
 		selezioneProfessione.setBackground(new Color(255, 255, 255));
 		
 		JButton bottoneRegistrati = new JButton("Registrati");
+		bottoneRegistrati.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				RegistrazioneController.getInstance().effettuaRegistrazione(compilazioneNome.getText(), compilazioneCognome.getText(), compilazioneEmail.getText(), compilazionePassword.getPassword(), compilazioneConfermaPassword.getPassword(), compilazioneDataDiNascita.getText(), (selezioneSesso.getSelectedItem()!= null) ? selezioneSesso.getSelectedItem().toString() : "", selezioneCentro.getSelectedIndex(), (selezioneProfessione.getSelectedItem()!= null) ? selezioneProfessione.getSelectedItem().toString() : "");
+			}
+		});
 		bottoneRegistrati.setBounds(40, 390, 419, 50);
 		pannelloDestro.add(bottoneRegistrati);
 		bottoneRegistrati.setForeground(new Color(0, 0, 0));
