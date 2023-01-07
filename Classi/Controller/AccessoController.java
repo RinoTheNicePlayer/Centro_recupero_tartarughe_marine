@@ -86,7 +86,7 @@ public final class AccessoController {
 			finestraErrore.setVisible(true);
 			
 		}else {
-			Personale personale = new Personale
+			Personale personale = new Personale;
 			PersonaleDatabase.selectPersonale(email, password.toString());
 		}
 
