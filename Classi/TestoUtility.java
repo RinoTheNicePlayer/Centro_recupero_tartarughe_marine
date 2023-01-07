@@ -7,7 +7,7 @@ public final class TestoUtility {
 	
 	//Funzione che controlla se una stringa rispetta le regole grammaticali di un Nome o Cognome
 	public static boolean verificaNome(String nome) {
-		return nome.matches("^[A-Z][a-z]*$");
+		return nome.matches("^([A-Z][a-z]*)([ ]?[A-Z][a-z]*)*$");
 	}
 	
 	//Funzione che controlla se una Email aderisce agli standard

@@ -163,7 +163,7 @@ public class RegistrazioneView extends JFrame {
 		pannelloSinistro.add(testoCognome);
 		
 		compilazioneCognome = new JTextField();
-		compilazioneCognome.setToolTipText("La prima lettera deve essere maiuscola (Es.: Rossi).");
+		compilazioneCognome.setToolTipText("La prima lettera deve essere maiuscola (Es.: Rossi, Di Bianco).");
 		compilazioneCognome.setForeground(new Color(0, 0, 0));
 		compilazioneCognome.setBackground(new Color(255, 255, 255));
 		compilazioneCognome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
