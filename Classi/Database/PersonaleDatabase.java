@@ -1,10 +1,12 @@
 package Classi.Database;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -29,6 +31,8 @@ public final class PersonaleDatabase {
 		return instance;
 	}
 	
+	/*Funzione di ricerca Personale per Email e Password. Tale funzione permette l'accesso se nel database esiste un utente con
+	  la Email e Password compilati */
 	public void controlloAccesso(String compilazioneEmail, String compilazionePassword) {
 		PreparedStatement ps;
 		ResultSet rs;
@@ -60,15 +64,47 @@ public final class PersonaleDatabase {
 		}
 	}
 	
-	/*
-	//Funzione di INSERT per il Personale
-	void insertPersonale(Personale p) {
+	//Funzione di ricerca personale nel database tramite Email. Essa restituisce le informazioni del Personale cercato.
+	public Personale getPersonaleByEmail(String email) throws SQLException {
+    	Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+        	connection = Connessione.getConnection();
+            String sql = "SELECT * FROM Personale WHERE Email = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+            resultSet = statement.executeQuery();
+            
+            if(resultSet.next()) {
+            	// Crea un oggetto Personale e imposta i suoi campi con i dati del ResultSet
+                Personale personale = new Personale();
+                personale.setMatricola(resultSet.getString("Matricola"));
+                personale.setNome(resultSet.getString("Nome"));
+                personale.setCognome(resultSet.getString("Cognome"));
+                personale.setSesso(resultSet.getString("Sesso"));
+                personale.setDataDiNascita(resultSet.getDate("Data_di_nascita").toString());
+                personale.setTipologia(resultSet.getString("Tipologia"));
+                
+                return personale;
+            }
+        } catch(SQLException e) {
+        	e.printStackTrace();
+            throw e;
+        }
+        
+        return null;
+    }
+	
+	
+	//Funzione di INSERT per il Personale registrato
+	public void registraPersonale(Personale p) {
 		PreparedStatement ps;
 		int rs;
 		
 		int idCentro = selezioneCentro.getSelectedIndex() + 1;
 		String email = compilazioneEmail.getText();
-		Accesso l = new Accesso(email);
 		String password = String.valueOf(compilazionePassword.getPassword());
 		String nome = compilazioneNome.getText();
 		String cognome = compilazioneCognome.getText();
@@ -97,16 +133,29 @@ public final class PersonaleDatabase {
 			if(rs > 0) {
 				JOptionPane.showMessageDialog(null, "Utente aggiunto al database!");
 			} else {
-				Errore finestraErrore = new Errore("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
+				ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
 				finestraErrore.setLocationRelativeTo(null);
 				finestraErrore.setVisible(true);
 			}
 		}catch(SQLException ex) {
-			Logger.getLogger(Registrazione.class.getName()).log(Level.SEVERE, null, ex);
-			Errore finestraErrore = new Errore("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
+			Logger.getLogger(RegistrazioneView.class.getName()).log(Level.SEVERE, null, ex);
+			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		}
 	}
-	*/
+
+	/*Funzione di utility. Genera una matricola nel formato NXXXXXXXX dove X sono delle cifre da 0 a 9.
+	Realisticamente la creazione di una matricola è gestita da un server apposito, ma per questo progetto la creeremo sul progetto Java stesso*/
+	  public String generaMatricola() {
+	        Random rnd = new Random();
+	        String matricola = "N";
+	        
+	        for (int i = 0; i < 8; i++) {
+	            matricola += rnd.nextInt(10);
+	        }
+	        
+	        return matricola;
+	    }
+	    
 }

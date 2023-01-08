@@ -1,19 +1,25 @@
 package Classi.Models;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import Classi.Connessione;
 
 public class Personale {
+	private int idCentro;
     private String matricola;
+    private String email;
+    private String password;
     private String nome;
     private String cognome;
     private String sesso;
-    private Date dataDiNascita;
+    private String dataDiNascita;
     private String tipologia;
+    
+    public int getIdCentro() {
+        return idCentro;
+    }
+
+    public void setIdCentro(int idCentro) {
+        this.idCentro = idCentro;
+    }
     
     public String getMatricola() {
         return matricola;
@@ -21,6 +27,22 @@ public class Personale {
 
     public void setMatricola(String matricola) {
         this.matricola = matricola;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public String getPassword() {
+        return matricola;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNome() {
@@ -51,7 +73,7 @@ public class Personale {
         return dataDiNascita;
     }
     
-    public void setDataDiNascita(Date dataDiNascita) {
+    public void setDataDiNascita(String dataDiNascita) {
     	this.dataDiNascita = dataDiNascita;
     }
     
@@ -63,35 +85,4 @@ public class Personale {
         this.tipologia = tipologia;
     }
     
-    public static Personale getPersonaleByEmail(String email) throws SQLException {
-    	Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-
-        try {
-        	connection = Connessione.getConnection();
-            String sql = "SELECT * FROM Personale WHERE Email = ?";
-            statement = connection.prepareStatement(sql);
-            statement.setString(1, email);
-            resultSet = statement.executeQuery();
-            
-            if(resultSet.next()) {
-            	// Crea un oggetto Personale e imposta i suoi campi con i dati del ResultSet
-                Personale personale = new Personale();
-                personale.setMatricola(resultSet.getString("Matricola"));
-                personale.setNome(resultSet.getString("Nome"));
-                personale.setCognome(resultSet.getString("Cognome"));
-                personale.setSesso(resultSet.getString("Sesso"));
-                personale.setDataDiNascita(resultSet.getDate("Data_di_nascita"));
-                personale.setTipologia(resultSet.getString("Tipologia"));
-                
-                return personale;
-            }
-        } catch(SQLException e) {
-        	e.printStackTrace();
-            throw e;
-        }
-        
-        return null;
-    }
 }

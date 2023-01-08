@@ -1,6 +1,8 @@
 package Classi.Controller;
 
 import Classi.TestoUtility;
+import Classi.Database.PersonaleDatabase;
+import Classi.Models.Personale;
 import Classi.View.ErroreView;
 
 public final class RegistrazioneController {
@@ -49,8 +51,17 @@ public final class RegistrazioneController {
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		} else{
-			System.out.print("Funziona");
-			//PersonaleDatabase.getInstance().registraPersonale(email, new String(password));
+			Personale personale = new Personale ();
+			personale.setIdCentro(idCentro);
+			personale.setMatricola();
+			personale.setPassword(new String(password));
+			personale.setNome(nome);
+			personale.setCognome(cognome);
+			personale.setDataDiNascita(dataDiNascita.);
+			personale.setSesso(sesso);
+			personale.setTipologia(professione);
+			
+			PersonaleDatabase.getInstance().registraPersonale(personale);
 		}
 	}
 }
