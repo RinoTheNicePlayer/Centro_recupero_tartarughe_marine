@@ -97,14 +97,14 @@ public final class PersonaleDatabase {
 		try {
 			ps = Connessione.getConnection().prepareStatement(query);
 			
-			ps.setInt(1, p.getIdCentro());
-			ps.setString(2, "N00000001");
+			ps.setInt(1, p.getIdCentro()+1);
+			ps.setString(2, generaMatricola());
 			ps.setString(3, p.getEmail());
 			ps.setString(4, p.getPassword());
 			ps.setString(5, p.getNome());
 			ps.setString(6, p.getCognome());
 			ps.setString(7, p.getSesso());
-			ps.setDate(8, (Date.valueOf(p.getDataDiNascita())));
+			ps.setDate(8, Date.valueOf(p.getDataDiNascita()));
 			ps.setObject(9, p.getTipologia(), Types.OTHER);
 			
 			rs = ps.executeUpdate();
@@ -116,12 +116,14 @@ public final class PersonaleDatabase {
 				finestraErrore.setLocationRelativeTo(null);
 				finestraErrore.setVisible(true);
 			}
+			
 		}catch(SQLException ex) {
 			Logger.getLogger(RegistrazioneView.class.getName()).log(Level.SEVERE, null, ex);
 			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		}
+		
 	}
 	
 	//Funzione di ricerca personale nel database tramite Matricola. Essa restituisce le informazioni del Personale cercato.

@@ -29,7 +29,7 @@ public class Personale {
     	this(idCentro, email, nome, cognome, dataDiNascita, sesso, tipologia, new String(password), "");
     }
     
-    public Personale (int idCentro, String email, String nome, String cognome, String sesso, String dataDiNascita, String tipologia, String matricola){
+    public Personale (int idCentro, String email, String nome, String cognome, String dataDiNascita, String sesso, String tipologia, String matricola){
     	this(idCentro, email, nome, cognome, dataDiNascita, sesso, tipologia, "", matricola);
     }
     
