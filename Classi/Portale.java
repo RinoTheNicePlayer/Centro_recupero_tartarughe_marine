@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -124,46 +126,6 @@ public class Portale extends JFrame {
 		pannello.add(pannelloSinistro);
 		pannelloSinistro.setLayout(null);
 		
-		PreparedStatement ps;
-		ResultSet rs;
-		
-		Accesso accesso = new Accesso();
-		String email = Accesso.email();
-		
-		String query = "SELECT * FROM personale AS p WHERE p.email = ?";
-		
-		try {
-			ps = Connessione.getConnection().prepareStatement(query);
-			
-			ps.setString(1, email);
-			
-			rs = ps.executeQuery();
-		} catch(SQLException e) {
-			e.printStackTrace();
-			return;
-		}
-		
-		String matricola = "";
-		String nome = "";
-		String cognome = "";
-		String email = "";
-		String dataDiNascita = "";
-		String tipologia = "";
-		
-		try {
-			while (rs.next()) {
-				matricola = rs.getString("matricola");
-			    nome = rs.getString("nome");
-			    cognome = rs.getString("cognome");
-			    email = rs.getString("email");
-			    dataDiNascita = rs.getString("data_di_nascita");
-			    tipologia = rs.getString("tipologia");
-			}
-		} catch(SQLException e) {
-			e.printStackTrace();
-			return;
-		}
-		
 		JLabel iconaProfilo = new JLabel("");
 		iconaProfilo.setIcon(new ImageIcon(Portale.class.getResource("/Immagini/Profilo utente (nero).png")));
 		iconaProfilo.setFont(new Font("Segoe UI", Font.PLAIN, 10));
@@ -182,7 +144,7 @@ public class Portale extends JFrame {
 		iconaEsci.setBounds(445, 75, 30, 30);
 		pannelloSinistro.add(iconaEsci);
 		
-		JLabel testoInformativo1 = new JLabel("Ciao, " + nome + "!");
+		JLabel testoInformativo1 = new JLabel("Ciao, ");
 		testoInformativo1.setHorizontalAlignment(SwingConstants.CENTER);
 		testoInformativo1.setForeground(new Color(0, 0, 0));
 		testoInformativo1.setFont(new Font("Segoe UI", Font.PLAIN, 30));
@@ -198,7 +160,7 @@ public class Portale extends JFrame {
 		testoDati.setBounds(40, 240, 80, 30);
 		pannelloSinistro.add(testoDati);
 		
-		JLabel testoMatricola = new JLabel("Matricola: " + matricola);
+		JLabel testoMatricola = new JLabel("Matricola: ");
 		testoMatricola.setForeground(new Color(0, 0, 0));
 		testoMatricola.setBackground(new Color(255, 255, 255));
 		testoMatricola.setHorizontalAlignment(SwingConstants.LEFT);
@@ -206,7 +168,7 @@ public class Portale extends JFrame {
 		testoMatricola.setBounds(40, 280, 300, 30);
 		pannelloSinistro.add(testoMatricola);
 		
-		JLabel testoNome = new JLabel("Nome: " + nome);
+		JLabel testoNome = new JLabel("Nome: ");
 		testoNome.setHorizontalAlignment(SwingConstants.LEFT);
 		testoNome.setForeground(new Color(0, 0, 0));
 		testoNome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -214,7 +176,7 @@ public class Portale extends JFrame {
 		testoNome.setBounds(40, 310, 300, 30);
 		pannelloSinistro.add(testoNome);
 		
-		JLabel testoCognome = new JLabel("Cognome: " + cognome);
+		JLabel testoCognome = new JLabel("Cognome: ");
 		testoCognome.setHorizontalAlignment(SwingConstants.LEFT);
 		testoCognome.setForeground(new Color(0, 0, 0));
 		testoCognome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -222,7 +184,7 @@ public class Portale extends JFrame {
 		testoCognome.setBounds(40, 340, 300, 30);
 		pannelloSinistro.add(testoCognome);
 		
-		JLabel testoEmail = new JLabel("Email: " + email);
+		JLabel testoEmail = new JLabel("Email: ");
 		testoEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		testoEmail.setForeground(new Color(0, 0, 0));
 		testoEmail.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -230,7 +192,7 @@ public class Portale extends JFrame {
 		testoEmail.setBounds(40, 370, 300, 30);
 		pannelloSinistro.add(testoEmail);
 		
-		JLabel testoDataDiNascita = new JLabel("Data di nascita: " + dataDiNascita);
+		JLabel testoDataDiNascita = new JLabel("Data di nascita: ");
 		testoDataDiNascita.setHorizontalAlignment(SwingConstants.LEFT);
 		testoDataDiNascita.setForeground(new Color(0, 0, 0));
 		testoDataDiNascita.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -238,7 +200,7 @@ public class Portale extends JFrame {
 		testoDataDiNascita.setBounds(40, 400, 300, 30);
 		pannelloSinistro.add(testoDataDiNascita);
 		
-		JLabel testoProfessione = new JLabel("Professione: " + tipologia);
+		JLabel testoProfessione = new JLabel("Professione: ");
 		testoProfessione.setHorizontalAlignment(SwingConstants.LEFT);
 		testoProfessione.setForeground(new Color(0, 0, 0));
 		testoProfessione.setFont(new Font("Segoe UI", Font.PLAIN, 20));

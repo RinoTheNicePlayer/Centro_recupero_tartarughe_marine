@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import Classi.Connessione;
+import Classi.Portale;
 import Classi.Controller.AccessoController;
 import Classi.Models.Personale;
 import Classi.View.AccessoView;
@@ -28,16 +29,12 @@ public final class PersonaleDatabase {
 		return instance;
 	}
 	
-	//Funzione SELECT per il Personale
 	public void controlloAccesso(String compilazioneEmail, String compilazionePassword) {
 		PreparedStatement ps;
 		ResultSet rs;
 		
 		String email = compilazioneEmail;
 		String password = compilazionePassword;
-		
-		System.out.print(email);
-		System.out.print(password);
 		
 		String query = "SELECT * FROM personale WHERE email = ? AND parola_chiave = ?";
 		
@@ -50,7 +47,9 @@ public final class PersonaleDatabase {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				JOptionPane.showMessageDialog(null, "Si");
+				Portale finestraPortale = new Portale();
+				finestraPortale.setLocationRelativeTo(null);
+				finestraPortale.setVisible(true);
 			} else {
 				ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Email o password non registrati.");
 				finestraErrore.setLocationRelativeTo(null);

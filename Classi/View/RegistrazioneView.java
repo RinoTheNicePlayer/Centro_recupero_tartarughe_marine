@@ -273,37 +273,34 @@ public class RegistrazioneView extends JFrame {
 		testoInformativo2.setHorizontalAlignment(SwingConstants.CENTER);
 		testoInformativo2.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		
-		JLabel testoInformativo3 = new JLabel("Compila i campi sottostanti con le informazioni lavorative");
-		testoInformativo3.setVerticalAlignment(SwingConstants.TOP);
+		JLabel testoInformativo3 = new JLabel("Compila i campi sottostanti con le informazioni lavorative.");
 		testoInformativo3.setHorizontalAlignment(SwingConstants.CENTER);
 		testoInformativo3.setForeground(new Color(0, 0, 0));
 		testoInformativo3.setBackground(new Color(255, 255, 255));
 		testoInformativo3.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		testoInformativo3.setBounds(0, 131, 500, 28);
+		testoInformativo3.setBounds(0, 130, 500, 30);
 		pannelloDestro.add(testoInformativo3);
 		
-		JLabel testoInformativo4 = new JLabel("Indicare il centro e la professione desiderate");
+		JLabel testoInformativo4 = new JLabel("Indicare il centro e la professione desiderate.");
 		testoInformativo4.setForeground(new Color(0, 0, 0));
 		testoInformativo4.setBackground(new Color(255, 255, 255));
-		testoInformativo4.setVerticalAlignment(SwingConstants.TOP);
 		testoInformativo4.setHorizontalAlignment(SwingConstants.CENTER);
 		testoInformativo4.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		testoInformativo4.setBounds(0, 160, 500, 28);
+		testoInformativo4.setBounds(0, 150, 500, 30);
 		pannelloDestro.add(testoInformativo4);
 		
 		JLabel testoCentro = new JLabel("Centro");
 		testoCentro.setForeground(new Color(0, 0, 0));
 		testoCentro.setBackground(new Color(255, 255, 255));
-		testoCentro.setVerticalAlignment(SwingConstants.TOP);
 		testoCentro.setHorizontalAlignment(SwingConstants.CENTER);
-		testoCentro.setBounds(171, 199, 170, 28);
+		testoCentro.setBounds(170, 210, 170, 30);
 		pannelloDestro.add(testoCentro);
 		testoCentro.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		
 		JComboBox selezioneCentro = new JComboBox();
 		selezioneCentro.setToolTipText("Selezionare il Centro di appartenenza.");
 		selezioneCentro.setForeground(new Color(0, 0, 0));
-		selezioneCentro.setBounds(171, 238, 170, 28);
+		selezioneCentro.setBounds(170, 250, 170, 30);
 		pannelloDestro.add(selezioneCentro);
 		selezioneCentro.setModel(new DefaultComboBoxModel(new String[] {"Centro Roma", "Centro Napoli", "Centro Parma"}));
 		selezioneCentro.setSelectedIndex(-1);
@@ -314,16 +311,15 @@ public class RegistrazioneView extends JFrame {
 		JLabel testoProfessione = new JLabel("Professione");
 		testoProfessione.setForeground(new Color(0, 0, 0));
 		testoProfessione.setBackground(new Color(255, 255, 255));
-		testoProfessione.setVerticalAlignment(SwingConstants.TOP);
 		testoProfessione.setHorizontalAlignment(SwingConstants.CENTER);
-		testoProfessione.setBounds(171, 277, 170, 28);
+		testoProfessione.setBounds(170, 290, 170, 30);
 		pannelloDestro.add(testoProfessione);
 		testoProfessione.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		
 		JComboBox selezioneProfessione = new JComboBox();
 		selezioneProfessione.setToolTipText("Selezionare la propria professione.");
 		selezioneProfessione.setForeground(new Color(0, 0, 0));
-		selezioneProfessione.setBounds(171, 316, 170, 28);
+		selezioneProfessione.setBounds(170, 330, 170, 30);
 		pannelloDestro.add(selezioneProfessione);
 		selezioneProfessione.setModel(new DefaultComboBoxModel(new String[] {"Operatore", "Ricercatore", "Tecnico di laboratorio", "Medico veterinario"}));
 		selezioneProfessione.setSelectedIndex(-1);

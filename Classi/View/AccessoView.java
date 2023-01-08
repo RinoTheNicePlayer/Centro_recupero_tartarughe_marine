@@ -25,6 +25,11 @@ public class AccessoView extends JFrame {
 	private JPasswordField compilazionePassword;
 	private JLabel iconaOcchioChiuso;
 	private JLabel iconaOcchioAperto;
+	boolean controlloOcchio = false;
+	
+	public String email() {
+		return compilazioneEmail.getText();
+	}
 	
 	//Lancio dell'applicazione
 	public static void main(String[] args) {
@@ -268,23 +273,6 @@ public class AccessoView extends JFrame {
 			}
 		});
 		
-		iconaOcchioChiuso = new JLabel("");
-		iconaOcchioChiuso.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaOcchioChiuso.setForeground(new Color(0, 0, 0));
-		iconaOcchioChiuso.setBackground(new Color(255, 255, 255));
-		iconaOcchioChiuso.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				iconaOcchioAperto.setVisible(true);
-				iconaOcchioChiuso.setVisible(false);
-				compilazionePassword.setEchoChar('*');
-			}
-		});
-		iconaOcchioChiuso.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Occhio chiuso.png")));
-		iconaOcchioChiuso.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaOcchioChiuso.setBounds(430, 325, 30, 30);
-		pannelloDestro.add(iconaOcchioChiuso);
-		
 		iconaOcchioAperto = new JLabel("");
 		iconaOcchioAperto.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaOcchioAperto.setForeground(new Color(0, 0, 0));
@@ -292,15 +280,30 @@ public class AccessoView extends JFrame {
 		iconaOcchioAperto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				iconaOcchioChiuso.setVisible(true);
-				iconaOcchioAperto.setVisible(false);
+				iconaOcchioAperto.setVisible(!controlloOcchio);
+				iconaOcchioChiuso.setVisible(controlloOcchio);
 				compilazionePassword.setEchoChar((char)0);
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				iconaOcchioChiuso.setVisible(!controlloOcchio);
+				iconaOcchioAperto.setVisible(controlloOcchio);
+				compilazionePassword.setEchoChar('*');
 			}
 		});
 		iconaOcchioAperto.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Occhio aperto.png")));
 		iconaOcchioAperto.setHorizontalAlignment(SwingConstants.CENTER);
 		iconaOcchioAperto.setBounds(430, 325, 30, 30);
 		pannelloDestro.add(iconaOcchioAperto);
+		
+		iconaOcchioChiuso = new JLabel("");
+		iconaOcchioChiuso.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaOcchioChiuso.setForeground(new Color(0, 0, 0));
+		iconaOcchioChiuso.setBackground(new Color(255, 255, 255));
+		iconaOcchioChiuso.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Occhio chiuso.png")));
+		iconaOcchioChiuso.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaOcchioChiuso.setBounds(430, 325, 30, 30);
+		pannelloDestro.add(iconaOcchioChiuso);
 		
 		JButton bottoneAccesso = new JButton("Accesso");
 		bottoneAccesso.setForeground(new Color(0, 0, 0));
