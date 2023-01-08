@@ -75,7 +75,7 @@ public final class PersonaleDatabase {
             
             if(rs.next()) {
             	// Crea un oggetto Personale e imposta i suoi campi con i dati del ResultSet
-                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
+                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString(), rs.getString("Matricola"));
                 return personale;
             }
         } catch(SQLException e) {
@@ -138,7 +138,7 @@ public final class PersonaleDatabase {
             
             if(rs.next()) {
             	// Crea un oggetto Personale e imposta i suoi campi con i dati del ResultSet
-                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
+                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString(), rs.getString("Matricola"));
                 return personale;
             }
         } catch(SQLException e) {

@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Classi.Models.Personale;
 import Classi.View.AccessoView;
 
 import javax.swing.JList;
@@ -26,23 +27,8 @@ import javax.swing.JButton;
 public class Portale extends JFrame {
 	private JPanel pannello;
 	
-	//Lancio dell'applicazione
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Portale finestraPortale = new Portale();
-					finestraPortale.setLocationRelativeTo(null);
-					finestraPortale.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
 	//Creazione della finestra
-	public Portale() {
+	public Portale(Personale personale) {
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);

@@ -13,6 +13,26 @@ public class Personale {
     private String dataDiNascita;
     private String tipologia;
     
+    private Personale (int idCentro, String email, String nome, String cognome, String dataDiNascita, String sesso, String tipologia, String password, String matricola) {
+    	setIdCentro(idCentro);
+    	setEmail(email);
+    	setPassword(password);
+    	setNome(nome);
+    	setCognome(cognome);
+    	setSesso(sesso);
+    	setDataDiNascita(dataDiNascita);
+    	setTipologia(tipologia);
+    	setMatricola(matricola);
+    }
+    
+    public Personale (int idCentro, String email, String nome, String cognome, String dataDiNascita, String sesso, String tipologia, char[] password) {
+    	this(idCentro, email, nome, cognome, dataDiNascita, sesso, tipologia, new String(password), "");
+    }
+    
+    public Personale (int idCentro, String email, String nome, String cognome, String sesso, String dataDiNascita, String tipologia, String matricola){
+    	this(idCentro, email, nome, cognome, dataDiNascita, sesso, tipologia, "", matricola);
+    }
+    
     public int getIdCentro() {
         return idCentro;
     }
@@ -84,28 +104,5 @@ public class Personale {
     public void setTipologia(String tipologia) {
         this.tipologia = tipologia;
     }
-    
-    public Personale (int idCentro, String matricola, String email, String nome, String cognome, String sesso, String dataDiNascita, String tipologia){
-    	
-    	setIdCentro(idCentro);
-    	setMatricola(matricola);
-    	setEmail(email);
-    	setNome(nome);
-    	setCognome(cognome);
-    	setSesso(sesso);
-    	setDataDiNascita(dataDiNascita);
-    	setTipologia(tipologia);
-    	
-    }
-    
-    public Personale (int idCentro, String email, String password, String nome, String cognome, String dataDiNascita, String sesso, String tipologia) {
-    	setIdCentro(idCentro);
-    	setEmail(email);
-    	setPassword(password);
-    	setNome(nome);
-    	setCognome(cognome);
-    	setSesso(sesso);
-    	setDataDiNascita(dataDiNascita);
-    	setTipologia(tipologia);
-    }
+ 
 }
