@@ -1,7 +1,5 @@
 package Classi.Models;
 
-import Classi.Connessione;
-
 public class Personale {
 	private int idCentro;
     private String matricola;
@@ -13,8 +11,9 @@ public class Personale {
     private String dataDiNascita;
     private String tipologia;
     
-    private Personale (int idCentro, String email, String nome, String cognome, String dataDiNascita, String sesso, String tipologia, String password, String matricola) {
+    private Personale(int idCentro, String matricola, String email, String password, String nome, String cognome, String sesso, String dataDiNascita, String tipologia) {
     	setIdCentro(idCentro);
+    	setMatricola(matricola);
     	setEmail(email);
     	setPassword(password);
     	setNome(nome);
@@ -22,15 +21,14 @@ public class Personale {
     	setSesso(sesso);
     	setDataDiNascita(dataDiNascita);
     	setTipologia(tipologia);
-    	setMatricola(matricola);
     }
     
-    public Personale (int idCentro, String email, String nome, String cognome, String dataDiNascita, String sesso, String tipologia, char[] password) {
-    	this(idCentro, email, nome, cognome, dataDiNascita, sesso, tipologia, new String(password), "");
+    public Personale(int idCentro, String email, char[] password, String nome, String cognome, String sesso, String dataDiNascita, String tipologia) {
+    	this(idCentro, "", email, new String(password), nome, cognome, sesso, dataDiNascita, tipologia);
     }
     
-    public Personale (int idCentro, String email, String nome, String cognome, String dataDiNascita, String sesso, String tipologia, String matricola){
-    	this(idCentro, email, nome, cognome, dataDiNascita, sesso, tipologia, "", matricola);
+    public Personale(int idCentro, String matricola, String email, String nome, String cognome, String sesso, String dataDiNascita, String tipologia){
+    	this(idCentro, matricola, email, "", nome, cognome, sesso, dataDiNascita, tipologia);
     }
     
     public int getIdCentro() {
@@ -104,5 +102,4 @@ public class Personale {
     public void setTipologia(String tipologia) {
         this.tipologia = tipologia;
     }
- 
 }

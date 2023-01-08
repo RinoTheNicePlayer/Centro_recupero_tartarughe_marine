@@ -51,7 +51,7 @@ public final class RegistrazioneController {
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		} else{
-			Personale personale = new Personale (idCentro, email, nome, cognome, dataDiNascita, sesso, professione, new String(password));
+			Personale personale = new Personale (idCentro, email, new String(password), nome, cognome, sesso, dataDiNascita, professione);
 			PersonaleDatabase.getInstance().registraPersonale(personale);
 		}
 	}

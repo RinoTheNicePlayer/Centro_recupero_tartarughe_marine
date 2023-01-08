@@ -11,11 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import Classi.Connessione;
-import Classi.Portale;
-import Classi.Controller.AccessoController;
 import Classi.Models.Personale;
 import Classi.View.AccessoView;
 import Classi.View.ErroreView;
+import Classi.View.DatiView;
 import Classi.View.RegistrazioneView;
 
 public final class PersonaleDatabase {
@@ -31,8 +30,9 @@ public final class PersonaleDatabase {
 		return instance;
 	}
 	
-	/*Funzione di ricerca Personale per Email e Password. Tale funzione permette l'accesso se nel database esiste un utente con
-	  la Email e Password compilati */
+	/*Funzione che verifica se l'email e la password inserite dall'utente sono presenti nel database.
+	 * Se lo sono, si apre una finestra grafica, in alternativa solleva un errore
+	 */
 	public void controlloAccesso(String compilazioneEmail, String compilazionePassword) {
 		PreparedStatement ps;
 		ResultSet rs;
@@ -48,7 +48,7 @@ public final class PersonaleDatabase {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				Portale finestraPortale = new Portale(getPersonaleByEmail(compilazioneEmail));
+				DatiView finestraPortale = new DatiView(getPersonaleByEmail(compilazioneEmail));
 				finestraPortale.setLocationRelativeTo(null);
 				finestraPortale.setVisible(true);
 			} else {
@@ -61,34 +61,8 @@ public final class PersonaleDatabase {
 		}
 	}
 	
-	//Funzione di ricerca personale nel database tramite Email. Essa restituisce le informazioni del Personale cercato.
-	public Personale getPersonaleByEmail(String email) throws SQLException {
-		PreparedStatement ps;
-		ResultSet rs;
-
-        String query = "SELECT * FROM Personale WHERE Email = ?";
-        
-        try {
-        	ps = Connessione.getConnection().prepareStatement(query);
-            ps.setString(1, email);
-            rs = ps.executeQuery();
-            
-            if(rs.next()) {
-            	// Crea un oggetto Personale e imposta i suoi campi con i dati del ResultSet
-                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString(), rs.getString("Matricola"));
-                return personale;
-            }
-        } catch(SQLException e) {
-        	e.printStackTrace();
-            throw e;
-        }
-        
-        return null;
-    }
-	
-	
-	//Funzione di INSERT per il Personale registrato
-	public void registraPersonale(Personale p) {
+	//Funzione che permette di eseguire la memorizzazione di diverse credenziali dell'utente nel database
+	public void registraPersonale(Personale personale) {
 		PreparedStatement ps;
 		int rs;
 		
@@ -97,15 +71,15 @@ public final class PersonaleDatabase {
 		try {
 			ps = Connessione.getConnection().prepareStatement(query);
 			
-			ps.setInt(1, p.getIdCentro()+1);
-			ps.setString(2, generaMatricola());
-			ps.setString(3, p.getEmail());
-			ps.setString(4, p.getPassword());
-			ps.setString(5, p.getNome());
-			ps.setString(6, p.getCognome());
-			ps.setString(7, p.getSesso());
-			ps.setDate(8, Date.valueOf(p.getDataDiNascita()));
-			ps.setObject(9, p.getTipologia(), Types.OTHER);
+			ps.setInt(1, personale.getIdCentro() + 1);
+			ps.setString(2, generatoreDiMatricole());
+			ps.setString(3, personale.getEmail());
+			ps.setString(4, personale.getPassword());
+			ps.setString(5, personale.getNome());
+			ps.setString(6, personale.getCognome());
+			ps.setString(7, personale.getSesso());
+			ps.setDate(8, Date.valueOf(personale.getDataDiNascita()));
+			ps.setObject(9, personale.getTipologia(), Types.OTHER);
 			
 			rs = ps.executeUpdate();
 			
@@ -116,31 +90,30 @@ public final class PersonaleDatabase {
 				finestraErrore.setLocationRelativeTo(null);
 				finestraErrore.setVisible(true);
 			}
-			
-		}catch(SQLException ex) {
+		} catch(SQLException ex) {
 			Logger.getLogger(RegistrazioneView.class.getName()).log(Level.SEVERE, null, ex);
 			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		}
-		
 	}
 	
-	//Funzione di ricerca personale nel database tramite Matricola. Essa restituisce le informazioni del Personale cercato.
-	public Personale getPersonaleByMatricola(String matricola) throws SQLException {
+	//Funzione che consente di cercare un personale specifico nel database mediante l'email fornita come parametro
+	public Personale getPersonaleByEmail(String email) throws SQLException {
 		PreparedStatement ps;
 		ResultSet rs;
 
-        String query = "SELECT * FROM Personale WHERE Matricola = ?";
+        String query = "SELECT * FROM Personale WHERE Email = ?";
         
         try {
         	ps = Connessione.getConnection().prepareStatement(query);
-            ps.setString(1, matricola);
+        	
+            ps.setString(1, email);
+            
             rs = ps.executeQuery();
             
             if(rs.next()) {
-            	// Crea un oggetto Personale e imposta i suoi campi con i dati del ResultSet
-                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString(), rs.getString("Matricola"));
+                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
                 return personale;
             }
         } catch(SQLException e) {
@@ -151,24 +124,48 @@ public final class PersonaleDatabase {
         return null;
     }
 	
-	/*Funzione di utility. Genera una matricola nel formato NXXXXXXXX dove X sono delle cifre da 0 a 9.
-	Realisticamente la creazione di una matricola è gestita da un server apposito, ma per questo progetto la creeremo sul progetto Java stesso*/
-	  public String generaMatricola() throws SQLException {
-	        Random rnd = new Random();
-	        String matricola = "N";
-	        
-	        for (int i = 0; i < 8; i++) {
-	            matricola += rnd.nextInt(10);
-	        }
-	        
-	        Personale p = getPersonaleByMatricola(matricola);
-	        
-	        if(p == null) {
-	        	return matricola;
-	        }else {
-	        	matricola = generaMatricola();
-	        	return matricola;
-	        }
+	//Funzione che consente di cercare un personale specifico nel database mediante la matricola fornita come parametro
+	public Personale getPersonaleByMatricola(String matricola) throws SQLException {
+		PreparedStatement ps;
+		ResultSet rs;
+		
+        String query = "SELECT * FROM Personale WHERE Matricola = ?";
+        
+        try {
+        	ps = Connessione.getConnection().prepareStatement(query);
+        	
+            ps.setString(1, matricola);
+            
+            rs = ps.executeQuery();
+            
+            if(rs.next()) {
+                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
+                return personale;
+            }
+        } catch(SQLException e) {
+        	e.printStackTrace();
+            throw e;
+        }
+        
+        return null;
+    }
+	
+	//Funzione che produce in maniera randomica una matricola del tipo NXXXXXXXX, dove X è una cifra che corrispondere ad un numero compreso tra 0 e 9
+	public String generatoreDiMatricole() throws SQLException {
+		Random rnd = new Random();
+	    String matricola = "N";
+	    
+	    for(int i = 0; i < 8; i++) {
+	    	matricola += rnd.nextInt(10);
 	    }
 	    
+	    Personale personale = getPersonaleByMatricola(matricola);
+	    
+	    if(personale == null) {
+	    	return matricola;
+	    } else {
+	    	matricola = generatoreDiMatricole();
+	    	return matricola;
+	    }
+	}
 }
