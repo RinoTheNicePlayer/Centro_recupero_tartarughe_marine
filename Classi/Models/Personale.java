@@ -69,7 +69,7 @@ public class Personale {
         this.sesso = sesso;
     }
     
-    public Date getDataDiNascita() {
+    public String getDataDiNascita() {
         return dataDiNascita;
     }
     
@@ -85,4 +85,27 @@ public class Personale {
         this.tipologia = tipologia;
     }
     
+    public Personale (int idCentro, String matricola, String email, String nome, String cognome, String sesso, String dataDiNascita, String tipologia){
+    	
+    	setIdCentro(idCentro);
+    	setMatricola(matricola);
+    	setEmail(email);
+    	setNome(nome);
+    	setCognome(cognome);
+    	setSesso(sesso);
+    	setDataDiNascita(dataDiNascita);
+    	setTipologia(tipologia);
+    	
+    }
+    
+    public Personale (int idCentro, String email, String password, String nome, String cognome, String dataDiNascita, String sesso, String tipologia) {
+    	setIdCentro(idCentro);
+    	setEmail(email);
+    	setPassword(password);
+    	setNome(nome);
+    	setCognome(cognome);
+    	setSesso(sesso);
+    	setDataDiNascita(dataDiNascita);
+    	setTipologia(tipologia);
+    }
 }

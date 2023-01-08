@@ -37,21 +37,18 @@ public final class PersonaleDatabase {
 		PreparedStatement ps;
 		ResultSet rs;
 		
-		String email = compilazioneEmail;
-		String password = compilazionePassword;
-		
 		String query = "SELECT * FROM personale WHERE email = ? AND parola_chiave = ?";
 		
 		try {
 			ps = Connessione.getConnection().prepareStatement(query);
 			
-			ps.setString(1, email);
-			ps.setString(2, password);
+			ps.setString(1, compilazioneEmail);
+			ps.setString(2, compilazionePassword);
 			
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				Portale finestraPortale = new Portale();
+				Portale finestraPortale = new Portale(getPersonaleByEmail(compilazioneEmail));
 				finestraPortale.setLocationRelativeTo(null);
 				finestraPortale.setVisible(true);
 			} else {
@@ -66,27 +63,19 @@ public final class PersonaleDatabase {
 	
 	//Funzione di ricerca personale nel database tramite Email. Essa restituisce le informazioni del Personale cercato.
 	public Personale getPersonaleByEmail(String email) throws SQLException {
-    	Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
+		PreparedStatement ps;
+		ResultSet rs;
 
+        String query = "SELECT * FROM Personale WHERE Email = ?";
+        
         try {
-        	connection = Connessione.getConnection();
-            String sql = "SELECT * FROM Personale WHERE Email = ?";
-            statement = connection.prepareStatement(sql);
-            statement.setString(1, email);
-            resultSet = statement.executeQuery();
+        	ps = Connessione.getConnection().prepareStatement(query);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
             
-            if(resultSet.next()) {
+            if(rs.next()) {
             	// Crea un oggetto Personale e imposta i suoi campi con i dati del ResultSet
-                Personale personale = new Personale();
-                personale.setMatricola(resultSet.getString("Matricola"));
-                personale.setNome(resultSet.getString("Nome"));
-                personale.setCognome(resultSet.getString("Cognome"));
-                personale.setSesso(resultSet.getString("Sesso"));
-                personale.setDataDiNascita(resultSet.getDate("Data_di_nascita").toString());
-                personale.setTipologia(resultSet.getString("Tipologia"));
-                
+                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
                 return personale;
             }
         } catch(SQLException e) {
@@ -103,30 +92,20 @@ public final class PersonaleDatabase {
 		PreparedStatement ps;
 		int rs;
 		
-		int idCentro = selezioneCentro.getSelectedIndex() + 1;
-		String email = compilazioneEmail.getText();
-		String password = String.valueOf(compilazionePassword.getPassword());
-		String nome = compilazioneNome.getText();
-		String cognome = compilazioneCognome.getText();
-		String sesso = selezioneSesso.getSelectedItem().toString();
-		String dataDiNascita = compilazioneDataDiNascita.getText();
-		Date data = Date.valueOf(dataDiNascita);
-		String tipologia = selezioneProfessione.getSelectedItem().toString();
-		
 		String query = "INSERT INTO Personale (id_centro, matricola, email, parola_chiave, nome, cognome, sesso, data_di_nascita, tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			ps = Connessione.getConnection().prepareStatement(query);
 			
-			ps.setInt(1, idCentro);
+			ps.setInt(1, p.getIdCentro());
 			ps.setString(2, "N00000001");
-			ps.setString(3, email);
-			ps.setString(4, password);
-			ps.setString(5, nome);
-			ps.setString(6, cognome);
-			ps.setString(7, sesso);
-			ps.setDate(8, data);
-			ps.setObject(9, tipologia, Types.OTHER);
+			ps.setString(3, p.getEmail());
+			ps.setString(4, p.getPassword());
+			ps.setString(5, p.getNome());
+			ps.setString(6, p.getCognome());
+			ps.setString(7, p.getSesso());
+			ps.setDate(8, (Date.valueOf(p.getDataDiNascita())));
+			ps.setObject(9, p.getTipologia(), Types.OTHER);
 			
 			rs = ps.executeUpdate();
 			
@@ -144,10 +123,35 @@ public final class PersonaleDatabase {
 			finestraErrore.setVisible(true);
 		}
 	}
+	
+	//Funzione di ricerca personale nel database tramite Matricola. Essa restituisce le informazioni del Personale cercato.
+	public Personale getPersonaleByMatricola(String matricola) throws SQLException {
+		PreparedStatement ps;
+		ResultSet rs;
 
+        String query = "SELECT * FROM Personale WHERE Matricola = ?";
+        
+        try {
+        	ps = Connessione.getConnection().prepareStatement(query);
+            ps.setString(1, matricola);
+            rs = ps.executeQuery();
+            
+            if(rs.next()) {
+            	// Crea un oggetto Personale e imposta i suoi campi con i dati del ResultSet
+                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
+                return personale;
+            }
+        } catch(SQLException e) {
+        	e.printStackTrace();
+            throw e;
+        }
+        
+        return null;
+    }
+	
 	/*Funzione di utility. Genera una matricola nel formato NXXXXXXXX dove X sono delle cifre da 0 a 9.
 	Realisticamente la creazione di una matricola è gestita da un server apposito, ma per questo progetto la creeremo sul progetto Java stesso*/
-	  public String generaMatricola() {
+	  public String generaMatricola() throws SQLException {
 	        Random rnd = new Random();
 	        String matricola = "N";
 	        
@@ -155,7 +159,14 @@ public final class PersonaleDatabase {
 	            matricola += rnd.nextInt(10);
 	        }
 	        
-	        return matricola;
+	        Personale p = getPersonaleByMatricola(matricola);
+	        
+	        if(p == null) {
+	        	return matricola;
+	        }else {
+	        	matricola = generaMatricola();
+	        	return matricola;
+	        }
 	    }
 	    
 }
