@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.JOptionPane;
-
 import Classi.Connessione;
 import Classi.Controller.AccessoController;
 import Classi.Models.Personale;
@@ -18,15 +16,15 @@ import Classi.View.ErroreView;
 import Classi.View.RegistrazioneView;
 
 public final class PersonaleDatabase {
-	
-	//Inizializzazione della classe singleton
+	//Inizializzazione dell'istanza
 	private static PersonaleDatabase instance = null;
 	
-	//Creazione della funzione getInstance() la quale restituisce l'unica istanza esistente della classe. Se non esiste la crea.
+	//Creazione della funzione getInstance(), la quale restituisce l'unica istanza esistente della classe. Se non esiste la genera.
 	public static PersonaleDatabase getInstance() {
-		if (instance == null) {
+		if(instance == null) {
 			instance = new PersonaleDatabase();
 		}
+		
 		return instance;
 	}
 	
@@ -54,11 +52,11 @@ public final class PersonaleDatabase {
 			if(rs.next()) {
 				JOptionPane.showMessageDialog(null, "Si");
 			} else {
-				ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Email/password non registrati.");
+				ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Email o password non registrati.");
 				finestraErrore.setLocationRelativeTo(null);
 				finestraErrore.setVisible(true);
 			}
-		} catch (SQLException ex) {
+		} catch(SQLException ex) {
 			Logger.getLogger(AccessoView.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}

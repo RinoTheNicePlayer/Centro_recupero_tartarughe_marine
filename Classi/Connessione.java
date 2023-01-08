@@ -4,12 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Connessione {
-	
 	private static Connection connessione = null;
 	
-	//Funzione che permette di connettere Java a Postgres
+	//Funzione che permette di connettere Java a PostgreSQL
 	public static Connection getConnection() {
-		
 		try {
 			Class.forName("org.postgresql.Driver");
 			

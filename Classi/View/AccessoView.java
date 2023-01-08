@@ -1,17 +1,13 @@
 package Classi.View;
 
 import java.awt.*;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import Classi.TestoUtility;
 import Classi.Controller.AccessoController;
-
 import java.awt.Color;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -20,13 +16,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -54,7 +43,6 @@ public class AccessoView extends JFrame {
 	
 	//Creazione della finestra
 	public AccessoView() {
-		
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
@@ -63,7 +51,6 @@ public class AccessoView extends JFrame {
 		pannello.setForeground(new Color(255, 255, 255));
 		pannello.setBackground(new Color(255, 255, 255));
 		pannello.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(pannello);
 		pannello.setLayout(null);
 		
@@ -94,7 +81,7 @@ public class AccessoView extends JFrame {
 		iconaChiudi.setHorizontalAlignment(SwingConstants.CENTER);
 		iconaChiudi.setForeground(new Color(255, 255, 255));
 		iconaChiudi.setBackground(new Color(255, 255, 255));
-		iconaChiudi.setFont(new Font("Segoe UI", Font.PLAIN, 5));
+		iconaChiudi.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaChiudi.setBounds(945, 0, 45, 50);
 		barraTitolo.add(iconaChiudi);
 		
@@ -116,7 +103,7 @@ public class AccessoView extends JFrame {
 		});
 		iconaMinimizza.setHorizontalAlignment(SwingConstants.CENTER);
 		iconaMinimizza.setForeground(new Color(255, 255, 255));
-		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 5));
+		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaMinimizza.setBackground(new Color(255, 255, 255));
 		iconaMinimizza.setBounds(900, 0, 45, 50);
 		barraTitolo.add(iconaMinimizza);
@@ -131,12 +118,21 @@ public class AccessoView extends JFrame {
 		barraTitolo.add(titoloFinestra);
 		
 		//Pannello sinistro
-		JLabel pannelloSinistro = new JLabel("");
+		JPanel pannelloSinistro = new JPanel();
+		pannelloSinistro.setBounds(0, 0, 500, 500);
 		pannelloSinistro.setForeground(new Color(255, 255, 255));
 		pannelloSinistro.setBackground(new Color(255, 255, 255));
-		pannelloSinistro.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Centro recupero tartarughe marine.png")));
-		pannelloSinistro.setBounds(0, 0, 500, 500);
 		pannello.add(pannelloSinistro);
+		pannelloSinistro.setLayout(null);
+		
+		JLabel immagineCentro = new JLabel("");
+		immagineCentro.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Centro recupero tartarughe marine.png")));
+		immagineCentro.setBounds(0, 0, 500, 500);
+		immagineCentro.setForeground(new Color(255, 255, 255));
+		immagineCentro.setBackground(new Color(255, 255, 255));
+		immagineCentro.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		immagineCentro.setHorizontalAlignment(SwingConstants.CENTER);
+		pannelloSinistro.add(immagineCentro);
 		
 		//Pannello destro
 		JPanel pannelloDestro = new JPanel();
@@ -199,7 +195,6 @@ public class AccessoView extends JFrame {
 		pannelloDestro.add(testoEmailNonValida);
 		
 		compilazioneEmail = new JTextField();
-
 		compilazioneEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		compilazioneEmail.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		compilazioneEmail.setForeground(new Color(0, 0, 0));

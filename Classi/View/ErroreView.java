@@ -1,7 +1,5 @@
 package Classi.View;
 
-import java.awt.*;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,8 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,7 +17,6 @@ public class ErroreView extends JFrame {
 	
 	//Creazione della finestra
 	public ErroreView(String primoErrore, String secondoErrore) {
-		
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
@@ -30,7 +25,6 @@ public class ErroreView extends JFrame {
 		pannello.setForeground(new Color(255, 255, 255));
 		pannello.setBackground(new Color(255, 255, 255));
 		pannello.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(pannello);
 		pannello.setLayout(null);
 		

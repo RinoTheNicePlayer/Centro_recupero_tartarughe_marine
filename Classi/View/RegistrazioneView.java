@@ -1,14 +1,9 @@
 package Classi.View;
 
 import java.awt.*;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import Classi.Controller.RegistrazioneController;
-import Classi.Models.Personale;
-
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,18 +13,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.sql.Date;
-
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
@@ -51,7 +36,6 @@ public class RegistrazioneView extends JFrame {
 		pannello = new JPanel();
 		pannello.setForeground(new Color(255, 255, 255));
 		pannello.setBackground(new Color(255, 255, 255));
-
 		setContentPane(pannello);
 		pannello.setLayout(null);
 		
@@ -82,7 +66,7 @@ public class RegistrazioneView extends JFrame {
 		iconaChiudi.setHorizontalAlignment(SwingConstants.CENTER);
 		iconaChiudi.setForeground(new Color(255, 255, 255));
 		iconaChiudi.setBackground(new Color(255, 255, 255));
-		iconaChiudi.setFont(new Font("Segoe UI", Font.PLAIN, 5));
+		iconaChiudi.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaChiudi.setBounds(945, 0, 45, 50);
 		barraTitolo.add(iconaChiudi);
 		
@@ -104,7 +88,7 @@ public class RegistrazioneView extends JFrame {
 		});
 		iconaMinimizza.setHorizontalAlignment(SwingConstants.CENTER);
 		iconaMinimizza.setForeground(Color.WHITE);
-		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 5));
+		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaMinimizza.setBackground(Color.WHITE);
 		iconaMinimizza.setBounds(900, 0, 45, 50);
 		barraTitolo.add(iconaMinimizza);
@@ -138,9 +122,8 @@ public class RegistrazioneView extends JFrame {
 		JLabel testoNome = new JLabel("Nome");
 		testoNome.setForeground(new Color(0, 0, 0));
 		testoNome.setBackground(new Color(255, 255, 255));
-		testoNome.setVerticalAlignment(SwingConstants.TOP);
 		testoNome.setHorizontalAlignment(SwingConstants.LEFT);
-		testoNome.setBounds(39, 131, 120, 28);
+		testoNome.setBounds(40, 130, 60, 30);
 		pannelloSinistro.add(testoNome);
 		testoNome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		
@@ -149,17 +132,16 @@ public class RegistrazioneView extends JFrame {
 		compilazioneNome.setForeground(new Color(0, 0, 0));
 		compilazioneNome.setBackground(new Color(255, 255, 255));
 		compilazioneNome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		compilazioneNome.setBounds(39, 170, 170, 28);
+		compilazioneNome.setBounds(40, 170, 170, 30);
 		pannelloSinistro.add(compilazioneNome);
 		compilazioneNome.setColumns(10);
 		
 		JLabel testoCognome = new JLabel("Cognome");
 		testoCognome.setForeground(new Color(0, 0, 0));
 		testoCognome.setBackground(new Color(255, 255, 255));
-		testoCognome.setVerticalAlignment(SwingConstants.TOP);
 		testoCognome.setHorizontalAlignment(SwingConstants.LEFT);
 		testoCognome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoCognome.setBounds(291, 131, 120, 28);
+		testoCognome.setBounds(290, 130, 90, 28);
 		pannelloSinistro.add(testoCognome);
 		
 		compilazioneCognome = new JTextField();
@@ -168,16 +150,15 @@ public class RegistrazioneView extends JFrame {
 		compilazioneCognome.setBackground(new Color(255, 255, 255));
 		compilazioneCognome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		compilazioneCognome.setColumns(10);
-		compilazioneCognome.setBounds(291, 170, 170, 28);
+		compilazioneCognome.setBounds(290, 170, 170, 30);
 		pannelloSinistro.add(compilazioneCognome);
 		
 		JLabel testoEmail = new JLabel("Email");
-		testoEmail.setVerticalAlignment(SwingConstants.TOP);
 		testoEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		testoEmail.setForeground(new Color(0, 0, 0));
 		testoEmail.setBackground(new Color(255, 255, 255));
 		testoEmail.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoEmail.setBounds(39, 209, 120, 28);
+		testoEmail.setBounds(40, 210, 60, 30);
 		pannelloSinistro.add(testoEmail);
 		
 		compilazioneEmail = new JTextField();
@@ -186,16 +167,15 @@ public class RegistrazioneView extends JFrame {
 		compilazioneEmail.setBackground(new Color(255, 255, 255));
 		compilazioneEmail.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		compilazioneEmail.setColumns(10);
-		compilazioneEmail.setBounds(39, 248, 422, 28);
+		compilazioneEmail.setBounds(40, 250, 420, 30);
 		pannelloSinistro.add(compilazioneEmail);
 		
 		JLabel testoPassword = new JLabel("Password");
-		testoPassword.setVerticalAlignment(SwingConstants.TOP);
 		testoPassword.setHorizontalAlignment(SwingConstants.LEFT);
 		testoPassword.setForeground(new Color(0, 0, 0));
 		testoPassword.setBackground(new Color(255, 255, 255));
 		testoPassword.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoPassword.setBounds(39, 287, 120, 28);
+		testoPassword.setBounds(40, 290, 90, 30);
 		pannelloSinistro.add(testoPassword);
 		
 		compilazionePassword = new JPasswordField();
@@ -204,16 +184,15 @@ public class RegistrazioneView extends JFrame {
 		compilazionePassword.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		compilazionePassword.setForeground(new Color(0, 0, 0));
 		compilazionePassword.setBackground(new Color(255, 255, 255));
-		compilazionePassword.setBounds(39, 326, 170, 28);
+		compilazionePassword.setBounds(40, 330, 170, 30);
 		pannelloSinistro.add(compilazionePassword);
 		
 		JLabel testoConfermaPassword = new JLabel("Conferma password");
-		testoConfermaPassword.setVerticalAlignment(SwingConstants.TOP);
 		testoConfermaPassword.setForeground(new Color(0, 0, 0));
 		testoConfermaPassword.setBackground(new Color(255, 255, 255));
 		testoConfermaPassword.setHorizontalAlignment(SwingConstants.LEFT);
 		testoConfermaPassword.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoConfermaPassword.setBounds(291, 287, 190, 28);
+		testoConfermaPassword.setBounds(290, 290, 180, 30);
 		pannelloSinistro.add(testoConfermaPassword);
 		
 		compilazioneConfermaPassword = new JPasswordField();
@@ -222,16 +201,15 @@ public class RegistrazioneView extends JFrame {
 		compilazioneConfermaPassword.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		compilazioneConfermaPassword.setForeground(new Color(0, 0, 0));
 		compilazioneConfermaPassword.setBackground(new Color(255, 255, 255));
-		compilazioneConfermaPassword.setBounds(291, 326, 170, 28);
+		compilazioneConfermaPassword.setBounds(290, 330, 170, 30);
 		pannelloSinistro.add(compilazioneConfermaPassword);
 		
 		JLabel testoDataDiNascita = new JLabel("Data di nascita");
 		testoDataDiNascita.setHorizontalAlignment(SwingConstants.LEFT);
-		testoDataDiNascita.setVerticalAlignment(SwingConstants.TOP);
 		testoDataDiNascita.setForeground(new Color(0, 0, 0));
 		testoDataDiNascita.setBackground(new Color(255, 255, 255));
 		testoDataDiNascita.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoDataDiNascita.setBounds(39, 365, 170, 28);
+		testoDataDiNascita.setBounds(40, 370, 130, 30);
 		pannelloSinistro.add(testoDataDiNascita);
 		
 		compilazioneDataDiNascita = new JTextField();
@@ -240,16 +218,15 @@ public class RegistrazioneView extends JFrame {
 		compilazioneDataDiNascita.setForeground(new Color(0, 0, 0));
 		compilazioneDataDiNascita.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		compilazioneDataDiNascita.setColumns(10);
-		compilazioneDataDiNascita.setBounds(39, 404, 170, 28);
+		compilazioneDataDiNascita.setBounds(40, 410, 170, 30);
 		pannelloSinistro.add(compilazioneDataDiNascita);
 		
 		JLabel testoSesso = new JLabel("Sesso");
-		testoSesso.setVerticalAlignment(SwingConstants.TOP);
 		testoSesso.setHorizontalAlignment(SwingConstants.LEFT);
 		testoSesso.setForeground(new Color(0, 0, 0));
 		testoSesso.setBackground(new Color(255, 255, 255));
 		testoSesso.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoSesso.setBounds(291, 365, 120, 28);
+		testoSesso.setBounds(290, 370, 50, 30);
 		pannelloSinistro.add(testoSesso);
 		
 		JComboBox selezioneSesso = new JComboBox();
@@ -260,7 +237,7 @@ public class RegistrazioneView extends JFrame {
 		selezioneSesso.setSelectedIndex(-1);
 		selezioneSesso.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		selezioneSesso.setMaximumRowCount(2);
-		selezioneSesso.setBounds(291, 404, 170, 28);
+		selezioneSesso.setBounds(290, 410, 170, 30);
 		pannelloSinistro.add(selezioneSesso);
 		
 		JButton bottoneIndietro = new JButton("Indietro");
@@ -276,7 +253,7 @@ public class RegistrazioneView extends JFrame {
 		bottoneIndietro.setForeground(new Color(0, 0, 0));
 		bottoneIndietro.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		bottoneIndietro.setBackground(new Color(255, 255, 255));
-		bottoneIndietro.setBounds(160, 450, 170, 28);
+		bottoneIndietro.setBounds(180, 452, 140, 35);
 		pannelloSinistro.add(bottoneIndietro);
 		
 		//Pannello destro
@@ -305,7 +282,7 @@ public class RegistrazioneView extends JFrame {
 		testoInformativo3.setBounds(0, 131, 500, 28);
 		pannelloDestro.add(testoInformativo3);
 		
-		JLabel testoInformativo4 = new JLabel("Indicare la sede e la professione desiderate");
+		JLabel testoInformativo4 = new JLabel("Indicare il centro e la professione desiderate");
 		testoInformativo4.setForeground(new Color(0, 0, 0));
 		testoInformativo4.setBackground(new Color(255, 255, 255));
 		testoInformativo4.setVerticalAlignment(SwingConstants.TOP);
@@ -361,7 +338,7 @@ public class RegistrazioneView extends JFrame {
 				RegistrazioneController.getInstance().effettuaRegistrazione(compilazioneNome.getText(), compilazioneCognome.getText(), compilazioneEmail.getText(), compilazionePassword.getPassword(), compilazioneConfermaPassword.getPassword(), compilazioneDataDiNascita.getText(), (selezioneSesso.getSelectedItem()!= null) ? selezioneSesso.getSelectedItem().toString() : "", selezioneCentro.getSelectedIndex(), (selezioneProfessione.getSelectedItem()!= null) ? selezioneProfessione.getSelectedItem().toString() : "");
 			}
 		});
-		bottoneRegistrati.setBounds(40, 390, 419, 50);
+		bottoneRegistrati.setBounds(50, 436, 400, 50);
 		pannelloDestro.add(bottoneRegistrati);
 		bottoneRegistrati.setForeground(new Color(0, 0, 0));
 		bottoneRegistrati.setFont(new Font("Segoe UI", Font.PLAIN, 20));

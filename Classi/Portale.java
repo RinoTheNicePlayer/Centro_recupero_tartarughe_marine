@@ -104,7 +104,7 @@ public class Portale extends JFrame {
 		iconaMinimizza.setForeground(new Color(255, 255, 255));
 		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaMinimizza.setBackground(new Color(255, 255, 255));
-		iconaMinimizza.setBounds(890, 0, 45, 50);
+		iconaMinimizza.setBounds(900, 0, 45, 50);
 		barraTitolo.add(iconaMinimizza);
 		
 		JLabel titoloFinestra = new JLabel("Portale");

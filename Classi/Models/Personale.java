@@ -1,11 +1,5 @@
 package Classi.Models;
 
-import java.sql.Date;
-
-import javax.swing.JComboBox;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-
 public class Personale {
 	private String email;
 	private String password;
