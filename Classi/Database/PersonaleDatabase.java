@@ -113,7 +113,7 @@ public final class PersonaleDatabase {
             rs = ps.executeQuery();
             
             if(rs.next()) {
-                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
+                Personale personale = new Personale(rs.getInt("ID_Personale"), rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
                 return personale;
             }
         } catch(SQLException e) {
@@ -139,7 +139,7 @@ public final class PersonaleDatabase {
             rs = ps.executeQuery();
             
             if(rs.next()) {
-                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
+                Personale personale = new Personale(rs.getInt("ID_Personale"), rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
                 return personale;
             }
         } catch(SQLException e) {
@@ -150,7 +150,7 @@ public final class PersonaleDatabase {
         return null;
     }
 	
-	//Funzione che produce in maniera randomica una matricola del tipo NXXXXXXXX, dove X è una cifra che corrispondere ad un numero compreso tra 0 e 9
+	//Funzione che produce in maniera randomica una matricola con formato NXXXXXXXX, dove X è una cifra corrispondente ad un numero compreso tra 0 e 9
 	public String generatoreDiMatricole() throws SQLException {
 		Random rnd = new Random();
 	    String matricola = "N";
