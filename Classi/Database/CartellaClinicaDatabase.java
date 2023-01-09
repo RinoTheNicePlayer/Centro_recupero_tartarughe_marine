@@ -23,6 +23,7 @@ public class CartellaClinicaDatabase {
 		return instance;
 	}
 	
+	//Funzione che ricava una cartella clinica tramite identificativo interno
 	public CartellaClinica getCartellaClinicaByIdentificativo(String identificativo) throws SQLException {
 		PreparedStatement ps;
 		ResultSet rs;

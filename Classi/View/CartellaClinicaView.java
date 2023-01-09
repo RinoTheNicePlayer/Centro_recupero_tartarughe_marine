@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+
+import Classi.Controller.CartellaClinicaController;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -24,10 +27,10 @@ public class CartellaClinicaView extends JFrame {
 	private JTextField compilazioneTarghetta;
 	private JTextField compilazioneSpecie;
 	private JTextField compilazioneLarghezza;
-	private JPasswordField compilazionePeso;
 	private JTextField compilazioneDataDiRitrovamento;
 	private JTextField compilazioneLunghezza;
 	private JTextField compilazioneLuogoDiRitrovamento;
+	private JTextField compilazionePeso;
 	
 	//Creazione della finestra
 	public CartellaClinicaView() {
@@ -127,16 +130,16 @@ public class CartellaClinicaView extends JFrame {
 		testoPinne.setBounds(50, 117, 170, 30);
 		pannelloDestro.add(testoPinne);
 		
-		JComboBox selezioneCentro = new JComboBox();
-		selezioneCentro.setToolTipText("Selezionare il Centro di appartenenza.");
-		selezioneCentro.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
-		selezioneCentro.setSelectedIndex(-1);
-		selezioneCentro.setMaximumRowCount(5);
-		selezioneCentro.setForeground(Color.BLACK);
-		selezioneCentro.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		selezioneCentro.setBackground(Color.WHITE);
-		selezioneCentro.setBounds(50, 157, 170, 30);
-		pannelloDestro.add(selezioneCentro);
+		JComboBox selezioneStatoPinne = new JComboBox();
+		selezioneStatoPinne.setToolTipText("Selezionare lo stato di salute delle pinne.");
+		selezioneStatoPinne.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
+		selezioneStatoPinne.setSelectedIndex(-1);
+		selezioneStatoPinne.setMaximumRowCount(5);
+		selezioneStatoPinne.setForeground(Color.BLACK);
+		selezioneStatoPinne.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		selezioneStatoPinne.setBackground(Color.WHITE);
+		selezioneStatoPinne.setBounds(50, 157, 170, 30);
+		pannelloDestro.add(selezioneStatoPinne);
 		
 		JLabel testoCollo = new JLabel("Collo");
 		testoCollo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -146,30 +149,16 @@ public class CartellaClinicaView extends JFrame {
 		testoCollo.setBounds(50, 197, 170, 30);
 		pannelloDestro.add(testoCollo);
 		
-		JComboBox selezioneProfessione = new JComboBox();
-		selezioneProfessione.setToolTipText("Selezionare la propria professione.");
-		selezioneProfessione.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
-		selezioneProfessione.setSelectedIndex(-1);
-		selezioneProfessione.setMaximumRowCount(5);
-		selezioneProfessione.setForeground(Color.BLACK);
-		selezioneProfessione.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		selezioneProfessione.setBackground(Color.WHITE);
-		selezioneProfessione.setBounds(50, 237, 170, 30);
-		pannelloDestro.add(selezioneProfessione);
-		
-		JButton bottoneCarica = new JButton("Carica cartella clinica");
-		bottoneCarica.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});
-		
-		bottoneCarica.setForeground(Color.BLACK);
-		bottoneCarica.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		bottoneCarica.setBackground(Color.WHITE);
-		bottoneCarica.setBounds(50, 436, 400, 50);
-		pannelloDestro.add(bottoneCarica);
+		JComboBox selezioneStatoCollo = new JComboBox();
+		selezioneStatoCollo.setToolTipText("Selezionare lo stato di salute del collo.");
+		selezioneStatoCollo.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
+		selezioneStatoCollo.setSelectedIndex(-1);
+		selezioneStatoCollo.setMaximumRowCount(5);
+		selezioneStatoCollo.setForeground(Color.BLACK);
+		selezioneStatoCollo.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		selezioneStatoCollo.setBackground(Color.WHITE);
+		selezioneStatoCollo.setBounds(50, 237, 170, 30);
+		pannelloDestro.add(selezioneStatoCollo);
 		
 		JLabel testoCoda = new JLabel("Coda");
 		testoCoda.setHorizontalAlignment(SwingConstants.CENTER);
@@ -179,16 +168,16 @@ public class CartellaClinicaView extends JFrame {
 		testoCoda.setBounds(280, 117, 170, 30);
 		pannelloDestro.add(testoCoda);
 		
-		JComboBox selezioneCentro_1 = new JComboBox();
-		selezioneCentro_1.setToolTipText("Selezionare il Centro di appartenenza.");
-		selezioneCentro_1.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
-		selezioneCentro_1.setSelectedIndex(-1);
-		selezioneCentro_1.setMaximumRowCount(5);
-		selezioneCentro_1.setForeground(Color.BLACK);
-		selezioneCentro_1.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		selezioneCentro_1.setBackground(Color.WHITE);
-		selezioneCentro_1.setBounds(280, 157, 170, 30);
-		pannelloDestro.add(selezioneCentro_1);
+		JComboBox selezioneStatoCoda = new JComboBox();
+		selezioneStatoCoda.setToolTipText("Selezionare lo stato di salute della coda.");
+		selezioneStatoCoda.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
+		selezioneStatoCoda.setSelectedIndex(-1);
+		selezioneStatoCoda.setMaximumRowCount(5);
+		selezioneStatoCoda.setForeground(Color.BLACK);
+		selezioneStatoCoda.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		selezioneStatoCoda.setBackground(Color.WHITE);
+		selezioneStatoCoda.setBounds(280, 157, 170, 30);
+		pannelloDestro.add(selezioneStatoCoda);
 		
 		JLabel testoTesta = new JLabel("Testa");
 		testoTesta.setHorizontalAlignment(SwingConstants.CENTER);
@@ -198,27 +187,27 @@ public class CartellaClinicaView extends JFrame {
 		testoTesta.setBounds(280, 197, 170, 30);
 		pannelloDestro.add(testoTesta);
 		
-		JComboBox selezioneProfessione_1 = new JComboBox();
-		selezioneProfessione_1.setToolTipText("Selezionare la propria professione.");
-		selezioneProfessione_1.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
-		selezioneProfessione_1.setSelectedIndex(-1);
-		selezioneProfessione_1.setMaximumRowCount(5);
-		selezioneProfessione_1.setForeground(Color.BLACK);
-		selezioneProfessione_1.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		selezioneProfessione_1.setBackground(Color.WHITE);
-		selezioneProfessione_1.setBounds(280, 237, 170, 30);
-		pannelloDestro.add(selezioneProfessione_1);
+		JComboBox selezioneStatoTesta = new JComboBox();
+		selezioneStatoTesta.setToolTipText("Selezionare lo stato di salute della testa.");
+		selezioneStatoTesta.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
+		selezioneStatoTesta.setSelectedIndex(-1);
+		selezioneStatoTesta.setMaximumRowCount(5);
+		selezioneStatoTesta.setForeground(Color.BLACK);
+		selezioneStatoTesta.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		selezioneStatoTesta.setBackground(Color.WHITE);
+		selezioneStatoTesta.setBounds(280, 237, 170, 30);
+		pannelloDestro.add(selezioneStatoTesta);
 		
-		JComboBox selezioneProfessione_1_1 = new JComboBox();
-		selezioneProfessione_1_1.setToolTipText("Selezionare la propria professione.");
-		selezioneProfessione_1_1.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
-		selezioneProfessione_1_1.setSelectedIndex(-1);
-		selezioneProfessione_1_1.setMaximumRowCount(5);
-		selezioneProfessione_1_1.setForeground(Color.BLACK);
-		selezioneProfessione_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		selezioneProfessione_1_1.setBackground(Color.WHITE);
-		selezioneProfessione_1_1.setBounds(280, 317, 170, 30);
-		pannelloDestro.add(selezioneProfessione_1_1);
+		JComboBox selezioneStatoNaso = new JComboBox();
+		selezioneStatoNaso.setToolTipText("Selezionare lo stato di salute del naso.");
+		selezioneStatoNaso.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
+		selezioneStatoNaso.setSelectedIndex(-1);
+		selezioneStatoNaso.setMaximumRowCount(5);
+		selezioneStatoNaso.setForeground(Color.BLACK);
+		selezioneStatoNaso.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		selezioneStatoNaso.setBackground(Color.WHITE);
+		selezioneStatoNaso.setBounds(280, 317, 170, 30);
+		pannelloDestro.add(selezioneStatoNaso);
 		
 		JLabel testoNaso = new JLabel("Naso");
 		testoNaso.setHorizontalAlignment(SwingConstants.CENTER);
@@ -236,27 +225,27 @@ public class CartellaClinicaView extends JFrame {
 		testoBecco.setBounds(50, 277, 170, 30);
 		pannelloDestro.add(testoBecco);
 		
-		JComboBox selezioneProfessione_2 = new JComboBox();
-		selezioneProfessione_2.setToolTipText("Selezionare la propria professione.");
-		selezioneProfessione_2.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
-		selezioneProfessione_2.setSelectedIndex(-1);
-		selezioneProfessione_2.setMaximumRowCount(5);
-		selezioneProfessione_2.setForeground(Color.BLACK);
-		selezioneProfessione_2.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		selezioneProfessione_2.setBackground(Color.WHITE);
-		selezioneProfessione_2.setBounds(50, 317, 170, 30);
-		pannelloDestro.add(selezioneProfessione_2);
+		JComboBox selezioneStatoBecco = new JComboBox();
+		selezioneStatoBecco.setToolTipText("Selezionare lo stato di salute del becco.");
+		selezioneStatoBecco.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
+		selezioneStatoBecco.setSelectedIndex(-1);
+		selezioneStatoBecco.setMaximumRowCount(5);
+		selezioneStatoBecco.setForeground(Color.BLACK);
+		selezioneStatoBecco.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		selezioneStatoBecco.setBackground(Color.WHITE);
+		selezioneStatoBecco.setBounds(50, 317, 170, 30);
+		pannelloDestro.add(selezioneStatoBecco);
 		
-		JComboBox selezioneProfessione_1_1_1 = new JComboBox();
-		selezioneProfessione_1_1_1.setToolTipText("Selezionare la propria professione.");
-		selezioneProfessione_1_1_1.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
-		selezioneProfessione_1_1_1.setSelectedIndex(-1);
-		selezioneProfessione_1_1_1.setMaximumRowCount(5);
-		selezioneProfessione_1_1_1.setForeground(Color.BLACK);
-		selezioneProfessione_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		selezioneProfessione_1_1_1.setBackground(Color.WHITE);
-		selezioneProfessione_1_1_1.setBounds(50, 397, 170, 30);
-		pannelloDestro.add(selezioneProfessione_1_1_1);
+		JComboBox selezioneStatoOcchi = new JComboBox();
+		selezioneStatoOcchi.setToolTipText("Selezionare lo stato di salute degli occhi.");
+		selezioneStatoOcchi.setModel(new DefaultComboBoxModel(new String[] {"Perfetta", "Buona", "Ferite superficiali", "Ferite profonde", "Compromesso"}));
+		selezioneStatoOcchi.setSelectedIndex(-1);
+		selezioneStatoOcchi.setMaximumRowCount(5);
+		selezioneStatoOcchi.setForeground(Color.BLACK);
+		selezioneStatoOcchi.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		selezioneStatoOcchi.setBackground(Color.WHITE);
+		selezioneStatoOcchi.setBounds(50, 397, 170, 30);
+		pannelloDestro.add(selezioneStatoOcchi);
 		
 		JLabel testoOcchi = new JLabel("Occhi");
 		testoOcchi.setHorizontalAlignment(SwingConstants.CENTER);
@@ -341,15 +330,6 @@ public class CartellaClinicaView extends JFrame {
 		testoPeso.setBounds(40, 357, 50, 30);
 		pannelloSinistro.add(testoPeso);
 		
-		compilazionePeso = new JPasswordField();
-		compilazionePeso.setToolTipText("Peso espresso in kg.");
-		compilazionePeso.setForeground(Color.BLACK);
-		compilazionePeso.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		compilazionePeso.setEchoChar('*');
-		compilazionePeso.setBackground(Color.WHITE);
-		compilazionePeso.setBounds(40, 394, 103, 30);
-		pannelloSinistro.add(compilazionePeso);
-		
 		JLabel testoDataDiRitrovamento = new JLabel("Data ritrovamento");
 		testoDataDiRitrovamento.setHorizontalAlignment(SwingConstants.LEFT);
 		testoDataDiRitrovamento.setForeground(Color.BLACK);
@@ -422,5 +402,29 @@ public class CartellaClinicaView extends JFrame {
 		compilazioneLuogoDiRitrovamento.setBackground(Color.WHITE);
 		compilazioneLuogoDiRitrovamento.setBounds(290, 237, 170, 30);
 		pannelloSinistro.add(compilazioneLuogoDiRitrovamento);
+		
+		compilazionePeso = new JTextField();
+		compilazionePeso.setToolTipText("Peso espresso in kg.");
+		compilazionePeso.setForeground(Color.BLACK);
+		compilazionePeso.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		compilazionePeso.setColumns(10);
+		compilazionePeso.setBackground(Color.WHITE);
+		compilazionePeso.setBounds(40, 391, 103, 30);
+		pannelloSinistro.add(compilazionePeso);
+		
+		JButton bottoneCarica = new JButton("Carica cartella clinica");
+		bottoneCarica.setForeground(Color.BLACK);
+		bottoneCarica.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		bottoneCarica.setBackground(Color.WHITE);
+		bottoneCarica.setBounds(50, 436, 400, 50);
+		pannelloDestro.add(bottoneCarica);
+		
+		bottoneCarica.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				CartellaClinicaController.getInstance().effettuaCaricamento(compilazioneTarghetta.getText(), compilazioneSpecie.getText(), compilazioneDataDiRitrovamento.getText(), compilazioneLuogoDiRitrovamento.getText(), compilazioneLarghezza.getText(), compilazioneLunghezza.getText(), compilazionePeso.getText(), selezioneStatoPinne.getSelectedItem().toString(), selezioneStatoCoda.getSelectedItem().toString(), selezioneStatoCollo.getSelectedItem().toString(), selezioneStatoTesta.getSelectedItem().toString(), selezioneStatoBecco.getSelectedItem().toString(), selezioneStatoNaso.getSelectedItem().toString(), selezioneStatoOcchi.getSelectedItem().toString());
+			}
+		});
+		
 	}
 }

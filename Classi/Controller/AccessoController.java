@@ -5,8 +5,10 @@ import Classi.Database.PersonaleDatabase;
 import Classi.View.ErroreView;
 
 public final class AccessoController {
+	//Inizializzazione dell'istanza
 	private static AccessoController instance = null;
 	
+	//Creazione della funzione getInstance(), la quale restituisce l'unica istanza esistente della classe. Se non esiste la genera.
 	public static AccessoController getInstance() {
 		if(instance == null) {
 			instance = new AccessoController();

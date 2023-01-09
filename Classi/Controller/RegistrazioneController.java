@@ -6,8 +6,10 @@ import Classi.Models.Personale;
 import Classi.View.ErroreView;
 
 public final class RegistrazioneController {
+	//Inizializzazione dell'istanza
 	private static RegistrazioneController instance = null;
 	
+	//Creazione della funzione getInstance(), la quale restituisce l'unica istanza esistente della classe. Se non esiste la genera.
 	public static RegistrazioneController getInstance() {
 		if(instance == null) {
 			instance = new RegistrazioneController();
@@ -28,7 +30,7 @@ public final class RegistrazioneController {
 		boolean validaDataDiNascita = TestoUtility.verificaData(dataDiNascita);
 		boolean validaSesso = TestoUtility.verificaSesso(sesso);
 		boolean validaCentro = TestoUtility.verificaCentro(idCentro);
-		boolean validaProfessione = TestoUtility.verificaProfessione(professione);
+		boolean validaProfessione = TestoUtility.verificaSelezione(professione);
 		
 		if((validaNome == false) || (validaCognome == false) || (validaDataDiNascita == false) || (validaSesso == false) || (validaCentro == false) || (validaProfessione == false)) {
 			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Uno o più campi sono vuoti o compilati male.");

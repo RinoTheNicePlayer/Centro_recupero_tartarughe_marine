@@ -92,7 +92,7 @@ public final class PersonaleDatabase {
 			}
 		} catch(SQLException ex) {
 			Logger.getLogger(RegistrazioneView.class.getName()).log(Level.SEVERE, null, ex);
-			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
+			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Email già in uso!");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		}
