@@ -113,7 +113,7 @@ public final class PersonaleDatabase {
             rs = ps.executeQuery();
             
             if(rs.next()) {
-                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
+                Personale personale = new Personale(rs.getInt("ID_Personale"), rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
                 return personale;
             }
         } catch(SQLException e) {
@@ -139,7 +139,7 @@ public final class PersonaleDatabase {
             rs = ps.executeQuery();
             
             if(rs.next()) {
-                Personale personale = new Personale(rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
+                Personale personale = new Personale(rs.getInt("ID_Personale"), rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
                 return personale;
             }
         } catch(SQLException e) {
