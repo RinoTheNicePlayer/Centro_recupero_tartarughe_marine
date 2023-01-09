@@ -150,7 +150,7 @@ public final class PersonaleDatabase {
         return null;
     }
 	
-	//Funzione che produce in maniera randomica una matricola del tipo NXXXXXXXX, dove X è una cifra che corrispondere ad un numero compreso tra 0 e 9
+	//Funzione che produce in maniera randomica una matricola con formato NXXXXXXXX, dove X è una cifra corrispondente ad un numero compreso tra 0 e 9
 	public String generatoreDiMatricole() throws SQLException {
 		Random rnd = new Random();
 	    String matricola = "N";
