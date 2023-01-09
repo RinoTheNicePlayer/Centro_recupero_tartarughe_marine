@@ -101,13 +101,20 @@ public class DatiView extends JFrame {
 		pannello.add(pannelloSinistro);
 		pannelloSinistro.setLayout(null);
 		
+		JButton bottoneIndietro = new JButton("Indietro");
+		bottoneIndietro.setForeground(new Color(0, 0, 0));
+		bottoneIndietro.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		bottoneIndietro.setBackground(new Color(255, 255, 255));
+		bottoneIndietro.setBounds(40, 80, 100, 40);
+		pannelloSinistro.add(bottoneIndietro);
+		
 		JLabel iconaProfilo = new JLabel("");
 		iconaProfilo.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Profilo utente (nero).png")));
 		iconaProfilo.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaProfilo.setForeground(new Color(0, 0, 0));
 		iconaProfilo.setBackground(new Color(255, 255, 255));
 		iconaProfilo.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaProfilo.setBounds(200, 75, 100, 100);
+		iconaProfilo.setBounds(200, 80, 100, 100);
 		pannelloSinistro.add(iconaProfilo);
 		
 		JLabel iconaEsci = new JLabel("");
@@ -116,7 +123,7 @@ public class DatiView extends JFrame {
 		iconaEsci.setBackground(new Color(255, 255, 255));
 		iconaEsci.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaEsci.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaEsci.setBounds(445, 75, 30, 30);
+		iconaEsci.setBounds(440, 80, 30, 30);
 		pannelloSinistro.add(iconaEsci);
 		
 		JLabel testoDati = new JLabel("Dati");
@@ -124,15 +131,31 @@ public class DatiView extends JFrame {
 		testoDati.setForeground(new Color(0, 0, 0));
 		testoDati.setFont(new Font("Segoe UI", Font.BOLD, 34));
 		testoDati.setBackground(new Color(255, 255, 255));
-		testoDati.setBounds(0, 190, 500, 70);
+		testoDati.setBounds(0, 180, 500, 50);
 		pannelloSinistro.add(testoDati);
+		
+		JLabel testoInformativo1 = new JLabel("Qui puoi consultare le tue credenziali o eliminare il tuo account,");
+		testoInformativo1.setHorizontalAlignment(SwingConstants.CENTER);
+		testoInformativo1.setForeground(new Color(0, 0, 0));
+		testoInformativo1.setFont(new Font("Segoe UI", Font.ITALIC, 15));
+		testoInformativo1.setBackground(new Color(255, 255, 255));
+		testoInformativo1.setBounds(0, 230, 500, 30);
+		pannelloSinistro.add(testoInformativo1);
+		
+		JLabel testoInformativo2 = new JLabel("qualora non fossi più interessato a volerlo");
+		testoInformativo2.setHorizontalAlignment(SwingConstants.CENTER);
+		testoInformativo2.setForeground(new Color(0, 0, 0));
+		testoInformativo2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
+		testoInformativo2.setBackground(new Color(255, 255, 255));
+		testoInformativo2.setBounds(0, 250, 500, 30);
+		pannelloSinistro.add(testoInformativo2);
 		
 		JLabel testoMatricola = new JLabel("Matricola: " + personale.getMatricola());
 		testoMatricola.setForeground(new Color(0, 0, 0));
 		testoMatricola.setBackground(new Color(255, 255, 255));
 		testoMatricola.setHorizontalAlignment(SwingConstants.LEFT);
 		testoMatricola.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoMatricola.setBounds(40, 280, 300, 30);
+		testoMatricola.setBounds(40, 300, 300, 30);
 		pannelloSinistro.add(testoMatricola);
 		
 		JLabel testoNome = new JLabel("Nome: " + personale.getNome());
@@ -140,7 +163,7 @@ public class DatiView extends JFrame {
 		testoNome.setForeground(new Color(0, 0, 0));
 		testoNome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		testoNome.setBackground(new Color(255, 255, 255));
-		testoNome.setBounds(40, 310, 300, 30);
+		testoNome.setBounds(40, 330, 300, 30);
 		pannelloSinistro.add(testoNome);
 		
 		JLabel testoCognome = new JLabel("Cognome: " + personale.getCognome());
@@ -148,7 +171,7 @@ public class DatiView extends JFrame {
 		testoCognome.setForeground(new Color(0, 0, 0));
 		testoCognome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		testoCognome.setBackground(new Color(255, 255, 255));
-		testoCognome.setBounds(40, 340, 300, 30);
+		testoCognome.setBounds(40, 360, 300, 30);
 		pannelloSinistro.add(testoCognome);
 		
 		JLabel testoEmail = new JLabel("Email: " + personale.getEmail());
@@ -156,7 +179,7 @@ public class DatiView extends JFrame {
 		testoEmail.setForeground(new Color(0, 0, 0));
 		testoEmail.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		testoEmail.setBackground(new Color(255, 255, 255));
-		testoEmail.setBounds(40, 370, 300, 30);
+		testoEmail.setBounds(40, 390, 300, 30);
 		pannelloSinistro.add(testoEmail);
 		
 		JLabel testoDataDiNascita = new JLabel("Data di nascita: " + personale.getDataDiNascita());
@@ -164,7 +187,7 @@ public class DatiView extends JFrame {
 		testoDataDiNascita.setForeground(new Color(0, 0, 0));
 		testoDataDiNascita.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		testoDataDiNascita.setBackground(new Color(255, 255, 255));
-		testoDataDiNascita.setBounds(40, 400, 300, 30);
+		testoDataDiNascita.setBounds(40, 420, 300, 30);
 		pannelloSinistro.add(testoDataDiNascita);
 		
 		JLabel testoProfessione = new JLabel("Professione: " + personale.getTipologia());
@@ -172,8 +195,17 @@ public class DatiView extends JFrame {
 		testoProfessione.setForeground(new Color(0, 0, 0));
 		testoProfessione.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		testoProfessione.setBackground(new Color(255, 255, 255));
-		testoProfessione.setBounds(40, 430, 300, 30);
+		testoProfessione.setBounds(40, 450, 300, 30);
 		pannelloSinistro.add(testoProfessione);
+		
+		JLabel iconaElimina = new JLabel("");
+		iconaElimina.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Elimina.png")));
+		iconaElimina.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaElimina.setForeground(new Color(255, 255, 255));
+		iconaElimina.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaElimina.setBackground(new Color(255, 255, 255));
+		iconaElimina.setBounds(440, 450, 30, 30);
+		pannelloSinistro.add(iconaElimina);
 		
 		//Pannello destro
 		JPanel pannelloDestro = new JPanel();
