@@ -184,7 +184,7 @@ public class DatiView extends JFrame {
 		pannelloDestro.setLayout(null);
 		
 		JLabel immagineTartaruga = new JLabel("");
-		immagineTartaruga.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Tartaruga.png")));
+		immagineTartaruga.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Tartaruga marina.png")));
 		immagineTartaruga.setBounds(0, 0, 500, 500);
 		immagineTartaruga.setForeground(new Color(255, 255, 255));
 		immagineTartaruga.setBackground(new Color(255, 255, 255));

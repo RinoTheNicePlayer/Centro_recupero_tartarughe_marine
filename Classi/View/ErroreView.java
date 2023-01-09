@@ -102,18 +102,17 @@ public class ErroreView extends JFrame {
 		JLabel testoInformativo1 = new JLabel(primoErrore);
 		testoInformativo1.setHorizontalAlignment(SwingConstants.CENTER);
 		testoInformativo1.setForeground(new Color(0, 0, 0));
-		testoInformativo1.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		testoInformativo1.setFont(new Font("Segoe UI", Font.BOLD, 22));
 		testoInformativo1.setBackground(new Color(255, 255, 255));
-		testoInformativo1.setBounds(0, 0, 500, 50);
+		testoInformativo1.setBounds(0, 0, 500, 65);
 		pannelloCentrale.add(testoInformativo1);
 		
 		JLabel testoInformativo2 = new JLabel(secondoErrore);
-		testoInformativo2.setVerticalAlignment(SwingConstants.TOP);
 		testoInformativo2.setHorizontalAlignment(SwingConstants.CENTER);
 		testoInformativo2.setForeground(new Color(0, 0, 0));
-		testoInformativo2.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoInformativo2.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		testoInformativo2.setBackground(new Color(255, 255, 255));
-		testoInformativo2.setBounds(0, 50, 500, 50);
+		testoInformativo2.setBounds(0, 50, 500, 40);
 		pannelloCentrale.add(testoInformativo2);
 		
 		JButton bottoneOk = new JButton("Ok");
@@ -127,7 +126,7 @@ public class ErroreView extends JFrame {
 		bottoneOk.setForeground(new Color(0, 0, 0));
 		bottoneOk.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		bottoneOk.setBackground(new Color(255, 255, 255));
-		bottoneOk.setBounds(380, 95, 100, 40);
+		bottoneOk.setBounds(390, 110, 100, 30);
 		pannelloCentrale.add(bottoneOk);
 	}
 }

@@ -31,23 +31,23 @@ public final class RegistrazioneController {
 		boolean validaProfessione = TestoUtility.verificaProfessione(professione);
 		
 		if((validaNome == false) || (validaCognome == false) || (validaDataDiNascita == false) || (validaSesso == false) || (validaCentro == false) || (validaProfessione == false)) {
-			ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Ci sono campi compilati in modo non valido.");
+			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Uno o più campi sono vuoti o compilati male.");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		} else if((validaEmail == false) && (validaPassword == false)) {
-			ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Email e password non validi.");
+			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Email e password non validi.");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		} else if(validaEmail == false) {
-			ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Email non valida.");
+			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Email non valida.");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		} else if(validaPassword == false) {
-			ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Password non valida.");
+			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Password non valida.");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		} else if(passwordUguali == false){
-			ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Le password non corrispondono.");
+			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Le password non corrispondono.");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		} else{
