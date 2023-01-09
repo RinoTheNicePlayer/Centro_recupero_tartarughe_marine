@@ -109,9 +109,9 @@ public class DatiView extends JFrame {
 		pannelloSinistro.add(bottoneIndietro);
 		
 		JLabel iconaProfilo = new JLabel("");
-		iconaProfilo.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Profilo utente (nero).png")));
+		iconaProfilo.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Profilo utente.png")));
 		iconaProfilo.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaProfilo.setForeground(new Color(0, 0, 0));
+		iconaProfilo.setForeground(new Color(255, 255, 255));
 		iconaProfilo.setBackground(new Color(255, 255, 255));
 		iconaProfilo.setHorizontalAlignment(SwingConstants.CENTER);
 		iconaProfilo.setBounds(200, 80, 100, 100);
