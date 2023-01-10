@@ -4,13 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
-
 import Classi.Connessione;
 import Classi.Models.CartellaClinica;
 import Classi.Models.Personale;
 
 public class CartellaClinicaDatabase {
-	
 	//Inizializzazione dell'istanza
 	private static CartellaClinicaDatabase instance = null;
 	
@@ -67,5 +65,4 @@ public class CartellaClinicaDatabase {
 	    	return identificativoClinico;
 	    }
 	}
-	
 }

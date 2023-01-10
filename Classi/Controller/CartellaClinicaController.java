@@ -1,7 +1,6 @@
 package Classi.Controller;
 
 import java.sql.SQLException;
-
 import Classi.Connessione;
 import Classi.TestoUtility;
 import Classi.Database.PersonaleDatabase;
@@ -28,16 +27,16 @@ public final class CartellaClinicaController {
 	 * Se quest'ultimi sono validi, chiama la classe CartellaClinicaDatabase per effettuare l'INSERT.
 	 */
 	public void effettuaCaricamento(String targhetta, String specie, String dataRitrovamento, String luogoRitrovamento, String larghezza, String lunghezza, String peso, String statoPinne, String statoCoda, String statoCollo, String statoTesta, String statoBecco, String statoNaso, String statoOcchi) {
-		
 		boolean validaTarghetta = false;
 		//Controllo se la targhetta inserita esiste. Se questa non esiste, fai comparire una finestra di errore e termina la funzione.
-		if (TartarugaDatabase.getInstance().getTartarugaByTarghetta(targhetta) != null) {
+		if(TartarugaDatabase.getInstance().getTartarugaByTarghetta(targhetta) != null) {
 			validaTarghetta = true;
 			Tartaruga tartaruga = new Tartaruga();
-		}else {
+		} else {
 			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Non esiste alcuna tartaruga associata a quella targhetta.");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
+			
 			return;
 		}
 		
@@ -55,7 +54,6 @@ public final class CartellaClinicaController {
 				ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "La data deve rispettare il formato AAAA-MM-GG");
 				finestraErrore.setLocationRelativeTo(null);
 				finestraErrore.setVisible(true);
-				
 			} else if((validaStatoPinne == false) || (validaStatoCoda == false) || (validaStatoCollo == false) || (validaStatoTesta == false) || (validaStatoBecco == false) || (validaStatoNaso == false) || (validaStatoOcchi == false)){
 				ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Ci sono campi non compilati nella sezione 'Condizioni della tartaruga'.");
 				finestraErrore.setLocationRelativeTo(null);
@@ -64,8 +62,7 @@ public final class CartellaClinicaController {
 			} else {
 		        try {
 					CartellaClinica cartellaClinica = new CartellaClinica();
-					PersonaleDatabase.getInstance().
-		
+					PersonaleDatabase.getInstance();
 			    } catch(NumberFormatException e) {
 					ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "I campi 'Larghezza', 'Lunghezza' e 'Peso' devono contenere valori numerici.");
 					finestraErrore.setLocationRelativeTo(null);
@@ -74,6 +71,5 @@ public final class CartellaClinicaController {
 			        throw e;
 			    }
 			}
-		
 	}
 }
