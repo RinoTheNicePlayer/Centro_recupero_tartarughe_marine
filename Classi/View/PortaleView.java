@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import Classi.Models.Personale;
 
 public class PortaleView extends JFrame {
@@ -49,7 +48,7 @@ public class PortaleView extends JFrame {
 		titoloFinestra.setForeground(new Color(255, 255, 255));
 		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
 		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		titoloFinestra.setBounds(70, 0, 100, 50);
+		titoloFinestra.setBounds(70, 0, 70, 50);
 		barraTitolo.add(titoloFinestra);
 		
 		JLabel iconaMinimizza = new JLabel("");
@@ -124,6 +123,7 @@ public class PortaleView extends JFrame {
 		pannelloCentrale.add(testoSaluto);
 		
 		JLabel iconaEsci = new JLabel("");
+		iconaEsci.setToolTipText("Esci");
 		iconaEsci.setIcon(new ImageIcon(PortaleView.class.getResource("/Immagini/Esci.png")));
 		iconaEsci.setHorizontalAlignment(SwingConstants.CENTER);
 		iconaEsci.setForeground(Color.WHITE);

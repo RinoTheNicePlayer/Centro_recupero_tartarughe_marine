@@ -77,7 +77,7 @@ public class AccessoView extends JFrame {
 		titoloFinestra.setForeground(new Color(255, 255, 255));
 		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
 		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		titoloFinestra.setBounds(70, 0, 100, 50);
+		titoloFinestra.setBounds(70, 0, 70, 50);
 		barraTitolo.add(titoloFinestra);
 		
 		JLabel iconaMinimizza = new JLabel("");

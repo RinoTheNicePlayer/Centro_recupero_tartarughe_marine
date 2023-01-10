@@ -14,7 +14,7 @@ import Classi.Connessione;
 import Classi.Models.Personale;
 import Classi.View.AccessoView;
 import Classi.View.ErroreView;
-import Classi.View.DatiView;
+import Classi.View.PortaleView;
 import Classi.View.RegistrazioneView;
 
 public final class PersonaleDatabase {
@@ -48,7 +48,7 @@ public final class PersonaleDatabase {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				DatiView finestraPortale = new DatiView(getPersonaleByEmail(compilazioneEmail));
+				PortaleView finestraPortale = new PortaleView(getPersonaleByEmail(compilazioneEmail));
 				finestraPortale.setLocationRelativeTo(null);
 				finestraPortale.setVisible(true);
 			} else {

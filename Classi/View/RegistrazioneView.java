@@ -59,7 +59,7 @@ public class RegistrazioneView extends JFrame {
 		titoloFinestra.setForeground(new Color(255, 255, 255));
 		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
 		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		titoloFinestra.setBounds(70, 0, 130, 50);
+		titoloFinestra.setBounds(70, 0, 120, 50);
 		barraTitolo.add(titoloFinestra);
 		
 		JLabel iconaMinimizza = new JLabel("");
@@ -133,8 +133,16 @@ public class RegistrazioneView extends JFrame {
 		pannelloSinistro.add(testoNome);
 		testoNome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		
+		JLabel testoCognome = new JLabel("Cognome");
+		testoCognome.setForeground(new Color(0, 0, 0));
+		testoCognome.setBackground(new Color(255, 255, 255));
+		testoCognome.setHorizontalAlignment(SwingConstants.LEFT);
+		testoCognome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoCognome.setBounds(290, 130, 90, 30);
+		pannelloSinistro.add(testoCognome);
+		
 		compilazioneNome = new JTextField();
-		compilazioneNome.setToolTipText("La prima lettera deve essere maiuscola (Es.: Mario).");
+		compilazioneNome.setToolTipText("La prima lettera del Nome deve essere maiuscola (Esempio: Mario)");
 		compilazioneNome.setForeground(new Color(0, 0, 0));
 		compilazioneNome.setBackground(new Color(255, 255, 255));
 		compilazioneNome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -142,16 +150,8 @@ public class RegistrazioneView extends JFrame {
 		pannelloSinistro.add(compilazioneNome);
 		compilazioneNome.setColumns(10);
 		
-		JLabel testoCognome = new JLabel("Cognome");
-		testoCognome.setForeground(new Color(0, 0, 0));
-		testoCognome.setBackground(new Color(255, 255, 255));
-		testoCognome.setHorizontalAlignment(SwingConstants.LEFT);
-		testoCognome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoCognome.setBounds(290, 130, 90, 28);
-		pannelloSinistro.add(testoCognome);
-		
 		compilazioneCognome = new JTextField();
-		compilazioneCognome.setToolTipText("La prima lettera deve essere maiuscola (Es.: Rossi, Di Bianco).");
+		compilazioneCognome.setToolTipText("La prima lettera del Cognome deve essere maiuscola (Esempio: Rossi)");
 		compilazioneCognome.setForeground(new Color(0, 0, 0));
 		compilazioneCognome.setBackground(new Color(255, 255, 255));
 		compilazioneCognome.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -168,7 +168,7 @@ public class RegistrazioneView extends JFrame {
 		pannelloSinistro.add(testoEmail);
 		
 		compilazioneEmail = new JTextField();
-		compilazioneEmail.setToolTipText("Formato standard (Es.: mariorossi@email.com");
+		compilazioneEmail.setToolTipText("L'Email deve seguire il formato standard (Esempio: mariorossi@email.com)");
 		compilazioneEmail.setForeground(new Color(0, 0, 0));
 		compilazioneEmail.setBackground(new Color(255, 255, 255));
 		compilazioneEmail.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -184,15 +184,6 @@ public class RegistrazioneView extends JFrame {
 		testoPassword.setBounds(40, 290, 90, 30);
 		pannelloSinistro.add(testoPassword);
 		
-		compilazionePassword = new JPasswordField();
-		compilazionePassword.setToolTipText("La password deve avere tra i 6 e 16 caratteri.");
-		compilazionePassword.setEchoChar('*');
-		compilazionePassword.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		compilazionePassword.setForeground(new Color(0, 0, 0));
-		compilazionePassword.setBackground(new Color(255, 255, 255));
-		compilazionePassword.setBounds(40, 330, 170, 30);
-		pannelloSinistro.add(compilazionePassword);
-		
 		JLabel testoConfermaPassword = new JLabel("Conferma password");
 		testoConfermaPassword.setForeground(new Color(0, 0, 0));
 		testoConfermaPassword.setBackground(new Color(255, 255, 255));
@@ -201,8 +192,17 @@ public class RegistrazioneView extends JFrame {
 		testoConfermaPassword.setBounds(290, 290, 180, 30);
 		pannelloSinistro.add(testoConfermaPassword);
 		
+		compilazionePassword = new JPasswordField();
+		compilazionePassword.setToolTipText("La Password deve avere una lughezza compresa tra 8 e 16 caratteri");
+		compilazionePassword.setEchoChar('*');
+		compilazionePassword.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		compilazionePassword.setForeground(new Color(0, 0, 0));
+		compilazionePassword.setBackground(new Color(255, 255, 255));
+		compilazionePassword.setBounds(40, 330, 170, 30);
+		pannelloSinistro.add(compilazionePassword);
+		
 		compilazioneConfermaPassword = new JPasswordField();
-		compilazioneConfermaPassword.setToolTipText("La password deve avere tra i 6 e 16 caratteri.");
+		compilazioneConfermaPassword.setToolTipText("La Password deve essere uguale a quella che hai già scritto");
 		compilazioneConfermaPassword.setEchoChar('*');
 		compilazioneConfermaPassword.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		compilazioneConfermaPassword.setForeground(new Color(0, 0, 0));
@@ -218,15 +218,6 @@ public class RegistrazioneView extends JFrame {
 		testoDataDiNascita.setBounds(40, 370, 130, 30);
 		pannelloSinistro.add(testoDataDiNascita);
 		
-		compilazioneDataDiNascita = new JTextField();
-		compilazioneDataDiNascita.setToolTipText("Formato: AAAA-MM-GG (Es.: 2002-11-15");
-		compilazioneDataDiNascita.setForeground(new Color(0, 0, 0));
-		compilazioneDataDiNascita.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		compilazioneDataDiNascita.setColumns(10);
-		compilazioneDataDiNascita.setBackground(new Color(255, 255, 255));
-		compilazioneDataDiNascita.setBounds(40, 410, 170, 30);
-		pannelloSinistro.add(compilazioneDataDiNascita);
-		
 		JLabel testoSesso = new JLabel("Sesso");
 		testoSesso.setHorizontalAlignment(SwingConstants.LEFT);
 		testoSesso.setForeground(new Color(0, 0, 0));
@@ -235,8 +226,17 @@ public class RegistrazioneView extends JFrame {
 		testoSesso.setBounds(290, 370, 50, 30);
 		pannelloSinistro.add(testoSesso);
 		
+		compilazioneDataDiNascita = new JTextField();
+		compilazioneDataDiNascita.setToolTipText("La Data deve corrispondere al seguente formato: AAAA-MM-GG (Esempio: 2002-11-15)");
+		compilazioneDataDiNascita.setForeground(new Color(0, 0, 0));
+		compilazioneDataDiNascita.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		compilazioneDataDiNascita.setColumns(10);
+		compilazioneDataDiNascita.setBackground(new Color(255, 255, 255));
+		compilazioneDataDiNascita.setBounds(40, 410, 170, 30);
+		pannelloSinistro.add(compilazioneDataDiNascita);
+		
 		JComboBox selezioneSesso = new JComboBox();
-		selezioneSesso.setToolTipText("Selezionare M o F.");
+		selezioneSesso.setToolTipText("Selezionare il Sesso (M: Maschio, F: Femmina)");
 		selezioneSesso.setForeground(new Color(0, 0, 0));
 		selezioneSesso.setBackground(new Color(255, 255, 255));
 		selezioneSesso.setModel(new DefaultComboBoxModel(new String[] {"M", "F"}));
@@ -304,7 +304,7 @@ public class RegistrazioneView extends JFrame {
 		testoCentro.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		
 		JComboBox selezioneCentro = new JComboBox();
-		selezioneCentro.setToolTipText("Selezionare il Centro di appartenenza.");
+		selezioneCentro.setToolTipText("Selezionare il Centro di appartenenza");
 		selezioneCentro.setForeground(new Color(0, 0, 0));
 		selezioneCentro.setBounds(170, 250, 170, 30);
 		pannelloDestro.add(selezioneCentro);
@@ -323,7 +323,7 @@ public class RegistrazioneView extends JFrame {
 		testoProfessione.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		
 		JComboBox selezioneProfessione = new JComboBox();
-		selezioneProfessione.setToolTipText("Selezionare la propria professione.");
+		selezioneProfessione.setToolTipText("Selezionare la Professione");
 		selezioneProfessione.setForeground(new Color(0, 0, 0));
 		selezioneProfessione.setBounds(170, 330, 170, 30);
 		pannelloDestro.add(selezioneProfessione);
