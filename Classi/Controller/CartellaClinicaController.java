@@ -3,6 +3,7 @@ package Classi.Controller;
 import java.sql.SQLException;
 import Classi.Connessione;
 import Classi.TestoUtility;
+import Classi.Database.CartellaClinicaDatabase;
 import Classi.Database.PersonaleDatabase;
 import Classi.Database.TartarugaDatabase;
 import Classi.Models.CartellaClinica;
@@ -27,12 +28,10 @@ public final class CartellaClinicaController {
 	 * Se quest'ultimi sono validi, chiama la classe CartellaClinicaDatabase per effettuare l'INSERT.
 	 */
 	public void effettuaCaricamento(String targhetta, String specie, String dataRitrovamento, String luogoRitrovamento, String larghezza, String lunghezza, String peso, String statoPinne, String statoCoda, String statoCollo, String statoTesta, String statoBecco, String statoNaso, String statoOcchi) {
-		boolean validaTarghetta = false;
 		//Controllo se la targhetta inserita esiste. Se questa non esiste, fai comparire una finestra di errore e termina la funzione.
-		if(TartarugaDatabase.getInstance().getTartarugaByTarghetta(targhetta) != null) {
-			validaTarghetta = true;
-			Tartaruga tartaruga = new Tartaruga();
-		} else {
+		Tartaruga tartaruga = TartarugaDatabase.getInstance().getTartarugaByTarghetta(targhetta);
+		
+		if(tartaruga == null) {
 			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Non esiste alcuna tartaruga associata a quella targhetta.");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
@@ -61,8 +60,8 @@ public final class CartellaClinicaController {
 				
 			} else {
 		        try {
-					CartellaClinica cartellaClinica = new CartellaClinica();
-					PersonaleDatabase.getInstance();
+					CartellaClinica cartellaClinica = new CartellaClinica(personale.getIdPersonale, tartaruga.getIdTartaruga(), specie, dataRitrovamento, luogoRitrovamento, Integer.parseInt(larghezza), Integer.parseInt(lunghezza), Integer.parseInt(peso), statoPinne, statoCoda, statoCollo, statoTesta, statoBecco, statoNaso, statoOcchi);
+					CartellaClinicaDatabase.getInstance().
 			    } catch(NumberFormatException e) {
 					ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "I campi 'Larghezza', 'Lunghezza' e 'Peso' devono contenere valori numerici.");
 					finestraErrore.setLocationRelativeTo(null);

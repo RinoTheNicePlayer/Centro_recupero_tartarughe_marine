@@ -19,6 +19,24 @@ public class CartellaClinica {
 	private String statoCoda;
 	private String statoPinne;
 	
+	public CartellaClinica(int idPersonale, int idTartaruga, String identificativoInterno, String dataRitrovamento, String luogoRitrovamento, String specie, int larghezza, int lunghezza, int peso, String statoNaso, String statoBecco, String statoTesta, String statoCollo, String statoOcchi, String statoCoda, String statoPinne) {
+		setIdPersonale(idPersonale);
+		setIdTartaruga(idTartaruga);
+		setIdentificativoInterno(identificativoInterno);
+		setDataRitrovamento(dataRitrovamento);
+		setLuogoRitrovamento(luogoRitrovamento);
+		setSpecie(specie);
+		setLarghezza(larghezza);
+		setLunghezza(lunghezza);
+		setPeso(peso);
+		setStatoNaso(statoNaso);
+		setStatoBecco(statoBecco);
+		setStatoTesta(statoTesta);
+		setStatoCollo(statoCollo);
+		setStatoOcchi(statoOcchi);
+		setStatoCoda(statoCoda);
+		setStatoPinne(statoPinne);
+	}
 	
 	public CartellaClinica(int idCartellaClinica, int idPersonale, int idTartaruga, String identificativoInterno, String dataRitrovamento, String luogoRitrovamento, String specie, int larghezza, int lunghezza, int peso, String statoNaso, String statoBecco, String statoTesta, String statoCollo, String statoOcchi, String statoCoda, String statoPinne) {
 		setIdCartellaClinica(idCartellaClinica);
