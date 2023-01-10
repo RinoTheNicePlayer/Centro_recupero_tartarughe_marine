@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import Classi.Models.Personale;
-
 import javax.swing.JButton;
 
 public class DatiView extends JFrame {
@@ -52,7 +51,7 @@ public class DatiView extends JFrame {
 		titoloFinestra.setForeground(new Color(255, 255, 255));
 		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
 		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		titoloFinestra.setBounds(70, 0, 100, 50);
+		titoloFinestra.setBounds(70, 0, 40, 50);
 		barraTitolo.add(titoloFinestra);
 		
 		JLabel iconaMinimizza = new JLabel("");
@@ -126,6 +125,7 @@ public class DatiView extends JFrame {
 		pannelloSinistro.add(iconaProfilo);
 		
 		JLabel iconaEsci = new JLabel("");
+		iconaEsci.setToolTipText("Esci");
 		iconaEsci.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Esci.png")));
 		iconaEsci.setForeground(new Color(255, 255, 255));
 		iconaEsci.setBackground(new Color(255, 255, 255));
@@ -207,6 +207,7 @@ public class DatiView extends JFrame {
 		pannelloSinistro.add(testoProfessione);
 		
 		JLabel iconaElimina = new JLabel("");
+		iconaElimina.setToolTipText("Elimina definitivamente il tuo account");
 		iconaElimina.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Elimina.png")));
 		iconaElimina.setHorizontalAlignment(SwingConstants.CENTER);
 		iconaElimina.setForeground(new Color(255, 255, 255));
