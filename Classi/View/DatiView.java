@@ -32,34 +32,28 @@ public class DatiView extends JFrame {
 		
 		//Barra del titolo
 		JPanel barraTitolo = new JPanel();
-		barraTitolo.setBounds(0, 0, 1000, 50);
 		barraTitolo.setForeground(new Color(0, 0, 0));
 		barraTitolo.setBackground(new Color(0, 0, 0));
+		barraTitolo.setBounds(0, 0, 1000, 50);
 		pannello.add(barraTitolo);
 		barraTitolo.setLayout(null);
 		
-		JLabel iconaChiudi = new JLabel("");
-		iconaChiudi.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Chiudi.png")));
-		iconaChiudi.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				iconaChiudi.setIcon(new ImageIcon(getClass().getResource("/Immagini/Chiudi (rosso).png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				iconaChiudi.setIcon(new ImageIcon(getClass().getResource("/Immagini/Chiudi.png")));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-			}
-		});
-		iconaChiudi.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaChiudi.setForeground(new Color(255, 255, 255));
-		iconaChiudi.setBackground(new Color(255, 255, 255));
-		iconaChiudi.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaChiudi.setBounds(945, 0, 45, 50);
-		barraTitolo.add(iconaChiudi);
+		JLabel iconaLogo = new JLabel("");
+		iconaLogo.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Logo.png")));
+		iconaLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaLogo.setForeground(new Color(255, 255, 255));
+		iconaLogo.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaLogo.setBackground(new Color(255, 255, 255));
+		iconaLogo.setBounds(10, 0, 50, 50);
+		barraTitolo.add(iconaLogo);
+		
+		JLabel titoloFinestra = new JLabel("Dati");
+		titoloFinestra.setBackground(new Color(0, 0, 0));
+		titoloFinestra.setForeground(new Color(255, 255, 255));
+		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
+		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		titoloFinestra.setBounds(70, 0, 100, 50);
+		barraTitolo.add(titoloFinestra);
 		
 		JLabel iconaMinimizza = new JLabel("");
 		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
@@ -81,17 +75,31 @@ public class DatiView extends JFrame {
 		iconaMinimizza.setForeground(new Color(255, 255, 255));
 		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaMinimizza.setBackground(new Color(255, 255, 255));
-		iconaMinimizza.setBounds(900, 0, 45, 50);
+		iconaMinimizza.setBounds(900, 0, 50, 50);
 		barraTitolo.add(iconaMinimizza);
 		
-		JLabel titoloFinestra = new JLabel("Dati");
-		titoloFinestra.setVerticalAlignment(SwingConstants.TOP);
-		titoloFinestra.setBackground(new Color(0, 0, 0));
-		titoloFinestra.setForeground(new Color(255, 255, 255));
-		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
-		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		titoloFinestra.setBounds(40, 11, 120, 28);
-		barraTitolo.add(titoloFinestra);
+		JLabel iconaChiudi = new JLabel("");
+		iconaChiudi.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Chiudi.png")));
+		iconaChiudi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				iconaChiudi.setIcon(new ImageIcon(getClass().getResource("/Immagini/Chiudi (rosso).png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				iconaChiudi.setIcon(new ImageIcon(getClass().getResource("/Immagini/Chiudi.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+		iconaChiudi.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaChiudi.setForeground(new Color(255, 255, 255));
+		iconaChiudi.setBackground(new Color(255, 255, 255));
+		iconaChiudi.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaChiudi.setBounds(940, 0, 50, 50);
+		barraTitolo.add(iconaChiudi);
 		
 		//Pannello sinistro
 		JPanel pannelloSinistro = new JPanel();

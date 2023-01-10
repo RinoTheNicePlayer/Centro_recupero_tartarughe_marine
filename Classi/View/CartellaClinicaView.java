@@ -1,7 +1,6 @@
 package Classi.View;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,15 +13,12 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import Classi.Controller.CartellaClinicaController;
-
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 import javax.swing.DefaultComboBoxModel;
 
 public class CartellaClinicaView extends JFrame {
-	
 	private JPanel pannello;
 	private JTextField compilazioneTarghetta;
 	private JTextField compilazioneSpecie;
@@ -35,21 +31,63 @@ public class CartellaClinicaView extends JFrame {
 	//Creazione della finestra
 	public CartellaClinicaView() {
 		//Pannello principale
+		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
 		setBounds(100, 100, 1000, 500);
 		pannello = new JPanel();
 		pannello.setForeground(new Color(255, 255, 255));
 		pannello.setBackground(new Color(255, 255, 255));
+		pannello.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pannello);
 		pannello.setLayout(null);
 		
 		//Barra del titolo
 		JPanel barraTitolo = new JPanel();
-		barraTitolo.setBounds(0, 0, 1000, 50);
-		barraTitolo.setBorder(UIManager.getBorder("Tree.editorBorder"));
+		barraTitolo.setForeground(new Color(0, 0, 0));
 		barraTitolo.setBackground(new Color(0, 0, 0));
+		barraTitolo.setBounds(0, 0, 1000, 50);
 		pannello.add(barraTitolo);
 		barraTitolo.setLayout(null);
+		
+		JLabel iconaLogo = new JLabel("");
+		iconaLogo.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Logo.png")));
+		iconaLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaLogo.setForeground(new Color(255, 255, 255));
+		iconaLogo.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaLogo.setBackground(new Color(255, 255, 255));
+		iconaLogo.setBounds(10, 0, 50, 50);
+		barraTitolo.add(iconaLogo);
+		
+		JLabel titoloFinestra = new JLabel("Accesso");
+		titoloFinestra.setBackground(new Color(0, 0, 0));
+		titoloFinestra.setForeground(new Color(255, 255, 255));
+		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
+		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		titoloFinestra.setBounds(70, 0, 100, 50);
+		barraTitolo.add(titoloFinestra);
+		
+		JLabel iconaMinimizza = new JLabel("");
+		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
+		iconaMinimizza.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona (blu).png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setExtendedState(JFrame.ICONIFIED);
+			}
+		});
+		iconaMinimizza.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaMinimizza.setForeground(new Color(255, 255, 255));
+		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaMinimizza.setBackground(new Color(255, 255, 255));
+		iconaMinimizza.setBounds(900, 0, 50, 50);
+		barraTitolo.add(iconaMinimizza);
 		
 		JLabel iconaChiudi = new JLabel("");
 		iconaChiudi.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Chiudi.png")));
@@ -71,48 +109,194 @@ public class CartellaClinicaView extends JFrame {
 		iconaChiudi.setForeground(new Color(255, 255, 255));
 		iconaChiudi.setBackground(new Color(255, 255, 255));
 		iconaChiudi.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaChiudi.setBounds(945, 0, 45, 50);
+		iconaChiudi.setBounds(940, 0, 50, 50);
 		barraTitolo.add(iconaChiudi);
 		
-		JLabel iconaMinimizza = new JLabel("");
-		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
-		iconaMinimizza.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona (blu).png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona.png")));
-			}
+		//Pannello sinistro
+		JPanel pannelloSinistro = new JPanel();
+		pannelloSinistro.setForeground(new Color(255, 255, 255));
+		pannelloSinistro.setBorder(UIManager.getBorder("Tree.editorBorder"));
+		pannelloSinistro.setBackground(new Color(255, 255, 255));
+		pannelloSinistro.setBounds(0, 0, 500, 500);
+		pannello.add(pannelloSinistro);
+		pannelloSinistro.setLayout(null);
+		
+		JLabel testoInformativo1 = new JLabel("Informazioni tartaruga");
+		testoInformativo1.setForeground(new Color(0, 0, 0));
+		testoInformativo1.setBackground(new Color(255, 255, 255));
+		testoInformativo1.setHorizontalAlignment(SwingConstants.CENTER);
+		testoInformativo1.setBounds(0, 50, 500, 70);
+		testoInformativo1.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		pannelloSinistro.add(testoInformativo1);
+		
+		JLabel testoTarghetta = new JLabel("Targhetta");
+		testoTarghetta.setForeground(new Color(0, 0, 0));
+		testoTarghetta.setBackground(new Color(255, 255, 255));
+		testoTarghetta.setHorizontalAlignment(SwingConstants.LEFT);
+		testoTarghetta.setBounds(40, 130, 90, 30);
+		pannelloSinistro.add(testoTarghetta);
+		testoTarghetta.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		
+		JLabel testoSpecie = new JLabel("Specie");
+		testoSpecie.setForeground(new Color(0, 0, 0));
+		testoSpecie.setBackground(new Color(255, 255, 255));
+		testoSpecie.setHorizontalAlignment(SwingConstants.LEFT);
+		testoSpecie.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoSpecie.setBounds(290, 130, 70, 28);
+		pannelloSinistro.add(testoSpecie);
+		
+		compilazioneTarghetta = new JTextField();
+		compilazioneTarghetta.setToolTipText("Inserire la targhetta identificativa della tartaruga (Es.: Mario).");
+		compilazioneTarghetta.setForeground(new Color(0, 0, 0));
+		compilazioneTarghetta.setBackground(new Color(255, 255, 255));
+		compilazioneTarghetta.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		compilazioneTarghetta.setBounds(40, 170, 170, 30);
+		pannelloSinistro.add(compilazioneTarghetta);
+		compilazioneTarghetta.setColumns(10);
+		
+		compilazioneSpecie = new JTextField();
+		compilazioneSpecie.setToolTipText("Inserire la specie della tartaruga.");
+		compilazioneSpecie.setForeground(new Color(0, 0, 0));
+		compilazioneSpecie.setBackground(new Color(255, 255, 255));
+		compilazioneSpecie.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		compilazioneSpecie.setColumns(10);
+		compilazioneSpecie.setBounds(290, 170, 170, 30);
+		pannelloSinistro.add(compilazioneSpecie);
+		
+		JLabel testoDataDiRitrovamento = new JLabel("Data di ritrovamento");
+		testoDataDiRitrovamento.setHorizontalAlignment(SwingConstants.LEFT);
+		testoDataDiRitrovamento.setForeground(new Color(0, 0, 0));
+		testoDataDiRitrovamento.setBackground(new Color(255, 255, 255));
+		testoDataDiRitrovamento.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoDataDiRitrovamento.setBounds(40, 210, 190, 30);
+		pannelloSinistro.add(testoDataDiRitrovamento);
+		
+		JLabel testoLuogoDiRitrovamento = new JLabel("Luogo di ritrovamento");
+		testoLuogoDiRitrovamento.setHorizontalAlignment(SwingConstants.LEFT);
+		testoLuogoDiRitrovamento.setForeground(new Color(0, 0, 0));
+		testoLuogoDiRitrovamento.setBackground(new Color(255, 255, 255));
+		testoLuogoDiRitrovamento.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoLuogoDiRitrovamento.setBounds(290, 210, 210, 30);
+		pannelloSinistro.add(testoLuogoDiRitrovamento);
+		
+		compilazioneDataDiRitrovamento = new JTextField();
+		compilazioneDataDiRitrovamento.setToolTipText("Formato: AAAA-MM-GG (Es.: 2002-11-15");
+		compilazioneDataDiRitrovamento.setForeground(new Color(0, 0, 0));
+		compilazioneDataDiRitrovamento.setBackground(new Color(255, 255, 255));
+		compilazioneDataDiRitrovamento.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		compilazioneDataDiRitrovamento.setColumns(10);
+		compilazioneDataDiRitrovamento.setBounds(40, 250, 170, 30);
+		pannelloSinistro.add(compilazioneDataDiRitrovamento);
+		
+		compilazioneLuogoDiRitrovamento = new JTextField();
+		compilazioneLuogoDiRitrovamento.setToolTipText("Inserire il luogo di ritrovamento della tartaruga.");
+		compilazioneLuogoDiRitrovamento.setForeground(new Color(0, 0, 0));
+		compilazioneLuogoDiRitrovamento.setBackground(new Color(255, 255, 255));
+		compilazioneLuogoDiRitrovamento.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		compilazioneLuogoDiRitrovamento.setColumns(10);
+		compilazioneLuogoDiRitrovamento.setBounds(290, 250, 170, 30);
+		pannelloSinistro.add(compilazioneLuogoDiRitrovamento);
+		
+		JLabel testoLarghezza = new JLabel("Larghezza");
+		testoLarghezza.setHorizontalAlignment(SwingConstants.LEFT);
+		testoLarghezza.setForeground(new Color(0, 0, 0));
+		testoLarghezza.setBackground(new Color(255, 255, 255));
+		testoLarghezza.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoLarghezza.setBounds(40, 290, 100, 30);
+		pannelloSinistro.add(testoLarghezza);
+		
+		JLabel testoLunghezza = new JLabel("Lunghezza");
+		testoLunghezza.setForeground(new Color(0, 0, 0));
+		testoLunghezza.setBackground(new Color(255, 255, 255));
+		testoLunghezza.setHorizontalAlignment(SwingConstants.LEFT);
+		testoLunghezza.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoLunghezza.setBounds(290, 290, 100, 30);
+		pannelloSinistro.add(testoLunghezza);
+		
+		compilazioneLarghezza = new JTextField();
+		compilazioneLarghezza.setToolTipText("Larghezza espressa in cm.");
+		compilazioneLarghezza.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		compilazioneLarghezza.setForeground(new Color(0, 0, 0));
+		compilazioneLarghezza.setBackground(new Color(255, 255, 255));
+		compilazioneLarghezza.setBounds(40, 330, 100, 30);
+		pannelloSinistro.add(compilazioneLarghezza);
+		
+		JLabel testoCm1 = new JLabel("cm");
+		testoCm1.setHorizontalAlignment(SwingConstants.LEFT);
+		testoCm1.setVerticalAlignment(SwingConstants.BOTTOM);
+		testoCm1.setForeground(new Color(0, 0, 0));
+		testoCm1.setBackground(new Color(255, 255, 255));
+		testoCm1.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoCm1.setBounds(150, 330, 30, 30);
+		pannelloSinistro.add(testoCm1);
+		
+		compilazioneLunghezza = new JTextField();
+		compilazioneLunghezza.setToolTipText("Lunghezza espressa in cm.");
+		compilazioneLunghezza.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		compilazioneLunghezza.setForeground(new Color(0, 0, 0));
+		compilazioneLunghezza.setBackground(new Color(255, 255, 255));
+		compilazioneLunghezza.setBounds(290, 330, 100, 30);
+		pannelloSinistro.add(compilazioneLunghezza);
+		
+		JLabel testoCm2 = new JLabel("cm");
+		testoCm2.setHorizontalAlignment(SwingConstants.LEFT);
+		testoCm2.setVerticalAlignment(SwingConstants.BOTTOM);
+		testoCm2.setForeground(new Color(0, 0, 0));
+		testoCm2.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoCm2.setBackground(new Color(255, 255, 255));
+		testoCm2.setBounds(400, 330, 30, 30);
+		pannelloSinistro.add(testoCm2);
+		
+		JLabel testoPeso = new JLabel("Peso");
+		testoPeso.setHorizontalAlignment(SwingConstants.LEFT);
+		testoPeso.setForeground(new Color(0, 0, 0));
+		testoPeso.setBackground(new Color(255, 255, 255));
+		testoPeso.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoPeso.setBounds(40, 370, 130, 30);
+		pannelloSinistro.add(testoPeso);
+		
+		compilazionePeso = new JTextField();
+		compilazionePeso.setToolTipText("Peso espresso in kg.");
+		compilazionePeso.setForeground(new Color(0, 0, 0));
+		compilazionePeso.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		compilazionePeso.setColumns(10);
+		compilazionePeso.setBackground(new Color(255, 255, 255));
+		compilazionePeso.setBounds(40, 410, 170, 30);
+		pannelloSinistro.add(compilazionePeso);
+		
+		JLabel testoKg = new JLabel("Kg");
+		testoKg.setHorizontalAlignment(SwingConstants.LEFT);
+		testoKg.setVerticalAlignment(SwingConstants.BOTTOM);
+		testoKg.setForeground(new Color(0, 0, 0));
+		testoKg.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		testoKg.setBackground(new Color(255, 255, 255));
+		testoKg.setBounds(220, 410, 30, 30);
+		pannelloSinistro.add(testoKg);
+		
+		JButton bottoneIndietro = new JButton("Indietro");
+		bottoneIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setExtendedState(JFrame.ICONIFIED);
+				PortaleView finestraPortale = new PortaleView(null);
+				finestraPortale.setLocationRelativeTo(null);
+				finestraPortale.setVisible(true);
+				dispose();
 			}
 		});
-		iconaMinimizza.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaMinimizza.setForeground(Color.WHITE);
-		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaMinimizza.setBackground(Color.WHITE);
-		iconaMinimizza.setBounds(900, 0, 45, 50);
-		barraTitolo.add(iconaMinimizza);
+		bottoneIndietro.setForeground(new Color(0, 0, 0));
+		bottoneIndietro.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		bottoneIndietro.setBackground(new Color(255, 255, 255));
+		bottoneIndietro.setBounds(180, 452, 140, 35);
+		pannelloSinistro.add(bottoneIndietro);
 		
-		JLabel titoloFinestra = new JLabel("Cartella clinica");
-		titoloFinestra.setVerticalAlignment(SwingConstants.TOP);
-		titoloFinestra.setBackground(new Color(0, 0, 0));
-		titoloFinestra.setForeground(new Color(255, 255, 255));
-		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
-		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		titoloFinestra.setBounds(40, 11, 130, 28);
-		barraTitolo.add(titoloFinestra);
-		
+		//Pannello destro
 		JPanel pannelloDestro = new JPanel();
-		pannelloDestro.setLayout(null);
-		pannelloDestro.setForeground(Color.WHITE);
+		pannelloDestro.setForeground(new Color(255, 255, 255));
+		pannelloDestro.setBackground(new Color(255, 255, 255));
 		pannelloDestro.setBorder(UIManager.getBorder("Tree.editorBorder"));
-		pannelloDestro.setBackground(Color.WHITE);
 		pannelloDestro.setBounds(500, 0, 500, 500);
 		pannello.add(pannelloDestro);
+		pannelloDestro.setLayout(null);
 		
 		JLabel testoInformativo2 = new JLabel("Condizioni della tartaruga");
 		testoInformativo2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -255,176 +439,17 @@ public class CartellaClinicaView extends JFrame {
 		testoOcchi.setBounds(50, 357, 170, 30);
 		pannelloDestro.add(testoOcchi);
 		
-		JPanel pannelloSinistro = new JPanel();
-		pannelloSinistro.setLayout(null);
-		pannelloSinistro.setForeground(Color.WHITE);
-		pannelloSinistro.setBorder(UIManager.getBorder("Tree.editorBorder"));
-		pannelloSinistro.setBackground(Color.WHITE);
-		pannelloSinistro.setBounds(0, 0, 500, 500);
-		pannello.add(pannelloSinistro);
-		
-		JLabel lblInformazioniTartaruga = new JLabel("Informazioni tartaruga");
-		lblInformazioniTartaruga.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInformazioniTartaruga.setForeground(Color.BLACK);
-		lblInformazioniTartaruga.setFont(new Font("Segoe UI", Font.BOLD, 25));
-		lblInformazioniTartaruga.setBackground(Color.WHITE);
-		lblInformazioniTartaruga.setBounds(0, 50, 500, 70);
-		pannelloSinistro.add(lblInformazioniTartaruga);
-		
-		JLabel testoTarghetta = new JLabel("Codice targhetta");
-		testoTarghetta.setHorizontalAlignment(SwingConstants.LEFT);
-		testoTarghetta.setForeground(Color.BLACK);
-		testoTarghetta.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoTarghetta.setBackground(Color.WHITE);
-		testoTarghetta.setBounds(40, 119, 170, 30);
-		pannelloSinistro.add(testoTarghetta);
-		
-		compilazioneTarghetta = new JTextField();
-		compilazioneTarghetta.setToolTipText("Inserire la targhetta identificativa della tartaruga (Es.: Mario).");
-		compilazioneTarghetta.setForeground(Color.BLACK);
-		compilazioneTarghetta.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		compilazioneTarghetta.setColumns(10);
-		compilazioneTarghetta.setBackground(Color.WHITE);
-		compilazioneTarghetta.setBounds(40, 159, 170, 30);
-		pannelloSinistro.add(compilazioneTarghetta);
-		
-		JLabel testoSpecie = new JLabel("Specie");
-		testoSpecie.setHorizontalAlignment(SwingConstants.LEFT);
-		testoSpecie.setForeground(Color.BLACK);
-		testoSpecie.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoSpecie.setBackground(Color.WHITE);
-		testoSpecie.setBounds(290, 119, 90, 28);
-		pannelloSinistro.add(testoSpecie);
-		
-		compilazioneSpecie = new JTextField();
-		compilazioneSpecie.setToolTipText("Inserire la specie della tartaruga.");
-		compilazioneSpecie.setForeground(Color.BLACK);
-		compilazioneSpecie.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		compilazioneSpecie.setColumns(10);
-		compilazioneSpecie.setBackground(Color.WHITE);
-		compilazioneSpecie.setBounds(290, 159, 170, 30);
-		pannelloSinistro.add(compilazioneSpecie);
-		
-		JLabel testoLarghezza = new JLabel("Larghezza:");
-		testoLarghezza.setHorizontalAlignment(SwingConstants.LEFT);
-		testoLarghezza.setForeground(Color.BLACK);
-		testoLarghezza.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoLarghezza.setBackground(Color.WHITE);
-		testoLarghezza.setBounds(40, 277, 103, 30);
-		pannelloSinistro.add(testoLarghezza);
-		
-		compilazioneLarghezza = new JTextField();
-		compilazioneLarghezza.setToolTipText("Larghezza espressa in cm.");
-		compilazioneLarghezza.setForeground(Color.BLACK);
-		compilazioneLarghezza.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		compilazioneLarghezza.setColumns(10);
-		compilazioneLarghezza.setBackground(Color.WHITE);
-		compilazioneLarghezza.setBounds(40, 317, 103, 30);
-		pannelloSinistro.add(compilazioneLarghezza);
-		
-		JLabel testoPeso = new JLabel("Peso:");
-		testoPeso.setHorizontalAlignment(SwingConstants.LEFT);
-		testoPeso.setForeground(Color.BLACK);
-		testoPeso.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoPeso.setBackground(Color.WHITE);
-		testoPeso.setBounds(40, 357, 50, 30);
-		pannelloSinistro.add(testoPeso);
-		
-		JLabel testoDataDiRitrovamento = new JLabel("Data ritrovamento");
-		testoDataDiRitrovamento.setHorizontalAlignment(SwingConstants.LEFT);
-		testoDataDiRitrovamento.setForeground(Color.BLACK);
-		testoDataDiRitrovamento.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoDataDiRitrovamento.setBackground(Color.WHITE);
-		testoDataDiRitrovamento.setBounds(40, 199, 185, 30);
-		pannelloSinistro.add(testoDataDiRitrovamento);
-		
-		compilazioneDataDiRitrovamento = new JTextField();
-		compilazioneDataDiRitrovamento.setToolTipText("Formato: AAAA-MM-GG (Es.: 2002-11-15");
-		compilazioneDataDiRitrovamento.setForeground(Color.BLACK);
-		compilazioneDataDiRitrovamento.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		compilazioneDataDiRitrovamento.setColumns(10);
-		compilazioneDataDiRitrovamento.setBackground(Color.WHITE);
-		compilazioneDataDiRitrovamento.setBounds(40, 237, 170, 30);
-		pannelloSinistro.add(compilazioneDataDiRitrovamento);
-		
-		JLabel testoLuogoRitrovamento = new JLabel("Luogo ritrovamento");
-		testoLuogoRitrovamento.setHorizontalAlignment(SwingConstants.LEFT);
-		testoLuogoRitrovamento.setForeground(Color.BLACK);
-		testoLuogoRitrovamento.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoLuogoRitrovamento.setBackground(Color.WHITE);
-		testoLuogoRitrovamento.setBounds(290, 199, 185, 30);
-		pannelloSinistro.add(testoLuogoRitrovamento);
-		
-		JButton bottoneIndietro = new JButton("Indietro");
-		bottoneIndietro.setForeground(Color.BLACK);
-		bottoneIndietro.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		bottoneIndietro.setBackground(Color.WHITE);
-		bottoneIndietro.setBounds(173, 442, 140, 35);
-		pannelloSinistro.add(bottoneIndietro);
-		
-		JLabel testoLunghezza = new JLabel("Lunghezza:");
-		testoLunghezza.setHorizontalAlignment(SwingConstants.LEFT);
-		testoLunghezza.setForeground(Color.BLACK);
-		testoLunghezza.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoLunghezza.setBackground(Color.WHITE);
-		testoLunghezza.setBounds(290, 277, 103, 30);
-		pannelloSinistro.add(testoLunghezza);
-		
-		compilazioneLunghezza = new JTextField();
-		compilazioneLunghezza.setToolTipText("Lunghezza espressa in cm.");
-		compilazioneLunghezza.setForeground(Color.BLACK);
-		compilazioneLunghezza.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		compilazioneLunghezza.setColumns(10);
-		compilazioneLunghezza.setBackground(Color.WHITE);
-		compilazioneLunghezza.setBounds(290, 317, 103, 30);
-		pannelloSinistro.add(compilazioneLunghezza);
-		
-		JLabel testoCentimetri1 = new JLabel("cm");
-		testoCentimetri1.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoCentimetri1.setBounds(153, 314, 72, 30);
-		pannelloSinistro.add(testoCentimetri1);
-		
-		JLabel testoCentimetri2 = new JLabel("cm");
-		testoCentimetri2.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoCentimetri2.setBounds(403, 314, 72, 30);
-		pannelloSinistro.add(testoCentimetri2);
-		
-		JLabel testoChilogrammi = new JLabel("kg");
-		testoChilogrammi.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoChilogrammi.setBounds(153, 391, 72, 30);
-		pannelloSinistro.add(testoChilogrammi);
-		
-		compilazioneLuogoDiRitrovamento = new JTextField();
-		compilazioneLuogoDiRitrovamento.setToolTipText("Inserire il luogo di ritrovamento della tartaruga.");
-		compilazioneLuogoDiRitrovamento.setForeground(Color.BLACK);
-		compilazioneLuogoDiRitrovamento.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		compilazioneLuogoDiRitrovamento.setColumns(10);
-		compilazioneLuogoDiRitrovamento.setBackground(Color.WHITE);
-		compilazioneLuogoDiRitrovamento.setBounds(290, 237, 170, 30);
-		pannelloSinistro.add(compilazioneLuogoDiRitrovamento);
-		
-		compilazionePeso = new JTextField();
-		compilazionePeso.setToolTipText("Peso espresso in kg.");
-		compilazionePeso.setForeground(Color.BLACK);
-		compilazionePeso.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		compilazionePeso.setColumns(10);
-		compilazionePeso.setBackground(Color.WHITE);
-		compilazionePeso.setBounds(40, 391, 103, 30);
-		pannelloSinistro.add(compilazionePeso);
-		
 		JButton bottoneCarica = new JButton("Carica cartella clinica");
 		bottoneCarica.setForeground(Color.BLACK);
 		bottoneCarica.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		bottoneCarica.setBackground(Color.WHITE);
 		bottoneCarica.setBounds(50, 436, 400, 50);
 		pannelloDestro.add(bottoneCarica);
-		
 		bottoneCarica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				CartellaClinicaController.getInstance().effettuaCaricamento(compilazioneTarghetta.getText(), compilazioneSpecie.getText(), compilazioneDataDiRitrovamento.getText(), compilazioneLuogoDiRitrovamento.getText(), compilazioneLarghezza.getText(), compilazioneLunghezza.getText(), compilazionePeso.getText(), selezioneStatoPinne.getSelectedItem().toString(), selezioneStatoCoda.getSelectedItem().toString(), selezioneStatoCollo.getSelectedItem().toString(), selezioneStatoTesta.getSelectedItem().toString(), selezioneStatoBecco.getSelectedItem().toString(), selezioneStatoNaso.getSelectedItem().toString(), selezioneStatoOcchi.getSelectedItem().toString());
 			}
 		});
-		
 	}
 }

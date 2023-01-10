@@ -1,19 +1,15 @@
 package Classi.View;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
-
 import Classi.Models.Personale;
 
 public class PortaleView extends JFrame {
@@ -33,11 +29,51 @@ public class PortaleView extends JFrame {
 		
 		//Barra del titolo
 		JPanel barraTitolo = new JPanel();
-		barraTitolo.setBounds(0, 0, 1000, 50);
-		barraTitolo.setBorder(UIManager.getBorder("Tree.editorBorder"));
+		barraTitolo.setForeground(new Color(0, 0, 0));
 		barraTitolo.setBackground(new Color(0, 0, 0));
+		barraTitolo.setBounds(0, 0, 1000, 50);
 		pannello.add(barraTitolo);
 		barraTitolo.setLayout(null);
+		
+		JLabel iconaLogo = new JLabel("");
+		iconaLogo.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Logo.png")));
+		iconaLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaLogo.setForeground(new Color(255, 255, 255));
+		iconaLogo.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaLogo.setBackground(new Color(255, 255, 255));
+		iconaLogo.setBounds(10, 0, 50, 50);
+		barraTitolo.add(iconaLogo);
+		
+		JLabel titoloFinestra = new JLabel("Portale");
+		titoloFinestra.setBackground(new Color(0, 0, 0));
+		titoloFinestra.setForeground(new Color(255, 255, 255));
+		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
+		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		titoloFinestra.setBounds(70, 0, 100, 50);
+		barraTitolo.add(titoloFinestra);
+		
+		JLabel iconaMinimizza = new JLabel("");
+		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
+		iconaMinimizza.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona (blu).png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setExtendedState(JFrame.ICONIFIED);
+			}
+		});
+		iconaMinimizza.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaMinimizza.setForeground(new Color(255, 255, 255));
+		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaMinimizza.setBackground(new Color(255, 255, 255));
+		iconaMinimizza.setBounds(900, 0, 50, 50);
+		barraTitolo.add(iconaMinimizza);
 		
 		JLabel iconaChiudi = new JLabel("");
 		iconaChiudi.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Chiudi.png")));
@@ -59,40 +95,8 @@ public class PortaleView extends JFrame {
 		iconaChiudi.setForeground(new Color(255, 255, 255));
 		iconaChiudi.setBackground(new Color(255, 255, 255));
 		iconaChiudi.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaChiudi.setBounds(945, 0, 45, 50);
+		iconaChiudi.setBounds(940, 0, 50, 50);
 		barraTitolo.add(iconaChiudi);
-		
-		JLabel iconaMinimizza = new JLabel("");
-		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
-		iconaMinimizza.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona (blu).png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona.png")));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				setExtendedState(JFrame.ICONIFIED);
-			}
-		});
-		iconaMinimizza.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaMinimizza.setForeground(Color.WHITE);
-		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaMinimizza.setBackground(Color.WHITE);
-		iconaMinimizza.setBounds(900, 0, 45, 50);
-		barraTitolo.add(iconaMinimizza);
-		
-		JLabel titoloFinestra = new JLabel("Portale");
-		titoloFinestra.setVerticalAlignment(SwingConstants.TOP);
-		titoloFinestra.setBackground(new Color(0, 0, 0));
-		titoloFinestra.setForeground(new Color(255, 255, 255));
-		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
-		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		titoloFinestra.setBounds(40, 11, 120, 28);
-		barraTitolo.add(titoloFinestra);
 		
 		//Pannello centrale
 		JPanel pannelloCentrale = new JPanel();
