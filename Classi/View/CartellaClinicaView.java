@@ -13,6 +13,8 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import Classi.Controller.CartellaClinicaController;
+import Classi.Models.Personale;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -29,7 +31,7 @@ public class CartellaClinicaView extends JFrame {
 	private JTextField compilazionePeso;
 	
 	//Creazione della finestra
-	public CartellaClinicaView() {
+	public CartellaClinicaView(Personale personale) {
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);

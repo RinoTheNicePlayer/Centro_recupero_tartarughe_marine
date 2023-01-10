@@ -14,12 +14,14 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import Classi.Models.Personale;
+
 public class TabellaView extends JFrame {
 	
 	private JPanel pannello;
 
 	//Creazione della finestra
-	public TabellaView() {
+	public TabellaView(Personale personale) {
 		//Pannello principale
 		setUndecorated(true);
 		setBounds(100, 100, 1000, 500);
