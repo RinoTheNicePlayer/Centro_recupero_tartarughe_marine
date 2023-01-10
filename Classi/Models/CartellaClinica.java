@@ -106,7 +106,7 @@ public class CartellaClinica {
 		this.luogoRitrovamento = luogoRitrovamento;
 	}
 	
-	public String specie() {
+	public String getSpecie() {
 		return specie;
 	}
 	
