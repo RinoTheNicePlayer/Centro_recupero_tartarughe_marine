@@ -36,7 +36,7 @@ public class TartarugaDatabase {
             rs = ps.executeQuery();
             
             if(rs.next()) {
-                Tartaruga tartaruga = new Tartaruga(rs.getInt("ID_tartaruga"), rs.getInt("ID_personale"), rs.getInt("ID_tartaruga"), rs.getString("identificativo_interno"), rs.getDate("data_del_ritrovamento").toString(), rs.getString("luogo_del_ritrovamento"),);
+                Tartaruga tartaruga = new Tartaruga(rs.getInt("ID_tartaruga"), rs.getString("targhetta"), rs.getString("nome"), rs.getString("sesso"), rs.getInt("età"));
                 return tartaruga;
             }
         } catch(SQLException e) {

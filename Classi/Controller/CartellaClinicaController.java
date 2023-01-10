@@ -27,14 +27,17 @@ public final class CartellaClinicaController {
 	/*Funzione che permette di effettuare il caricamento di una cartella clinica. Tale funzione verifica se i campi siano validi.
 	 * Se quest'ultimi sono validi, chiama la classe CartellaClinicaDatabase per effettuare l'INSERT.
 	 */
-	public void effettuaCaricamento(String targhetta, String specie, String dataRitrovamento, String luogoRitrovamento, String larghezza, String lunghezza, String peso, String statoPinne, String statoCoda, String statoCollo, String statoTesta, String statoBecco, String statoNaso, String statoOcchi) {
+	public void effettuaCaricamento(Personale personale, String targhetta, String specie, String dataRitrovamento, String luogoRitrovamento, String larghezza, String lunghezza, String peso, String statoPinne, String statoCoda, String statoCollo, String statoTesta, String statoBecco, String statoNaso, String statoOcchi) {
 		//Controllo se la targhetta inserita esiste. Se questa non esiste, fai comparire una finestra di errore e termina la funzione.
-		Tartaruga tartaruga = TartarugaDatabase.getInstance().getTartarugaByTarghetta(targhetta);
+		Tartaruga tartaruga;
 		
-		if(tartaruga == null) {
+		try {
+			tartaruga = TartarugaDatabase.getInstance().getTartarugaByTarghetta(targhetta);
+		} catch (SQLException e1) {
 			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Non esiste alcuna tartaruga associata a quella targhetta.");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
+			e1.printStackTrace();
 			
 			return;
 		}
@@ -60,8 +63,8 @@ public final class CartellaClinicaController {
 				
 			} else {
 		        try {
-					CartellaClinica cartellaClinica = new CartellaClinica(personale.getIdPersonale, tartaruga.getIdTartaruga(), specie, dataRitrovamento, luogoRitrovamento, Integer.parseInt(larghezza), Integer.parseInt(lunghezza), Integer.parseInt(peso), statoPinne, statoCoda, statoCollo, statoTesta, statoBecco, statoNaso, statoOcchi);
-					CartellaClinicaDatabase.getInstance().
+					CartellaClinica cartellaClinica = new CartellaClinica(personale.getIdPersonale(), tartaruga.getIdTartaruga(), targhetta, specie, dataRitrovamento, luogoRitrovamento, Integer.parseInt(larghezza), Integer.parseInt(lunghezza), Integer.parseInt(peso), statoPinne, statoCoda, statoCollo, statoTesta, statoBecco, statoNaso, statoOcchi);
+					CartellaClinicaDatabase.getInstance().caricaCartellaClinica(cartellaClinica);
 			    } catch(NumberFormatException e) {
 					ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "I campi 'Larghezza', 'Lunghezza' e 'Peso' devono contenere valori numerici.");
 					finestraErrore.setLocationRelativeTo(null);

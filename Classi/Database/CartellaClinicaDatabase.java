@@ -1,12 +1,21 @@
 package Classi.Database;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JOptionPane;
+
 import Classi.Connessione;
 import Classi.Models.CartellaClinica;
 import Classi.Models.Personale;
+import Classi.View.ErroreView;
+import Classi.View.RegistrazioneView;
 
 public class CartellaClinicaDatabase {
 	//Inizializzazione dell'istanza
@@ -19,6 +28,50 @@ public class CartellaClinicaDatabase {
 		}
 		
 		return instance;
+	}
+	
+	//Funzione che permette di eseguire la memorizzazione della cartella clinica nel Database
+	public void caricaCartellaClinica(CartellaClinica cartellaClinica) {
+		PreparedStatement ps;
+		int rs;
+		
+		String query = "INSERT INTO Cartella_clinica (id_personale, id_tartaruga, identificativo_interno, data_del_ritrovamento, luogo_del_ritrovamento, specie, larghezza, lunghezza, peso, naso, becco, testa, collo, occhi, coda, pinne) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			ps = Connessione.getConnection().prepareStatement(query);
+			
+			ps.setInt(1, cartellaClinica.getIdPersonale());
+			ps.setInt(2, cartellaClinica.getIdTartaruga());
+			ps.setString(3, cartellaClinica.getIdentificativoInterno());
+			ps.setDate(4, Date.valueOf(cartellaClinica.getDataRitrovamento()));
+			ps.setString(5, cartellaClinica.getLuogoRitrovamento());
+			ps.setString(6, cartellaClinica.getSpecie());
+			ps.setInt(7, cartellaClinica.getLarghezza());
+			ps.setInt(8, cartellaClinica.getLunghezza());
+			ps.setInt(9, cartellaClinica.getPeso());
+			ps.setObject(10, cartellaClinica.getStatoNaso(), Types.OTHER);
+			ps.setObject(11, cartellaClinica.getStatoBecco(), Types.OTHER);
+			ps.setObject(12, cartellaClinica.getStatoTesta(), Types.OTHER);
+			ps.setObject(13, cartellaClinica.getStatoCollo(), Types.OTHER);
+			ps.setObject(14, cartellaClinica.getStatoOcchi(), Types.OTHER);
+			ps.setObject(15, cartellaClinica.getStatoCoda(), Types.OTHER);
+			ps.setObject(16, cartellaClinica.getStatoPinne(), Types.OTHER);
+			
+			rs = ps.executeUpdate();
+			
+			if(rs > 0) {
+				JOptionPane.showMessageDialog(null, "Cartella clinica aggiunta al database!");
+			} else {
+				ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Controlla che tutti i campi siano stati riempiti correttamente!");
+				finestraErrore.setLocationRelativeTo(null);
+				finestraErrore.setVisible(true);
+			}
+		} catch(SQLException ex) {
+			Logger.getLogger(RegistrazioneView.class.getName()).log(Level.SEVERE, null, ex);
+			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Controlla che tutti i campi siano stati riempiti correttamente!");
+			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setVisible(true);
+		}
 	}
 	
 	//Funzione che ricava una cartella clinica tramite identificativo interno

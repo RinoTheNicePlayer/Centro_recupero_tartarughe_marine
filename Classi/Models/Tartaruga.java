@@ -7,6 +7,10 @@ public class Tartaruga {
 	private String sesso;
 	private int eta;
 	
+	public Tartaruga(int idTartaruga, String targhetta, String nome, String sesso, int età) {
+		
+	}
+	
 	public int getIdTartaruga() {
 		return idTartaruga;
 	}
