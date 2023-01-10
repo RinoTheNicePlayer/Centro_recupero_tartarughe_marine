@@ -20,7 +20,7 @@ public final class AccessoController {
 	/*Funzione che permette di effettuare l'accesso. Tale funzione verifica se i campi siano validi.
 	 * Se quest'ultimi sono validi, chiama la classe PersonaleDatabase per eseguire la Query
 	 */
-	public void effettuaAccesso(String email, char[] password) {
+	public boolean effettuaAccesso(String email, char[] password) {
 		boolean validaEmail = TestoUtility.verificaEmail(email);
 		boolean validaPassword = TestoUtility.verificaPassword(password);
 		
@@ -37,7 +37,9 @@ public final class AccessoController {
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		} else {
-			PersonaleDatabase.getInstance().controlloAccesso(email, new String(password));
+			return PersonaleDatabase.getInstance().controlloAccesso(email, new String(password));
 		}
+		
+		return false;
 	}
 }

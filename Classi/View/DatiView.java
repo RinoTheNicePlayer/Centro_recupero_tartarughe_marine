@@ -4,12 +4,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import Classi.Database.PersonaleDatabase;
 import Classi.Models.Personale;
 import javax.swing.JButton;
 
@@ -109,6 +113,19 @@ public class DatiView extends JFrame {
 		pannelloSinistro.setLayout(null);
 		
 		JButton bottoneIndietro = new JButton("Indietro");
+		bottoneIndietro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					PortaleView finestraPortale = new PortaleView(PersonaleDatabase.getInstance().getPersonaleByEmail(personale.getEmail()));
+					finestraPortale.setLocationRelativeTo(null);
+					finestraPortale.setVisible(true);
+					dispose();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		bottoneIndietro.setForeground(new Color(0, 0, 0));
 		bottoneIndietro.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		bottoneIndietro.setBackground(new Color(255, 255, 255));
@@ -125,6 +142,15 @@ public class DatiView extends JFrame {
 		pannelloSinistro.add(iconaProfilo);
 		
 		JLabel iconaEsci = new JLabel("");
+		iconaEsci.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AccessoView finestraAccesso = new AccessoView();
+				finestraAccesso.setLocationRelativeTo(null);
+				finestraAccesso.setVisible(true);
+				dispose();
+			}
+		});
 		iconaEsci.setToolTipText("Esci");
 		iconaEsci.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Esci.png")));
 		iconaEsci.setForeground(new Color(255, 255, 255));

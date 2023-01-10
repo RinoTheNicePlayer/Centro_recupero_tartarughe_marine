@@ -4,15 +4,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import Classi.Database.PersonaleDatabase;
 import Classi.Models.Personale;
 
 public class PortaleView extends JFrame {
-
 	private JPanel pannello;
 	
 	//Creazione della finestra
@@ -123,6 +124,15 @@ public class PortaleView extends JFrame {
 		pannelloCentrale.add(testoSaluto);
 		
 		JLabel iconaEsci = new JLabel("");
+		iconaEsci.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AccessoView finestraAccesso = new AccessoView();
+				finestraAccesso.setLocationRelativeTo(null);
+				finestraAccesso.setVisible(true);
+				dispose();
+			}
+		});
 		iconaEsci.setToolTipText("Esci");
 		iconaEsci.setIcon(new ImageIcon(PortaleView.class.getResource("/Immagini/Esci.png")));
 		iconaEsci.setHorizontalAlignment(SwingConstants.CENTER);
@@ -165,6 +175,19 @@ public class PortaleView extends JFrame {
 		pannelloCentrale.add(testoVasche);
 		
 		JLabel iconaDati = new JLabel("");
+		iconaDati.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					DatiView finestraDati = new DatiView(PersonaleDatabase.getInstance().getPersonaleByEmail(personale.getEmail()));
+					finestraDati.setLocationRelativeTo(null);
+					finestraDati.setVisible(true);
+					dispose();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		iconaDati.setIcon(new ImageIcon(PortaleView.class.getResource("/Immagini/Dati.png")));
 		iconaDati.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaDati.setForeground(new Color(255, 255, 255));

@@ -1,6 +1,5 @@
 package Classi.Database;
 
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,7 +32,7 @@ public final class PersonaleDatabase {
 	/*Funzione che verifica se l'email e la password inserite dall'utente sono presenti nel database.
 	 * Se lo sono, si apre una finestra grafica, in alternativa solleva un errore
 	 */
-	public void controlloAccesso(String compilazioneEmail, String compilazionePassword) {
+	public boolean controlloAccesso(String compilazioneEmail, String compilazionePassword) {
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -51,6 +50,8 @@ public final class PersonaleDatabase {
 				PortaleView finestraPortale = new PortaleView(getPersonaleByEmail(compilazioneEmail));
 				finestraPortale.setLocationRelativeTo(null);
 				finestraPortale.setVisible(true);
+				
+				return true;
 			} else {
 				ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Email o password non registrati.");
 				finestraErrore.setLocationRelativeTo(null);
@@ -59,6 +60,8 @@ public final class PersonaleDatabase {
 		} catch(SQLException ex) {
 			Logger.getLogger(AccessoView.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		
+		return false;
 	}
 	
 	//Funzione che permette di eseguire la memorizzazione di diverse credenziali dell'utente nel database

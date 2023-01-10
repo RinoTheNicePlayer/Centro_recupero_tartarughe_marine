@@ -332,7 +332,9 @@ public class AccessoView extends JFrame {
 		bottoneAccesso.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccessoController.getInstance().effettuaAccesso(compilazioneEmail.getText(), compilazionePassword.getPassword());
+				if(AccessoController.getInstance().effettuaAccesso(compilazioneEmail.getText(), compilazionePassword.getPassword()) == true) {
+					dispose();
+				}
 			}
 		});
 		
