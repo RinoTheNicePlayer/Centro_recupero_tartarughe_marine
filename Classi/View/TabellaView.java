@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -14,7 +15,9 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import Classi.Database.PersonaleDatabase;
 import Classi.Models.Personale;
+import javax.swing.JButton;
 
 public class TabellaView extends JFrame {
 	
@@ -33,11 +36,51 @@ public class TabellaView extends JFrame {
 		
 		//Barra del titolo
 		JPanel barraTitolo = new JPanel();
-		barraTitolo.setBounds(0, 0, 1000, 50);
-		barraTitolo.setBorder(UIManager.getBorder("Tree.editorBorder"));
+		barraTitolo.setForeground(new Color(0, 0, 0));
 		barraTitolo.setBackground(new Color(0, 0, 0));
+		barraTitolo.setBounds(0, 0, 1000, 50);
 		pannello.add(barraTitolo);
 		barraTitolo.setLayout(null);
+		
+		JLabel iconaLogo = new JLabel("");
+		iconaLogo.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Logo.png")));
+		iconaLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaLogo.setForeground(new Color(255, 255, 255));
+		iconaLogo.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaLogo.setBackground(new Color(255, 255, 255));
+		iconaLogo.setBounds(10, 0, 50, 50);
+		barraTitolo.add(iconaLogo);
+		
+		JLabel titoloFinestra = new JLabel("Tabella");
+		titoloFinestra.setBackground(new Color(0, 0, 0));
+		titoloFinestra.setForeground(new Color(255, 255, 255));
+		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
+		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		titoloFinestra.setBounds(70, 0, 70, 50);
+		barraTitolo.add(titoloFinestra);
+		
+		JLabel iconaMinimizza = new JLabel("");
+		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
+		iconaMinimizza.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona (blu).png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setExtendedState(JFrame.ICONIFIED);
+			}
+		});
+		iconaMinimizza.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaMinimizza.setForeground(new Color(255, 255, 255));
+		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaMinimizza.setBackground(new Color(255, 255, 255));
+		iconaMinimizza.setBounds(900, 0, 50, 50);
+		barraTitolo.add(iconaMinimizza);
 		
 		JLabel iconaChiudi = new JLabel("");
 		iconaChiudi.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Chiudi.png")));
@@ -59,39 +102,74 @@ public class TabellaView extends JFrame {
 		iconaChiudi.setForeground(new Color(255, 255, 255));
 		iconaChiudi.setBackground(new Color(255, 255, 255));
 		iconaChiudi.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaChiudi.setBounds(945, 0, 45, 50);
+		iconaChiudi.setBounds(940, 0, 50, 50);
 		barraTitolo.add(iconaChiudi);
 		
-		JLabel iconaMinimizza = new JLabel("");
-		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
-		iconaMinimizza.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona (blu).png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona.png")));
-			}
+		//Pannello centrale
+		JPanel pannelloCentrale = new JPanel();
+		pannelloCentrale.setForeground(new Color(255, 255, 255));
+		pannelloCentrale.setBackground(new Color(255, 255, 255));
+		pannelloCentrale.setBounds(0, 0, 1000, 500);
+		pannello.add(pannelloCentrale);
+		pannelloCentrale.setLayout(null);
+		
+		JButton bottoneIndietro = new JButton("Indietro");
+		bottoneIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setExtendedState(JFrame.ICONIFIED);
+				try {
+					PortaleView finestraPortale = new PortaleView(PersonaleDatabase.getInstance().getPersonaleByEmail(personale.getEmail()));
+					finestraPortale.setLocationRelativeTo(null);
+					finestraPortale.setVisible(true);
+					dispose();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
-		iconaMinimizza.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaMinimizza.setForeground(Color.WHITE);
-		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaMinimizza.setBackground(Color.WHITE);
-		iconaMinimizza.setBounds(900, 0, 45, 50);
-		barraTitolo.add(iconaMinimizza);
+		bottoneIndietro.setForeground(new Color(0, 0, 0));
+		bottoneIndietro.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		bottoneIndietro.setBackground(new Color(255, 255, 255));
+		bottoneIndietro.setBounds(40, 80, 100, 40);
+		pannelloCentrale.add(bottoneIndietro);
 		
-		JLabel titoloFinestra = new JLabel("Tabella");
-		titoloFinestra.setVerticalAlignment(SwingConstants.TOP);
-		titoloFinestra.setBackground(new Color(0, 0, 0));
-		titoloFinestra.setForeground(new Color(255, 255, 255));
-		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
-		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		titoloFinestra.setBounds(40, 11, 120, 28);
-		barraTitolo.add(titoloFinestra);
+		JButton bottoneAggiungi = new JButton("Aggiungi");
+		bottoneAggiungi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					CartellaClinicaView finestraCartellaClinica = new CartellaClinicaView(PersonaleDatabase.getInstance().getPersonaleByEmail(personale.getEmail()));
+					finestraCartellaClinica.setLocationRelativeTo(null);
+					finestraCartellaClinica.setVisible(true);
+					dispose();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		bottoneAggiungi.setForeground(new Color(0, 204, 0));
+		bottoneAggiungi.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		bottoneAggiungi.setBackground(new Color(255, 255, 255));
+		bottoneAggiungi.setBounds(800, 80, 100, 40);
+		pannelloCentrale.add(bottoneAggiungi);
+		
+		JLabel iconaEsci = new JLabel("");
+		iconaEsci.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AccessoView finestraAccesso = new AccessoView();
+				finestraAccesso.setLocationRelativeTo(null);
+				finestraAccesso.setVisible(true);
+				dispose();
+			}
+		});
+		iconaEsci.setIcon(new ImageIcon(TabellaView.class.getResource("/Immagini/Esci.png")));
+		iconaEsci.setToolTipText("Esci");
+		iconaEsci.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaEsci.setForeground(new Color(255, 255, 255));
+		iconaEsci.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaEsci.setBackground(new Color(255, 255, 255));
+		iconaEsci.setBounds(940, 80, 30, 30);
+		pannelloCentrale.add(iconaEsci);
 	}
 }

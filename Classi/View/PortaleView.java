@@ -136,11 +136,35 @@ public class PortaleView extends JFrame {
 		iconaEsci.setToolTipText("Esci");
 		iconaEsci.setIcon(new ImageIcon(PortaleView.class.getResource("/Immagini/Esci.png")));
 		iconaEsci.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaEsci.setForeground(Color.WHITE);
+		iconaEsci.setForeground(new Color(255, 255, 255));
 		iconaEsci.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaEsci.setBackground(Color.WHITE);
+		iconaEsci.setBackground(new Color(255, 255, 255));
 		iconaEsci.setBounds(940, 80, 30, 30);
 		pannelloCentrale.add(iconaEsci);
+		
+		JLabel testoInformativo1 = new JLabel("Questo è il tuo account.");
+		testoInformativo1.setHorizontalAlignment(SwingConstants.LEFT);
+		testoInformativo1.setForeground(new Color(0, 0, 0));
+		testoInformativo1.setFont(new Font("Segoe UI", Font.ITALIC, 15));
+		testoInformativo1.setBackground(new Color(255, 255, 255));
+		testoInformativo1.setBounds(160, 130, 160, 30);
+		pannelloCentrale.add(testoInformativo1);
+		
+		JLabel testoInformativo2 = new JLabel("Cosa vorresti fare oggi? Potresti consultare i tuoi dati personali,");
+		testoInformativo2.setHorizontalAlignment(SwingConstants.LEFT);
+		testoInformativo2.setForeground(new Color(0, 0, 0));
+		testoInformativo2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
+		testoInformativo2.setBackground(new Color(255, 255, 255));
+		testoInformativo2.setBounds(160, 150, 410, 30);
+		pannelloCentrale.add(testoInformativo2);
+		
+		JLabel testoInformativo3 = new JLabel("oppure effettuare ricerche (ad esempio, cercare una determinata tartaruga presente nel tuo centro)");
+		testoInformativo3.setHorizontalAlignment(SwingConstants.LEFT);
+		testoInformativo3.setForeground(new Color(0, 0, 0));
+		testoInformativo3.setFont(new Font("Segoe UI", Font.ITALIC, 15));
+		testoInformativo3.setBackground(new Color(255, 255, 255));
+		testoInformativo3.setBounds(160, 170, 630, 30);
+		pannelloCentrale.add(testoInformativo3);
 		
 		JLabel testoDati = new JLabel("Dati personali");
 		testoDati.setHorizontalAlignment(SwingConstants.CENTER);

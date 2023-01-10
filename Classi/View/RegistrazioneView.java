@@ -279,7 +279,7 @@ public class RegistrazioneView extends JFrame {
 		testoInformativo2.setHorizontalAlignment(SwingConstants.CENTER);
 		testoInformativo2.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		
-		JLabel testoInformativo3 = new JLabel("Compila i campi sottostanti con le informazioni lavorative.");
+		JLabel testoInformativo3 = new JLabel("Definisci le tue informazioni lavorative:");
 		testoInformativo3.setHorizontalAlignment(SwingConstants.CENTER);
 		testoInformativo3.setForeground(new Color(0, 0, 0));
 		testoInformativo3.setBackground(new Color(255, 255, 255));
@@ -287,7 +287,7 @@ public class RegistrazioneView extends JFrame {
 		testoInformativo3.setBounds(0, 130, 500, 30);
 		pannelloDestro.add(testoInformativo3);
 		
-		JLabel testoInformativo4 = new JLabel("Indicare il centro e la professione desiderate.");
+		JLabel testoInformativo4 = new JLabel("indica il centro di appartenenza e la professione che svolgi");
 		testoInformativo4.setForeground(new Color(0, 0, 0));
 		testoInformativo4.setBackground(new Color(255, 255, 255));
 		testoInformativo4.setHorizontalAlignment(SwingConstants.CENTER);

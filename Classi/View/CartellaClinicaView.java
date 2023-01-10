@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,6 +15,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import Classi.Controller.CartellaClinicaController;
+import Classi.Database.PersonaleDatabase;
 import Classi.Models.Personale;
 
 import javax.swing.JComboBox;
@@ -279,10 +282,14 @@ public class CartellaClinicaView extends JFrame {
 		bottoneIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PortaleView finestraPortale = new PortaleView(null);
-				finestraPortale.setLocationRelativeTo(null);
-				finestraPortale.setVisible(true);
-				dispose();
+				try {
+					PortaleView finestraPortale = new PortaleView(PersonaleDatabase.getInstance().getPersonaleByEmail(personale.getEmail()));
+					finestraPortale.setLocationRelativeTo(null);
+					finestraPortale.setVisible(true);
+					dispose();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		bottoneIndietro.setForeground(new Color(0, 0, 0));
