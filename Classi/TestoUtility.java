@@ -51,7 +51,7 @@ public final class TestoUtility {
 	}
 	
 	//Funzione che confronta due Password e valuta se sono uguali
-	public static boolean controlloMatchingPassword(char[] password, char[] confermaPassword) {
+	public static boolean confrontoPassword(char[] password, char[] confermaPassword) {
 		return new String(password).matches(new String(confermaPassword));
 	}
 	

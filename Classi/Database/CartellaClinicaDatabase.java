@@ -8,12 +8,9 @@ import java.sql.Types;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.JOptionPane;
-
 import Classi.Connessione;
 import Classi.Models.CartellaClinica;
-import Classi.Models.Personale;
 import Classi.View.ErroreView;
 import Classi.View.RegistrazioneView;
 

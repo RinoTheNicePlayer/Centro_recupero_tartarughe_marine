@@ -7,8 +7,12 @@ public class Tartaruga {
 	private String sesso;
 	private int eta;
 	
-	public Tartaruga(int idTartaruga, String targhetta, String nome, String sesso, int età) {
-		
+	public Tartaruga(int idTartaruga, String targhetta, String nome, String sesso, int eta) {
+		setIdTartaruga(idTartaruga);
+		setTarghetta(targhetta);
+		setNome(nome);
+		setSesso(sesso);
+		setEta(eta);
 	}
 	
 	public int getIdTartaruga() {
@@ -50,6 +54,4 @@ public class Tartaruga {
 	public void setEta(int eta) {
 		this.eta = eta;
 	}
-	
-	
 }

@@ -26,7 +26,7 @@ public final class RegistrazioneController {
 		boolean validaCognome = TestoUtility.verificaNome(cognome);
 		boolean validaEmail = TestoUtility.verificaEmail(email);
 		boolean validaPassword = TestoUtility.verificaPassword(password);
-		boolean passwordUguali = TestoUtility.controlloMatchingPassword(password, confermaPassword);
+		boolean passwordUguali = TestoUtility.confrontoPassword(password, confermaPassword);
 		boolean validaDataDiNascita = TestoUtility.verificaData(dataDiNascita);
 		boolean validaSesso = TestoUtility.verificaSesso(sesso);
 		boolean validaCentro = TestoUtility.verificaCentro(idCentro);

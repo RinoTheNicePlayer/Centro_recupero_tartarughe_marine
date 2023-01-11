@@ -4,9 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Classi.Connessione;
-import Classi.Models.CartellaClinica;
 import Classi.Models.Tartaruga;
-import Classi.View.ErroreView;
 
 public class TartarugaDatabase {
 	//Inizializzazione dell'istanza
