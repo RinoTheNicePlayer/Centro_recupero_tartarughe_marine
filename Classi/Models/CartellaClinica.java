@@ -19,43 +19,43 @@ public class CartellaClinica {
 	private String statoCoda;
 	private String statoPinne;
 	
-	public CartellaClinica(int idPersonale, int idTartaruga, String identificativoInterno, String dataRitrovamento, String luogoRitrovamento, String specie, int larghezza, int lunghezza, int peso, String statoNaso, String statoBecco, String statoTesta, String statoCollo, String statoOcchi, String statoCoda, String statoPinne) {
-		setIdPersonale(idPersonale);
-		setIdTartaruga(idTartaruga);
-		setIdentificativoInterno(identificativoInterno);
-		setDataRitrovamento(dataRitrovamento);
-		setLuogoRitrovamento(luogoRitrovamento);
-		setSpecie(specie);
-		setLarghezza(larghezza);
-		setLunghezza(lunghezza);
-		setPeso(peso);
-		setStatoNaso(statoNaso);
-		setStatoBecco(statoBecco);
-		setStatoTesta(statoTesta);
-		setStatoCollo(statoCollo);
-		setStatoOcchi(statoOcchi);
-		setStatoCoda(statoCoda);
-		setStatoPinne(statoPinne);
+	public CartellaClinica(int idCartellaClinica, int idPersonale, int idTartaruga, String identificativoInterno, String dataRitrovamento, String luogoRitrovamento, String specie, int larghezza, int lunghezza, int peso, String statoNaso, String statoBecco, String statoTesta, String statoCollo, String statoOcchi, String statoCoda, String statoPinne) {
+		this.idCartellaClinica = idCartellaClinica;
+		this.idPersonale = idPersonale;
+		this.idTartaruga = idTartaruga;
+		this.identificativoInterno = identificativoInterno;
+		this.dataRitrovamento = dataRitrovamento;
+		this.luogoRitrovamento = luogoRitrovamento;
+		this.specie = specie;
+		this.larghezza = larghezza;
+		this.lunghezza = lunghezza;
+		this.peso = peso;
+		this.statoNaso = statoNaso;
+		this.statoBecco = statoBecco;
+		this.statoTesta = statoTesta;
+		this.statoCollo = statoCollo;
+		this.statoOcchi = statoOcchi;
+		this.statoCoda = statoCoda;
+		this.statoPinne = statoPinne;
 	}
 	
-	public CartellaClinica(int idCartellaClinica, int idPersonale, int idTartaruga, String identificativoInterno, String dataRitrovamento, String luogoRitrovamento, String specie, int larghezza, int lunghezza, int peso, String statoNaso, String statoBecco, String statoTesta, String statoCollo, String statoOcchi, String statoCoda, String statoPinne) {
-		setIdCartellaClinica(idCartellaClinica);
-		setIdPersonale(idPersonale);
-		setIdTartaruga(idTartaruga);
-		setIdentificativoInterno(identificativoInterno);
-		setDataRitrovamento(dataRitrovamento);
-		setLuogoRitrovamento(luogoRitrovamento);
-		setSpecie(specie);
-		setLarghezza(larghezza);
-		setLunghezza(lunghezza);
-		setPeso(peso);
-		setStatoNaso(statoNaso);
-		setStatoBecco(statoBecco);
-		setStatoTesta(statoTesta);
-		setStatoCollo(statoCollo);
-		setStatoOcchi(statoOcchi);
-		setStatoCoda(statoCoda);
-		setStatoPinne(statoPinne);
+	public CartellaClinica(int idPersonale, int idTartaruga, String identificativoInterno, String specie, String dataRitrovamento, String luogoRitrovamento, int larghezza, int lunghezza, int peso, String statoPinne, String statoCoda, String statoCollo, String statoTesta, String statoBecco, String statoNaso, String statoOcchi) {
+		this.idPersonale = idPersonale;
+		this.idTartaruga = idTartaruga;
+		this.identificativoInterno = identificativoInterno;
+		this.specie = specie;
+		this.dataRitrovamento = dataRitrovamento;
+		this.luogoRitrovamento = luogoRitrovamento;
+		this.larghezza = larghezza;
+		this.lunghezza = lunghezza;
+		this.peso = peso;
+		this.statoPinne = statoPinne;
+		this.statoCoda = statoCoda;
+		this.statoCollo = statoCollo;
+		this.statoTesta = statoTesta;
+		this.statoBecco = statoBecco;
+		this.statoNaso = statoNaso;
+		this.statoOcchi = statoOcchi;
 	}
 	
 	public int getIdCartellaClinica() {

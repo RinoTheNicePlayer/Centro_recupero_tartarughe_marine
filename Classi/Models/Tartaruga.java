@@ -8,11 +8,11 @@ public class Tartaruga {
 	private int eta;
 	
 	public Tartaruga(int idTartaruga, String targhetta, String nome, String sesso, int eta) {
-		setIdTartaruga(idTartaruga);
-		setTarghetta(targhetta);
-		setNome(nome);
-		setSesso(sesso);
-		setEta(eta);
+		this.idTartaruga = idTartaruga;
+		this.targhetta = targhetta;
+		this.nome = nome;
+		this.sesso = sesso;
+		this.eta = eta;
 	}
 	
 	public int getIdTartaruga() {

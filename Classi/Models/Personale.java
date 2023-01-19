@@ -13,16 +13,16 @@ public class Personale {
     private String tipologia;
     
     private Personale(int idPersonale, int idCentro, String matricola, String email, String password, String nome, String cognome, String sesso, String dataDiNascita, String tipologia) {
-    	setIdPersonale(idPersonale);
-    	setIdCentro(idCentro);
-    	setMatricola(matricola);
-    	setEmail(email);
-    	setPassword(password);
-    	setNome(nome);
-    	setCognome(cognome);
-    	setSesso(sesso);
-    	setDataDiNascita(dataDiNascita);
-    	setTipologia(tipologia);
+    	this.idPersonale = idPersonale;
+    	this.idCentro = idCentro;
+    	this.matricola = matricola;
+    	this.email = email;
+    	this.password = password;
+    	this.nome = nome;
+    	this.cognome = cognome;
+    	this.sesso = sesso;
+    	this.dataDiNascita = dataDiNascita;
+    	this.tipologia = tipologia;
     }
     
     public Personale(int idCentro, String email, String password, String nome, String cognome, String sesso, String dataDiNascita, String tipologia) {

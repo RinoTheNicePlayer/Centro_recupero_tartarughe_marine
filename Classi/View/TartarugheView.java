@@ -253,7 +253,7 @@ public class TartarugheView extends JFrame {
 		testoCartellaClinica.setForeground(new Color(0, 0, 0));
 		testoCartellaClinica.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		testoCartellaClinica.setBackground(new Color(255, 255, 255));
-		testoCartellaClinica.setBounds(40, 420, 170, 40);
+		testoCartellaClinica.setBounds(40, 420, 180, 40);
 		pannelloCentrale.add(testoCartellaClinica);
 		
 		compilazioneTarghetta = new JTextField();

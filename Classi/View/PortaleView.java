@@ -163,7 +163,7 @@ public class PortaleView extends JFrame {
 		testoInformativo3.setForeground(new Color(0, 0, 0));
 		testoInformativo3.setFont(new Font("Segoe UI", Font.ITALIC, 15));
 		testoInformativo3.setBackground(new Color(255, 255, 255));
-		testoInformativo3.setBounds(160, 170, 630, 30);
+		testoInformativo3.setBounds(160, 170, 650, 30);
 		pannelloCentrale.add(testoInformativo3);
 		
 		JLabel testoDati = new JLabel("Dati personali");
