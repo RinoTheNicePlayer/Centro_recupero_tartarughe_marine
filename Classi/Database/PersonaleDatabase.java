@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import Classi.Connessione;
+import Classi.Controller.RegistrazioneController;
 import Classi.Models.Personale;
 import Classi.View.AccessoView;
 import Classi.View.ErroreView;
@@ -75,7 +76,7 @@ public final class PersonaleDatabase {
 			ps = Connessione.getConnection().prepareStatement(query);
 			
 			ps.setInt(1, personale.getIdCentro() + 1);
-			ps.setString(2, generatoreDiMatricole());
+			ps.setString(2, RegistrazioneController.getInstance().generatoreDiMatricole());
 			ps.setString(3, personale.getEmail());
 			ps.setString(4, personale.getPassword());
 			ps.setString(5, personale.getNome());
@@ -152,23 +153,5 @@ public final class PersonaleDatabase {
         
         return null;
     }
-	
-	//Funzione che produce in maniera randomica una matricola con formato NXXXXXXXX, dove X è una cifra corrispondente ad un numero compreso tra 0 e 9
-	public String generatoreDiMatricole() throws SQLException {
-		Random rnd = new Random();
-	    String matricola = "N";
-	    
-	    for(int i = 0; i < 8; i++) {
-	    	matricola += rnd.nextInt(10);
-	    }
-	    
-	    Personale personale = getPersonaleByMatricola(matricola);
-	    
-	    if(personale == null) {
-	    	return matricola;
-	    } else {
-	    	matricola = generatoreDiMatricole();
-	    	return matricola;
-	    }
-	}
+
 }

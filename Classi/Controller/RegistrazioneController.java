@@ -1,5 +1,8 @@
 package Classi.Controller;
 
+import java.sql.SQLException;
+import java.util.Random;
+
 import Classi.TestoUtility;
 import Classi.Database.PersonaleDatabase;
 import Classi.Models.Personale;
@@ -56,5 +59,24 @@ public final class RegistrazioneController {
 			Personale personale = new Personale (idCentro, email, new String(password), nome, cognome, sesso, dataDiNascita, professione);
 			PersonaleDatabase.getInstance().registraPersonale(personale);
 		}
+	}
+	
+	//Funzione che produce in maniera randomica una matricola con formato NXXXXXXXX, dove X è una cifra corrispondente ad un numero compreso tra 0 e 9
+	public String generatoreDiMatricole() throws SQLException {
+		Random rnd = new Random();
+	    String matricola = "N";
+	    
+	    for(int i = 0; i < 8; i++) {
+	    	matricola += rnd.nextInt(10);
+	    }
+	    
+	    Personale personale = PersonaleDatabase.getInstance().getPersonaleByMatricola(matricola);
+	    
+	    if(personale == null) {
+	    	return matricola;
+	    } else {
+	    	matricola = generatoreDiMatricole();
+	    	return matricola;
+	    }
 	}
 }

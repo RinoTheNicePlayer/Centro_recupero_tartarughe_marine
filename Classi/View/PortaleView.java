@@ -174,29 +174,13 @@ public class PortaleView extends JFrame {
 		testoDati.setBounds(40, 230, 200, 40);
 		pannelloCentrale.add(testoDati);
 		
-		JLabel testoCartellaClinica = new JLabel("Cartella clinica");
-		testoCartellaClinica.setHorizontalAlignment(SwingConstants.CENTER);
-		testoCartellaClinica.setForeground(new Color(0, 0, 0));
-		testoCartellaClinica.setFont(new Font("Segoe UI", Font.BOLD, 25));
-		testoCartellaClinica.setBackground(new Color(255, 255, 255));
-		testoCartellaClinica.setBounds(280, 230, 200, 40);
-		pannelloCentrale.add(testoCartellaClinica);
-		
-		JLabel testoTartarughe = new JLabel("Tartarughe");
-		testoTartarughe.setHorizontalAlignment(SwingConstants.CENTER);
-		testoTartarughe.setForeground(new Color(0, 0, 0));
-		testoTartarughe.setFont(new Font("Segoe UI", Font.BOLD, 25));
-		testoTartarughe.setBackground(new Color(255, 255, 255));
-		testoTartarughe.setBounds(520, 230, 200, 40);
-		pannelloCentrale.add(testoTartarughe);
-		
-		JLabel testoVasche = new JLabel("Vasche");
-		testoVasche.setHorizontalAlignment(SwingConstants.CENTER);
-		testoVasche.setForeground(new Color(0, 0, 0));
-		testoVasche.setFont(new Font("Segoe UI", Font.BOLD, 25));
-		testoVasche.setBackground(new Color(255, 255, 255));
-		testoVasche.setBounds(760, 230, 200, 40);
-		pannelloCentrale.add(testoVasche);
+		JLabel testoTartaruga = new JLabel("Tartaruga");
+		testoTartaruga.setHorizontalAlignment(SwingConstants.CENTER);
+		testoTartaruga.setForeground(new Color(0, 0, 0));
+		testoTartaruga.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		testoTartaruga.setBackground(new Color(255, 255, 255));
+		testoTartaruga.setBounds(280, 230, 200, 40);
+		pannelloCentrale.add(testoTartaruga);
 		
 		JLabel iconaDati = new JLabel("");
 		iconaDati.addMouseListener(new MouseAdapter() {
@@ -220,31 +204,23 @@ public class PortaleView extends JFrame {
 		iconaDati.setBounds(40, 270, 200, 200);
 		pannelloCentrale.add(iconaDati);
 		
-		JLabel iconaCartellaClinica = new JLabel("");
-		iconaCartellaClinica.setIcon(new ImageIcon(PortaleView.class.getResource("/Immagini/Cartella clinica.png")));
-		iconaCartellaClinica.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaCartellaClinica.setForeground(new Color(255, 255, 255));
-		iconaCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaCartellaClinica.setBackground(new Color(255, 255, 255));
-		iconaCartellaClinica.setBounds(280, 270, 200, 200);
-		pannelloCentrale.add(iconaCartellaClinica);
-		
 		JLabel iconaTartaruga = new JLabel("");
+		iconaTartaruga.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+					DatiView finestraDati = new DatiView(personale, "cartellaclinica");
+					finestraDati.setLocationRelativeTo(null);
+					finestraDati.setVisible(true);
+					dispose();
+				
+			}
+		});
 		iconaTartaruga.setIcon(new ImageIcon(PortaleView.class.getResource("/Immagini/Tartaruga.png")));
 		iconaTartaruga.setHorizontalAlignment(SwingConstants.CENTER);
 		iconaTartaruga.setForeground(new Color(255, 255, 255));
 		iconaTartaruga.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaTartaruga.setBackground(new Color(255, 255, 255));
-		iconaTartaruga.setBounds(520, 270, 200, 200);
+		iconaTartaruga.setBounds(280, 270, 200, 200);
 		pannelloCentrale.add(iconaTartaruga);
-		
-		JLabel iconaTartarugaNellaVasca = new JLabel("");
-		iconaTartarugaNellaVasca.setIcon(new ImageIcon(PortaleView.class.getResource("/Immagini/Tartaruga nella vasca.png")));
-		iconaTartarugaNellaVasca.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaTartarugaNellaVasca.setForeground(new Color(255, 255, 255));
-		iconaTartarugaNellaVasca.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaTartarugaNellaVasca.setBackground(new Color(255, 255, 255));
-		iconaTartarugaNellaVasca.setBounds(760, 270, 200, 200);
-		pannelloCentrale.add(iconaTartarugaNellaVasca);
 	}
 }

@@ -81,7 +81,7 @@ public final class TestoUtility {
 	
 	//Funzione che controlla se la professione scelta è valida
 	public static boolean verificaSelezione(String elementoSelezionato) {
-		if(elementoSelezionato == null) {
+		if(elementoSelezionato == "") {
 			return false;
 		} else {
 			return true;

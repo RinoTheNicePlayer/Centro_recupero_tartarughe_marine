@@ -16,11 +16,18 @@ import javax.swing.border.EmptyBorder;
 import Classi.Database.PersonaleDatabase;
 import Classi.Models.Personale;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DatiView extends JFrame {
 	private JPanel pannello;
 	
-	//Creazione della finestra
+	//Creazione della finestra per la visualizzazione dei dati del personale
+
 	public DatiView(Personale personale) {
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
@@ -259,4 +266,154 @@ public class DatiView extends JFrame {
 		immagineTartaruga.setHorizontalAlignment(SwingConstants.CENTER);
 		pannelloDestro.add(immagineTartaruga);
 	}
+	
+	//Creazione della finestra per la visualizzazione dei dati riguardanti tartarughe/vasche/cartelle cliniche
+	/**
+	 * @wbp.parser.constructor
+	 */
+	public DatiView(Personale personale, String opzioneSelezionata) {
+
+		//Pannello principale
+		setBackground(new Color(255, 255, 255));
+		setUndecorated(true);
+		setBounds(100, 100, 1000, 500);
+		pannello = new JPanel();
+		pannello.setForeground(new Color(255, 255, 255));
+		pannello.setBackground(new Color(255, 255, 255));
+		pannello.setBorder(UIManager.getBorder("Tree.editorBorder"));
+		setContentPane(pannello);
+		pannello.setLayout(null);
+			
+		//Barra del titolo
+		JPanel barraTitolo = new JPanel();
+		barraTitolo.setForeground(new Color(0, 0, 0));
+		barraTitolo.setBackground(new Color(0, 0, 0));
+		barraTitolo.setBounds(0, 0, 1000, 50);
+		pannello.add(barraTitolo);
+		barraTitolo.setLayout(null);
+			
+		JLabel iconaLogo = new JLabel("");
+		iconaLogo.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Logo.png")));
+		iconaLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaLogo.setForeground(new Color(255, 255, 255));
+		iconaLogo.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaLogo.setBackground(new Color(255, 255, 255));
+		iconaLogo.setBounds(10, 0, 50, 50);
+		barraTitolo.add(iconaLogo);
+			
+		JLabel titoloFinestra = new JLabel("Dati");
+		titoloFinestra.setBackground(new Color(0, 0, 0));
+		titoloFinestra.setForeground(new Color(255, 255, 255));
+		titoloFinestra.setHorizontalAlignment(SwingConstants.LEFT);
+		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		titoloFinestra.setBounds(70, 0, 40, 50);
+		barraTitolo.add(titoloFinestra);
+			
+		JLabel iconaMinimizza = new JLabel("");
+		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
+		iconaMinimizza.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona (blu).png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setExtendedState(JFrame.ICONIFIED);
+			}
+		});
+		iconaMinimizza.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaMinimizza.setForeground(new Color(255, 255, 255));
+		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaMinimizza.setBackground(new Color(255, 255, 255));
+		iconaMinimizza.setBounds(900, 0, 50, 50);
+		barraTitolo.add(iconaMinimizza);
+			
+		JLabel iconaChiudi = new JLabel("");
+		iconaChiudi.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Chiudi.png")));
+		iconaChiudi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				iconaChiudi.setIcon(new ImageIcon(getClass().getResource("/Immagini/Chiudi (rosso).png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				iconaChiudi.setIcon(new ImageIcon(getClass().getResource("/Immagini/Chiudi.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+		iconaChiudi.setHorizontalAlignment(SwingConstants.CENTER);
+		iconaChiudi.setForeground(new Color(255, 255, 255));
+		iconaChiudi.setBackground(new Color(255, 255, 255));
+		iconaChiudi.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		iconaChiudi.setBounds(940, 0, 50, 50);
+		barraTitolo.add(iconaChiudi);
+		
+		JButton bottoneIndietro = new JButton("Indietro");
+		bottoneIndietro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		bottoneIndietro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					PortaleView finestraPortale = new PortaleView(PersonaleDatabase.getInstance().getPersonaleByEmail(personale.getEmail()));
+					finestraPortale.setLocationRelativeTo(null);
+					finestraPortale.setVisible(true);
+					dispose();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				}
+		});
+		bottoneIndietro.setForeground(new Color(0, 0, 0));
+		bottoneIndietro.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		bottoneIndietro.setBackground(new Color(255, 255, 255));
+		bottoneIndietro.setBounds(46, 74, 100, 40);
+		pannello.add(bottoneIndietro);
+		
+		/* 
+	 	Se è stata selezionata la modalità di visualizzazione dati riguardanti cartella clinica e l'utente è un medico veterinario, 
+	 	allora crea un bottone che permette l'aggiunta di cartelle cliniche.
+		*/
+		
+		if((opzioneSelezionata.equals("cartellaclinica")) && (personale.getTipologia().equals("Medico veterinario"))) {
+			JButton bottoneAggiungiCartellaClinica = new JButton("Aggiungi Cartella Clinica");
+			bottoneAggiungiCartellaClinica.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					CartellaClinicaView finestraCartellaClinica = new CartellaClinicaView(personale);
+					finestraCartellaClinica.setLocationRelativeTo(null);
+					finestraCartellaClinica.setVisible(true);
+					dispose();
+				}
+			});
+			bottoneAggiungiCartellaClinica.setForeground(Color.BLACK);
+			bottoneAggiungiCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+			bottoneAggiungiCartellaClinica.setBackground(Color.WHITE);
+			bottoneAggiungiCartellaClinica.setBounds(741, 74, 205, 40);
+			pannello.add(bottoneAggiungiCartellaClinica);
+			
+		}
+		
+		/*
+		Pannello dati. Questo pannello è scrollabile con una barra o con la rotellina del mouse e contiene tutte le informazioni
+		riguardanti alle tartarughe/vasche/cartelle cliniche.
+		*/
+		JPanel pannelloDati = new JPanel();
+		pannelloDati.setBorder(UIManager.getBorder("Tree.editorBorder"));
+		pannelloDati.setBounds(46, 132, 900, 338);
+		pannello.add(pannelloDati);
+			
+		JScrollPane pannelloScroll = new JScrollPane();
+		pannelloDati.add(pannelloScroll);
+			
+		}
 }

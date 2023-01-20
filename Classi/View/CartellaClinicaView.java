@@ -282,14 +282,12 @@ public class CartellaClinicaView extends JFrame {
 		bottoneIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					PortaleView finestraPortale = new PortaleView(PersonaleDatabase.getInstance().getPersonaleByEmail(personale.getEmail()));
-					finestraPortale.setLocationRelativeTo(null);
-					finestraPortale.setVisible(true);
+
+					DatiView finestraDati = new DatiView(personale, "cartellaclinica");
+					finestraDati.setLocationRelativeTo(null);
+					finestraDati.setVisible(true);
 					dispose();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
+
 			}
 		});
 		bottoneIndietro.setForeground(new Color(0, 0, 0));
@@ -449,6 +447,12 @@ public class CartellaClinicaView extends JFrame {
 		pannelloDestro.add(selezioneStatoOcchi);
 		
 		JButton bottoneAggiungi = new JButton("Aggiungi");
+		bottoneAggiungi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+					CartellaClinicaController.getInstance().effettuaCaricamentoCartellaClinica(personale, compilazioneTarghetta.getText(), compilazioneSpecie.getText(), compilazioneDataDiRitrovamento.getText(), compilazioneLuogoDiRitrovamento.getText(), compilazioneLarghezza.getText(), compilazioneLunghezza.getText(), compilazionePeso.getText(), (selezioneStatoPinne.getSelectedItem()!= null) ? selezioneStatoPinne.getSelectedItem().toString() : "", (selezioneStatoCoda.getSelectedItem()!= null) ? selezioneStatoCoda.getSelectedItem().toString() : "", (selezioneStatoCollo.getSelectedItem()!= null) ? selezioneStatoCollo.getSelectedItem().toString() : "", (selezioneStatoTesta.getSelectedItem()!= null) ? selezioneStatoTesta.getSelectedItem().toString() : "", (selezioneStatoBecco.getSelectedItem()!= null) ? selezioneStatoBecco.getSelectedItem().toString() : "", (selezioneStatoNaso.getSelectedItem()!= null) ? selezioneStatoNaso.getSelectedItem().toString() : "", (selezioneStatoOcchi.getSelectedItem()!= null) ? selezioneStatoOcchi.getSelectedItem().toString() : "");
+			}
+		});
 		bottoneAggiungi.setForeground(new Color(0, 0, 0));
 		bottoneAggiungi.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		bottoneAggiungi.setBackground(new Color(255, 255, 255));

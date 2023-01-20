@@ -96,23 +96,4 @@ public class CartellaClinicaDatabase {
         
         return null;
     }
-	
-	//Funzione che produce in maniera randomica un identificativo con formato IXXXXXXXX, dove X è una cifra corrispondente ad un numero compreso tra 0 e 9
-	public String generatoreDiIdentificativiInterni() throws SQLException {
-		Random rnd = new Random();
-	    String identificativoInterno = "I";
-	    
-	    for(int i = 0; i < 8; i++) {
-	    	identificativoInterno += rnd.nextInt(10);
-	    }
-	    
-	    CartellaClinica cartellaClinica = getCartellaClinicaByIdentificativo(identificativoInterno);
-	    
-	    if(cartellaClinica == null) {
-	    	return identificativoInterno;
-	    } else {
-	    	identificativoInterno = generatoreDiIdentificativiInterni();
-	    	return identificativoInterno;
-	    }
-	}
 }
