@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -144,6 +143,7 @@ public final class PersonaleDatabase {
             
             if(rs.next()) {
                 Personale personale = new Personale(rs.getInt("ID_Personale"), rs.getInt("ID_Centro"), rs.getString("Matricola"), rs.getString("Email"), rs.getString("Nome"), rs.getString("Cognome"), rs.getString("Sesso"), rs.getDate("Data_di_nascita").toString(), rs.getObject("Tipologia").toString());
+                
                 return personale;
             }
         } catch(SQLException e) {
@@ -153,5 +153,4 @@ public final class PersonaleDatabase {
         
         return null;
     }
-
 }

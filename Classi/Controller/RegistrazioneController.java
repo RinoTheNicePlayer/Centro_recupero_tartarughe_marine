@@ -2,7 +2,6 @@ package Classi.Controller;
 
 import java.sql.SQLException;
 import java.util.Random;
-
 import Classi.TestoUtility;
 import Classi.Database.PersonaleDatabase;
 import Classi.Models.Personale;
@@ -76,6 +75,7 @@ public final class RegistrazioneController {
 	    	return matricola;
 	    } else {
 	    	matricola = generatoreDiMatricole();
+	    	
 	    	return matricola;
 	    }
 	}

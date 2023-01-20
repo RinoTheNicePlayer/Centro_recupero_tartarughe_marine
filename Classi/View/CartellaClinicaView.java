@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,11 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-
 import Classi.Controller.CartellaClinicaController;
-import Classi.Database.PersonaleDatabase;
 import Classi.Models.Personale;
-
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -282,12 +277,10 @@ public class CartellaClinicaView extends JFrame {
 		bottoneIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
-					DatiView finestraDati = new DatiView(personale, "cartellaclinica");
-					finestraDati.setLocationRelativeTo(null);
-					finestraDati.setVisible(true);
-					dispose();
-
+				DatiView finestraDati = new DatiView(personale, "cartellaclinica");
+				finestraDati.setLocationRelativeTo(null);
+				finestraDati.setVisible(true);
+				dispose();
 			}
 		});
 		bottoneIndietro.setForeground(new Color(0, 0, 0));
@@ -450,7 +443,7 @@ public class CartellaClinicaView extends JFrame {
 		bottoneAggiungi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					CartellaClinicaController.getInstance().effettuaCaricamentoCartellaClinica(personale, compilazioneTarghetta.getText(), compilazioneSpecie.getText(), compilazioneDataDiRitrovamento.getText(), compilazioneLuogoDiRitrovamento.getText(), compilazioneLarghezza.getText(), compilazioneLunghezza.getText(), compilazionePeso.getText(), (selezioneStatoPinne.getSelectedItem()!= null) ? selezioneStatoPinne.getSelectedItem().toString() : "", (selezioneStatoCoda.getSelectedItem()!= null) ? selezioneStatoCoda.getSelectedItem().toString() : "", (selezioneStatoCollo.getSelectedItem()!= null) ? selezioneStatoCollo.getSelectedItem().toString() : "", (selezioneStatoTesta.getSelectedItem()!= null) ? selezioneStatoTesta.getSelectedItem().toString() : "", (selezioneStatoBecco.getSelectedItem()!= null) ? selezioneStatoBecco.getSelectedItem().toString() : "", (selezioneStatoNaso.getSelectedItem()!= null) ? selezioneStatoNaso.getSelectedItem().toString() : "", (selezioneStatoOcchi.getSelectedItem()!= null) ? selezioneStatoOcchi.getSelectedItem().toString() : "");
+				CartellaClinicaController.getInstance().effettuaCaricamentoCartellaClinica(personale, compilazioneTarghetta.getText(), compilazioneSpecie.getText(), compilazioneDataDiRitrovamento.getText(), compilazioneLuogoDiRitrovamento.getText(), compilazioneLarghezza.getText(), compilazioneLunghezza.getText(), compilazionePeso.getText(), (selezioneStatoPinne.getSelectedItem()!= null) ? selezioneStatoPinne.getSelectedItem().toString() : "", (selezioneStatoCoda.getSelectedItem()!= null) ? selezioneStatoCoda.getSelectedItem().toString() : "", (selezioneStatoCollo.getSelectedItem()!= null) ? selezioneStatoCollo.getSelectedItem().toString() : "", (selezioneStatoTesta.getSelectedItem()!= null) ? selezioneStatoTesta.getSelectedItem().toString() : "", (selezioneStatoBecco.getSelectedItem()!= null) ? selezioneStatoBecco.getSelectedItem().toString() : "", (selezioneStatoNaso.getSelectedItem()!= null) ? selezioneStatoNaso.getSelectedItem().toString() : "", (selezioneStatoOcchi.getSelectedItem()!= null) ? selezioneStatoOcchi.getSelectedItem().toString() : "");
 			}
 		});
 		bottoneAggiungi.setForeground(new Color(0, 0, 0));

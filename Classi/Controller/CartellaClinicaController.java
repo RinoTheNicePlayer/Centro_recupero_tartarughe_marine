@@ -2,7 +2,6 @@ package Classi.Controller;
 
 import java.sql.SQLException;
 import java.util.Random;
-
 import Classi.TestoUtility;
 import Classi.Database.CartellaClinicaDatabase;
 import Classi.Database.TartarugaDatabase;
@@ -47,48 +46,40 @@ public final class CartellaClinicaController {
 		System.out.print(validaStatoNaso);
 		System.out.print(validaStatoOcchi);
 		
-		
 		//Effettuo vari controlli su gli altri campi di compilazione della finestra CartellaClinicaView.
 		if((validaDataRitrovamento == false) && (validaStatoPinne == false) && (validaStatoCoda == false) && (validaStatoCollo == false) && (validaStatoTesta == false) && (validaStatoBecco == false) && (validaStatoNaso == false) && (validaStatoOcchi == false)) {
 			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Ci sono campi non compilati");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
-			
-		}else if(validaDataRitrovamento == false) {
+		} else if(validaDataRitrovamento == false) {
 			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "La data deve rispettare il formato AAAA-MM-GG");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
-			
 		} else if((validaStatoPinne == false) || (validaStatoCoda == false) || (validaStatoCollo == false) || (validaStatoTesta == false) || (validaStatoBecco == false) || (validaStatoNaso == false) || (validaStatoOcchi == false)) {
 			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Uno o più campi di 'Condizione tartaruga' sono vuoti");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
-			
 		} else {
 			try {
 				String identificativoInterno = generatoreDiIdentificativiInterni();
 				Tartaruga tartaruga = TartarugaDatabase.getInstance().getTartarugaByTarghetta(targhetta);
 				CartellaClinica cartellaClinica = new CartellaClinica(personale.getIdPersonale(), tartaruga.getIdTartaruga(), identificativoInterno, specie, dataRitrovamento, luogoRitrovamento, Integer.parseInt(larghezza), Integer.parseInt(lunghezza), Integer.parseInt(peso), statoPinne, statoCoda, statoCollo, statoTesta, statoBecco, statoNaso, statoOcchi);
 				CartellaClinicaDatabase.getInstance().caricaCartellaClinica(cartellaClinica);
-				
 			} catch(NumberFormatException e) {
 				ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "I campi 'Larghezza', 'Lunghezza' e 'Peso' devono contenere valori numerici.");
 				finestraErrore.setLocationRelativeTo(null);
 				finestraErrore.setVisible(true);
 			    e.printStackTrace();
-			    
 			} catch (SQLException e) {
 				ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Non esiste alcuna tartaruga associata a quella targhetta.");
 				finestraErrore.setLocationRelativeTo(null);
 				finestraErrore.setVisible(true);
 				e.printStackTrace();
-				
 			} catch (NullPointerException e) {
 				ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Non esiste alcuna tartaruga associata a quella targhetta.");
 				finestraErrore.setLocationRelativeTo(null);
 				finestraErrore.setVisible(true);
 				e.printStackTrace();
-				
 			}
 		}
 	}
@@ -105,12 +96,12 @@ public final class CartellaClinicaController {
 	    CartellaClinica cartellaClinica = CartellaClinicaDatabase.getInstance().getCartellaClinicaByIdentificativo(identificativoInterno);
 	    
 	    if(cartellaClinica == null) {
-	    	return identificativoInterno;
 	    	
+	    	return identificativoInterno;
 	    } else {
 	    	identificativoInterno = generatoreDiIdentificativiInterni();
-	    	return identificativoInterno;
 	    	
+	    	return identificativoInterno;
 	    }
 	}
 }

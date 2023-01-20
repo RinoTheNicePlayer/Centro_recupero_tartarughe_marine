@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -87,6 +86,7 @@ public class CartellaClinicaDatabase {
             
             if(rs.next()) {
                 CartellaClinica cartellaClinica = new CartellaClinica(rs.getInt("ID_cartella_clinica"), rs.getInt("ID_personale"), rs.getInt("ID_tartaruga"), rs.getString("identificativo_interno"), rs.getDate("data_del_ritrovamento").toString(), rs.getString("luogo_del_ritrovamento"), rs.getString("specie"), rs.getInt("larghezza"), rs.getInt("lunghezza"), rs.getInt("peso"),  rs.getObject("naso").toString(), rs.getObject("becco").toString(), rs.getObject("testa").toString(), rs.getObject("collo").toString(), rs.getObject("occhi").toString(), rs.getObject("coda").toString(), rs.getObject("pinne").toString());
+                
                 return cartellaClinica;
             }
         } catch(SQLException e) {

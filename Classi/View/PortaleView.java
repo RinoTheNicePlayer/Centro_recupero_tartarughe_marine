@@ -171,7 +171,7 @@ public class PortaleView extends JFrame {
 		testoDati.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		testoDati.setForeground(new Color(0, 0, 0));
 		testoDati.setBackground(new Color(255, 255, 255));
-		testoDati.setBounds(40, 230, 200, 40);
+		testoDati.setBounds(280, 230, 200, 40);
 		pannelloCentrale.add(testoDati);
 		
 		JLabel testoTartaruga = new JLabel("Tartaruga");
@@ -179,7 +179,7 @@ public class PortaleView extends JFrame {
 		testoTartaruga.setForeground(new Color(0, 0, 0));
 		testoTartaruga.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		testoTartaruga.setBackground(new Color(255, 255, 255));
-		testoTartaruga.setBounds(280, 230, 200, 40);
+		testoTartaruga.setBounds(500, 230, 200, 40);
 		pannelloCentrale.add(testoTartaruga);
 		
 		JLabel iconaDati = new JLabel("");
@@ -201,7 +201,7 @@ public class PortaleView extends JFrame {
 		iconaDati.setForeground(new Color(255, 255, 255));
 		iconaDati.setBackground(new Color(255, 255, 255));
 		iconaDati.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaDati.setBounds(40, 270, 200, 200);
+		iconaDati.setBounds(280, 270, 200, 200);
 		pannelloCentrale.add(iconaDati);
 		
 		JLabel iconaTartaruga = new JLabel("");
@@ -212,7 +212,6 @@ public class PortaleView extends JFrame {
 					finestraDati.setLocationRelativeTo(null);
 					finestraDati.setVisible(true);
 					dispose();
-				
 			}
 		});
 		iconaTartaruga.setIcon(new ImageIcon(PortaleView.class.getResource("/Immagini/Tartaruga.png")));
@@ -220,7 +219,7 @@ public class PortaleView extends JFrame {
 		iconaTartaruga.setForeground(new Color(255, 255, 255));
 		iconaTartaruga.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaTartaruga.setBackground(new Color(255, 255, 255));
-		iconaTartaruga.setBounds(280, 270, 200, 200);
+		iconaTartaruga.setBounds(500, 270, 200, 200);
 		pannelloCentrale.add(iconaTartaruga);
 	}
 }

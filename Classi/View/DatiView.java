@@ -4,27 +4,31 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
+import Classi.Connessione;
 import Classi.Database.PersonaleDatabase;
 import Classi.Models.Personale;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
-import javax.swing.UIManager;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class DatiView extends JFrame {
 	private JPanel pannello;
+	private JTextField barraDelleRicerche;
 	
 	//Creazione della finestra per la visualizzazione dei dati del personale
 
@@ -272,7 +276,6 @@ public class DatiView extends JFrame {
 	 * @wbp.parser.constructor
 	 */
 	public DatiView(Personale personale, String opzioneSelezionata) {
-
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
@@ -355,11 +358,15 @@ public class DatiView extends JFrame {
 		iconaChiudi.setBounds(940, 0, 50, 50);
 		barraTitolo.add(iconaChiudi);
 		
+		//Pannello centrale
+		JPanel pannelloCentrale = new JPanel();
+		pannelloCentrale.setForeground(new Color(255, 255, 255));
+		pannelloCentrale.setBackground(new Color(255, 255, 255));
+		pannelloCentrale.setBounds(0, 0, 1000, 660);
+		pannello.add(pannelloCentrale);
+		pannelloCentrale.setLayout(null);
+		
 		JButton bottoneIndietro = new JButton("Indietro");
-		bottoneIndietro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		bottoneIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -371,21 +378,39 @@ public class DatiView extends JFrame {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-				}
+			}
 		});
 		bottoneIndietro.setForeground(new Color(0, 0, 0));
 		bottoneIndietro.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		bottoneIndietro.setBackground(new Color(255, 255, 255));
-		bottoneIndietro.setBounds(46, 74, 100, 40);
-		pannello.add(bottoneIndietro);
+		bottoneIndietro.setBounds(40, 80, 100, 40);
+		pannelloCentrale.add(bottoneIndietro);
+		
+		JLabel iconaRicerca = new JLabel("");
+        iconaRicerca.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Ricerca.png")));
+        iconaRicerca.setToolTipText("Cerca");
+        iconaRicerca.setHorizontalAlignment(SwingConstants.CENTER);
+        iconaRicerca.setForeground(new Color(255, 255, 255));
+        iconaRicerca.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+        iconaRicerca.setBackground(new Color(255, 255, 255));
+        iconaRicerca.setBounds(300, 80, 30, 30);
+        pannelloCentrale.add(iconaRicerca);
+        
+        barraDelleRicerche = new JTextField();
+        barraDelleRicerche.setToolTipText("La barra delle ricerche ti permette di cercare solo l'elemento che digiti, fornendo tutti i dati relativi a quest'ultimo (visualizzabili nella tabella)");
+        barraDelleRicerche.setForeground(new Color(0, 0, 0));
+        barraDelleRicerche.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+        barraDelleRicerche.setColumns(10);
+        barraDelleRicerche.setBackground(new Color(255, 255, 255));
+        barraDelleRicerche.setBounds(350, 80, 300, 30);
+        pannelloCentrale.add(barraDelleRicerche);
 		
 		/* 
 	 	Se è stata selezionata la modalità di visualizzazione dati riguardanti cartella clinica e l'utente è un medico veterinario, 
 	 	allora crea un bottone che permette l'aggiunta di cartelle cliniche.
 		*/
-		
-		if((opzioneSelezionata.equals("cartellaclinica")) && (personale.getTipologia().equals("Medico veterinario"))) {
-			JButton bottoneAggiungiCartellaClinica = new JButton("Aggiungi Cartella Clinica");
+		JButton bottoneAggiungiCartellaClinica = new JButton("Aggiungi Cartella Clinica");
+		if(personale.getTipologia().equals("Medico veterinario")) {
 			bottoneAggiungiCartellaClinica.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -395,25 +420,45 @@ public class DatiView extends JFrame {
 					dispose();
 				}
 			});
-			bottoneAggiungiCartellaClinica.setForeground(Color.BLACK);
-			bottoneAggiungiCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-			bottoneAggiungiCartellaClinica.setBackground(Color.WHITE);
-			bottoneAggiungiCartellaClinica.setBounds(741, 74, 205, 40);
-			pannello.add(bottoneAggiungiCartellaClinica);
-			
+			bottoneAggiungiCartellaClinica.setForeground(new Color(0, 0, 0));
+	        bottoneAggiungiCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+	        bottoneAggiungiCartellaClinica.setBackground(new Color(255, 255, 255));
+	        bottoneAggiungiCartellaClinica.setBounds(760, 80, 200, 40);
 		}
+		pannelloCentrale.add(bottoneAggiungiCartellaClinica);
 		
-		/*
-		Pannello dati. Questo pannello è scrollabile con una barra o con la rotellina del mouse e contiene tutte le informazioni
-		riguardanti alle tartarughe/vasche/cartelle cliniche.
-		*/
-		JPanel pannelloDati = new JPanel();
-		pannelloDati.setBorder(UIManager.getBorder("Tree.editorBorder"));
-		pannelloDati.setBounds(46, 132, 900, 338);
-		pannello.add(pannelloDati);
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		String query = "SELECT tartaruga.targhetta, tartaruga.nome, tartaruga.sesso, tartaruga.età, alloggiare.data_inizio, vasca.codice_vasca FROM tartaruga, alloggiare, vasca WHERE tartaruga.id_tartaruga = alloggiare.id_tartaruga AND alloggiare.id_vasca = vasca.id_vasca";
+		
+		try {
+			ps = Connessione.getConnection().prepareStatement(query);
 			
-		JScrollPane pannelloScroll = new JScrollPane();
-		pannelloDati.add(pannelloScroll);
+			rs = ps.executeQuery();
 			
+			DefaultTableModel modello = new DefaultTableModel();
+	        ResultSetMetaData metaData = rs.getMetaData();
+	        int colonna = metaData.getColumnCount();
+	        for(int i = 1; i <= colonna; i++) {
+	            modello.addColumn(metaData.getColumnName(i));
+	        }
+	        while(rs.next()) {
+	            Object[] riga = new Object[colonna];
+	            for(int i = 1; i <= colonna; i++) {
+	                riga[i - 1] = rs.getObject(i);
+	            }
+	            modello.addRow(riga);
+	        }
+	        
+	        JTable tabella = new JTable(modello);
+	        
+	        JScrollPane pannelloDiScorrimento = new JScrollPane(tabella);
+	        pannelloDiScorrimento.setBounds(40, 150, 920, 320);
+	        pannelloCentrale.add(pannelloDiScorrimento);
+	        pannelloCentrale.add(pannelloDiScorrimento);
+		} catch(SQLException e) {
+			e.printStackTrace();
 		}
+	}
 }
