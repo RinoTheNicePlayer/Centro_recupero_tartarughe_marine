@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import Classi.Connessione;
+import Classi.Controller.DatiController;
 import Classi.Database.PersonaleDatabase;
 import Classi.Models.Personale;
 import javax.swing.JButton;
@@ -275,7 +277,7 @@ public class DatiView extends JFrame {
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public DatiView(Personale personale, String opzioneSelezionata) {
+	public DatiView(Personale personale, String tipoContenuto) {
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
@@ -393,7 +395,7 @@ public class DatiView extends JFrame {
         iconaRicerca.setForeground(new Color(255, 255, 255));
         iconaRicerca.setFont(new Font("Segoe UI", Font.PLAIN, 10));
         iconaRicerca.setBackground(new Color(255, 255, 255));
-        iconaRicerca.setBounds(300, 80, 30, 30);
+        iconaRicerca.setBounds(644, 80, 37, 40);
         pannelloCentrale.add(iconaRicerca);
         
         barraDelleRicerche = new JTextField();
@@ -402,15 +404,17 @@ public class DatiView extends JFrame {
         barraDelleRicerche.setFont(new Font("Segoe UI", Font.PLAIN, 15));
         barraDelleRicerche.setColumns(10);
         barraDelleRicerche.setBackground(new Color(255, 255, 255));
-        barraDelleRicerche.setBounds(350, 80, 300, 30);
+        barraDelleRicerche.setBounds(334, 81, 300, 40);
         pannelloCentrale.add(barraDelleRicerche);
 		
 		/* 
-	 	Se è stata selezionata la modalità di visualizzazione dati riguardanti cartella clinica e l'utente è un medico veterinario, 
-	 	allora crea un bottone che permette l'aggiunta di cartelle cliniche.
+	 	Se i contenuti della tabella riguardano cartelle cliniche e l'utente è un medico veterinario, 
+	 	allora crea un bottone che permette l'aggiunta di una cartella clinica.
 		*/
-		JButton bottoneAggiungiCartellaClinica = new JButton("Aggiungi Cartella Clinica");
-		if(personale.getTipologia().equals("Medico veterinario")) {
+		if((personale.getTipologia().equals("Medico veterinario")) && (tipoContenuto == "cartellecliniche")) {
+			
+			JButton bottoneAggiungiCartellaClinica = new JButton("Aggiungi Cartella Clinica");
+			
 			bottoneAggiungiCartellaClinica.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -424,41 +428,41 @@ public class DatiView extends JFrame {
 	        bottoneAggiungiCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 	        bottoneAggiungiCartellaClinica.setBackground(new Color(255, 255, 255));
 	        bottoneAggiungiCartellaClinica.setBounds(760, 80, 200, 40);
+	        
+			pannelloCentrale.add(bottoneAggiungiCartellaClinica);
+			
+		/*
+		  Se i contenuti della tabella riguardano tartarughe, 
+		  allora crea un bottone che permette l'aggiunta di una nuova tartaruga nel Database.
+		*/
+		} else if (tipoContenuto == "tartarughe") {
+			
+			JButton bottoneAggiungiTartaruga = new JButton("Aggiungi Tartaruga");
+			
+			bottoneAggiungiTartaruga.setForeground(new Color(0, 0, 0));
+			bottoneAggiungiTartaruga.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+			bottoneAggiungiTartaruga.setBackground(new Color(255, 255, 255));
+			bottoneAggiungiTartaruga.setBounds(760, 80, 200, 40);
+	        
+			pannelloCentrale.add(bottoneAggiungiTartaruga);
+			
 		}
-		pannelloCentrale.add(bottoneAggiungiCartellaClinica);
 		
-		PreparedStatement ps;
-		ResultSet rs;
-		
-		String query = "SELECT tartaruga.targhetta, tartaruga.nome, tartaruga.sesso, tartaruga.età, alloggiare.data_inizio, vasca.codice_vasca FROM tartaruga, alloggiare, vasca WHERE tartaruga.id_tartaruga = alloggiare.id_tartaruga AND alloggiare.id_vasca = vasca.id_vasca";
-		
+        JTable tabella = null;
+        
 		try {
-			ps = Connessione.getConnection().prepareStatement(query);
 			
-			rs = ps.executeQuery();
+			tabella = new JTable(DatiController.getInstance().creaTabella(personale, tipoContenuto));
+
 			
-			DefaultTableModel modello = new DefaultTableModel();
-	        ResultSetMetaData metaData = rs.getMetaData();
-	        int colonna = metaData.getColumnCount();
-	        for(int i = 1; i <= colonna; i++) {
-	            modello.addColumn(metaData.getColumnName(i));
-	        }
-	        while(rs.next()) {
-	            Object[] riga = new Object[colonna];
-	            for(int i = 1; i <= colonna; i++) {
-	                riga[i - 1] = rs.getObject(i);
-	            }
-	            modello.addRow(riga);
-	        }
-	        
-	        JTable tabella = new JTable(modello);
-	        
-	        JScrollPane pannelloDiScorrimento = new JScrollPane(tabella);
-	        pannelloDiScorrimento.setBounds(40, 150, 920, 320);
-	        pannelloCentrale.add(pannelloDiScorrimento);
-	        pannelloCentrale.add(pannelloDiScorrimento);
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
+
+        JScrollPane pannelloDiScorrimento = new JScrollPane(tabella);
+        pannelloDiScorrimento.setBounds(40, 150, 920, 320);
+        pannelloCentrale.add(pannelloDiScorrimento);
+        pannelloCentrale.add(pannelloDiScorrimento);
+        
 	}
 }
