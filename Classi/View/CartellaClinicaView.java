@@ -277,7 +277,7 @@ public class CartellaClinicaView extends JFrame {
 		bottoneIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				DatiView finestraDati = new DatiView(personale, "cartellaclinica");
+				DatiView finestraDati = new DatiView(personale, "cartellaclinica", "");
 				finestraDati.setLocationRelativeTo(null);
 				finestraDati.setVisible(true);
 				dispose();

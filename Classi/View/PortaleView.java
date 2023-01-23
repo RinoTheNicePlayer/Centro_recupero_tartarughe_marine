@@ -208,7 +208,7 @@ public class PortaleView extends JFrame {
 		iconaTartaruga.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					DatiView finestraDati = new DatiView(personale, "tartarughe");
+					DatiView finestraDati = new DatiView(personale, "tartarughe", "");
 					finestraDati.setLocationRelativeTo(null);
 					finestraDati.setVisible(true);
 					dispose();
