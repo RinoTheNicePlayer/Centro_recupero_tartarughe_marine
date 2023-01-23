@@ -453,6 +453,12 @@ public class DatiView extends JFrame {
 		try {
 			
 			tabella = new JTable(DatiController.getInstance().creaTabella(personale, tipoContenuto));
+			//Per ogni colonna della tabella, i valori non devono essere editabili. L'editor di ogni colonna è quindi settato a null.
+			for (int i = 0; i < tabella.getColumnCount(); i++)
+			{
+			    Class<?> classeColonna = tabella.getColumnClass(i);
+			    tabella.setDefaultEditor(classeColonna, null);
+			}
 
 			
 		} catch (SQLException e1) {

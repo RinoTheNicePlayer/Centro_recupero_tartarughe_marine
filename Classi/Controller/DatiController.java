@@ -44,9 +44,6 @@ public class DatiController {
 			  */
 			 int numColonne = modello.getColumnCount();
 			 
-			 modello.addColumn("Cartelle cliniche");
-			 modello.addColumn("");
-			 
 			 int indiceRiga = 1;
 			 Object[] riga = null;
 			 
