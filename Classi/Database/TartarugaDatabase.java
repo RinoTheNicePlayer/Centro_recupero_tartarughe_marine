@@ -51,8 +51,8 @@ public class TartarugaDatabase {
     }
 	
 	/*
-	  Funzione che permette di ricavare tutte le informazioni riguardanti una tartaruga + il codice di vasca a cui essa appartiene e le inserisce
-	  in un array.
+	  Funzione che permette di ricavare tutte le informazioni riguardanti una tartaruga + il codice di vasca + la data di alloggio e le inserisce
+	  in un tipo Alloggio.
 	*/
 	public Object[] getInfoTartarugaByIndiceRiga(int indiceRiga, int numColonne) throws SQLException {
 		
@@ -83,7 +83,7 @@ public class TartarugaDatabase {
 	        riga = new Object[numColonne];
 	            
 	        /*
-	          Una volta posizionato il cursore sull''indiceRiga desiderato, comincio a riempire l'array riga con i valori delle colonne della riga
+	          Una volta posizionato il cursore sull'indiceRiga desiderato, comincio a riempire l'array riga con i valori delle colonne della riga
 	          puntata dal cursore.
 	          In questo caso, l'attributo i rappresenta il cursore che punta le colonne della riga.
 	        */

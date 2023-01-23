@@ -412,7 +412,10 @@ public class DatiView extends JFrame {
 		if((personale.getTipologia().equals("Medico veterinario")) && (tipoContenuto == "cartellecliniche")) {
 			
 			JButton bottoneAggiungiCartellaClinica = new JButton("Aggiungi Cartella Clinica");
-			
+			bottoneAggiungiCartellaClinica.setForeground(new Color(0, 0, 0));
+	        bottoneAggiungiCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+	        bottoneAggiungiCartellaClinica.setBackground(new Color(255, 255, 255));
+	        bottoneAggiungiCartellaClinica.setBounds(760, 80, 200, 40);
 			bottoneAggiungiCartellaClinica.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -422,10 +425,6 @@ public class DatiView extends JFrame {
 					dispose();
 				}
 			});
-			bottoneAggiungiCartellaClinica.setForeground(new Color(0, 0, 0));
-	        bottoneAggiungiCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-	        bottoneAggiungiCartellaClinica.setBackground(new Color(255, 255, 255));
-	        bottoneAggiungiCartellaClinica.setBounds(760, 80, 200, 40);
 	        
 			pannelloCentrale.add(bottoneAggiungiCartellaClinica);
 			
@@ -448,7 +447,7 @@ public class DatiView extends JFrame {
         
 		try {
 			
-			tabella = new JTable(DatiController.getInstance().creaTabella(personale, tipoContenuto));
+			tabella = new JTable(DatiController.getInstance().creaTabellaAlloggi());
 			//Per ogni colonna della tabella, i valori non devono essere editabili. L'editor di ogni colonna è quindi settato a null.
 			for (int i = 0; i < tabella.getColumnCount(); i++)
 			{

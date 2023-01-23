@@ -1,12 +1,16 @@
 package Classi.Controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
 import Classi.Connessione;
+import Classi.Database.AlloggioDatabase;
 import Classi.Database.TartarugaDatabase;
+import Classi.Models.Alloggio;
 import Classi.Models.Personale;
+import Classi.View.AlloggiTableModel;
 
 public class DatiController {
 
@@ -22,47 +26,29 @@ public class DatiController {
 		return instance;
 	}
 	
-	//La seguente funzione crea una tabella e con l'aiuto della classe interfacciata con il Database la riempie con le informazioni necessarie.
-	public static DefaultTableModel creaTabella(Personale personale, String tipoContenuto) throws SQLException{
+	/*
+	  La seguente funzione crea un ArrayList di alloggi e con l'aiuto della classe interfacciata con il Database la riempie con ogni alloggio presente
+	  al suo interno. Essa restituisce poi una Table che contiene alloggi.
+	*/
+	public static AlloggiTableModel creaTabellaAlloggi() throws SQLException{
 
-		DefaultTableModel modello = new DefaultTableModel();
-
-		//Se la tabella deve contenere dati riguardanti tartaruga, allora svolge il codice di seguito.
-		if(tipoContenuto == "tartarughe") {
-
-			 modello.addColumn("Targhetta");
-			 modello.addColumn("Nome");
-			 modello.addColumn("Sesso");
-			 modello.addColumn("Età");
-			 modello.addColumn("Data d'alloggio");
-			 modello.addColumn("Codice vasca");
+		int indiceRiga = 1;
+		ArrayList<Alloggio> alloggi = new ArrayList<Alloggio>();
+		Alloggio rigaAlloggio = null;
 			 
-			 /*
-			   Il motivo per cui raccolgo il numero di colonne prima della creazione delle ultime due colonne, è perchè le prossime due colonne
-			   non contengono valori ricavati dal Database, ma contengono dei JButton, che saranno inseriti prossimamente. Lo scopo dell'attributo
-			   numColonne è tener conto di quante sono le colonne che contengono un valore preso dal Database.
-			  */
-			 int numColonne = modello.getColumnCount();
-			 
-			 int indiceRiga = 1;
-			 Object[] riga = null;
-			 
-			 //Affinchè mi venga restituita una riga che contiene valori, allora aggiungi una riga contenente quei valori alla mia tabella.
-			 do {
-				 riga = TartarugaDatabase.getInstance().getInfoTartarugaByIndiceRiga(indiceRiga, numColonne);
+		//Finchè mi viene restituito un Alloggio valido, allora aggiungi quell'istanza di Alloggio alla lista di alloggi.
+		do { 
+			rigaAlloggio = AlloggioDatabase.getInstance().getAlloggioByIndiceRiga(indiceRiga);
 				 
-				 if(riga != null) {
-					 modello.addRow(riga);
-					 indiceRiga++;
-				 }
-			 }while(riga != null);
-			
-		//Altrimenti se deve contenere dati riguardanti cartelle cliniche, allora svolge quest'altro codice.
-		} else if (tipoContenuto == "cartellecliniche") {
-			//modello = return TartarugaDatabase.getInstance().getAllTartarugheInfo(modello);	
-		}
+			if(rigaAlloggio != null) {
+				alloggi.add(rigaAlloggio);
+				indiceRiga++;
+			}
+		}while(rigaAlloggio != null);
 		
-		return modello;
+		//Trasformo la mia Lista di alloggi in un array di alloggi siccome AlloggiTableModel è capace di trattare solo array di alloggi, e la restituisco.
+		Alloggio[] alloggiArray = alloggi.toArray(new Alloggio[alloggi.size()]);
+		return new AlloggiTableModel(alloggiArray);
 	}
 	
 }
