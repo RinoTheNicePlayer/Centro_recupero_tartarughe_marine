@@ -1,3 +1,14 @@
+/*
+ *
+ * Il codice rappresenta una classe Java chiamata "RegistrazioneController" che elabora la registrazione di un utente all'interno del sistema.
+ * La classe utilizza il pattern singleton per garantire che ci sia solo un'unica istanza della classe in tutto il programma.
+ * La classe dispone di un metodo "effettuaRegistrazione" che accetta i parametri essenziali per la registrazione di un utente,
+ * verifica la validità di questi parametri attraverso i metodi della classe "TestoUtility" e, se tutti i parametri sono validi,
+ * fa uso della classe "PersonaleDatabase" per eseguire la query per l'inserimento dell'utente nel database. In caso di parametri non validi,
+ * viene visualizzata una finestra di errore indicando l'errore specifico
+ *
+ */
+
 package Classi.Controller;
 
 import java.sql.SQLException;
@@ -8,10 +19,14 @@ import Classi.Models.Personale;
 import Classi.View.ErroreView;
 
 public final class RegistrazioneController {
-	//Inizializzazione dell'istanza
+	/*
+	 *
+	 * Funzione che restituisce un'istanza della classe RegistrazioneController, la genera se non esiste già.
+	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una
+	 *
+	 */
 	private static RegistrazioneController instance = null;
 	
-	//Creazione della funzione getInstance(), la quale restituisce l'unica istanza esistente della classe. Se non esiste la genera.
 	public static RegistrazioneController getInstance() {
 		if(instance == null) {
 			instance = new RegistrazioneController();
@@ -20,8 +35,11 @@ public final class RegistrazioneController {
 		return instance;
 	}
 	
-	/*Funzione che permette di effettuare la registrazione. Tale funzione verifica se i campi siano validi.
-	 * Se quest'ultimi sono validi, chiama la classe PersonaleDatabase per eseguire la Query
+	/*
+	 *
+	 * Funzione che permette di effettuare la registrazione di un utente all'applicazione. Tale funzione verifica se le credenziali dell'utente sono valide.
+	 * Se quest'ultime sono valide, viene interpellata la classe PersonaleDatabase per eseguire la query
+	 *
 	 */
 	public void effettuaRegistrazione(String nome, String cognome, String email, char[] password, char[] confermaPassword, String dataDiNascita, String sesso, int idCentro, String professione) {
 		boolean validaNome = TestoUtility.verificaNome(nome);

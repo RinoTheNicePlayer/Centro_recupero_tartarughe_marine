@@ -1,3 +1,11 @@
+/*
+ *
+ * Il codice rappresenta una classe Java chiamata "TestoUtility" che contiene diversi metodi per la verifica di varie stringhe e caratteri in base a determinati criteri.
+ * La classe, in particolare, importa la libreria "java.util.regex" per l'utilizzo di espressioni regolari
+ * necessarie per la creazione di modelli che l'utente deve seguire per registrare le proprie credenziali correttamente
+ *
+ */
+
 package Classi;
 
 import java.util.regex.Matcher;
@@ -9,7 +17,7 @@ public final class TestoUtility {
 		return nome.matches("^([A-Z][a-z]*)([ ]?[A-Z][a-z]*)*$");
 	}
 	
-	//Funzione che controlla se una Email aderisce agli standard
+	//Funzione che controlla se una Email aderisce al modello standard delle Email
 	public static boolean verificaEmail(String email) {
 		boolean controlloRelazione = false;
 		boolean controlloEmail = false;

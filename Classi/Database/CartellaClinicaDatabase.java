@@ -1,3 +1,13 @@
+/*
+ *
+ * Il codice rappresenta una classe Java chiamata "CartellaClinicaDatabase" che ha lo scopo di salvare i dati della cartella clinica di una tartaruga marina nel database.
+ * La classe utilizza il pattern singleton per garantire che ci sia solo un'unica istanza della classe in tutto il programma.
+ * Il metodo "caricaCartellaClinica" accetta un oggetto "CartellaClinica" come parametro e utilizza una query SQL per inserire i dati della cartella clinica nel database.
+ * La classe sfrutta la libreria JDBC per la connessione al database e utilizza le classi "PreparedStatement" e "ResultSet" per eseguire la query e ottenere il risultato.
+ * In caso di esito positivo dell'operazione di inserimento viene visualizzato un messaggio di conferma, altrimenti viene visualizzata una finestra di errore
+ *
+ */
+
 package Classi.Database;
 
 import java.sql.Date;
@@ -14,10 +24,14 @@ import Classi.View.ErroreView;
 import Classi.View.RegistrazioneView;
 
 public class CartellaClinicaDatabase {
-	//Inizializzazione dell'istanza
+	/*
+	 *
+	 * Funzione che restituisce un'istanza della classe CartellaClinicaDatabase, la genera se non esiste già.
+	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una
+	 *
+	 */
 	private static CartellaClinicaDatabase instance = null;
 	
-	//Creazione della funzione getInstance(), la quale restituisce l'unica istanza esistente della classe. Se non esiste la genera.
 	public static CartellaClinicaDatabase getInstance() {
 		if(instance == null) {
 			instance = new CartellaClinicaDatabase();
@@ -26,7 +40,7 @@ public class CartellaClinicaDatabase {
 		return instance;
 	}
 	
-	//Funzione che permette di eseguire la memorizzazione della cartella clinica nel Database
+	//Funzione che permette di eseguire la memorizzazione della cartella clinica nel database
 	public void caricaCartellaClinica(CartellaClinica cartellaClinica) {
 		PreparedStatement ps;
 		int rs;

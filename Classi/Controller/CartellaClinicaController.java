@@ -1,3 +1,16 @@
+/*
+ *
+ * Il codice rappresenta una classe Java chiamata "CartellaClinicaController" che gestisce la creazione, la visualizzazione e
+ * la modifica delle cartelle cliniche per le tartarughe marine.
+ * Utilizza diverse classi di supporto, tra cui "TestoUtility", "CartellaClinicaDatabase" e "TartarugaDatabase",
+ * per effettuare controlli di validità sui dati inseriti e per eseguire query sul database.
+ * La classe utilizza anche il pattern singleton per garantire che ci sia solo un'unica istanza della classe in tutto il programma.
+ * Il metodo "effettuaCaricamentoCartellaClinica" verifica la validità dei campi di input e,
+ * se valida, chiama la classe "CartellaClinicaDatabase" per eseguire la query di caricamento della cartella clinica. In caso di input non validi,
+ * viene visualizzata una finestra di errore
+ *
+ */
+
 package Classi.Controller;
 
 import java.sql.SQLException;
@@ -11,10 +24,14 @@ import Classi.Models.Tartaruga;
 import Classi.View.ErroreView;
 
 public final class CartellaClinicaController {
-	//Inizializzazione dell'istanza
+	/*
+	 *
+	 * Funzione che restituisce un'istanza della classe CartellaClinicaController, la genera se non esiste già.
+	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una.
+	 *
+	 */
 	private static CartellaClinicaController instance = null;
 	
-	//Creazione della funzione getInstance(), la quale restituisce l'unica istanza esistente della classe. Se non esiste la genera.
 	public static CartellaClinicaController getInstance() {
 		if(instance == null) {
 			instance = new CartellaClinicaController();
@@ -23,12 +40,13 @@ public final class CartellaClinicaController {
 		return instance;
 	}
 	
-	/*Funzione che permette di effettuare il caricamento di una cartella clinica. Tale funzione verifica se i campi siano validi.
-	 * Se quest'ultimi sono validi, chiama la classe CartellaClinicaDatabase per eseguire la Query
+	/*
+	 *
+	 * Funzione che permette di effettuare il caricamento della cartella clinica di una tartaruga marina nel database. Tale funzione verifica se i dati della tartaruga sono validi.
+	 * Se quest'ultimi sono validi, viene interpellata la classe CartellaClinicaDatabase per eseguire la query
+	 *
 	 */
 	public void effettuaCaricamentoCartellaClinica(Personale personale, String targhetta, String specie, String dataRitrovamento, String luogoRitrovamento, String larghezza, String lunghezza, String peso, String statoPinne, String statoCoda, String statoCollo, String statoTesta, String statoBecco, String statoNaso, String statoOcchi) {
-		
-		//Controllo se la targhetta inserita esiste. Se questa non esiste, fai comparire una finestra di errore e termina la funzione.
 		boolean validaDataRitrovamento = TestoUtility.verificaData(dataRitrovamento);
 		boolean validaStatoPinne = TestoUtility.verificaSelezione(statoPinne);
 		boolean validaStatoCoda = TestoUtility.verificaSelezione(statoCoda);
@@ -46,7 +64,6 @@ public final class CartellaClinicaController {
 		System.out.print(validaStatoNaso);
 		System.out.print(validaStatoOcchi);
 		
-		//Effettuo vari controlli su gli altri campi di compilazione della finestra CartellaClinicaView.
 		if((validaDataRitrovamento == false) && (validaStatoPinne == false) && (validaStatoCoda == false) && (validaStatoCollo == false) && (validaStatoTesta == false) && (validaStatoBecco == false) && (validaStatoNaso == false) && (validaStatoOcchi == false)) {
 			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Ci sono campi non compilati");
 			finestraErrore.setLocationRelativeTo(null);

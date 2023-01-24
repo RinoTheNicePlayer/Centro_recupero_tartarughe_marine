@@ -1,3 +1,15 @@
+/*
+ *
+ * Il codice rappresenta una classe Java chiamata "PersonaleDatabase" che gestisce l'accesso e la registrazione degli utenti all'interno del database.
+ * La classe utilizza il pattern singleton per garantire che ci sia solo un'unica istanza della classe in tutto il programma.
+ * È composta da due metodi: "controlloAccesso" e "registraPersonale".
+ * Il metodo "controlloAccesso" riceve come input l'email e la password inserite dall'utente e verifica se esistono nel database.
+ * Se esistono, l'utente accede correttamente al portale, altrimenti viene visualizzata una finestra di errore.
+ * Il metodo "registraPersonale" riceve come input un oggetto "Personale" e lo memorizza nel database.
+ * Utilizza una query SQL per inserire i dati nella tabella "personale" del database. In caso di errori durante l'esecuzione della query, viene generato un messaggio di errore
+ *
+ */
+
 package Classi.Database;
 
 import java.sql.Date;
@@ -17,10 +29,14 @@ import Classi.View.PortaleView;
 import Classi.View.RegistrazioneView;
 
 public final class PersonaleDatabase {
-	//Inizializzazione dell'istanza
+	/*
+	 *
+	 * Funzione che restituisce un'istanza della classe PersonaleDatabase, la genera se non esiste già.
+	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una
+	 *
+	 */
 	private static PersonaleDatabase instance = null;
 	
-	//Creazione della funzione getInstance(), la quale restituisce l'unica istanza esistente della classe. Se non esiste la genera.
 	public static PersonaleDatabase getInstance() {
 		if(instance == null) {
 			instance = new PersonaleDatabase();
@@ -29,8 +45,11 @@ public final class PersonaleDatabase {
 		return instance;
 	}
 	
-	/*Funzione che verifica se l'email e la password inserite dall'utente sono presenti nel database.
-	 * Se lo sono, si apre una finestra grafica, in alternativa solleva un errore
+	/*
+	 *
+	 * Funzione che analizza se l'email e la password inserite dall'utente sono presenti nel database.
+	 * Se lo sono, l'utente accede correttamente al portale, in alternativa compare una finestra di errore
+	 *
 	 */
 	public boolean controlloAccesso(String compilazioneEmail, String compilazionePassword) {
 		PreparedStatement ps;
@@ -64,7 +83,7 @@ public final class PersonaleDatabase {
 		return false;
 	}
 	
-	//Funzione che permette di eseguire la memorizzazione di diverse credenziali dell'utente nel database
+	//Funzione che permette di eseguire la memorizzazione delle credenziali dell'utente nel database
 	public void registraPersonale(Personale personale) {
 		PreparedStatement ps;
 		int rs;

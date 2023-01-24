@@ -1,21 +1,33 @@
+/*
+ *
+ * Il codice rappresenta una classe Java chiamata "TartarugaDatabase" che fornisce funzionalità di accesso ai dati delle tartarughe presenti nel database.
+ * La classe utilizza il pattern singleton per garantire che ci sia solo un'unica istanza della classe in tutto il programma.
+ * È composta da due metodi: "getTartarugaByTarghetta" e "getInfoTartarugaByIndiceRiga".
+ * Il primo metodo permette di recuperare un'istanza della classe "Tartaruga" in base alla targhetta fornita come parametro,
+ * utilizzando una query SQL per recuperare i dati dal database.
+ * Il secondo restituisce un array di oggetti contenente informazioni su una tartaruga,
+ * tra cui la data in cui è stata alloggiata in una vasca e il codice della vasca stessa, utilizzando un'altra query SQL.
+ * In entrambi i casi, la classe utilizza la classe "Connessione" per ottenere una connessione al database e la classe "PreparedStatement" per eseguire le query
+ *
+ */
+
 package Classi.Database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-
-import javax.swing.table.DefaultTableModel;
-
 import Classi.Connessione;
 import Classi.Models.Tartaruga;
 
 public class TartarugaDatabase {
-	
-	//Inizializzazione dell'istanza
+	/*
+	 *
+	 * Funzione che restituisce un'istanza della classe TartarugaDatabase, la genera se non esiste già.
+	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una
+	 *
+	 */
 	private static TartarugaDatabase instance = null;
 	
-	//Creazione della funzione getInstance(), la quale restituisce l'unica istanza esistente della classe. Se non esiste la genera.
 	public static TartarugaDatabase getInstance() {
 		if(instance == null) {
 			instance = new TartarugaDatabase();
@@ -40,6 +52,7 @@ public class TartarugaDatabase {
             
             if(rs.next()) {
                 Tartaruga tartaruga = new Tartaruga(rs.getInt("ID_tartaruga"), rs.getString("targhetta"), rs.getString("nome"), rs.getString("sesso"), rs.getInt("età"));
+                
                 return tartaruga;
             }
         } catch(SQLException e) {
@@ -50,12 +63,8 @@ public class TartarugaDatabase {
         return null;
     }
 	
-	/*
-	  Funzione che permette di ricavare tutte le informazioni riguardanti una tartaruga + il codice di vasca + la data di alloggio e le inserisce
-	  in un tipo Alloggio.
-	*/
-	public Object[] getInfoTartarugaByIndiceRiga(int indiceRiga, int numColonne) throws SQLException {
-		
+	//Funzione che consente di ottenere tutte le informazioni di una tartaruga; anche la data di quando è stata alloggiata in una vasca e il codice della vasca
+	public Object[] getInfoTartarugaByIndiceRiga(int indiceRiga, int numeroColonne) throws SQLException {
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -68,34 +77,21 @@ public class TartarugaDatabase {
 			
 			rs = ps.executeQuery();
 			
-			/*
-			  Muovo il cursore del ResultSet verso la riga nella posizione specificata dall'indiceRiga.
-			  In questo caso il cursore del ResultSet è rappresentato dall'attributo i.
-			  Bisogna tener conto che la posizione default del cursore è sempre precedente alla prima riga, per questo i è inizializzato a 0.
-			*/
-			
-			for(int i = 0; i<indiceRiga; i++) {
+			for(int i = 0; i < indiceRiga; i++) {
 				if(rs.next() == false) {
 					return null;
 				}
 			}
 	        
-	        riga = new Object[numColonne];
-	            
-	        /*
-	          Una volta posizionato il cursore sull'indiceRiga desiderato, comincio a riempire l'array riga con i valori delle colonne della riga
-	          puntata dal cursore.
-	          In questo caso, l'attributo i rappresenta il cursore che punta le colonne della riga.
-	        */
-	        for(int i = 1; i <= numColonne; i++) {
+	        riga = new Object[numeroColonne];
+	        
+	        for(int i = 1; i <= numeroColonne; i++) {
 	            riga[i - 1] = rs.getObject(i);
 	        }
-
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
         return riga;
-		
 	}
 }
