@@ -7,7 +7,7 @@ import Classi.Models.Alloggio;
 public class AlloggiTableModel extends AbstractTableModel{
 	
 		 protected Alloggio[] alloggi;
-		 protected String[] nomiColonne = new String[] {"Targhetta", "Nome", "Sesso", "Età", "Data di alloggio", "Codice vasca" };
+		 protected String[] nomiColonne = new String[] {"Targhetta", "Nome", "Sesso", "Età", "Data di alloggio", "Codice vasca"};
 		 
 		 public AlloggiTableModel(Alloggio[] alloggi) {
 			 this.alloggi = alloggi;

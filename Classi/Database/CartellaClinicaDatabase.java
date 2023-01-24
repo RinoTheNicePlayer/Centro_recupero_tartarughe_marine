@@ -110,4 +110,45 @@ public class CartellaClinicaDatabase {
         
         return null;
     }
+	
+	//Funzione che ricava una cartella clinica tramite targhetta della tartaruga
+	public CartellaClinica getRigaCartellaClinicaByTarghetta(int indiceRiga, String targhetta) throws SQLException {
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		CartellaClinica cartellaClinica = null;
+		
+        String query = "SELECT Cartella_clinica.Identificativo_interno, Cartella_clinica.Data_del_ritrovamento, Cartella_clinica.Luogo_del_ritrovamento, Cartella_clinica.Specie, Cartella_clinica.Larghezza, Cartella_clinica.Lunghezza, Cartella_clinica.Peso, Cartella_clinica.Naso, Cartella_clinica.Becco, Cartella_clinica.Testa, Cartella_clinica.Collo, Cartella_clinica.Occhi, Cartella_clinica.Coda, Cartella_clinica.Pinne FROM Cartella_clinica, Tartaruga WHERE Cartella_clinica.id_tartaruga = Tartaruga.id_tartaruga AND Tartaruga.targhetta = ?";
+        
+        try {
+        	ps = Connessione.getConnection().prepareStatement(query);
+        	
+            ps.setString(1, targhetta);
+            
+            rs = ps.executeQuery();
+            
+			/*
+			  Muovo il cursore del ResultSet verso la riga nella posizione specificata dall'indiceRiga.
+			  In questo caso il cursore del ResultSet è rappresentato dall'attributo i.
+			  Bisogna tener conto che la posizione default del cursore è sempre precedente alla prima riga, per questo i è inizializzato a 0.
+			*/
+			
+			for(int i = 0; i<indiceRiga; i++) {
+				if(rs.next() == false) {
+					return null;
+				}
+			}
+			
+	        /*
+	          Una volta posizionato il cursore sull'indiceRiga desiderato, inserisco in CartellaClinica i valori della riga puntata.
+	        */
+            cartellaClinica = new CartellaClinica(0, 0, 0, rs.getString("identificativo_interno"), rs.getDate("data_del_ritrovamento").toString(), rs.getString("luogo_del_ritrovamento"), rs.getString("specie"), rs.getInt("larghezza"), rs.getInt("lunghezza"), rs.getInt("peso"),  rs.getObject("naso").toString(), rs.getObject("becco").toString(), rs.getObject("testa").toString(), rs.getObject("collo").toString(), rs.getObject("occhi").toString(), rs.getObject("coda").toString(), rs.getObject("pinne").toString());
+                
+        } catch(SQLException e) {
+        	e.printStackTrace();
+            throw e;
+        }
+        
+        return cartellaClinica;
+    }
 }

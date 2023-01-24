@@ -409,24 +409,41 @@ public class DatiView extends JFrame {
 	 	Se i contenuti della tabella riguardano cartelle cliniche e l'utente è un medico veterinario, 
 	 	allora crea un bottone che permette l'aggiunta di una cartella clinica.
 		*/
-		if((personale.getTipologia().equals("Medico veterinario")) && (tipoContenuto == "cartellecliniche")) {
-			
-			JButton bottoneAggiungiCartellaClinica = new JButton("Aggiungi Cartella Clinica");
-			bottoneAggiungiCartellaClinica.setForeground(new Color(0, 0, 0));
-	        bottoneAggiungiCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-	        bottoneAggiungiCartellaClinica.setBackground(new Color(255, 255, 255));
-	        bottoneAggiungiCartellaClinica.setBounds(760, 80, 200, 40);
-			bottoneAggiungiCartellaClinica.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					CartellaClinicaView finestraCartellaClinica = new CartellaClinicaView(personale);
-					finestraCartellaClinica.setLocationRelativeTo(null);
-					finestraCartellaClinica.setVisible(true);
-					dispose();
+		if(tipoContenuto == "cartellecliniche") {
+			if(personale.getTipologia().equals("Medico veterinario")) {
+				JButton bottoneAggiungiCartellaClinica = new JButton("Aggiungi Cartella Clinica");
+				bottoneAggiungiCartellaClinica.setForeground(new Color(0, 0, 0));
+		        bottoneAggiungiCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		        bottoneAggiungiCartellaClinica.setBackground(new Color(255, 255, 255));
+		        bottoneAggiungiCartellaClinica.setBounds(760, 80, 200, 40);
+				bottoneAggiungiCartellaClinica.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						CartellaClinicaView finestraCartellaClinica = new CartellaClinicaView(personale, targhettaTartaruga);
+						finestraCartellaClinica.setLocationRelativeTo(null);
+						finestraCartellaClinica.setVisible(true);
+						dispose();
+					}
+				});
+		        
+				pannelloCentrale.add(bottoneAggiungiCartellaClinica);
+			}
+				
+			/*
+			  Creo la tabella per le cartelle cliniche.
+			*/
+			try {
+				tabella = new JTable(DatiController.getInstance().creaTabellaCartelleCliniche(targhettaTartaruga));
+				//Per ogni colonna della tabella, i valori non devono essere editabili. L'editor di ogni colonna è quindi settato a null.
+				for (int i = 0; i < tabella.getColumnCount(); i++)
+				{
+				    Class<?> classeColonna = tabella.getColumnClass(i);
+				    tabella.setDefaultEditor(classeColonna, null);
 				}
-			});
-	        
-			pannelloCentrale.add(bottoneAggiungiCartellaClinica);
+				
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			
 		/*
 		  Se i contenuti della tabella riguardano tartarughe, 
@@ -443,20 +460,27 @@ public class DatiView extends JFrame {
 	        
 			pannelloCentrale.add(bottoneAggiungiTartaruga);
 			
-		}
-        
-		try {
-			
-			tabella = new JTable(DatiController.getInstance().creaTabellaAlloggi());
-			//Per ogni colonna della tabella, i valori non devono essere editabili. L'editor di ogni colonna è quindi settato a null.
-			for (int i = 0; i < tabella.getColumnCount(); i++)
-			{
-			    Class<?> classeColonna = tabella.getColumnClass(i);
-			    tabella.setDefaultEditor(classeColonna, null);
+			/*
+			  Creo la tabella per gli gli Alloggi.
+			*/
+			try {
+				
+				tabella = new JTable(DatiController.getInstance().creaTabellaAlloggi());
+				//Per ogni colonna della tabella, i valori non devono essere editabili. L'editor di ogni colonna è quindi settato a null.
+				for (int i = 0; i < tabella.getColumnCount(); i++)
+				{
+				    Class<?> classeColonna = tabella.getColumnClass(i);
+				    tabella.setDefaultEditor(classeColonna, null);
+				}
+				
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
 			
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+		}else {
+			ErroreView finestraErrore = new ErroreView("Impossibile generare la tabella!", "Non è stato possibile ricavare alcun dato.");
+			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setVisible(true);
 		}
 
         JScrollPane pannelloDiScorrimento = new JScrollPane(tabella);

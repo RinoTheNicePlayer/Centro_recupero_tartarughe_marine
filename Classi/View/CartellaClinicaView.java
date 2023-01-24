@@ -29,7 +29,7 @@ public class CartellaClinicaView extends JFrame {
 	private JTextField compilazionePeso;
 	
 	//Creazione della finestra
-	public CartellaClinicaView(Personale personale) {
+	public CartellaClinicaView(Personale personale, String targhettaTartaruga) {
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
 		setUndecorated(true);
@@ -145,8 +145,8 @@ public class CartellaClinicaView extends JFrame {
 		testoSpecie.setBounds(290, 130, 60, 30);
 		pannelloSinistro.add(testoSpecie);
 		
-		compilazioneTarghetta = new JTextField();
-		compilazioneTarghetta.setToolTipText("La Targhetta deve corrispondere al seguente formato: TXXXXXXXX,\r\ndove X è una cifra associata ad un numero compreso tra 0 e 9");
+		compilazioneTarghetta = new JTextField(targhettaTartaruga);
+		compilazioneTarghetta.setEditable(false);
 		compilazioneTarghetta.setForeground(new Color(0, 0, 0));
 		compilazioneTarghetta.setBackground(new Color(255, 255, 255));
 		compilazioneTarghetta.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -277,7 +277,7 @@ public class CartellaClinicaView extends JFrame {
 		bottoneIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				DatiView finestraDati = new DatiView(personale, "cartellaclinica", "");
+				DatiView finestraDati = new DatiView(personale, "cartellecliniche", targhettaTartaruga);
 				finestraDati.setLocationRelativeTo(null);
 				finestraDati.setVisible(true);
 				dispose();
