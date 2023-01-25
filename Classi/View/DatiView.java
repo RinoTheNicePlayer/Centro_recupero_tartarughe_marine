@@ -41,7 +41,6 @@ public class DatiView extends JFrame {
     private JLabel testoCartelleCliniche;
 	
 	//Creazione della finestra per la visualizzazione dei dati del personale
-
 	public DatiView(Personale personale) {
 		//Pannello principale
 		setBackground(new Color(255, 255, 255));
@@ -127,6 +126,7 @@ public class DatiView extends JFrame {
 		
 		//Pannello sinistro
 		JPanel pannelloSinistro = new JPanel();
+		pannelloSinistro.setBorder(UIManager.getBorder("Tree.editorBorder"));
 		pannelloSinistro.setBounds(0, 0, 500, 500);
 		pannelloSinistro.setForeground(new Color(255, 255, 255));
 		pannelloSinistro.setBackground(new Color(255, 255, 255));
@@ -189,28 +189,12 @@ public class DatiView extends JFrame {
 		testoDati.setBounds(0, 180, 500, 50);
 		pannelloSinistro.add(testoDati);
 		
-		JLabel testoInformativo1 = new JLabel("Qui puoi consultare le tue credenziali o eliminare il tuo account,");
-		testoInformativo1.setHorizontalAlignment(SwingConstants.CENTER);
-		testoInformativo1.setForeground(new Color(0, 0, 0));
-		testoInformativo1.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		testoInformativo1.setBackground(new Color(255, 255, 255));
-		testoInformativo1.setBounds(0, 230, 500, 30);
-		pannelloSinistro.add(testoInformativo1);
-		
-		JLabel testoInformativo2 = new JLabel("qualora non fossi più interessato a volerlo");
-		testoInformativo2.setHorizontalAlignment(SwingConstants.CENTER);
-		testoInformativo2.setForeground(new Color(0, 0, 0));
-		testoInformativo2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		testoInformativo2.setBackground(new Color(255, 255, 255));
-		testoInformativo2.setBounds(0, 250, 500, 30);
-		pannelloSinistro.add(testoInformativo2);
-		
 		JLabel testoMatricola = new JLabel("Matricola: " + personale.getMatricola());
 		testoMatricola.setForeground(new Color(0, 0, 0));
 		testoMatricola.setBackground(new Color(255, 255, 255));
 		testoMatricola.setHorizontalAlignment(SwingConstants.LEFT);
 		testoMatricola.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		testoMatricola.setBounds(40, 300, 300, 30);
+		testoMatricola.setBounds(40, 255, 300, 30);
 		pannelloSinistro.add(testoMatricola);
 		
 		JLabel testoNome = new JLabel("Nome: " + personale.getNome());
@@ -218,7 +202,7 @@ public class DatiView extends JFrame {
 		testoNome.setForeground(new Color(0, 0, 0));
 		testoNome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		testoNome.setBackground(new Color(255, 255, 255));
-		testoNome.setBounds(40, 330, 300, 30);
+		testoNome.setBounds(40, 285, 300, 30);
 		pannelloSinistro.add(testoNome);
 		
 		JLabel testoCognome = new JLabel("Cognome: " + personale.getCognome());
@@ -226,7 +210,7 @@ public class DatiView extends JFrame {
 		testoCognome.setForeground(new Color(0, 0, 0));
 		testoCognome.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		testoCognome.setBackground(new Color(255, 255, 255));
-		testoCognome.setBounds(40, 360, 300, 30);
+		testoCognome.setBounds(40, 315, 300, 30);
 		pannelloSinistro.add(testoCognome);
 		
 		JLabel testoEmail = new JLabel("Email: " + personale.getEmail());
@@ -234,7 +218,7 @@ public class DatiView extends JFrame {
 		testoEmail.setForeground(new Color(0, 0, 0));
 		testoEmail.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		testoEmail.setBackground(new Color(255, 255, 255));
-		testoEmail.setBounds(40, 390, 300, 30);
+		testoEmail.setBounds(40, 345, 300, 30);
 		pannelloSinistro.add(testoEmail);
 		
 		JLabel testoDataDiNascita = new JLabel("Data di nascita: " + personale.getDataDiNascita());
@@ -242,7 +226,7 @@ public class DatiView extends JFrame {
 		testoDataDiNascita.setForeground(new Color(0, 0, 0));
 		testoDataDiNascita.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		testoDataDiNascita.setBackground(new Color(255, 255, 255));
-		testoDataDiNascita.setBounds(40, 420, 300, 30);
+		testoDataDiNascita.setBounds(40, 375, 300, 30);
 		pannelloSinistro.add(testoDataDiNascita);
 		
 		JLabel testoProfessione = new JLabel("Professione: " + personale.getTipologia());
@@ -250,18 +234,8 @@ public class DatiView extends JFrame {
 		testoProfessione.setForeground(new Color(0, 0, 0));
 		testoProfessione.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		testoProfessione.setBackground(new Color(255, 255, 255));
-		testoProfessione.setBounds(40, 450, 300, 30);
+		testoProfessione.setBounds(40, 405, 300, 30);
 		pannelloSinistro.add(testoProfessione);
-		
-		JLabel iconaElimina = new JLabel("");
-		iconaElimina.setToolTipText("Elimina definitivamente il tuo account");
-		iconaElimina.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Elimina.png")));
-		iconaElimina.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaElimina.setForeground(new Color(255, 255, 255));
-		iconaElimina.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaElimina.setBackground(new Color(255, 255, 255));
-		iconaElimina.setBounds(440, 450, 30, 30);
-		pannelloSinistro.add(iconaElimina);
 		
 		//Pannello destro
 		JPanel pannelloDestro = new JPanel();
@@ -370,6 +344,7 @@ public class DatiView extends JFrame {
 		
 		//Pannello centrale
 		JPanel pannelloCentrale = new JPanel();
+		pannelloCentrale.setBorder(UIManager.getBorder("Tree.editorBorder"));
 		pannelloCentrale.setForeground(new Color(255, 255, 255));
 		pannelloCentrale.setBackground(new Color(255, 255, 255));
 		pannelloCentrale.setBounds(0, 0, 1000, 500);
@@ -495,7 +470,7 @@ public class DatiView extends JFrame {
         bottoneRicerca.setBackground(Color.WHITE);
         bottoneRicerca.setBounds(454, 82, 43, 37);
         pannelloCentrale.add(bottoneRicerca);
-
+        
         /*
           Inizialmente creo dei bottoni per la gestione di cartelle cliniche e eliminazione di una tartaruga.
 		  Se all'interno della tabella sono presenti dati riguardanti tartarughe allora aggiungo un ListSelectionListener ad essa. 
@@ -513,22 +488,14 @@ public class DatiView extends JFrame {
 			       	bottoneCartelleCliniche.setForeground(Color.BLACK);
 			       	bottoneCartelleCliniche.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 			        bottoneCartelleCliniche.setBackground(Color.WHITE);
-			        bottoneCartelleCliniche.setBounds(517, 80, 175, 40);
+			        bottoneCartelleCliniche.setBounds(545, 80, 175, 40);
 			        pannelloCentrale.add(bottoneCartelleCliniche);
 
 			        testoCartelleCliniche.setText("Visualizza per: " +tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
 				    testoCartelleCliniche.setHorizontalAlignment(SwingConstants.CENTER);
 				    testoCartelleCliniche.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-				    testoCartelleCliniche.setBounds(517, 118, 175, 20);
+				    testoCartelleCliniche.setBounds(545, 118, 175, 20);
 				    pannelloCentrale.add(testoCartelleCliniche);
-				        
-			        bottoneEliminaTartaruga.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Elimina.png")));
-			        bottoneEliminaTartaruga.setSelectedIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Elimina.png")));
-			        bottoneEliminaTartaruga.setForeground(Color.BLACK);
-				    bottoneEliminaTartaruga.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-				    bottoneEliminaTartaruga.setBackground(Color.WHITE);
-				    bottoneEliminaTartaruga.setBounds(701, 80, 43, 40);
-				    pannelloCentrale.add(bottoneEliminaTartaruga);
 				        
 				    bottoniVisibili = true;
 				    pannello.repaint();
@@ -548,7 +515,5 @@ public class DatiView extends JFrame {
 				dispose();
 			}
 		});
-			
 	}
-
 }

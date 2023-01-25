@@ -18,6 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.UIManager;
 
 public class AccessoView extends JFrame {
 	private JPanel pannello;
@@ -128,6 +129,7 @@ public class AccessoView extends JFrame {
 		
 		//Pannello sinistro
 		JPanel pannelloSinistro = new JPanel();
+		pannelloSinistro.setBorder(UIManager.getBorder("Tree.editorBorder"));
 		pannelloSinistro.setBounds(0, 0, 500, 500);
 		pannelloSinistro.setForeground(new Color(255, 255, 255));
 		pannelloSinistro.setBackground(new Color(255, 255, 255));
@@ -145,6 +147,7 @@ public class AccessoView extends JFrame {
 		
 		//Pannello destro
 		JPanel pannelloDestro = new JPanel();
+		pannelloDestro.setBorder(UIManager.getBorder("Tree.editorBorder"));
 		pannelloDestro.setForeground(new Color(255, 255, 255));
 		pannelloDestro.setBackground(new Color(255, 255, 255));
 		pannelloDestro.setBounds(500, 0, 500, 500);
@@ -183,26 +186,6 @@ public class AccessoView extends JFrame {
 		testoEmail.setBounds(40, 205, 120, 30);
 		pannelloDestro.add(testoEmail);
 		
-		JLabel testoEmailValida = new JLabel("Email valida");
-		testoEmailValida.setVerticalAlignment(SwingConstants.TOP);
-		testoEmailValida.setHorizontalAlignment(SwingConstants.RIGHT);
-		testoEmailValida.setForeground(new Color(0, 255, 0));
-		testoEmailValida.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		testoEmailValida.setBackground(new Color(255, 255, 255));
-		testoEmailValida.setBounds(215, 275, 190, 30);
-		testoEmailValida.setVisible(false);
-		pannelloDestro.add(testoEmailValida);
-		
-		JLabel testoEmailNonValida = new JLabel("Email non valida");
-		testoEmailNonValida.setVerticalAlignment(SwingConstants.TOP);
-		testoEmailNonValida.setHorizontalAlignment(SwingConstants.RIGHT);
-		testoEmailNonValida.setForeground(new Color(255, 0, 0));
-		testoEmailNonValida.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		testoEmailNonValida.setBackground(new Color(255, 255, 255));
-		testoEmailNonValida.setBounds(215, 275, 190, 30);
-		testoEmailNonValida.setVisible(false);
-		pannelloDestro.add(testoEmailNonValida);
-		
 		compilazioneEmail = new JTextField();
 		compilazioneEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		compilazioneEmail.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -211,15 +194,6 @@ public class AccessoView extends JFrame {
 		compilazioneEmail.setBounds(40, 245, 365, 30);
 		pannelloDestro.add(compilazioneEmail);
 		compilazioneEmail.setColumns(10);
-		compilazioneEmail.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				boolean controlloEmail = TestoUtility.verificaEmail(compilazioneEmail.getText());
-				
-				testoEmailValida.setVisible(controlloEmail);
-				testoEmailNonValida.setVisible(!controlloEmail);
-			}
-		});
 		
 		JLabel iconaUtente = new JLabel("");
 		iconaUtente.setFont(new Font("Segoe UI", Font.PLAIN, 10));
@@ -239,26 +213,6 @@ public class AccessoView extends JFrame {
 		testoPassword.setBounds(40, 285, 120, 30);
 		pannelloDestro.add(testoPassword);
 		
-		JLabel testoPasswordValida = new JLabel("Password valida");
-		testoPasswordValida.setVerticalAlignment(SwingConstants.TOP);
-		testoPasswordValida.setHorizontalAlignment(SwingConstants.RIGHT);
-		testoPasswordValida.setForeground(new Color(0, 255, 0));
-		testoPasswordValida.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		testoPasswordValida.setBackground(new Color(255, 255, 255));
-		testoPasswordValida.setBounds(215, 355, 190, 30);
-		testoPasswordValida.setVisible(false);
-		pannelloDestro.add(testoPasswordValida);
-		
-		JLabel testoPasswordNonValida = new JLabel("Minimo 8 caratteri e massimo 16");
-		testoPasswordNonValida.setVerticalAlignment(SwingConstants.TOP);
-		testoPasswordNonValida.setHorizontalAlignment(SwingConstants.RIGHT);
-		testoPasswordNonValida.setForeground(new Color(255, 0, 0));
-		testoPasswordNonValida.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		testoPasswordNonValida.setBackground(new Color(255, 255, 255));
-		testoPasswordNonValida.setBounds(175, 355, 230, 30);
-		testoPasswordNonValida.setVisible(false);
-		pannelloDestro.add(testoPasswordNonValida);
-		
 		compilazionePassword = new JPasswordField();
 		compilazionePassword.setHorizontalAlignment(SwingConstants.LEFT);
 		compilazionePassword.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -267,15 +221,6 @@ public class AccessoView extends JFrame {
 		compilazionePassword.setEchoChar('*');
 		compilazionePassword.setBounds(40, 325, 365, 30);
 		pannelloDestro.add(compilazionePassword);
-		compilazionePassword.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				boolean controlloPassword = TestoUtility.verificaPassword(compilazionePassword.getPassword());
-				
-				testoPasswordValida.setVisible(controlloPassword);
-				testoPasswordNonValida.setVisible(!controlloPassword);
-			}
-		});
 		
 		iconaOcchioAperto = new JLabel("");
 		iconaOcchioAperto.setFont(new Font("Segoe UI", Font.PLAIN, 10));

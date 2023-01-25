@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.UIManager;
 
 public class ErroreView extends JFrame {
 	private JPanel pannello;
@@ -101,6 +102,7 @@ public class ErroreView extends JFrame {
 		
 		//Pannello centrale
 		JPanel pannelloCentrale = new JPanel();
+		pannelloCentrale.setBorder(UIManager.getBorder("Tree.editorBorder"));
 		pannelloCentrale.setForeground(new Color(255, 255, 255));
 		pannelloCentrale.setBackground(new Color(255, 255, 255));
 		pannelloCentrale.setBounds(0, 50, 500, 150);

@@ -298,7 +298,7 @@ public class CartellaClinicaView extends JFrame {
 		pannello.add(pannelloDestro);
 		pannelloDestro.setLayout(null);
 		
-		JLabel testoInformativo2 = new JLabel("Condizioni tartaruga");
+		JLabel testoInformativo2 = new JLabel("Condizione tartaruga");
 		testoInformativo2.setForeground(new Color(0, 0, 0));
 		testoInformativo2.setBackground(new Color(255, 255, 255));
 		testoInformativo2.setBounds(0, 50, 500, 70);

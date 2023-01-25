@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import Classi.Database.PersonaleDatabase;
 import Classi.Models.Personale;
+import javax.swing.UIManager;
 
 public class PortaleView extends JFrame {
 	private JPanel pannello;
@@ -100,6 +101,7 @@ public class PortaleView extends JFrame {
 		
 		//Pannello centrale
 		JPanel pannelloCentrale = new JPanel();
+		pannelloCentrale.setBorder(UIManager.getBorder("Tree.editorBorder"));
 		pannelloCentrale.setForeground(new Color(255, 255, 255));
 		pannelloCentrale.setBackground(new Color(255, 255, 255));
 		pannelloCentrale.setBounds(0, 0, 1000, 500);
@@ -142,36 +144,20 @@ public class PortaleView extends JFrame {
 		iconaEsci.setBounds(940, 80, 30, 30);
 		pannelloCentrale.add(iconaEsci);
 		
-		JLabel testoInformativo1 = new JLabel("Questo è il tuo account.");
-		testoInformativo1.setHorizontalAlignment(SwingConstants.LEFT);
-		testoInformativo1.setForeground(new Color(0, 0, 0));
-		testoInformativo1.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		testoInformativo1.setBackground(new Color(255, 255, 255));
-		testoInformativo1.setBounds(160, 130, 160, 30);
-		pannelloCentrale.add(testoInformativo1);
-		
-		JLabel testoInformativo2 = new JLabel("Cosa vorresti fare oggi? Potresti consultare i tuoi dati personali,");
+		JLabel testoInformativo2 = new JLabel("Cosa vorresti fare oggi?");
 		testoInformativo2.setHorizontalAlignment(SwingConstants.LEFT);
 		testoInformativo2.setForeground(new Color(0, 0, 0));
 		testoInformativo2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
 		testoInformativo2.setBackground(new Color(255, 255, 255));
-		testoInformativo2.setBounds(160, 150, 410, 30);
+		testoInformativo2.setBounds(158, 140, 410, 30);
 		pannelloCentrale.add(testoInformativo2);
-		
-		JLabel testoInformativo3 = new JLabel("oppure effettuare ricerche (ad esempio, cercare una determinata tartaruga presente nel tuo centro)");
-		testoInformativo3.setHorizontalAlignment(SwingConstants.LEFT);
-		testoInformativo3.setForeground(new Color(0, 0, 0));
-		testoInformativo3.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		testoInformativo3.setBackground(new Color(255, 255, 255));
-		testoInformativo3.setBounds(160, 170, 650, 30);
-		pannelloCentrale.add(testoInformativo3);
 		
 		JLabel testoDati = new JLabel("Dati personali");
 		testoDati.setHorizontalAlignment(SwingConstants.CENTER);
 		testoDati.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		testoDati.setForeground(new Color(0, 0, 0));
 		testoDati.setBackground(new Color(255, 255, 255));
-		testoDati.setBounds(280, 230, 200, 40);
+		testoDati.setBounds(281, 207, 200, 40);
 		pannelloCentrale.add(testoDati);
 		
 		JLabel testoTartaruga = new JLabel("Tartaruga");
@@ -179,7 +165,7 @@ public class PortaleView extends JFrame {
 		testoTartaruga.setForeground(new Color(0, 0, 0));
 		testoTartaruga.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		testoTartaruga.setBackground(new Color(255, 255, 255));
-		testoTartaruga.setBounds(500, 230, 200, 40);
+		testoTartaruga.setBounds(501, 207, 200, 40);
 		pannelloCentrale.add(testoTartaruga);
 		
 		JLabel iconaDati = new JLabel("");
@@ -201,7 +187,7 @@ public class PortaleView extends JFrame {
 		iconaDati.setForeground(new Color(255, 255, 255));
 		iconaDati.setBackground(new Color(255, 255, 255));
 		iconaDati.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaDati.setBounds(280, 270, 200, 200);
+		iconaDati.setBounds(281, 247, 200, 200);
 		pannelloCentrale.add(iconaDati);
 		
 		JLabel iconaTartaruga = new JLabel("");
@@ -219,7 +205,7 @@ public class PortaleView extends JFrame {
 		iconaTartaruga.setForeground(new Color(255, 255, 255));
 		iconaTartaruga.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaTartaruga.setBackground(new Color(255, 255, 255));
-		iconaTartaruga.setBounds(500, 270, 200, 200);
+		iconaTartaruga.setBounds(501, 247, 200, 200);
 		pannelloCentrale.add(iconaTartaruga);
 	}
 }
