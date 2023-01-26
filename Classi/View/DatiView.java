@@ -26,10 +26,7 @@ public class DatiView extends JFrame {
 	private JPanel pannello;
 	private JTextField barraDelleRicerche;
 	private JTable tabella;
-	private boolean bottoniVisibili;
-    private JButton bottoneCartelleCliniche;
-    private JButton bottoneEliminaTartaruga;
-    private JLabel testoCartelleCliniche;
+	private boolean visualizzazione = false;
 	
 	//Creazione della finestra per la visualizzazione dei dati del personale
 	public DatiView(Personale personale) {
@@ -379,13 +376,9 @@ public class DatiView extends JFrame {
         bottoneRicerca.setBounds(520, 80, 40, 40);
         pannelloCentrale.add(bottoneRicerca);
 		
-        /*
-		 *
-		 * Se la tabella presenta la lista delle cartelle cliniche e l'utente è un medico veterinario,
-		 * allora crea un bottone che permette di aggiungere una cartella clinica nel database
-		 *
-		 */
+        //Se la modalità di apertura è "cartellecliniche", allora crea la tabella "Cartella clinica"
 		if(tipoContenuto == "cartellecliniche") {
+			//Se l'utente è un medico veterinario, allora crea un bottone che permette di aggiungere una "Cartella clinica" nel database
 			if(personale.getTipologia().equals("Medico veterinario")) {
 				JButton bottoneAggiungiCartellaClinica = new JButton("Aggiungi Cartella Clinica");
 				bottoneAggiungiCartellaClinica.setForeground(new Color(0, 0, 0));
@@ -404,7 +397,6 @@ public class DatiView extends JFrame {
 				pannelloCentrale.add(bottoneAggiungiCartellaClinica);
 			}
 			
-			//Realizzazione della tabella "Cartella clinica"
 			try {
 				tabella = new JTable(DatiController.getInstance().creaTabellaCartelleCliniche(targhettaTartaruga));
 				//Per ogni colonna della tabella, i valori non devono essere editabili. L'editor di ogni colonna è quindi settato a null
@@ -417,14 +409,8 @@ public class DatiView extends JFrame {
 				e1.printStackTrace();
 			}
 			
-		/*
-		 *
-		 * Se la tabella presenta la lista delle tartarughe,
-		 * allora crea un bottone che permette di aggiungere una tartaruga nel database
-		 *
-		 */
+		//Se la modalità di apertura è "tartarughe", allora crea la tabella "Tartaruga"
 		} else if (tipoContenuto == "tartarughe") {
-			//Realizzazione della tabella "Alloggi"
 			try {
 				tabella = new JTable(DatiController.getInstance().creaTabellaAlloggi());
 				//Per ogni colonna della tabella, i valori non devono essere editabili. L'editor di ogni colonna è quindi settato a null
@@ -448,41 +434,46 @@ public class DatiView extends JFrame {
         pannelloCentrale.add(pannelloDiScorrimento);
         
         /*
-          Inizialmente creo dei bottoni per la gestione di cartelle cliniche e eliminazione di una tartaruga.
-		  Se all'interno della tabella sono presenti dati riguardanti tartarughe allora aggiungo un ListSelectionListener ad essa. 
-		  Ogni volta che viene selezionata una riga è chiamata la funzione valueChanged, che rende visibili i bottoni.
- 		  Se questi bottoni sono già stati resi visibili da una chiamata precedente, allora semplicemente aggiorno il testo ad essi associato.
-		*/
-        bottoniVisibili = false;
-        bottoneCartelleCliniche = new JButton("Cartelle cliniche");
-        bottoneEliminaTartaruga = new JButton("");
-	    testoCartelleCliniche = new JLabel("Visualizza per: ");
-        
+         *
+         * Il codice sottostante descrive la creazione di due oggetti, un button "bottoneCartellaClinica" ed un label "testoCartelleCliniche",
+         * per la gestione di cartelle cliniche. Viene aggiunto un ListSelectionListener alla tabella,
+         * in modo che ogni volta che una riga viene selezionata, la funzione "valueChanged" viene chiamata,
+         * la quale rende visibili i due oggetti e imposta il testo della label "testoCartelleCliniche" alla prima colonna della riga selezionata.
+         * Se la tabella contiene dati riguardanti tartarughe e i bottoni non sono ancora stati resi visibili,
+         * allora i bottoni vengono aggiunti al pannello centrale e il testo associato ad essi viene impostato.
+         * Se i bottoni sono già stati resi visibili in precedenza, allora solo il testo viene aggiornato
+         *
+         */
+        JButton bottoneCartellaClinica = new JButton("Cartelle cliniche");
+        JLabel testoCartelleCliniche = new JLabel("Visualizza per: ");
+	    
 		tabella.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent event) {
-				if((tipoContenuto == "tartarughe") && (bottoniVisibili == false)) {
-			       	bottoneCartelleCliniche.setForeground(Color.BLACK);
-			       	bottoneCartelleCliniche.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-			        bottoneCartelleCliniche.setBackground(Color.WHITE);
-			        bottoneCartelleCliniche.setBounds(760, 80, 200, 40);
-			        pannelloCentrale.add(bottoneCartelleCliniche);
+				if((tipoContenuto == "tartarughe") && (visualizzazione == false)) {
+					bottoneCartellaClinica.setForeground(new Color(0, 0, 0));
+					bottoneCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+					bottoneCartellaClinica.setBackground(new Color(255, 255, 255));
+					bottoneCartellaClinica.setBounds(760, 80, 200, 40);
+			        pannelloCentrale.add(bottoneCartellaClinica);
 			        
-			        testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
+			        testoCartelleCliniche.setForeground(new Color(0, 0, 0));
+				    testoCartelleCliniche.setBackground(new Color(255, 255, 255));
+				    testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
 				    testoCartelleCliniche.setHorizontalAlignment(SwingConstants.CENTER);
 				    testoCartelleCliniche.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-				    testoCartelleCliniche.setBounds(760, 80, 200, 40);
+				    testoCartelleCliniche.setBounds(760, 120, 200, 20);
 				    pannelloCentrale.add(testoCartelleCliniche);
 				    
-				    bottoniVisibili = true;
+				    visualizzazione = true;
 				    pannello.repaint();
-		        } else if ((tipoContenuto == "tartarughe") && (bottoniVisibili == true)) {
+		        } else if ((tipoContenuto == "tartarughe") && (visualizzazione == true)) {
 		       		testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
 		       	}
 		    }
 		});
 		
-		//Cliccare il bottone per visualizzare le cartelle cliniche aprirà una nuova DatiView, questa volta in modalità cartellecliniche.
-		bottoneCartelleCliniche.addMouseListener(new MouseAdapter() {
+		//Cliccando il bottone "bottoneCartellaClinica" si aprirà una nuova finestra DatiView, questa volta in modalità cartellecliniche
+		bottoneCartellaClinica.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				DatiView finestraDatiCartellaClinica = new DatiView(personale, "cartellecliniche", tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
 				finestraDatiCartellaClinica.setLocationRelativeTo(null);
