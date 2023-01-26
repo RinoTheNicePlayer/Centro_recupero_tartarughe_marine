@@ -27,7 +27,7 @@ public class DatiView extends JFrame {
 	private JPanel pannello;
 	private JTable tabella;
 	private boolean visualizzazione = false;
-    private JButton bottoneCartellaClinica;
+	private JButton bottoneCartelleCliniche;
     private JLabel testoCartelleCliniche;
 	
 	//Creazione della finestra per la visualizzazione dei dati del personale
@@ -397,37 +397,39 @@ public class DatiView extends JFrame {
 			
 		//Se la modalità di apertura è "tartarughe", allora crea la tabella "Tartaruga"
 		} else if (tipoContenuto == "tartarughe") {
+			JTextField barraDelleRicerche = new JTextField();
+	        barraDelleRicerche.setToolTipText("La barra delle ricerche ti permette di cercare solo l'elemento che digiti, fornendo tutti i dati relativi a quest'ultimo (visualizzabili nella tabella)");
+	        barraDelleRicerche.setForeground(new Color(0, 0, 0));
+	        barraDelleRicerche.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+	        barraDelleRicerche.setColumns(10);
+	        barraDelleRicerche.setBackground(new Color(255, 255, 255));
+	        barraDelleRicerche.setBounds(200, 80, 300, 40);
+	        pannelloCentrale.add(barraDelleRicerche);
+			
+			JButton bottoneRicerca = new JButton("");
+	        bottoneRicerca.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Ricerca.png")));
+	        bottoneRicerca.setForeground(new Color(255, 255, 255));
+	        bottoneRicerca.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+	        bottoneRicerca.setBackground(new Color(255, 255, 255));
+	        bottoneRicerca.setBounds(520, 80, 40, 40);
+	        pannelloCentrale.add(bottoneRicerca);
+	        bottoneRicerca.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					bottoneCartelleCliniche.setEnabled(false);
+					testoCartelleCliniche.setText("");
+					try {
+						if(barraDelleRicerche.getText().equals("") == false) {
+							tabella.setModel(DatiController.getInstance().creaTabellaAlloggi(barraDelleRicerche.getText()));
+						}
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+	        
 			try {
 				tabella = new JTable(DatiController.getInstance().creaTabellaAlloggi());
 				tabella.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-				
-				JTextField barraDelleRicerche = new JTextField();
-		        barraDelleRicerche.setToolTipText("La barra delle ricerche ti permette di cercare solo l'elemento che digiti, fornendo tutti i dati relativi a quest'ultimo (visualizzabili nella tabella)");
-		        barraDelleRicerche.setForeground(new Color(0, 0, 0));
-		        barraDelleRicerche.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		        barraDelleRicerche.setColumns(10);
-		        barraDelleRicerche.setBackground(new Color(255, 255, 255));
-		        barraDelleRicerche.setBounds(200, 80, 300, 40);
-		        pannelloCentrale.add(barraDelleRicerche);
-				
-				JButton bottoneRicerca = new JButton("");
-		        bottoneRicerca.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Ricerca.png")));
-		        bottoneRicerca.setForeground(new Color(255, 255, 255));
-		        bottoneRicerca.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		        bottoneRicerca.setBackground(new Color(255, 255, 255));
-		        bottoneRicerca.setBounds(520, 80, 40, 40);
-		        pannelloCentrale.add(bottoneRicerca);
-		        bottoneRicerca.addMouseListener(new MouseAdapter() {
-					public void mouseClicked(MouseEvent e) {
-						try {
-							if(barraDelleRicerche.getText().equals("") == false) {
-								tabella.setModel(DatiController.getInstance().creaTabellaAlloggi(barraDelleRicerche.getText()));
-							}
-						} catch (SQLException e1) {
-							e1.printStackTrace();
-						}
-					}
-				});
 		        
 				//Per ogni colonna della tabella, i valori non devono essere editabili. L'editor di ogni colonna è quindi settato a null
 				for (int i = 0; i < tabella.getColumnCount(); i++)
@@ -439,67 +441,72 @@ public class DatiView extends JFrame {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+			
+			/*
+	         *
+	         * Il codice sottostante descrive la creazione di due oggetti, un button "bottoneCartellaClinica" ed un label "testoCartelleCliniche",
+	         * per la gestione di cartelle cliniche. Viene aggiunto un ListSelectionListener alla tabella,
+	         * in modo che ogni volta che una riga viene selezionata, la funzione "valueChanged" viene chiamata,
+	         * la quale rende visibili i due oggetti e imposta il testo della label "testoCartelleCliniche" alla prima colonna della riga selezionata.
+	         * Se la tabella contiene dati riguardanti tartarughe e i bottoni non sono ancora stati resi visibili,
+	         * allora i bottoni vengono aggiunti al pannello centrale e il testo associato ad essi viene impostato.
+	         * Se i bottoni sono già stati resi visibili in precedenza, allora solo il testo viene aggiornato
+	         *
+	         */
+	        bottoneCartelleCliniche = new JButton("Cartelle cliniche");
+	        bottoneCartelleCliniche.setForeground(new Color(0, 0, 0));
+	        bottoneCartelleCliniche.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+	        bottoneCartelleCliniche.setBackground(new Color(255, 255, 255));
+	        bottoneCartelleCliniche.setBounds(760, 80, 200, 40);
+	        pannelloCentrale.add(bottoneCartelleCliniche);
+	        bottoneCartelleCliniche.setEnabled(false);
+	        
+	        testoCartelleCliniche = new JLabel("Visualizza per: ");
+		    
+			tabella.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent event) {
+					if(tabella.getValueAt(tabella.getSelectedRow(), 0).toString().equals("") == false) {
+						if(visualizzazione == false) {
+					        bottoneCartelleCliniche.setEnabled(true);
+								
+					        testoCartelleCliniche.setForeground(new Color(0, 0, 0));
+					        testoCartelleCliniche.setBackground(new Color(255, 255, 255));
+						    testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
+						    testoCartelleCliniche.setHorizontalAlignment(SwingConstants.CENTER);
+						    testoCartelleCliniche.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+						    testoCartelleCliniche.setBounds(760, 120, 200, 20);
+						    pannelloCentrale.add(testoCartelleCliniche);
+							    
+						    visualizzazione = true;
+						    pannello.repaint();
+						}else {
+					        bottoneCartelleCliniche.setEnabled(true);
+				       		testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
+						}
+					}
+				}
+			});
+			
+			
+			//Cliccando il bottone "bottoneCartellaClinica" si aprirà una nuova finestra DatiView, questa volta in modalità cartellecliniche
+			bottoneCartelleCliniche.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					DatiView finestraDatiCartellaClinica = new DatiView(personale, "cartellecliniche", tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
+					finestraDatiCartellaClinica.setLocationRelativeTo(null);
+					finestraDatiCartellaClinica.setVisible(true);
+					dispose();
+				}
+			});
+			
 		} else {
 			ErroreView finestraErrore = new ErroreView("Impossibile generare la tabella!", "Non è stato possibile ricavare alcun dato.");
 			finestraErrore.setLocationRelativeTo(null);
 			finestraErrore.setVisible(true);
 		}
         
-        JScrollPane pannelloDiScorrimento = new JScrollPane(tabella);
-        pannelloDiScorrimento.setBounds(40, 150, 920, 320);
-        pannelloCentrale.add(pannelloDiScorrimento);
-        pannelloCentrale.add(pannelloDiScorrimento);
-        
-        /*
-         *
-         * Il codice sottostante descrive la creazione di due oggetti, un button "bottoneCartellaClinica" ed un label "testoCartelleCliniche",
-         * per la gestione di cartelle cliniche. Viene aggiunto un ListSelectionListener alla tabella,
-         * in modo che ogni volta che una riga viene selezionata, la funzione "valueChanged" viene chiamata,
-         * la quale rende visibili i due oggetti e imposta il testo della label "testoCartelleCliniche" alla prima colonna della riga selezionata.
-         * Se la tabella contiene dati riguardanti tartarughe e i bottoni non sono ancora stati resi visibili,
-         * allora i bottoni vengono aggiunti al pannello centrale e il testo associato ad essi viene impostato.
-         * Se i bottoni sono già stati resi visibili in precedenza, allora solo il testo viene aggiornato
-         *
-         */
-        bottoneCartellaClinica = new JButton("Cartelle cliniche");
-        testoCartelleCliniche = new JLabel("Visualizza per: ");
-	    
-		tabella.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent event) {
-				if(tipoContenuto == "tartarughe") {
-					if(visualizzazione == false) {
-						bottoneCartellaClinica.setForeground(new Color(0, 0, 0));
-						bottoneCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-						bottoneCartellaClinica.setBackground(new Color(255, 255, 255));
-						bottoneCartellaClinica.setBounds(760, 80, 200, 40);
-				        pannelloCentrale.add(bottoneCartellaClinica);
-				        
-				        testoCartelleCliniche.setForeground(new Color(0, 0, 0));
-					    testoCartelleCliniche.setBackground(new Color(255, 255, 255));
-					    testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
-					    testoCartelleCliniche.setHorizontalAlignment(SwingConstants.CENTER);
-					    testoCartelleCliniche.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-					    testoCartelleCliniche.setBounds(760, 120, 200, 20);
-					    pannelloCentrale.add(testoCartelleCliniche);
-					    
-					    visualizzazione = true;
-					    pannello.repaint();
-					}else {
-			       		testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
-					}
-				}
-			}
-		});
-		
-		
-		//Cliccando il bottone "bottoneCartellaClinica" si aprirà una nuova finestra DatiView, questa volta in modalità cartellecliniche
-		bottoneCartellaClinica.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				DatiView finestraDatiCartellaClinica = new DatiView(personale, "cartellecliniche", tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
-				finestraDatiCartellaClinica.setLocationRelativeTo(null);
-				finestraDatiCartellaClinica.setVisible(true);
-				dispose();
-			}
-		});
+	JScrollPane pannelloDiScorrimento = new JScrollPane(tabella);
+    pannelloDiScorrimento.setBounds(40, 150, 920, 320);
+    pannelloCentrale.add(pannelloDiScorrimento);
+
 	}
 }

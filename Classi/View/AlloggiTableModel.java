@@ -36,21 +36,25 @@ public class AlloggiTableModel extends AbstractTableModel {
 		 }
 		 
 		 public Object getValueAt(int riga, int colonna) {
-			 switch (colonna) {
-				 case 0:
-					 return alloggi[riga].getTartaruga().getTarghetta();
-				 case 1:
-					 return alloggi[riga].getTartaruga().getNome();
-				 case 2:
-					 return alloggi[riga].getTartaruga().getSesso();
-				 case 3:
-					 return alloggi[riga].getTartaruga().getEta();
-				 case 4:
-					 return alloggi[riga].getDataInizio();
-				 case 5:
-					 return alloggi[riga].getVasca().getCodiceVasca();
-				 default:
-					 return null;
+			 if(riga != -1) {
+				 switch (colonna) {
+					 case 0:
+						 return alloggi[riga].getTartaruga().getTarghetta();
+					 case 1:
+						 return alloggi[riga].getTartaruga().getNome();
+					 case 2:
+						 return alloggi[riga].getTartaruga().getSesso();
+					 case 3:
+						 return alloggi[riga].getTartaruga().getEta();
+					 case 4:
+						 return alloggi[riga].getDataInizio();
+					 case 5:
+						 return alloggi[riga].getVasca().getCodiceVasca();
+					 default:
+						 return "";
+				 }
 			 }
+			 
+			 return "";
 		}
 }
