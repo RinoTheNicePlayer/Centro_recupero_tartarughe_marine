@@ -1,6 +1,7 @@
 package Classi.Models;
 
 public class CartellaClinica {
+	//Proprietà private della classe
 	private int idCartellaClinica;
 	private int idPersonale;
 	private int idTartaruga;
@@ -19,6 +20,7 @@ public class CartellaClinica {
 	private String statoCoda;
 	private String statoPinne;
 	
+	//Costruttore principale
 	public CartellaClinica(int idCartellaClinica, int idPersonale, int idTartaruga, String identificativoInterno, String dataRitrovamento, String luogoRitrovamento, String specie, int larghezza, int lunghezza, int peso, String statoNaso, String statoBecco, String statoTesta, String statoCollo, String statoOcchi, String statoCoda, String statoPinne) {
 		this.idCartellaClinica = idCartellaClinica;
 		this.idPersonale = idPersonale;
@@ -39,6 +41,7 @@ public class CartellaClinica {
 		this.statoPinne = statoPinne;
 	}
 	
+	//Costruttore secondario. È stata usata la tecnica "Overload" per costruire un secondo costruttore, utile per determinati scopi
 	public CartellaClinica(int idPersonale, int idTartaruga, String identificativoInterno, String specie, String dataRitrovamento, String luogoRitrovamento, int larghezza, int lunghezza, int peso, String statoPinne, String statoCoda, String statoCollo, String statoTesta, String statoBecco, String statoNaso, String statoOcchi) {
 		this.idPersonale = idPersonale;
 		this.idTartaruga = idTartaruga;
@@ -58,6 +61,7 @@ public class CartellaClinica {
 		this.statoOcchi = statoOcchi;
 	}
 	
+	//Metodi "getter" e "setter" per ricavare ed impostare ogni proprietà privata
 	public int getIdCartellaClinica() {
 		return idCartellaClinica;
 	}

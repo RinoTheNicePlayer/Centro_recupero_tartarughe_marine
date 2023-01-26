@@ -144,20 +144,20 @@ public class PortaleView extends JFrame {
 		iconaEsci.setBounds(940, 80, 30, 30);
 		pannelloCentrale.add(iconaEsci);
 		
-		JLabel testoInformativo2 = new JLabel("Cosa vorresti fare oggi?");
-		testoInformativo2.setHorizontalAlignment(SwingConstants.LEFT);
-		testoInformativo2.setForeground(new Color(0, 0, 0));
-		testoInformativo2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		testoInformativo2.setBackground(new Color(255, 255, 255));
-		testoInformativo2.setBounds(158, 140, 410, 30);
-		pannelloCentrale.add(testoInformativo2);
+		JLabel testoInformativo1 = new JLabel("Cosa vorresti fare oggi?");
+		testoInformativo1.setHorizontalAlignment(SwingConstants.LEFT);
+		testoInformativo1.setForeground(new Color(0, 0, 0));
+		testoInformativo1.setFont(new Font("Segoe UI", Font.ITALIC, 15));
+		testoInformativo1.setBackground(new Color(255, 255, 255));
+		testoInformativo1.setBounds(160, 130, 150, 30);
+		pannelloCentrale.add(testoInformativo1);
 		
 		JLabel testoDati = new JLabel("Dati personali");
 		testoDati.setHorizontalAlignment(SwingConstants.CENTER);
 		testoDati.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		testoDati.setForeground(new Color(0, 0, 0));
 		testoDati.setBackground(new Color(255, 255, 255));
-		testoDati.setBounds(281, 207, 200, 40);
+		testoDati.setBounds(280, 210, 200, 40);
 		pannelloCentrale.add(testoDati);
 		
 		JLabel testoTartaruga = new JLabel("Tartaruga");
@@ -165,7 +165,7 @@ public class PortaleView extends JFrame {
 		testoTartaruga.setForeground(new Color(0, 0, 0));
 		testoTartaruga.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		testoTartaruga.setBackground(new Color(255, 255, 255));
-		testoTartaruga.setBounds(501, 207, 200, 40);
+		testoTartaruga.setBounds(500, 210, 200, 40);
 		pannelloCentrale.add(testoTartaruga);
 		
 		JLabel iconaDati = new JLabel("");
@@ -187,7 +187,7 @@ public class PortaleView extends JFrame {
 		iconaDati.setForeground(new Color(255, 255, 255));
 		iconaDati.setBackground(new Color(255, 255, 255));
 		iconaDati.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaDati.setBounds(281, 247, 200, 200);
+		iconaDati.setBounds(280, 260, 200, 200);
 		pannelloCentrale.add(iconaDati);
 		
 		JLabel iconaTartaruga = new JLabel("");
@@ -205,7 +205,7 @@ public class PortaleView extends JFrame {
 		iconaTartaruga.setForeground(new Color(255, 255, 255));
 		iconaTartaruga.setFont(new Font("Segoe UI", Font.PLAIN, 10));
 		iconaTartaruga.setBackground(new Color(255, 255, 255));
-		iconaTartaruga.setBounds(501, 247, 200, 200);
+		iconaTartaruga.setBounds(500, 260, 200, 200);
 		pannelloCentrale.add(iconaTartaruga);
 	}
 }

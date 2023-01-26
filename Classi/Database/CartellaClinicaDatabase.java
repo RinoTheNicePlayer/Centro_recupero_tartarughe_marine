@@ -3,8 +3,17 @@
  * Il codice rappresenta una classe Java chiamata "CartellaClinicaDatabase" che ha lo scopo di salvare i dati della cartella clinica di una tartaruga marina nel database.
  * La classe utilizza il pattern singleton per garantire che ci sia solo un'unica istanza della classe in tutto il programma.
  * Il metodo "caricaCartellaClinica" accetta un oggetto "CartellaClinica" come parametro e utilizza una query SQL per inserire i dati della cartella clinica nel database.
- * La classe sfrutta la libreria JDBC per la connessione al database e utilizza le classi "PreparedStatement" e "ResultSet" per eseguire la query e ottenere il risultato.
- * In caso di esito positivo dell'operazione di inserimento viene visualizzato un messaggio di conferma, altrimenti viene visualizzata una finestra di errore
+ * Inoltre, nella classe sono inclusi altri due metodi che permettono di recuperare informazioni dalla tabella "Cartella_clinica" del database.
+ * Il primo metodo, "getCartellaClinicaByIdentificativo", accetta come parametro una stringa "identificativo" e restituisce un oggetto "CartellaClinica"
+ * corrispondente alla riga nella tabella "Cartella_clinica" con un valore di "identificativo_interno" uguale alla stringa passata come parametro.
+ * Questo metodo sfrutta una query SQL per recuperare i dati dalla tabella e crea un nuovo oggetto "CartellaClinica" con i valori recuperati dalla query stessa.
+ * Il secondo metodo, "getRigaCartellaClinicaByTarghetta", accetta come parametri un intero "indiceRiga" e una stringa "targhetta" e restituisce un oggetto "CartellaClinica"
+ * corrispondente alla riga nella tabella "Cartella_clinica" con un valore di "targhetta" uguale alla stringa passata come parametro.
+ * Tale metodo utilizza una query SQL per recuperare i dati dalla tabella e crea un nuovo oggetto "CartellaClinica"
+ * con i valori recuperati dalla query stessa, proprio come avviene nel metodo precedente.
+ * Utilizza anche un cursore per scorrere le righe del risultato della query fino alla riga specificata dall'indiceRiga.
+ * I tre metodi sfruttano un oggetto "Connessione" per stabilire una connessione col database e utilizzano le classi "PreparedStatement" e "ResultSet"
+ * per preparare e eseguire la query. In caso di eccezione, viene sollevato un errore
  *
  */
 
@@ -127,23 +136,13 @@ public class CartellaClinicaDatabase {
             
             rs = ps.executeQuery();
             
-			/*
-			  Muovo il cursore del ResultSet verso la riga nella posizione specificata dall'indiceRiga.
-			  In questo caso il cursore del ResultSet è rappresentato dall'attributo i.
-			  Bisogna tener conto che la posizione default del cursore è sempre precedente alla prima riga, per questo i è inizializzato a 0.
-			*/
-			
-			for(int i = 0; i<indiceRiga; i++) {
+			for(int i = 0; i < indiceRiga; i++) {
 				if(rs.next() == false) {
 					return null;
 				}
 			}
 			
-	        /*
-	          Una volta posizionato il cursore sull'indiceRiga desiderato, inserisco in CartellaClinica i valori della riga puntata.
-	        */
             cartellaClinica = new CartellaClinica(0, 0, 0, rs.getString("identificativo_interno"), rs.getDate("data_del_ritrovamento").toString(), rs.getString("luogo_del_ritrovamento"), rs.getString("specie"), rs.getInt("larghezza"), rs.getInt("lunghezza"), rs.getInt("peso"),  rs.getObject("naso").toString(), rs.getObject("becco").toString(), rs.getObject("testa").toString(), rs.getObject("collo").toString(), rs.getObject("occhi").toString(), rs.getObject("coda").toString(), rs.getObject("pinne").toString());
-                
         } catch(SQLException e) {
         	e.printStackTrace();
             throw e;

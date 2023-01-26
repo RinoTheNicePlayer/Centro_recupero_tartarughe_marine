@@ -27,7 +27,7 @@ public final class CartellaClinicaController {
 	/*
 	 *
 	 * Funzione che restituisce un'istanza della classe CartellaClinicaController, la genera se non esiste già.
-	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una.
+	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una
 	 *
 	 */
 	private static CartellaClinicaController instance = null;

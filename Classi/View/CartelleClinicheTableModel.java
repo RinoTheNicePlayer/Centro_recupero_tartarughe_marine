@@ -1,29 +1,41 @@
+/*
+ *
+ * Il codice rappresenta una classe Java chiamata "CartelleClinicheTableModel" che estende la classe "AbstractTableModel".
+ * Questa classe non è altro che un modello per una tabella che visualizza informazioni su diverse cartelle cliniche.
+ * Essa contiene un array di oggetti "CartellaClinica" e un array di stringhe che rappresentano i nomi delle colonne della tabella.
+ * Il costruttore della classe accetta un array di "CartellaClinica" come input.
+ * La classe sovrascrive i metodi "getColumnCount", "getColumnName", "getRowCount" e "getValueAt" della classe "AbstractTableModel"
+ * per fornire informazioni sui dati da visualizzare nella tabella della classe "DatiView".
+ * In particolare, il metodo "getValueAt" utilizza uno switch-case per determinare il valore da restituire
+ * per una determinata cella della tabella in base alla riga e alla colonna specificate
+ *
+ */
+
 package Classi.View;
 
 import javax.swing.table.AbstractTableModel;
-
 import Classi.Models.CartellaClinica;
 
-public class CartelleClinicheTableModel extends AbstractTableModel{
+public class CartelleClinicheTableModel extends AbstractTableModel {
 		protected CartellaClinica[] cartelleCliniche;
 		protected String[] nomiColonne = new String[] {"Identificativo interno", "Data ritrovamento", "Luogo ritrovamento", "Specie", "Larghezza", "Lunghezza", "Peso", "Naso", "Becco", "Testa", "Collo", "Occhi", "Coda", "Pinne"};
-			 
+		
 		public CartelleClinicheTableModel(CartellaClinica[] cartelleCliniche) {
 			this.cartelleCliniche = cartelleCliniche;
 		}
-			 
+		
 		public int getColumnCount() {
 			 return nomiColonne.length;
 		}
-			 
+		
 		public String getColumnName(int colonna) {
 			 return nomiColonne[colonna];
 		}
-			 
+		
 		public int getRowCount() {
 			 return cartelleCliniche.length;
 		}
-			 
+		
 		public Object getValueAt(int riga, int colonna) {
 			 switch (colonna) {
 				 case 0:
@@ -59,4 +71,3 @@ public class CartelleClinicheTableModel extends AbstractTableModel{
 			}
 		}
 }
-

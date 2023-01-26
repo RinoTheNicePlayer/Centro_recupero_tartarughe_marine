@@ -1,6 +1,7 @@
 package Classi.Models;
 
 public class Personale {
+	//Proprietà private della classe
 	private int idPersonale;
 	private int idCentro;
     private String matricola;
@@ -12,6 +13,7 @@ public class Personale {
     private String dataDiNascita;
     private String tipologia;
     
+    //Costruttore principale
     private Personale(int idPersonale, int idCentro, String matricola, String email, String password, String nome, String cognome, String sesso, String dataDiNascita, String tipologia) {
     	this.idPersonale = idPersonale;
     	this.idCentro = idCentro;
@@ -25,14 +27,27 @@ public class Personale {
     	this.tipologia = tipologia;
     }
     
+    /*
+     *
+     * Costruttore secondario. È stata usata la tecnica "Overload" per costruire un secondo costruttore
+     * che passa il valore "0" al primo parametro e il valore nullo al terzo
+     *
+     */
     public Personale(int idCentro, String email, String password, String nome, String cognome, String sesso, String dataDiNascita, String tipologia) {
     	this(0, idCentro, "", email, password, nome, cognome, sesso, dataDiNascita, tipologia);
     }
     
-    public Personale(int idPersonale, int idCentro, String matricola, String email, String nome, String cognome, String sesso, String dataDiNascita, String tipologia){
+    /*
+     * 
+     * Costruttore secondario. È stata usata la tecnica "Overload" per costruire un terzo costruttore
+     * che passa il valore nullo al quinto parametro
+     * 
+     */
+    public Personale(int idPersonale, int idCentro, String matricola, String email, String nome, String cognome, String sesso, String dataDiNascita, String tipologia) {
     	this(idPersonale, idCentro, matricola, email, "", nome, cognome, sesso, dataDiNascita, tipologia);
     }
     
+    //Metodi "getter" e "setter" per ricavare ed impostare ogni proprietà privata
     public int getIdPersonale() {
         return idPersonale;
     }

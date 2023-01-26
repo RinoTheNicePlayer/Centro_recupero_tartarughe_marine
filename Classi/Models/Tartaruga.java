@@ -1,12 +1,14 @@
 package Classi.Models;
 
 public class Tartaruga {
+	//Proprietà private della classe
 	private int idTartaruga;
 	private String targhetta;
 	private String nome;
 	private String sesso;
 	private int eta;
 	
+	//Costruttore
 	public Tartaruga(int idTartaruga, String targhetta, String nome, String sesso, int eta) {
 		this.idTartaruga = idTartaruga;
 		this.targhetta = targhetta;
@@ -15,6 +17,7 @@ public class Tartaruga {
 		this.eta = eta;
 	}
 	
+	//Metodi "getter" e "setter" per ricavare ed impostare ogni proprietà privata
 	public int getIdTartaruga() {
 		return idTartaruga;
 	}

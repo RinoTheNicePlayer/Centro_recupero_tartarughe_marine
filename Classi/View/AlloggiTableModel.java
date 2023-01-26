@@ -1,11 +1,21 @@
+/*
+ *
+ * Il codice rappresenta una classe Java chiamata "AlloggiTableModel" che estende la classe "AbstractTableModel".
+ * Essa contiene un array di oggetti "Alloggio" e un array di stringhe "nomiColonne".
+ * Viene fornito un costruttore che accetta un array di oggetti "Alloggio" e lo assegna alla proprietà "alloggi" della classe.
+ * La classe sovrascrive i metodi "getColumnCount", "getColumnName", "getRowCount" e "getValueAt" della classe "AbstractTableModel"
+ * per restituire i valori appropriati che verranno mostrati nella tabella della classe "DatiView".
+ * In particolare, il metodo "getValueAt" utilizza uno switch-case per determinare il valore da restituire
+ * per una determinata cella della tabella in base alla riga e alla colonna specificate
+ *
+ */
+
 package Classi.View;
 
 import javax.swing.table.AbstractTableModel;
-
 import Classi.Models.Alloggio;
 
-public class AlloggiTableModel extends AbstractTableModel{
-	
+public class AlloggiTableModel extends AbstractTableModel {
 		 protected Alloggio[] alloggi;
 		 protected String[] nomiColonne = new String[] {"Targhetta", "Nome", "Sesso", "Età", "Data di alloggio", "Codice vasca"};
 		 
