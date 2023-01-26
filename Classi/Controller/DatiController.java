@@ -16,6 +16,9 @@ package Classi.Controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.swing.table.TableModel;
+
 import Classi.Database.AlloggioDatabase;
 import Classi.Database.CartellaClinicaDatabase;
 import Classi.Models.Alloggio;
@@ -40,6 +43,7 @@ public class DatiController {
 		return instance;
 	}
 	
+	//Metodo creaTabellaAlloggi senza valore passato
 	public static AlloggiTableModel creaTabellaAlloggi() throws SQLException {
 		int indiceRiga = 1;
 		ArrayList<Alloggio> alloggi = new ArrayList<Alloggio>();
@@ -47,6 +51,26 @@ public class DatiController {
 		
 		do {
 			rigaAlloggio = AlloggioDatabase.getInstance().getAlloggioByIndiceRiga(indiceRiga);
+			
+			if(rigaAlloggio != null) {
+				alloggi.add(rigaAlloggio);
+				indiceRiga++;
+			}
+		} while(rigaAlloggio != null);
+		
+		Alloggio[] alloggiArray = alloggi.toArray(new Alloggio[alloggi.size()]);
+		
+		return new AlloggiTableModel(alloggiArray);
+	}
+	
+	//Metodo creaTabellaAlloggi con valore passato
+	public static AlloggiTableModel creaTabellaAlloggi(String valore) throws SQLException {
+		int indiceRiga = 1;
+		ArrayList<Alloggio> alloggi = new ArrayList<Alloggio>();
+		Alloggio rigaAlloggio = null;
+		
+		do {
+			rigaAlloggio = AlloggioDatabase.getInstance().getAlloggioByIndiceRiga(indiceRiga, valore);
 			
 			if(rigaAlloggio != null) {
 				alloggi.add(rigaAlloggio);

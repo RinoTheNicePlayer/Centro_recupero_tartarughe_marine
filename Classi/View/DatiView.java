@@ -21,12 +21,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 public class DatiView extends JFrame {
 	private JPanel pannello;
-	private JTextField barraDelleRicerche;
 	private JTable tabella;
 	private boolean visualizzazione = false;
+    private JButton bottoneCartellaClinica;
+    private JLabel testoCartelleCliniche;
 	
 	//Creazione della finestra per la visualizzazione dei dati del personale
 	public DatiView(Personale personale) {
@@ -358,23 +360,6 @@ public class DatiView extends JFrame {
 		bottoneIndietro.setBackground(new Color(255, 255, 255));
 		bottoneIndietro.setBounds(40, 80, 90, 40);
 		pannelloCentrale.add(bottoneIndietro);
-        
-        barraDelleRicerche = new JTextField();
-        barraDelleRicerche.setToolTipText("La barra delle ricerche ti permette di cercare solo l'elemento che digiti, fornendo tutti i dati relativi a quest'ultimo (visualizzabili nella tabella)");
-        barraDelleRicerche.setForeground(new Color(0, 0, 0));
-        barraDelleRicerche.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-        barraDelleRicerche.setColumns(10);
-        barraDelleRicerche.setBackground(new Color(255, 255, 255));
-        barraDelleRicerche.setBounds(200, 80, 300, 40);
-        pannelloCentrale.add(barraDelleRicerche);
-		
-		JButton bottoneRicerca = new JButton("");
-        bottoneRicerca.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Ricerca.png")));
-        bottoneRicerca.setForeground(new Color(255, 255, 255));
-        bottoneRicerca.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-        bottoneRicerca.setBackground(new Color(255, 255, 255));
-        bottoneRicerca.setBounds(520, 80, 40, 40);
-        pannelloCentrale.add(bottoneRicerca);
 		
         //Se la modalità di apertura è "cartellecliniche", allora crea la tabella "Cartella clinica"
 		if(tipoContenuto == "cartellecliniche") {
@@ -399,6 +384,7 @@ public class DatiView extends JFrame {
 			
 			try {
 				tabella = new JTable(DatiController.getInstance().creaTabellaCartelleCliniche(targhettaTartaruga));
+				tabella.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				//Per ogni colonna della tabella, i valori non devono essere editabili. L'editor di ogni colonna è quindi settato a null
 				for (int i = 0; i < tabella.getColumnCount(); i++)
 				{
@@ -413,12 +399,43 @@ public class DatiView extends JFrame {
 		} else if (tipoContenuto == "tartarughe") {
 			try {
 				tabella = new JTable(DatiController.getInstance().creaTabellaAlloggi());
+				tabella.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				
+				JTextField barraDelleRicerche = new JTextField();
+		        barraDelleRicerche.setToolTipText("La barra delle ricerche ti permette di cercare solo l'elemento che digiti, fornendo tutti i dati relativi a quest'ultimo (visualizzabili nella tabella)");
+		        barraDelleRicerche.setForeground(new Color(0, 0, 0));
+		        barraDelleRicerche.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		        barraDelleRicerche.setColumns(10);
+		        barraDelleRicerche.setBackground(new Color(255, 255, 255));
+		        barraDelleRicerche.setBounds(200, 80, 300, 40);
+		        pannelloCentrale.add(barraDelleRicerche);
+				
+				JButton bottoneRicerca = new JButton("");
+		        bottoneRicerca.setIcon(new ImageIcon(DatiView.class.getResource("/Immagini/Ricerca.png")));
+		        bottoneRicerca.setForeground(new Color(255, 255, 255));
+		        bottoneRicerca.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		        bottoneRicerca.setBackground(new Color(255, 255, 255));
+		        bottoneRicerca.setBounds(520, 80, 40, 40);
+		        pannelloCentrale.add(bottoneRicerca);
+		        bottoneRicerca.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent e) {
+						try {
+							if(barraDelleRicerche.getText().equals("") == false) {
+								tabella.setModel(DatiController.getInstance().creaTabellaAlloggi(barraDelleRicerche.getText()));
+							}
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+					}
+				});
+		        
 				//Per ogni colonna della tabella, i valori non devono essere editabili. L'editor di ogni colonna è quindi settato a null
 				for (int i = 0; i < tabella.getColumnCount(); i++)
 				{
 				    Class<?> classeColonna = tabella.getColumnClass(i);
 				    tabella.setDefaultEditor(classeColonna, null);
 				}
+		        
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -444,33 +461,36 @@ public class DatiView extends JFrame {
          * Se i bottoni sono già stati resi visibili in precedenza, allora solo il testo viene aggiornato
          *
          */
-        JButton bottoneCartellaClinica = new JButton("Cartelle cliniche");
-        JLabel testoCartelleCliniche = new JLabel("Visualizza per: ");
+        bottoneCartellaClinica = new JButton("Cartelle cliniche");
+        testoCartelleCliniche = new JLabel("Visualizza per: ");
 	    
 		tabella.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent event) {
-				if((tipoContenuto == "tartarughe") && (visualizzazione == false)) {
-					bottoneCartellaClinica.setForeground(new Color(0, 0, 0));
-					bottoneCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-					bottoneCartellaClinica.setBackground(new Color(255, 255, 255));
-					bottoneCartellaClinica.setBounds(760, 80, 200, 40);
-			        pannelloCentrale.add(bottoneCartellaClinica);
-			        
-			        testoCartelleCliniche.setForeground(new Color(0, 0, 0));
-				    testoCartelleCliniche.setBackground(new Color(255, 255, 255));
-				    testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
-				    testoCartelleCliniche.setHorizontalAlignment(SwingConstants.CENTER);
-				    testoCartelleCliniche.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-				    testoCartelleCliniche.setBounds(760, 120, 200, 20);
-				    pannelloCentrale.add(testoCartelleCliniche);
-				    
-				    visualizzazione = true;
-				    pannello.repaint();
-		        } else if ((tipoContenuto == "tartarughe") && (visualizzazione == true)) {
-		       		testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
-		       	}
-		    }
+				if(tipoContenuto == "tartarughe") {
+					if(visualizzazione == false) {
+						bottoneCartellaClinica.setForeground(new Color(0, 0, 0));
+						bottoneCartellaClinica.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+						bottoneCartellaClinica.setBackground(new Color(255, 255, 255));
+						bottoneCartellaClinica.setBounds(760, 80, 200, 40);
+				        pannelloCentrale.add(bottoneCartellaClinica);
+				        
+				        testoCartelleCliniche.setForeground(new Color(0, 0, 0));
+					    testoCartelleCliniche.setBackground(new Color(255, 255, 255));
+					    testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
+					    testoCartelleCliniche.setHorizontalAlignment(SwingConstants.CENTER);
+					    testoCartelleCliniche.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+					    testoCartelleCliniche.setBounds(760, 120, 200, 20);
+					    pannelloCentrale.add(testoCartelleCliniche);
+					    
+					    visualizzazione = true;
+					    pannello.repaint();
+					}else {
+			       		testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
+					}
+				}
+			}
 		});
+		
 		
 		//Cliccando il bottone "bottoneCartellaClinica" si aprirà una nuova finestra DatiView, questa volta in modalità cartellecliniche
 		bottoneCartellaClinica.addMouseListener(new MouseAdapter() {

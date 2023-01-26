@@ -95,4 +95,14 @@ public final class TestoUtility {
 			return true;
 		}
 	}
+	
+	//Funzione che controlla se la stringa è un numero
+	public static boolean isNumero(String stringa) { 
+		  try {  
+		    Integer.parseInt(stringa);  
+		    return true;
+		  } catch(NumberFormatException e){  
+		    return false;  
+		  }  
+		}
 }
