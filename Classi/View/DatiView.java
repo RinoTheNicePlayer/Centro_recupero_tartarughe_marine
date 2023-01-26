@@ -424,13 +424,6 @@ public class DatiView extends JFrame {
 		 *
 		 */
 		} else if (tipoContenuto == "tartarughe") {
-			JButton bottoneAggiungiTartaruga = new JButton("Aggiungi Tartaruga");
-			bottoneAggiungiTartaruga.setForeground(new Color(0, 0, 0));
-			bottoneAggiungiTartaruga.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-			bottoneAggiungiTartaruga.setBackground(new Color(255, 255, 255));
-			bottoneAggiungiTartaruga.setBounds(760, 80, 200, 40);
-			pannelloCentrale.add(bottoneAggiungiTartaruga);
-			
 			//Realizzazione della tabella "Alloggi"
 			try {
 				tabella = new JTable(DatiController.getInstance().creaTabellaAlloggi());
@@ -471,19 +464,19 @@ public class DatiView extends JFrame {
 			       	bottoneCartelleCliniche.setForeground(Color.BLACK);
 			       	bottoneCartelleCliniche.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 			        bottoneCartelleCliniche.setBackground(Color.WHITE);
-			        bottoneCartelleCliniche.setBounds(545, 80, 175, 40);
+			        bottoneCartelleCliniche.setBounds(760, 80, 200, 40);
 			        pannelloCentrale.add(bottoneCartelleCliniche);
 			        
-			        testoCartelleCliniche.setText("Visualizza per: " +tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
+			        testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
 				    testoCartelleCliniche.setHorizontalAlignment(SwingConstants.CENTER);
 				    testoCartelleCliniche.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-				    testoCartelleCliniche.setBounds(545, 118, 175, 20);
+				    testoCartelleCliniche.setBounds(760, 80, 200, 40);
 				    pannelloCentrale.add(testoCartelleCliniche);
 				    
 				    bottoniVisibili = true;
 				    pannello.repaint();
 		        } else if ((tipoContenuto == "tartarughe") && (bottoniVisibili == true)) {
-		       		testoCartelleCliniche.setText("Visualizza per: " +tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
+		       		testoCartelleCliniche.setText("Visualizza per: " + tabella.getValueAt(tabella.getSelectedRow(), 0).toString());
 		       	}
 		    }
 		});
