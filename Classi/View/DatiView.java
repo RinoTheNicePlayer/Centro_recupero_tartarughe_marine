@@ -420,7 +420,9 @@ public class DatiView extends JFrame {
 					try {
 						if(barraDelleRicerche.getText().equals("") == false) {
 							tabella.setModel(DatiController.getInstance().creaTabellaAlloggi(barraDelleRicerche.getText()));
-						}
+						}else {
+							tabella.setModel(DatiController.getInstance().creaTabellaAlloggi());
+						}						
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
