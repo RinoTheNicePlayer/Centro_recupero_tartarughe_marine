@@ -2,7 +2,8 @@
  *
  * Il codice rappresenta una classe Java chiamata "PersonaleDatabase" che gestisce l'accesso e la registrazione degli utenti all'interno del database.
  * La classe utilizza il pattern singleton per garantire che ci sia solo un'unica istanza della classe in tutto il programma.
- * È composta da due metodi: "controlloAccesso" e "registraPersonale".
+ * È composta da quattro metodi, quelli per cui è necessario dare una spiegazione completa sono: "controlloAccesso" e "registraPersonale",
+ * gli altri due non meno importanti sono "getPersonaleByEmail" e "getPersonaleByMatricola".
  * Il metodo "controlloAccesso" riceve come input l'email e la password inserite dall'utente e verifica se esistono nel database.
  * Se esistono, l'utente accede correttamente al portale, altrimenti viene visualizzata una finestra di errore.
  * Il metodo "registraPersonale" riceve come input un oggetto "Personale" e lo memorizza nel database.
@@ -31,7 +32,7 @@ import Classi.View.RegistrazioneView;
 public final class PersonaleDatabase {
 	/*
 	 *
-	 * Funzione che restituisce un'istanza della classe PersonaleDatabase, la genera se non esiste già.
+	 * Metodo che restituisce un'istanza della classe PersonaleDatabase, la genera se non esiste già.
 	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una
 	 *
 	 */
@@ -45,12 +46,6 @@ public final class PersonaleDatabase {
 		return instance;
 	}
 	
-	/*
-	 *
-	 * Funzione che analizza se l'email e la password inserite dall'utente sono presenti nel database.
-	 * Se lo sono, l'utente accede correttamente al portale, in alternativa compare una finestra di errore
-	 *
-	 */
 	public boolean controlloAccesso(String compilazioneEmail, String compilazionePassword) {
 		PreparedStatement ps;
 		ResultSet rs;
@@ -74,6 +69,7 @@ public final class PersonaleDatabase {
 			} else {
 				ErroreView finestraErrore = new ErroreView("Impossibile effettuare l'accesso!", "Email o password non registrati.");
 				finestraErrore.setLocationRelativeTo(null);
+				finestraErrore.setModal(true);
 				finestraErrore.setVisible(true);
 			}
 		} catch(SQLException ex) {
@@ -83,7 +79,6 @@ public final class PersonaleDatabase {
 		return false;
 	}
 	
-	//Funzione che permette di eseguire la memorizzazione delle credenziali dell'utente nel database
 	public void registraPersonale(Personale personale) {
 		PreparedStatement ps;
 		int rs;
@@ -110,17 +105,19 @@ public final class PersonaleDatabase {
 			} else {
 				ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Controlla che tutti i campi siano stati riempiti correttamente!");
 				finestraErrore.setLocationRelativeTo(null);
+				finestraErrore.setModal(true);
 				finestraErrore.setVisible(true);
 			}
 		} catch(SQLException ex) {
 			Logger.getLogger(RegistrazioneView.class.getName()).log(Level.SEVERE, null, ex);
 			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Email già in uso!");
 			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setModal(true);
 			finestraErrore.setVisible(true);
 		}
 	}
 	
-	//Funzione che consente di cercare un personale specifico nel database mediante l'email fornita come parametro
+	//Metodo che permette di cercare un personale specifico nel database mediante l'email fornita come parametro
 	public Personale getPersonaleByEmail(String email) throws SQLException {
 		PreparedStatement ps;
 		ResultSet rs;
@@ -146,7 +143,7 @@ public final class PersonaleDatabase {
         return null;
     }
 	
-	//Funzione che consente di cercare un personale specifico nel database mediante la matricola fornita come parametro
+	//Metodo che permette di cercare un personale specifico nel database mediante la matricola fornita come parametro
 	public Personale getPersonaleByMatricola(String matricola) throws SQLException {
 		PreparedStatement ps;
 		ResultSet rs;

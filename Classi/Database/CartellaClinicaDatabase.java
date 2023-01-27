@@ -35,7 +35,7 @@ import Classi.View.RegistrazioneView;
 public class CartellaClinicaDatabase {
 	/*
 	 *
-	 * Funzione che restituisce un'istanza della classe CartellaClinicaDatabase, la genera se non esiste già.
+	 * Metodo che restituisce un'istanza della classe CartellaClinicaDatabase, la genera se non esiste già.
 	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una
 	 *
 	 */
@@ -49,7 +49,6 @@ public class CartellaClinicaDatabase {
 		return instance;
 	}
 	
-	//Funzione che permette di eseguire la memorizzazione della cartella clinica nel database
 	public void caricaCartellaClinica(CartellaClinica cartellaClinica) {
 		PreparedStatement ps;
 		int rs;
@@ -83,17 +82,18 @@ public class CartellaClinicaDatabase {
 			} else {
 				ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Controlla che tutti i campi siano stati riempiti correttamente!");
 				finestraErrore.setLocationRelativeTo(null);
+				finestraErrore.setModal(true);
 				finestraErrore.setVisible(true);
 			}
 		} catch(SQLException ex) {
 			Logger.getLogger(RegistrazioneView.class.getName()).log(Level.SEVERE, null, ex);
 			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Controlla che tutti i campi siano stati riempiti correttamente!");
 			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setModal(true);
 			finestraErrore.setVisible(true);
 		}
 	}
 	
-	//Funzione che ricava una cartella clinica tramite identificativo interno
 	public CartellaClinica getCartellaClinicaByIdentificativo(String identificativo) throws SQLException {
 		PreparedStatement ps;
 		ResultSet rs;
@@ -120,7 +120,6 @@ public class CartellaClinicaDatabase {
         return null;
     }
 	
-	//Funzione che ricava una cartella clinica tramite targhetta della tartaruga
 	public CartellaClinica getRigaCartellaClinicaByTarghetta(int indiceRiga, String targhetta) throws SQLException {
 		PreparedStatement ps;
 		ResultSet rs;

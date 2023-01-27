@@ -9,11 +9,12 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.UIManager;
 
-public class ErroreView extends JFrame {
+public class ErroreView extends JDialog {
 	private JPanel pannello;
 	
 	//Creazione della finestra
@@ -53,29 +54,6 @@ public class ErroreView extends JFrame {
 		titoloFinestra.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		titoloFinestra.setBounds(70, 0, 60, 50);
 		barraTitolo.add(titoloFinestra);
-		
-		JLabel iconaMinimizza = new JLabel("");
-		iconaMinimizza.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Riduci a icona.png")));
-		iconaMinimizza.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona (blu).png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				iconaMinimizza.setIcon(new ImageIcon(getClass().getResource("/Immagini/Riduci a icona.png")));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				setExtendedState(JFrame.ICONIFIED);
-			}
-		});
-		iconaMinimizza.setHorizontalAlignment(SwingConstants.CENTER);
-		iconaMinimizza.setForeground(new Color(255, 255, 255));
-		iconaMinimizza.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		iconaMinimizza.setBackground(new Color(255, 255, 255));
-		iconaMinimizza.setBounds(400, 0, 50, 50);
-		barraTitolo.add(iconaMinimizza);
 		
 		JLabel iconaChiudi = new JLabel("");
 		iconaChiudi.setIcon(new ImageIcon(AccessoView.class.getResource("/Immagini/Chiudi.png")));
@@ -129,8 +107,7 @@ public class ErroreView extends JFrame {
 		bottoneOk.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccessoView finestraAccesso = new AccessoView();
-				dispose();
+				ErroreView.this.dispose();
 			}
 		});
 		bottoneOk.setForeground(new Color(0, 0, 0));

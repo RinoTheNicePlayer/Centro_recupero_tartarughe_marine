@@ -16,9 +16,6 @@ package Classi.Controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javax.swing.table.TableModel;
-
 import Classi.Database.AlloggioDatabase;
 import Classi.Database.CartellaClinicaDatabase;
 import Classi.Models.Alloggio;
@@ -29,7 +26,7 @@ import Classi.View.CartelleClinicheTableModel;
 public class DatiController {
 	/*
 	 *
-	 * Funzione che restituisce un'istanza della classe DatiController, la genera se non esiste già.
+	 * Metodo che restituisce un'istanza della classe DatiController, la genera se non esiste già.
 	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una
 	 *
 	 */
@@ -43,7 +40,7 @@ public class DatiController {
 		return instance;
 	}
 	
-	//Metodo creaTabellaAlloggi senza valore passato
+	//Metodo creaTabellaAlloggi principale
 	public static AlloggiTableModel creaTabellaAlloggi() throws SQLException {
 		int indiceRiga = 1;
 		ArrayList<Alloggio> alloggi = new ArrayList<Alloggio>();
@@ -63,7 +60,7 @@ public class DatiController {
 		return new AlloggiTableModel(alloggiArray);
 	}
 	
-	//Metodo creaTabellaAlloggi con valore passato
+	//Metodo creaTabellaAlloggi secondario. È stata usata la tecnica "Overload" per consentire al metodo di passare in input una stringa
 	public static AlloggiTableModel creaTabellaAlloggi(String valore) throws SQLException {
 		int indiceRiga = 1;
 		ArrayList<Alloggio> alloggi = new ArrayList<Alloggio>();

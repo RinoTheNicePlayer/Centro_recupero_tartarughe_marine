@@ -6,7 +6,7 @@
  * per effettuare controlli di validità sui dati inseriti e per eseguire query sul database.
  * La classe utilizza anche il pattern singleton per garantire che ci sia solo un'unica istanza della classe in tutto il programma.
  * Il metodo "effettuaCaricamentoCartellaClinica" verifica la validità dei campi di input e,
- * se valida, chiama la classe "CartellaClinicaDatabase" per eseguire la query di caricamento della cartella clinica. In caso di input non validi,
+ * se essi sono validi, chiama la classe "CartellaClinicaDatabase" per eseguire la query di caricamento della cartella clinica. In caso di input non validi,
  * viene visualizzata una finestra di errore
  *
  */
@@ -26,7 +26,7 @@ import Classi.View.ErroreView;
 public final class CartellaClinicaController {
 	/*
 	 *
-	 * Funzione che restituisce un'istanza della classe CartellaClinicaController, la genera se non esiste già.
+	 * Metodo che restituisce un'istanza della classe CartellaClinicaController, la genera se non esiste già.
 	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una
 	 *
 	 */
@@ -42,7 +42,7 @@ public final class CartellaClinicaController {
 	
 	/*
 	 *
-	 * Funzione che permette di effettuare il caricamento della cartella clinica di una tartaruga marina nel database. Tale funzione verifica se i dati della tartaruga sono validi.
+	 * Metodo che permette di effettuare il caricamento della cartella clinica di una tartaruga marina nel database. Tale metodo verifica se i dati della tartaruga sono validi.
 	 * Se quest'ultimi sono validi, viene interpellata la classe CartellaClinicaDatabase per eseguire la query
 	 *
 	 */
@@ -65,16 +65,19 @@ public final class CartellaClinicaController {
 		System.out.print(validaStatoOcchi);
 		
 		if((validaDataRitrovamento == false) && (validaStatoPinne == false) && (validaStatoCoda == false) && (validaStatoCollo == false) && (validaStatoTesta == false) && (validaStatoBecco == false) && (validaStatoNaso == false) && (validaStatoOcchi == false)) {
-			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Ci sono campi non compilati");
+			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Uno o più campi sono vuoti o compilati male.");
 			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setModal(true);
 			finestraErrore.setVisible(true);
 		} else if(validaDataRitrovamento == false) {
-			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "La data deve rispettare il formato AAAA-MM-GG");
+			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "La 'data' deve rispettare il formato AAAA-MM-GG.");
 			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setModal(true);
 			finestraErrore.setVisible(true);
 		} else if((validaStatoPinne == false) || (validaStatoCoda == false) || (validaStatoCollo == false) || (validaStatoTesta == false) || (validaStatoBecco == false) || (validaStatoNaso == false) || (validaStatoOcchi == false)) {
-			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Uno o più campi di 'Condizione tartaruga' sono vuoti");
+			ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Uno o più campi di 'Condizione tartaruga' sono vuoti.");
 			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setModal(true);
 			finestraErrore.setVisible(true);
 		} else {
 			try {
@@ -85,23 +88,26 @@ public final class CartellaClinicaController {
 			} catch(NumberFormatException e) {
 				ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "I campi 'Larghezza', 'Lunghezza' e 'Peso' devono contenere valori numerici.");
 				finestraErrore.setLocationRelativeTo(null);
+				finestraErrore.setModal(true);
 				finestraErrore.setVisible(true);
 			    e.printStackTrace();
-			} catch (SQLException e) {
+			} catch(SQLException e) {
 				ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Non esiste alcuna tartaruga associata a quella targhetta.");
 				finestraErrore.setLocationRelativeTo(null);
+				finestraErrore.setModal(true);
 				finestraErrore.setVisible(true);
 				e.printStackTrace();
-			} catch (NullPointerException e) {
+			} catch(NullPointerException e) {
 				ErroreView finestraErrore = new ErroreView("Impossibile caricare la cartella clinica!", "Non esiste alcuna tartaruga associata a quella targhetta.");
 				finestraErrore.setLocationRelativeTo(null);
+				finestraErrore.setModal(true);
 				finestraErrore.setVisible(true);
 				e.printStackTrace();
 			}
 		}
 	}
 	
-	//Funzione che produce in maniera randomica un identificativo con formato IXXXXXXXX, dove X è una cifra corrispondente ad un numero compreso tra 0 e 9
+	//Metodo che produce in maniera randomica un identificativo con formato IXXXXXXXX, dove X è una cifra corrispondente ad un numero compreso tra 0 e 9
 	public String generatoreDiIdentificativiInterni() throws SQLException {
 		Random rnd = new Random();
 	    String identificativoInterno = "I";

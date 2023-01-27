@@ -12,12 +12,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class TestoUtility {
-	//Funzione che controlla se una stringa rispetta le regole grammaticali di un Nome/Cognome
+	//Metodo che controlla se una stringa rispetta le regole grammaticali di un Nome/Cognome
 	public static boolean verificaNome(String nome) {
 		return nome.matches("^([A-Z][a-z]*)([ ]?[A-Z][a-z]*)*$");
 	}
 	
-	//Funzione che controlla se una Email aderisce al modello standard delle Email
+	//Metodo che controlla se una Email aderisce al modello standard delle Email
 	public static boolean verificaEmail(String email) {
 		boolean controlloRelazione = false;
 		boolean controlloEmail = false;
@@ -42,7 +42,7 @@ public final class TestoUtility {
 		return controlloEmail;
 	}
 	
-	//Funzione che controlla se una Password è conforme agli standard imposti dal sistema
+	//Metodo che controlla se una Password è conforme agli standard imposti dal sistema
 	public static boolean verificaPassword(char[] password) {
 		int lunghezzaPassword = password.length + 1;
 		boolean controlloPassword = false;
@@ -58,17 +58,17 @@ public final class TestoUtility {
 		return controlloPassword;
 	}
 	
-	//Funzione che confronta due Password e valuta se sono uguali
+	//Metodo che confronta due Password e valuta se sono uguali
 	public static boolean confrontoPassword(char[] password, char[] confermaPassword) {
 		return new String(password).matches(new String(confermaPassword));
 	}
 	
-	//Funzione che controlla se una data rispetta il formato AAAA-MM-GG
+	//Metodo che controlla se una data rispetta il formato AAAA-MM-GG
 	public static boolean verificaData(String data) {
 		return data.matches("^(19[0-9][0-9]|20[0-1][0-9]|202[0-2])-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$");
 	}
 	
-	//Funzione che controlla se il sesso è valido
+	//Metodo che controlla se il sesso è valido
 	public static boolean verificaSesso(String sesso) {
 		if(sesso != null) {
 			return true;
@@ -78,7 +78,7 @@ public final class TestoUtility {
 		}
 	}
 	
-	//Funzione che controlla se il centro scelto è valido
+	//Metodo che controlla se il centro scelto è valido
 	public static boolean verificaCentro(int idCentro) {
 		if(idCentro < 0) {
 			return false;
@@ -87,7 +87,7 @@ public final class TestoUtility {
 		}
 	}
 	
-	//Funzione che controlla se la professione scelta è valida
+	//Metodo che controlla se la professione scelta è valida
 	public static boolean verificaSelezione(String elementoSelezionato) {
 		if(elementoSelezionato == "") {
 			return false;
@@ -96,13 +96,14 @@ public final class TestoUtility {
 		}
 	}
 	
-	//Funzione che controlla se la stringa è un numero
-	public static boolean isNumero(String stringa) { 
-		  try {  
-		    Integer.parseInt(stringa);  
+	//Metodo che controlla se la stringa è un numero
+	public static boolean verificaNumero(String stringa) {
+		try {
+		    Integer.parseInt(stringa);
+		    
 		    return true;
-		  } catch(NumberFormatException e){  
-		    return false;  
-		  }  
+		} catch(NumberFormatException e) {
+		    return false;
 		}
+	}
 }

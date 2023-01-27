@@ -177,7 +177,7 @@ public class PortaleView extends JFrame {
 					finestraDati.setLocationRelativeTo(null);
 					finestraDati.setVisible(true);
 					dispose();
-				} catch (SQLException e1) {
+				} catch(SQLException e1) {
 					e1.printStackTrace();
 				}
 			}

@@ -37,37 +37,37 @@ public class CartelleClinicheTableModel extends AbstractTableModel {
 		}
 		
 		public Object getValueAt(int riga, int colonna) {
-			 switch (colonna) {
-				 case 0:
-					 return cartelleCliniche[riga].getIdentificativoInterno();
-				 case 1:
-					 return cartelleCliniche[riga].getDataRitrovamento();
-				 case 2:
-					 return cartelleCliniche[riga].getLuogoRitrovamento();
-				 case 3:
-					 return cartelleCliniche[riga].getSpecie();
-				 case 4:
-					 return cartelleCliniche[riga].getLarghezza();
-				 case 5:
-					 return cartelleCliniche[riga].getLunghezza();
-				 case 6:
-					 return cartelleCliniche[riga].getPeso();
-				 case 7:
-					 return cartelleCliniche[riga].getStatoNaso();
-				 case 8:
-					 return cartelleCliniche[riga].getStatoBecco();
-				 case 9:
-					 return cartelleCliniche[riga].getStatoTesta();
-				 case 10:
-					 return cartelleCliniche[riga].getStatoCollo();
-				 case 11:
-					 return cartelleCliniche[riga].getStatoOcchi();
-				 case 12:
-					 return cartelleCliniche[riga].getStatoCoda();
-				 case 13:
-					 return cartelleCliniche[riga].getStatoPinne();
-				 default:
-					 return null;
+			switch(colonna) {
+				case 0:
+					return cartelleCliniche[riga].getIdentificativoInterno();
+				case 1:
+					return cartelleCliniche[riga].getDataRitrovamento();
+				case 2:
+					return cartelleCliniche[riga].getLuogoRitrovamento();
+				case 3:
+					return cartelleCliniche[riga].getSpecie();
+				case 4:
+					return cartelleCliniche[riga].getLarghezza();
+				case 5:
+					return cartelleCliniche[riga].getLunghezza();
+				case 6:
+					return cartelleCliniche[riga].getPeso();
+				case 7:
+					return cartelleCliniche[riga].getStatoNaso();
+				case 8:
+					return cartelleCliniche[riga].getStatoBecco();
+				case 9:
+					return cartelleCliniche[riga].getStatoTesta();
+				case 10:
+					return cartelleCliniche[riga].getStatoCollo();
+				case 11:
+					return cartelleCliniche[riga].getStatoOcchi();
+				case 12:
+					return cartelleCliniche[riga].getStatoCoda();
+				case 13:
+					return cartelleCliniche[riga].getStatoPinne();
+				default:
+					return null;
 			}
 		}
 }

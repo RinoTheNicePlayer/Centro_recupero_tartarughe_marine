@@ -37,7 +37,7 @@ public class AlloggiTableModel extends AbstractTableModel {
 		 
 		 public Object getValueAt(int riga, int colonna) {
 			 if(riga != -1) {
-				 switch (colonna) {
+				 switch(colonna) {
 					 case 0:
 						 return alloggi[riga].getTartaruga().getTarghetta();
 					 case 1:
@@ -56,5 +56,5 @@ public class AlloggiTableModel extends AbstractTableModel {
 			 }
 			 
 			 return "";
-		}
+		 }
 }

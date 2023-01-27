@@ -25,7 +25,7 @@ import Classi.Models.Vasca;
 public class AlloggioDatabase {
 	/*
 	 *
-	 * Funzione che restituisce un'istanza della classe AlloggioDatabase, la genera se non esiste già.
+	 * Metodo che restituisce un'istanza della classe AlloggioDatabase, la genera se non esiste già.
 	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una
 	 *
 	 */
@@ -39,7 +39,7 @@ public class AlloggioDatabase {
 		return instance;
 	}
 	
-	//Metodo getAlloggioByIndiceRiga senza valore passato
+	//Metodo getAlloggioByIndiceRiga principale
 	public Alloggio getAlloggioByIndiceRiga(int indiceRiga) throws SQLException {
 		PreparedStatement ps;
 		ResultSet rs;
@@ -69,7 +69,12 @@ public class AlloggioDatabase {
 		return rigaAlloggio;
 	}
 	
-	//Metodo getAlloggioByIndiceRiga con valore passato
+	/*
+	 *
+	 * Metodo getAlloggioByIndiceRiga secondario. È stata usata la tecnica "Overload" per consentire al metodo di passare in input una stringa,
+	 * oltre all'intero già presente nella firma del metodo principale
+	 *
+	 */
 	public Alloggio getAlloggioByIndiceRiga(int indiceRiga, String valore) throws SQLException {
 		PreparedStatement ps;
 		ResultSet rs;
@@ -77,11 +82,11 @@ public class AlloggioDatabase {
 		
 		Alloggio rigaAlloggio = null;
 		
-		if(TestoUtility.isNumero(valore)) {
+		if(TestoUtility.verificaNumero(valore)) {
 			query = "SELECT tartaruga.targhetta, tartaruga.nome, tartaruga.sesso, tartaruga.età, alloggiare.data_inizio, vasca.codice_vasca FROM tartaruga, alloggiare, vasca WHERE tartaruga.id_tartaruga = alloggiare.id_tartaruga AND alloggiare.id_vasca = vasca.id_vasca AND (tartaruga.età = '" + Integer.parseInt(valore)+ "')";
-		}else if(TestoUtility.verificaData(valore)){
+		} else if(TestoUtility.verificaData(valore)) {
 			query = "SELECT tartaruga.targhetta, tartaruga.nome, tartaruga.sesso, tartaruga.età, alloggiare.data_inizio, vasca.codice_vasca FROM tartaruga, alloggiare, vasca WHERE tartaruga.id_tartaruga = alloggiare.id_tartaruga AND alloggiare.id_vasca = vasca.id_vasca AND (alloggiare.data_inizio = '" + valore + "')";
-		}else {
+		} else {
 			query = "SELECT tartaruga.targhetta, tartaruga.nome, tartaruga.sesso, tartaruga.età, alloggiare.data_inizio, vasca.codice_vasca FROM tartaruga, alloggiare, vasca WHERE tartaruga.id_tartaruga = alloggiare.id_tartaruga AND alloggiare.id_vasca = vasca.id_vasca AND ((tartaruga.targhetta = '" + valore + "') OR (tartaruga.nome = '" + valore + "') OR (tartaruga.sesso = '" + valore + "') OR (vasca.codice_vasca = '" + valore + "'))";
 		}
 		try {

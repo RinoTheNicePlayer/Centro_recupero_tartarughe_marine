@@ -21,7 +21,7 @@ import Classi.View.ErroreView;
 public final class RegistrazioneController {
 	/*
 	 *
-	 * Funzione che restituisce un'istanza della classe RegistrazioneController, la genera se non esiste già.
+	 * Metodo che restituisce un'istanza della classe RegistrazioneController, la genera se non esiste già.
 	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una
 	 *
 	 */
@@ -37,7 +37,7 @@ public final class RegistrazioneController {
 	
 	/*
 	 *
-	 * Funzione che permette di effettuare la registrazione di un utente all'applicazione. Tale funzione verifica se le credenziali dell'utente sono valide.
+	 * Metodo che permette di effettuare la registrazione di un utente all'applicazione. Tale metodo verifica se le credenziali dell'utente sono valide.
 	 * Se quest'ultime sono valide, viene interpellata la classe PersonaleDatabase per eseguire la query
 	 *
 	 */
@@ -55,30 +55,35 @@ public final class RegistrazioneController {
 		if((validaNome == false) || (validaCognome == false) || (validaDataDiNascita == false) || (validaSesso == false) || (validaCentro == false) || (validaProfessione == false)) {
 			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Uno o più campi sono vuoti o compilati male.");
 			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setModal(true);
 			finestraErrore.setVisible(true);
 		} else if((validaEmail == false) && (validaPassword == false)) {
-			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Email e password non validi.");
+			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Email e password non valide.");
 			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setModal(true);
 			finestraErrore.setVisible(true);
 		} else if(validaEmail == false) {
 			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Email non valida.");
 			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setModal(true);
 			finestraErrore.setVisible(true);
 		} else if(validaPassword == false) {
 			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Password non valida.");
 			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setModal(true);
 			finestraErrore.setVisible(true);
-		} else if(passwordUguali == false){
+		} else if(passwordUguali == false) {
 			ErroreView finestraErrore = new ErroreView("Impossibile effettuare la registrazione!", "Le password non corrispondono.");
 			finestraErrore.setLocationRelativeTo(null);
+			finestraErrore.setModal(true);
 			finestraErrore.setVisible(true);
-		} else{
+		} else {
 			Personale personale = new Personale (idCentro, email, new String(password), nome, cognome, sesso, dataDiNascita, professione);
 			PersonaleDatabase.getInstance().registraPersonale(personale);
 		}
 	}
 	
-	//Funzione che produce in maniera randomica una matricola con formato NXXXXXXXX, dove X è una cifra corrispondente ad un numero compreso tra 0 e 9
+	//Metodo che produce in maniera randomica una matricola con formato NXXXXXXXX, dove X è una cifra corrispondente ad un numero compreso tra 0 e 9
 	public String generatoreDiMatricole() throws SQLException {
 		Random rnd = new Random();
 	    String matricola = "N";

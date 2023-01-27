@@ -36,7 +36,7 @@ public class AccessoView extends JFrame {
 					AccessoView finestraAccesso = new AccessoView();
 					finestraAccesso.setLocationRelativeTo(null);
 					finestraAccesso.setVisible(true);
-				} catch (Exception e) {
+				} catch(Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -353,6 +353,14 @@ public class AccessoView extends JFrame {
 		registrazione.setForeground(new Color(0, 0, 0));
 		registrazione.setBackground(new Color(255, 255, 255));
 		registrazione.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				registrazione.setForeground(new Color(0, 189, 204));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				registrazione.setForeground(new Color(0, 0, 0));
+			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				RegistrazioneView finestraRegistrazione = new RegistrazioneView();

@@ -22,7 +22,7 @@ import Classi.Models.Tartaruga;
 public class TartarugaDatabase {
 	/*
 	 *
-	 * Funzione che restituisce un'istanza della classe TartarugaDatabase, la genera se non esiste già.
+	 * Metodo che restituisce un'istanza della classe TartarugaDatabase, la genera se non esiste già.
 	 * La variabile d'istanza "instance" viene usata per memorizzare l'unica istanza della classe ed assicura che non ne venga creata più di una
 	 *
 	 */
@@ -36,7 +36,6 @@ public class TartarugaDatabase {
 		return instance;
 	}
 	
-	//Funzione che permette di ricavare una tartaruga tramite la sua targhetta
 	public Tartaruga getTartarugaByTarghetta(String targhetta) throws SQLException {
 		PreparedStatement ps;
 		ResultSet rs;
@@ -63,7 +62,6 @@ public class TartarugaDatabase {
         return null;
     }
 	
-	//Funzione che consente di ottenere tutte le informazioni di una tartaruga; anche la data di quando è stata alloggiata in una vasca e il codice della vasca
 	public Object[] getInfoTartarugaByIndiceRiga(int indiceRiga, int numeroColonne) throws SQLException {
 		PreparedStatement ps;
 		ResultSet rs;
