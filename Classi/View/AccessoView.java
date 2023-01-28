@@ -26,7 +26,7 @@ public class AccessoView extends JFrame {
 	private JPasswordField compilazionePassword;
 	private JLabel iconaOcchioChiuso;
 	private JLabel iconaOcchioAperto;
-	boolean controlloOcchio = true;
+	private boolean controlloOcchio = true;
 	
 	//Lancio dell'applicazione
 	public static void main(String[] args) {
